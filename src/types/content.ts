@@ -1,0 +1,143 @@
+/** Kieu du lieu chung cho toan bo content layer. */
+
+export interface Course {
+  slug: string;
+  /** Ten hien thi day du, vi du: "Hạng B - số tự động". */
+  name: string;
+  /** Ten ngan dung trong dropdown cua form dang ky. */
+  shortName: string;
+  /** Ma hang GPLX (B, C1...) hoac 'BO_TUC' / 'SA_HINH' cho khoa ky nang. */
+  licenseClass: string;
+  /** Mo ta ngan 1-2 cau, dung cho card va meta description. */
+  summary: string;
+  /** Mo ta dai hon cho trang chi tiet. */
+  description: string;
+  /** Khoa hoc phu hop voi ai. */
+  suitableFor: string[];
+  /** Loai xe su dung khi hoc thuc hanh. */
+  vehicleType: string;
+  /** Thoi gian du kien, vi du "khoảng 3 tháng". */
+  estimatedDuration: string;
+  /** Cac phan noi dung se duoc hoc. */
+  curriculum: Array<{ title: string; details: string }>;
+  /** Ho so can chuan bi. */
+  requiredDocuments: string[];
+  /**
+   * Hoc phi. `null` nghia la CHUA cau hinh -> UI hien thi cau moi lien he.
+   * Khong bao gio dien so uoc chung o day.
+   */
+  tuition: CourseTuition | null;
+  /** Cau hoi thuong gap rieng cua khoa nay. */
+  faqs: Faq[];
+  /** Diem noi bat hien thi tren card. */
+  highlights: string[];
+  /** Anh minh hoa (SVG placeholder trong /public/images). */
+  image: ImageAsset;
+  /** Hien thi noi bat tren trang chu. */
+  featured: boolean;
+  /** Thu tu sap xep (nho hon hien truoc). */
+  order: number;
+}
+
+export interface CourseTuition {
+  /** Chuoi hien thi, vi du "12.000.000 đ". De trong neu chua chot. */
+  displayValue: string;
+  /** Cac khoan da bao gom trong hoc phi. */
+  included: string[];
+  /** Cac khoan co the phat sinh them. */
+  mayIncurAdditional: string[];
+  /** Ghi chu them ve hoc phi. */
+  note?: string;
+}
+
+export interface Faq {
+  question: string;
+  answer: string;
+  /** Nhom cau hoi, dung de loc tren trang FAQ. */
+  category?: string;
+}
+
+export interface Testimonial {
+  id: string;
+  /** Ten hien thi. Voi noi dung mau: dung ten chung chung. */
+  name: string;
+  /** Khoa hoc lien quan - dung slug cua Course de loc duoc. */
+  courseSlug: string;
+  /** Nam/thang hoc, dang chuoi tu do. */
+  period: string;
+  quote: string;
+  /**
+   * BAT BUOC. `true` nghia la noi dung mau do doi ngu viet de minh hoa
+   * bo cuc, KHONG phai phan hoi cua hoc vien that.
+   */
+  isPlaceholder: boolean;
+  /** Duong dan video cam nhan, neu co. */
+  videoUrl?: string;
+  /** Anh dai dien - dung avatar chu cai khi khong co anh that. */
+  avatarInitial: string;
+}
+
+export interface GalleryItem {
+  id: string;
+  title: string;
+  description: string;
+  category: GalleryCategory;
+  image: ImageAsset;
+  isPlaceholder: boolean;
+}
+
+export type GalleryCategory =
+  | 'xe-tap-lai'
+  | 'san-tap'
+  | 'sa-hinh'
+  | 'duong-truong'
+  | 'ly-thuyet'
+  | 'huong-dan';
+
+export interface ImageAsset {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+export interface LearningStep {
+  order: number;
+  title: string;
+  description: string;
+  /** Ten icon cua lucide-react (map trong component). */
+  icon: string;
+  /** Thoi luong uoc tinh cua buoc nay. */
+  duration?: string;
+}
+
+export type BlockContent =
+  | { type: 'paragraph'; text: string }
+  | { type: 'heading'; level: 2 | 3; text: string; id: string }
+  | { type: 'list'; ordered: boolean; items: string[] }
+  | { type: 'callout'; tone: 'info' | 'warning' | 'tip'; title: string; text: string }
+  | { type: 'quote'; text: string };
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  description: string;
+  publishedAt: string;
+  updatedAt: string;
+  author: string;
+  category: BlogCategory;
+  /** Thoi gian doc uoc tinh, tinh bang phut. */
+  readingTimeMinutes: number;
+  coverImage: ImageAsset;
+  /** Tu khoa phu tro SEO - viet tu nhien, khong nhoi nhet. */
+  tags: string[];
+  content: BlockContent[];
+  /** Slug cac bai viet lien quan. */
+  relatedSlugs: string[];
+}
+
+export type BlogCategory =
+  | 'Kinh nghiệm học lái'
+  | 'Chuẩn bị hồ sơ'
+  | 'Kỹ năng lái xe'
+  | 'Tâm lý khi lái xe';

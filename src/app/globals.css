@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   DESIGN TOKENS
+   Mau duoc khai bao dang "R G B" de Tailwind dung duoc <alpha-value>.
+   ========================================================================== */
+@layer base {
+  :root {
+    /* Navy dam - thuong hieu, tieu de, header, footer */
+    --color-brand-50: 240 245 252;
+    --color-brand-100: 222 233 247;
+    --color-brand-200: 190 212 238;
+    --color-brand-300: 145 181 224;
+    --color-brand-400: 96 143 205;
+    --color-brand-500: 60 108 178;
+    --color-brand-600: 42 82 146;
+    --color-brand-700: 32 63 115;
+    --color-brand-800: 24 47 88;
+    --color-brand-900: 17 34 66;
+    --color-brand-950: 10 21 43;
+
+    /* Cam - CTA chinh */
+    --color-accent-50: 255 245 235;
+    --color-accent-100: 255 232 209;
+    --color-accent-200: 254 208 158;
+    --color-accent-300: 252 179 103;
+    --color-accent-400: 249 148 55;
+    --color-accent-500: 234 118 14;
+    --color-accent-600: 202 93 9;
+    --color-accent-700: 165 71 10;
+    --color-accent-800: 133 57 14;
+    --color-accent-900: 110 48 15;
+
+    /* Xanh la - chi dung cho trang thai thanh cong / lien he */
+    --color-success-50: 236 250 241;
+    --color-success-100: 209 243 222;
+    --color-success-500: 22 152 85;
+    --color-success-600: 17 125 70;
+    --color-success-700: 15 100 58;
+
+    /* Do - loi / canh bao */
+    --color-danger-50: 254 242 242;
+    --color-danger-500: 209 47 47;
+    --color-danger-600: 185 36 36;
+    --color-danger-700: 153 29 29;
+
+    /* Nen */
+    --color-surface: 255 255 255;
+    --color-surface-muted: 247 249 252;
+    --color-surface-sunken: 238 242 248;
+
+    /* Chu */
+    --color-ink: 21 32 48;
+    --color-ink-muted: 78 92 112;
+    --color-ink-subtle: 116 130 150;
+    --color-ink-inverted: 255 255 255;
+
+    /* Duong vien */
+    --color-line: 225 231 240;
+    --color-line-strong: 198 208 222;
+
+    /* Chieu cao thanh CTA co dinh tren mobile - dung de chua khoang trong */
+    --mobile-cta-height: 4.25rem;
+  }
+
+  * {
+    @apply border-line;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Chua khoang cho header dinh khi nhay den anchor */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface text-ink antialiased;
+    font-family: var(--font-sans), system-ui, -apple-system, 'Segoe UI', sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Chua cho thanh CTA co dinh tren mobile, tranh che footer */
+  @media (max-width: 1023px) {
+    body {
+      padding-bottom: var(--mobile-cta-height);
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold text-brand-900;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Focus ro rang cho dieu huong bang ban phim */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent-500 ring-offset-2 ring-offset-surface;
+    border-radius: 0.375rem;
+  }
+
+  /* Ton trong lua chon giam chuyen dong cua nguoi dung */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Khung noi dung chuan cho moi section */
+  .container-page {
+    @apply mx-auto w-full max-w-content px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-spacing {
+    @apply py-14 sm:py-16 lg:py-20;
+  }
+
+  .card-base {
+    @apply rounded-card border border-line bg-surface shadow-card;
+  }
+
+  /* Bo chu cho noi dung bai viet */
+  .prose-article {
+    @apply text-[1.0625rem] leading-[1.75] text-ink-muted;
+  }
+
+  .prose-article > * + * {
+    @apply mt-5;
+  }
+
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100]
+      focus:rounded-md focus:bg-brand-900 focus:px-4 focus:py-2 focus:text-sm
+      focus:font-semibold focus:text-ink-inverted;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* An thanh cuon ngang cua danh sach loc dang chip */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

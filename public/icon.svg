@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Biểu tượng website học lái xe">
+  <rect width="64" height="64" rx="14" fill="#182F58"/>
+  <rect x="12" y="30" width="40" height="14" rx="6" fill="#FFFFFF"/>
+  <path d="M 18 30 L 22 19 L 42 19 L 46 30 Z" fill="#FCB367"/>
+  <circle cx="21" cy="46" r="5" fill="#FFFFFF"/>
+  <circle cx="43" cy="46" r="5" fill="#FFFFFF"/>
+</svg>

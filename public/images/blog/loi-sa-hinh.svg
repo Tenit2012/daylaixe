@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Lỗi thường gặp khi học sa hình">
+  <title>Lỗi thường gặp khi học sa hình</title>
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#DEE9F7"/>
+      <stop offset="100%" stop-color="#F7F9FC"/>
+    </linearGradient>
+    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#182F58"/>
+      <stop offset="100%" stop-color="#112242"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#skyGrad)"/>
+  <rect x="0" y="0" width="1200" height="14" fill="#EA760E"/>
+  <circle cx="1020" cy="150" r="120" fill="#EA760E" opacity="0.14"/>
+  <circle cx="150" cy="520" r="90" fill="#EA760E" opacity="0.14"/>
+  <g transform="translate(430 300)">
+    <rect x="0" y="59.97599999999999" width="340" height="59.97599999999999" rx="22.848" fill="#182F58"/>
+    <path d="M 61.199999999999996 62.831999999999994 L 102 14.28 L 244.79999999999998 14.28 L 285.59999999999997 62.831999999999994 Z" fill="#EA760E"/>
+    <rect x="108.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
+    <rect x="176.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
+    <circle cx="88.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
+    <circle cx="88.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
+    <circle cx="258.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
+    <circle cx="258.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
+    <rect x="292.4" y="71.39999999999999" width="34" height="14.28" rx="3" fill="#EA760E"/>
+  </g>
+  <text x="600" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#182F58">Lỗi thường gặp khi học sa hình</text>
+  <text x="600" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#3C6CB2">Kiến thức học lái xe</text>
+</svg>

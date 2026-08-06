@@ -1,0 +1,104 @@
+import Link from 'next/link';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { cn } from '@/lib/utils/cn';
+
+type Variant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'success';
+type Size = 'sm' | 'md' | 'lg';
+
+const baseStyles =
+  'inline-flex items-center justify-center gap-2 rounded-pill font-semibold ' +
+  'transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-60 ' +
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+
+const variantStyles: Record<Variant, string> = {
+  primary:
+    'bg-accent-500 text-white hover:bg-accent-600 focus-visible:ring-accent-500 shadow-sm',
+  secondary:
+    'bg-brand-800 text-white hover:bg-brand-900 focus-visible:ring-brand-700 shadow-sm',
+  outline:
+    'border-2 border-brand-700 bg-transparent text-brand-800 hover:bg-brand-50 focus-visible:ring-brand-600',
+  ghost:
+    'bg-transparent text-brand-800 hover:bg-brand-50 focus-visible:ring-brand-500',
+  success:
+    'bg-success-600 text-white hover:bg-success-700 focus-visible:ring-success-600 shadow-sm',
+};
+
+const sizeStyles: Record<Size, string> = {
+  sm: 'h-9 px-4 text-sm',
+  md: 'h-11 px-5 text-[0.9375rem]',
+  lg: 'h-[3.25rem] px-7 text-base',
+};
+
+export function buttonClasses(
+  variant: Variant = 'primary',
+  size: Size = 'md',
+  className?: string,
+): string {
+  return cn(baseStyles, variantStyles[variant], sizeStyles[size], className);
+}
+
+interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
+  variant?: Variant;
+  size?: Size;
+  children: ReactNode;
+}
+
+export function Button({
+  variant = 'primary',
+  size = 'md',
+  className,
+  children,
+  type = 'button',
+  ...props
+}: ButtonProps) {
+  return (
+    <button
+      type={type}
+      className={buttonClasses(variant, size, className)}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+
+interface ButtonLinkProps extends ComponentPropsWithoutRef<'a'> {
+  href: string;
+  variant?: Variant;
+  size?: Size;
+  children: ReactNode;
+  /** Bat buoc cho link ngoai de mo tab moi an toan. */
+  external?: boolean;
+}
+
+export function ButtonLink({
+  href,
+  variant = 'primary',
+  size = 'md',
+  className,
+  children,
+  external,
+  ...props
+}: ButtonLinkProps) {
+  const classes = buttonClasses(variant, size, className);
+
+  if (external || /^(https?:|tel:|mailto:|sms:)/i.test(href)) {
+    const isHttp = /^https?:/i.test(href);
+    return (
+      <a
+        href={href}
+        className={classes}
+        {...(isHttp ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        {...props}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={classes} {...props}>
+      {children}
+    </Link>
+  );
+}

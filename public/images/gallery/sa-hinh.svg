@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Minh họa sơ đồ bài thi sa hình">
+  <title>Minh họa sơ đồ bài thi sa hình</title>
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#DEE9F7"/>
+      <stop offset="100%" stop-color="#F7F9FC"/>
+    </linearGradient>
+    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#182F58"/>
+      <stop offset="100%" stop-color="#112242"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="#F7F9FC"/>
+  <rect x="40" y="40" width="720" height="440" rx="12" fill="#DEE9F7"/>
+  <g stroke="#182F58" stroke-width="5" fill="none">
+    <rect x="100" y="100" width="180" height="110" rx="6"/>
+    <rect x="320" y="100" width="180" height="110" rx="6"/>
+    <rect x="540" y="100" width="160" height="110" rx="6"/>
+    <rect x="100" y="270" width="180" height="150" rx="6"/>
+    <rect x="320" y="270" width="380" height="150" rx="6"/>
+  </g>
+  <g fill="#3C6CB2" font-family="system-ui, sans-serif" font-size="17" font-weight="600" text-anchor="middle">
+    <text x="190" y="162">Xuất phát</text>
+    <text x="410" y="162">Dừng ngang dốc</text>
+    <text x="620" y="162">Vuông góc</text>
+    <text x="190" y="352">Quanh co</text>
+    <text x="510" y="352">Ghép dọc &amp; ghép ngang</text>
+  </g>
+  <text x="400" y="545" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" font-weight="600" fill="#182F58">Sơ đồ bài thi sa hình</text>
+</svg>
