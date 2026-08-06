@@ -7,7 +7,6 @@ import type { Course } from '@/types/content';
 import { buttonClasses } from '@/components/ui/button';
 import { trackEvent } from '@/lib/analytics/track';
 import { AnalyticsEvent } from '@/lib/analytics/events';
-import { cn } from '@/lib/utils/cn';
 
 interface CourseCardProps {
   course: Course;
@@ -71,13 +70,23 @@ export function CourseCard({ course, priority = false }: CourseCardProps) {
           </div>
         </dl>
 
-        <div className="mt-5 flex flex-col gap-2 pt-1 sm:flex-row">
+        {/*
+          Hai CTA xep doc va chiem tron chieu ngang o MOI kich thuoc man hinh.
+          Ly do:
+           - Khong dung `flex-1` trong container `flex-col`: thuoc tinh do an
+             vao TRUC DOC (flex-basis: 0%) khien nut co lai theo chieu cao noi
+             dung thay vi giu dung chieu cao da dat.
+           - Khong xep hai nut canh nhau: card trong luoi 2-3 cot chi rong
+             ~360px, moi nut con ~115px nen nhan tieng Viet bi xuong 2 dong o
+             cac moc 640px va 1024px.
+        */}
+        <div className="mt-5 grid grid-cols-1 gap-2 pt-1">
           <Link
             href={`/khoa-hoc/${course.slug}`}
             onClick={() =>
               trackEvent(AnalyticsEvent.ClickCourse, { course: course.slug })
             }
-            className={cn(buttonClasses('outline', 'sm'), 'flex-1')}
+            className={buttonClasses('outline', 'md')}
           >
             Xem chi tiết
             <ArrowRight aria-hidden="true" className="h-4 w-4" />
@@ -90,7 +99,7 @@ export function CourseCard({ course, priority = false }: CourseCardProps) {
                 course: course.slug,
               })
             }
-            className={cn(buttonClasses('primary', 'sm'), 'flex-1')}
+            className={buttonClasses('primary', 'md')}
           >
             Đăng ký tư vấn
           </Link>
