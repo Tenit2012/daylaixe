@@ -1,0 +1,68 @@
+// Prisma schema - local development dung SQLite.
+//
+// TUONG THICH POSTGRESQL:
+//  - Khong dung tinh nang chi co o SQLite.
+//  - `status` va `role` luu dang String vi SQLite khong ho tro native enum.
+//    Gia tri hop le duoc rang buoc o tang domain (src/features/**/domain)
+//    va validate bang Zod truoc khi ghi.
+//  - Khi chuyen sang PostgreSQL/Supabase: doi `provider = "postgresql"`,
+//    cap nhat DATABASE_URL, va (tuy chon) doi String -> enum theo huong dan
+//    trong docs/DEPLOYMENT.md.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// Hoc vien tiem nang gui qua form dang ky tu van tren website.
+model Lead {
+  id                   String   @id @default(cuid())
+  fullName             String
+  phone                String
+  /// So dien thoai da chuan hoa ve dang 0xxxxxxxxx - dung de tim kiem va
+  /// phat hien trung lap trong thoi gian ngan.
+  normalizedPhone      String
+  interestedCourse     String
+  location             String?
+  preferredContactTime String?
+  note                 String?
+  /// Duong dan trang ma nguoi dung da submit form.
+  sourcePage           String?
+  utmSource            String?
+  utmMedium            String?
+  utmCampaign          String?
+  utmContent           String?
+  utmTerm              String?
+  /// NEW | CONTACTED | CONSIDERING | ENROLLED | NOT_INTERESTED | INVALID
+  status               String   @default("NEW")
+  adminNote            String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([normalizedPhone])
+  @@index([status])
+  @@index([createdAt])
+  @@index([interestedCourse])
+  @@map("leads")
+}
+
+/// Tai khoan dang nhap trang quan tri.
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  /// Bcrypt hash. Khong bao gio luu mat khau dang plain text.
+  passwordHash String
+  name         String
+  /// OWNER | STAFF
+  role         String    @default("OWNER")
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@map("admin_users")
+}
