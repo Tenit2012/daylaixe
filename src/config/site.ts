@@ -124,14 +124,28 @@ export type SiteConfig = typeof siteConfig;
 /**
  * Dieu huong chinh - dung chung cho header, footer va sitemap.
  */
+/**
+ * `label`      : nhan day du - dung o footer, menu mobile, trang 404.
+ * `shortLabel` : nhan rut gon - dung o thanh dieu huong ngang tren desktop,
+ *                noi 7 muc phai nam vua mot hang cung logo, so dien thoai
+ *                va nut CTA.
+ */
 export const mainNav = [
-  { label: 'Trang chủ', href: '/' },
-  { label: 'Giới thiệu', href: '/gioi-thieu' },
-  { label: 'Khóa học', href: '/khoa-hoc' },
-  { label: 'Học phí & lộ trình', href: '/hoc-phi-lo-trinh' },
-  { label: 'Cảm nhận học viên', href: '/cam-nhan-hoc-vien' },
-  { label: 'Kiến thức', href: '/kien-thuc' },
-  { label: 'Liên hệ', href: '/lien-he' },
+  { label: 'Trang chủ', shortLabel: 'Trang chủ', href: '/' },
+  { label: 'Giới thiệu', shortLabel: 'Giới thiệu', href: '/gioi-thieu' },
+  { label: 'Khóa học', shortLabel: 'Khóa học', href: '/khoa-hoc' },
+  {
+    label: 'Học phí & lộ trình',
+    shortLabel: 'Học phí',
+    href: '/hoc-phi-lo-trinh',
+  },
+  {
+    label: 'Cảm nhận học viên',
+    shortLabel: 'Cảm nhận',
+    href: '/cam-nhan-hoc-vien',
+  },
+  { label: 'Kiến thức', shortLabel: 'Kiến thức', href: '/kien-thuc' },
+  { label: 'Liên hệ', shortLabel: 'Liên hệ', href: '/lien-he' },
 ] as const;
 
 export const legalNav = [

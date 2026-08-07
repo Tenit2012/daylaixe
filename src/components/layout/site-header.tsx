@@ -44,59 +44,72 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/85">
-      <div className="container-page">
-        <div className="flex h-16 items-center justify-between gap-4 lg:h-[4.5rem]">
+      {/*
+        Header dung khung rong hon phan noi dung (80rem thay vi 72rem) de
+        7 muc menu, so dien thoai va nut CTA nam vua mot hang o 1280px.
+      */}
+      <div className="mx-auto w-full max-w-[80rem] px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between gap-3 lg:h-[4.5rem]">
           {/* Logo chu */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 rounded-md py-1 text-brand-900"
+            className="flex shrink-0 items-center gap-2.5 rounded-md py-1 text-brand-900"
             aria-label={`${siteConfig.brandName} - về trang chủ`}
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-800 text-white">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-800 text-white">
               <Car aria-hidden="true" className="h-5 w-5" />
             </span>
             <span className="flex flex-col leading-tight">
-              <span className="text-[0.95rem] font-bold sm:text-base">
+              <span className="whitespace-nowrap text-[0.95rem] font-bold sm:text-base">
                 {siteConfig.brandName}
               </span>
-              <span className="hidden text-xs font-medium text-ink-subtle sm:block">
+              {/* An dong mo ta o khoang 1280-1535px de nhuong cho cho menu */}
+              <span className="hidden whitespace-nowrap text-xs font-medium text-ink-subtle sm:block xl:hidden 2xl:block">
                 Tư vấn &amp; hướng dẫn học lái xe
               </span>
             </span>
           </Link>
 
-          {/* Dieu huong desktop */}
-          <nav aria-label="Điều hướng chính" className="hidden xl:block">
-            <ul className="flex items-center gap-1">
+          {/*
+            Dieu huong desktop.
+            `shrink-0` + `whitespace-nowrap`: mac dinh flex item duoc phep co
+            lai, khien chu trong tung muc bi vat xuong 2 dong khi hang chat.
+            Dung nhan rut gon (shortLabel) de 7 muc vua mot hang.
+          */}
+          <nav
+            aria-label="Điều hướng chính"
+            className="hidden shrink-0 xl:block"
+          >
+            <ul className="flex items-center gap-0.5">
               {mainNav.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
                     aria-current={isActive(item.href) ? 'page' : undefined}
                     className={cn(
-                      'rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                      'block whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium transition-colors',
                       isActive(item.href)
                         ? 'text-brand-800 underline decoration-accent-500 decoration-2 underline-offset-8'
                         : 'text-ink-muted hover:text-brand-800',
                     )}
                   >
-                    {item.label}
+                    {item.shortLabel}
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             {phoneHref ? (
               <a
                 href={phoneHref}
                 onClick={() =>
                   trackEvent(AnalyticsEvent.ClickPhone, { location: 'header' })
                 }
-                className="hidden items-center gap-2 rounded-md px-2 py-1.5 text-sm font-semibold text-brand-800 hover:text-accent-600 md:inline-flex"
+                className="hidden items-center gap-2 whitespace-nowrap rounded-md px-2 py-1.5 text-sm font-semibold text-brand-800 hover:text-accent-600 md:inline-flex"
               >
-                <Phone aria-hidden="true" className="h-4 w-4" />
+                <Phone aria-hidden="true" className="h-4 w-4 shrink-0" />
                 <span>{formatVietnamesePhone(siteConfig.contact.phone)}</span>
               </a>
             ) : null}
@@ -106,7 +119,10 @@ export function SiteHeader() {
               onClick={() =>
                 trackEvent(AnalyticsEvent.OpenForm, { location: 'header' })
               }
-              className={cn(buttonClasses('primary', 'sm'), 'hidden sm:inline-flex')}
+              className={cn(
+                buttonClasses('primary', 'sm'),
+                'hidden whitespace-nowrap sm:inline-flex',
+              )}
             >
               Đăng ký tư vấn
             </Link>
