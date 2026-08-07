@@ -19,8 +19,7 @@ const teacherLabel = isPlaceholderValue(siteConfig.teacher.name)
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Giới thiệu về thầy dạy lái xe',
-  description:
-    'Câu chuyện nghề, giá trị giảng dạy và cách đồng hành cùng học viên từ buổi học đầu tiên đến ngày thi sát hạch.',
+  description: `${siteConfig.experience.withAudience}. Câu chuyện nghề, giá trị giảng dạy và cách đồng hành cùng học viên từ buổi học đầu tiên đến ngày thi sát hạch.`,
   path: '/gioi-thieu',
 });
 
@@ -84,6 +83,11 @@ export default function AboutPage() {
             </h1>
             <p className="mt-2 text-[0.9375rem] font-medium text-brand-600">
               {siteConfig.teacher.title} · {siteConfig.teacher.centerName}
+            </p>
+
+            {/* Doan mo dau lay tu config - du lieu kinh nghiem da xac nhan */}
+            <p className="mt-6 rounded-card border-l-4 border-brand-600 bg-brand-50 p-5 text-[1.0625rem] leading-relaxed text-brand-900">
+              {siteConfig.experience.biography}
             </p>
 
             <div className="prose-article mt-6">

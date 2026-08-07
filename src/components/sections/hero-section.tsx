@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   CalendarClock,
+  GraduationCap,
   Handshake,
   MapPin,
   MessageCircle,
@@ -33,9 +34,10 @@ export function HeroSection() {
       <div className="container-page py-10 sm:py-14 lg:py-20">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
+            {/* Thong tin kinh nghiem da duoc thay xac nhan - lay tu config */}
             <p className="inline-flex items-center gap-2 rounded-pill border border-brand-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-brand-700 sm:text-sm">
               <ShieldCheck aria-hidden="true" className="h-4 w-4 text-accent-600" />
-              Tư vấn trực tiếp bởi thầy, không qua trung gian
+              {siteConfig.experience.short}
             </p>
 
             <h1 className="mt-5 text-[1.75rem] leading-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
@@ -75,8 +77,20 @@ export function HeroSection() {
               </div>
             </dl>
 
-            {/* Chi bao tao niem tin - dien dat dinh tinh, khong dung so lieu */}
+            {/*
+              Chi bao tao niem tin.
+              Muc dau la du lieu that da xac nhan (nhom hoc vien thay da huong
+              dan), lay tu config. Cac muc con lai dien dat dinh tinh - KHONG
+              dung so lieu hoc vien, ty le thi dau hay thanh tich.
+            */}
             <ul className="mt-8 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              <li className="flex items-center gap-2.5 rounded-lg border border-brand-200 bg-brand-50 px-3 py-2.5 text-sm font-semibold text-brand-900 sm:col-span-2">
+                <GraduationCap
+                  aria-hidden="true"
+                  className="h-[1.125rem] w-[1.125rem] flex-shrink-0 text-brand-700"
+                />
+                {siteConfig.experience.audienceShort}
+              </li>
               {trustIndicators.map((indicator) => {
                 const Icon = trustIcons[indicator.icon] ?? ShieldCheck;
                 return (

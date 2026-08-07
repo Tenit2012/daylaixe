@@ -7,9 +7,6 @@ import { buttonClasses } from '@/components/ui/button';
 
 export function AboutTeacherSection() {
   const { teacher } = siteConfig;
-  const experienceText = isPlaceholderValue(teacher.yearsOfExperience)
-    ? 'Số năm kinh nghiệm sẽ được cập nhật'
-    : `${teacher.yearsOfExperience} kinh nghiệm hướng dẫn học viên`;
   const centerText = isPlaceholderValue(teacher.centerName)
     ? 'Tên trung tâm sẽ được cập nhật'
     : teacher.centerName;
@@ -42,13 +39,22 @@ export function AboutTeacherSection() {
             {teacher.title}
           </p>
 
-          <dl className="mt-5 grid gap-3 sm:grid-cols-2">
+          <dl className="mt-5 grid gap-3 sm:grid-cols-3">
             <div className="rounded-lg border border-line bg-surface-muted p-4">
               <dt className="text-xs font-semibold uppercase tracking-wide text-ink-subtle">
                 Kinh nghiệm
               </dt>
               <dd className="mt-1 text-[0.9375rem] font-medium text-brand-900">
-                {experienceText}
+                {siteConfig.experience.compact}
+              </dd>
+            </div>
+            <div className="rounded-lg border border-line bg-surface-muted p-4">
+              <dt className="text-xs font-semibold uppercase tracking-wide text-ink-subtle">
+                Học viên đã hướng dẫn
+              </dt>
+              <dd className="mt-1 text-[0.9375rem] font-medium text-brand-900">
+                {teacher.studentGroups.charAt(0).toUpperCase() +
+                  teacher.studentGroups.slice(1)}
               </dd>
             </div>
             <div className="rounded-lg border border-line bg-surface-muted p-4">
@@ -62,6 +68,7 @@ export function AboutTeacherSection() {
           </dl>
 
           <div className="mt-6 space-y-4 text-[0.9375rem] leading-relaxed text-ink-muted">
+            <p>{siteConfig.experience.biography}</p>
             <p>
               <strong className="font-semibold text-brand-900">
                 Phong cách hướng dẫn:

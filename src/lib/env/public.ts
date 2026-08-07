@@ -22,10 +22,25 @@ const publicEnvSchema = z.object({
   NEXT_PUBLIC_TRAINING_AREA: z.string().min(1).default('[Khu vực đào tạo]'),
   NEXT_PUBLIC_GOOGLE_MAPS_URL: z.string().default('[Google Maps URL]'),
   NEXT_PUBLIC_CENTER_NAME: z.string().min(1).default('[Tên trung tâm]'),
-  NEXT_PUBLIC_YEARS_OF_EXPERIENCE: z
+  /**
+   * Nhan kinh nghiem dang CHU, khong phai so.
+   * Du lieu that duoc thay xac nhan la "gan 20 nam" - de nguyen dang uoc
+   * luong nay, khong duoc lam tron thanh "20 nam".
+   */
+  NEXT_PUBLIC_EXPERIENCE_LABEL: z.string().min(1).default('Gần 20 năm'),
+  /**
+   * Nhom hoc vien thay da truc tiep huong dan.
+   * Dat o day de neu trung tam dung ten goi chinh thuc khac (vi du cach
+   * goi khac cho "hệ Công an") thi chi sua mot cho, khong phai sua component.
+   */
+  NEXT_PUBLIC_STUDENT_GROUPS: z
     .string()
     .min(1)
-    .default('[Số năm kinh nghiệm]'),
+    .default('học viên hệ dân sự và hệ Công an'),
+  NEXT_PUBLIC_STUDENT_GROUPS_SHORT: z
+    .string()
+    .min(1)
+    .default('học viên dân sự và Công an'),
   NEXT_PUBLIC_CONTACT_HOURS: z.string().min(1).default('[Thời gian liên hệ]'),
   NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().default(''),
   NEXT_PUBLIC_FACEBOOK_PIXEL_ID: z.string().default(''),
@@ -61,8 +76,14 @@ const parsed = publicEnvSchema.safeParse({
     process.env.NEXT_PUBLIC_GOOGLE_MAPS_URL,
   ),
   NEXT_PUBLIC_CENTER_NAME: orUndefined(process.env.NEXT_PUBLIC_CENTER_NAME),
-  NEXT_PUBLIC_YEARS_OF_EXPERIENCE: orUndefined(
-    process.env.NEXT_PUBLIC_YEARS_OF_EXPERIENCE,
+  NEXT_PUBLIC_EXPERIENCE_LABEL: orUndefined(
+    process.env.NEXT_PUBLIC_EXPERIENCE_LABEL,
+  ),
+  NEXT_PUBLIC_STUDENT_GROUPS: orUndefined(
+    process.env.NEXT_PUBLIC_STUDENT_GROUPS,
+  ),
+  NEXT_PUBLIC_STUDENT_GROUPS_SHORT: orUndefined(
+    process.env.NEXT_PUBLIC_STUDENT_GROUPS_SHORT,
   ),
   NEXT_PUBLIC_CONTACT_HOURS: orUndefined(
     process.env.NEXT_PUBLIC_CONTACT_HOURS,

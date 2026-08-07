@@ -44,6 +44,12 @@ export function buildPersonJsonLd(): JsonLd {
     '@id': `${siteConfig.url}/#person`,
     name: name ?? siteConfig.brandName,
     jobTitle: cleanValue(siteConfig.teacher.title) ?? 'Giáo viên dạy lái xe',
+    /**
+     * Chi mo ta kinh nghiem bang cau van da duoc xac nhan.
+     * KHONG khai bao aggregateRating, reviewCount, award hay so hoc vien -
+     * do la du lieu co cau truc gia neu chua co nguon that.
+     */
+    description: siteConfig.experience.withAudience,
     url: siteConfig.url,
     telephone: cleanValue(siteConfig.contact.phone),
     email: cleanValue(siteConfig.contact.email),

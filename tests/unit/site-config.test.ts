@@ -78,6 +78,82 @@ describe('siteConfig', () => {
   });
 });
 
+/**
+ * Du lieu kinh nghiem la THONG TIN THAT da duoc xac nhan (07/08/2026).
+ * Cac test duoi day bao ve dung hai dieu:
+ *  1. Khong bien uoc luong "gan 20 nam" thanh con so tuyet doi "20 nam".
+ *  2. Khong bia them thanh tich, so lieu, chuc vu hay cap bac.
+ */
+describe('thong tin kinh nghiem (VERIFIED_REAL_DATA)', () => {
+  it('luu duoi dang nhan chu, khong phai so', () => {
+    expect(typeof siteConfig.teacher.experienceLabel).toBe('string');
+    expect(siteConfig.teacher.experienceLabel.length).toBeGreaterThan(0);
+    // Khong duoc la mot chuoi chi gom chu so.
+    expect(siteConfig.teacher.experienceLabel).not.toMatch(/^\d+$/);
+  });
+
+  it('giu nguyen tinh uoc luong, khong lam tron thanh con so tuyet doi', () => {
+    const label = siteConfig.teacher.experienceLabel.toLowerCase();
+    // Chi ap dung khi du lieu goc la mot uoc luong ("gan N nam").
+    const approximate = label.match(/gần\s+(\d+)\s*năm/);
+    if (!approximate) return;
+
+    const years = approximate[1];
+
+    // Bat ky cau van nao nhac toi so nam deu phai giu chu "gan" di kem,
+    // khong duoc rut gon thanh "20 năm".
+    for (const sentence of Object.values(siteConfig.experience)) {
+      const text = sentence.toLowerCase();
+      if (!text.includes(`${years} năm`)) continue;
+      expect(text, `cau van lam tron mat chu "gần": ${sentence}`).toContain(
+        `gần ${years} năm`,
+      );
+    }
+  });
+
+  it('nhac du ca hai nhom hoc vien trong doan gioi thieu', () => {
+    const bio = siteConfig.experience.biography.toLowerCase();
+    expect(bio).toContain('dân sự');
+    expect(bio).toContain('công an');
+  });
+
+  it('cach goi nhom hoc vien nam trong config de doi duoc wording', () => {
+    expect(siteConfig.teacher.studentGroups.length).toBeGreaterThan(0);
+    expect(siteConfig.teacher.studentGroupsShort.length).toBeGreaterThan(0);
+  });
+
+  it('khong bia so lieu, thanh tich, chuc vu hay cap bac', () => {
+    const haystack = [
+      ...Object.values(siteConfig.experience),
+      siteConfig.teacher.studentGroups,
+      siteConfig.teacher.studentGroupsShort,
+    ]
+      .join(' ')
+      .toLowerCase();
+
+    for (const phrase of [
+      'tỷ lệ',
+      'đạt giải',
+      'danh hiệu',
+      'huân chương',
+      'bằng khen',
+      'thượng úy',
+      'đại úy',
+      'thiếu tá',
+      'trung tá',
+      'thượng tá',
+      'đại tá',
+      'trưởng phòng',
+      'chỉ huy',
+    ]) {
+      expect(haystack, `khong duoc chua cum: ${phrase}`).not.toContain(phrase);
+    }
+
+    // Khong duoc nhac so luong hoc vien dang con so.
+    expect(haystack).not.toMatch(/\d[\d.,]*\s*(học viên|hoc vien)/);
+  });
+});
+
 describe('dieu huong', () => {
   it('mainNav co du cac muc bat buoc', () => {
     const hrefs = mainNav.map((item) => item.href);

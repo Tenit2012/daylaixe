@@ -20,6 +20,8 @@ export function isPlaceholderValue(value: string): boolean {
 
 const teacherName = publicEnv.NEXT_PUBLIC_TEACHER_NAME;
 const phoneNumber = publicEnv.NEXT_PUBLIC_PHONE_NUMBER;
+const experienceLabel = publicEnv.NEXT_PUBLIC_EXPERIENCE_LABEL;
+const studentGroups = publicEnv.NEXT_PUBLIC_STUDENT_GROUPS;
 
 /**
  * Tu khoa SEO. Khai bao rieng (kieu `string[]` co the thay doi) vi
@@ -47,9 +49,43 @@ export const siteConfig = {
     name: teacherName,
     /** Chuc danh - vi du: "Giáo viên dạy thực hành lái xe". */
     title: publicEnv.NEXT_PUBLIC_TEACHER_TITLE,
-    yearsOfExperience: publicEnv.NEXT_PUBLIC_YEARS_OF_EXPERIENCE,
+    /**
+     * DU LIEU THAT DA XAC NHAN.
+     * Luu dang NHAN CHU ("Gần 20 năm"), khong luu so nguyen, de khong bien
+     * mot con so uoc luong thanh con so tuyet doi ("20 năm").
+     */
+    experienceLabel: publicEnv.NEXT_PUBLIC_EXPERIENCE_LABEL,
+    /**
+     * DU LIEU THAT DA XAC NHAN: thay da truc tiep huong dan ca hai nhom.
+     * Neu trung tam dung ten goi chinh thuc khac, chi can sua bien moi truong
+     * NEXT_PUBLIC_STUDENT_GROUPS / _SHORT, khong phai sua component nao.
+     */
+    studentGroups: publicEnv.NEXT_PUBLIC_STUDENT_GROUPS,
+    studentGroupsShort: publicEnv.NEXT_PUBLIC_STUDENT_GROUPS_SHORT,
     /** Ten trung tam noi thay dang giang day / ho tro tuyen sinh. */
     centerName: publicEnv.NEXT_PUBLIC_CENTER_NAME,
+  },
+
+  /**
+   * Cac cau van ve kinh nghiem, soan san tai day de component chi viec
+   * hien thi, khong tu ghep chuoi. Doi cach dien dat chi sua o mot cho.
+   *
+   * NGUYEN TAC: chi dien dat lai dung du lieu da duoc xac nhan. KHONG them
+   * so hoc vien, ty le thi dau, thanh tich, chuc vu, cap bac hay danh hieu.
+   */
+  experience: {
+    /** Dung cho badge/nhan ngan. */
+    short: `${experienceLabel} kinh nghiệm giảng dạy lái xe tại trung tâm`,
+    /** Nhan cuc ngan cho o thong tin dang danh sach. */
+    compact: `${experienceLabel} kinh nghiệm giảng dạy`,
+    /** Nhan mac dinh khi muon nhac ca hai nhom hoc vien. */
+    withAudience: `${experienceLabel} kinh nghiệm hướng dẫn ${studentGroups}`,
+    /** Dong hien thi trong trust indicator o hero. */
+    audienceShort: `Dạy cả ${publicEnv.NEXT_PUBLIC_STUDENT_GROUPS_SHORT}`,
+    /** Doan gioi thieu day du - dung o trang /gioi-thieu. */
+    biography: `Với ${experienceLabel.toLowerCase()} kinh nghiệm giảng dạy tại trung tâm, ${
+      isPlaceholderValue(teacherName) ? 'thầy' : `Thầy ${teacherName}`
+    } đã trực tiếp hướng dẫn nhiều thế hệ học viên, từ học viên dân sự đến học viên thuộc lực lượng Công an. Kinh nghiệm thực tế lâu năm giúp thầy hiểu những khó khăn thường gặp của người mới học lái và có phương pháp hướng dẫn rõ ràng, dễ tiếp thu, chú trọng kỹ năng lái xe an toàn.`,
   },
 
   contact: {
@@ -158,7 +194,7 @@ export function getUnresolvedPlaceholders(): string[] {
   const candidates: Array<[string, string]> = [
     ['Tên thầy', siteConfig.teacher.name],
     ['Chức danh', siteConfig.teacher.title],
-    ['Số năm kinh nghiệm', siteConfig.teacher.yearsOfExperience],
+    ['Kinh nghiệm giảng dạy', siteConfig.teacher.experienceLabel],
     ['Tên trung tâm', siteConfig.teacher.centerName],
     ['Số điện thoại', siteConfig.contact.phone],
     ['Zalo URL', siteConfig.contact.zaloUrl],

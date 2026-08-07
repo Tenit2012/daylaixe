@@ -325,7 +325,6 @@ chưa thay, nhưng giao diện sẽ hiển thị "đang cập nhật" ở các c
 | `NEXT_PUBLIC_ADDRESS` | `[Địa chỉ]` | ✅ |
 | `NEXT_PUBLIC_TRAINING_AREA` | `[Khu vực đào tạo]` | ✅ |
 | `NEXT_PUBLIC_CENTER_NAME` | `[Tên trung tâm]` | ✅ |
-| `NEXT_PUBLIC_YEARS_OF_EXPERIENCE` | `[Số năm kinh nghiệm]` | ✅ |
 | `NEXT_PUBLIC_CONTACT_HOURS` | `[Thời gian liên hệ]` | ✅ |
 | `NEXT_PUBLIC_GOOGLE_MAPS_URL` | `[Google Maps URL]` | ➖ |
 | `NEXT_PUBLIC_FACEBOOK_URL` | `[Facebook URL]` | ➖ |
@@ -336,6 +335,25 @@ chưa thay, nhưng giao diện sẽ hiển thị "đang cập nhật" ở các c
 
 Dự án có sẵn hàm `getUnresolvedPlaceholders()` trong `src/config/site.ts` để liệt
 kê những mục chưa thay.
+
+### Đã thay bằng dữ liệu thật — `VERIFIED_REAL_DATA`
+
+| Thông tin | Giá trị đã xác nhận | Biến môi trường | Ngày |
+| --- | --- | --- | --- |
+| Tên thầy | Tùng | `NEXT_PUBLIC_TEACHER_NAME` | 06/08/2026 |
+| Số điện thoại | 0967569733 | `NEXT_PUBLIC_PHONE_NUMBER` | 06/08/2026 |
+| Zalo | `zalo.me/0967569733` | `NEXT_PUBLIC_ZALO_URL` | 06/08/2026 |
+| **Kinh nghiệm giảng dạy** | **Gần 20 năm giảng dạy tại trung tâm** | `NEXT_PUBLIC_EXPERIENCE_LABEL` | **07/08/2026** |
+| **Đối tượng học viên** | **Cả hệ dân sự và hệ Công an** | `NEXT_PUBLIC_STUDENT_GROUPS` | **07/08/2026** |
+
+Chi tiết lần thay dữ liệu kinh nghiệm: [`docs/DATA_02_REPORT.md`](docs/DATA_02_REPORT.md).
+
+**Ghi chú về kiểu dữ liệu kinh nghiệm.** Biến cũ `NEXT_PUBLIC_YEARS_OF_EXPERIENCE`
+đã được **bỏ** và thay bằng `NEXT_PUBLIC_EXPERIENCE_LABEL`. Lý do: tên cũ gợi ý một
+con số, dễ dẫn tới việc điền `20` trong khi dữ liệu thật là **"gần 20 năm"** — một
+ước lượng. Config vì thế lưu **nhãn chữ** (`experienceLabel: string`), không lưu
+`experienceYears: number`. Có unit test chặn việc làm tròn thành "20 năm" và chặn
+việc bịa thêm số học viên, tỷ lệ đỗ, cấp bậc hay danh hiệu.
 
 ---
 
@@ -359,7 +377,8 @@ Danh sách đầy đủ kèm kích thước, tỷ lệ và yêu cầu nội dung
 | Điều kiện dự học hạng C1 | Ghi "phụ thuộc quy định hiện hành" | Điều kiện cụ thể đã kiểm chứng |
 | Cảm nhận học viên | 6 bản mẫu, `isPlaceholder: true` | Phản hồi thật đã được học viên đồng ý cho đăng |
 | Video cảm nhận | 2 vị trí trống | Video thật (30–90 giây) |
-| Số năm kinh nghiệm | Placeholder | Con số thật |
+| ~~Số năm kinh nghiệm~~ | ✅ **Đã có: "Gần 20 năm"** | — (đã xong 07/08/2026) |
+| ~~Đối tượng học viên~~ | ✅ **Đã có: hệ dân sự và hệ Công an** | Nên xác nhận cách gọi chính thức của trung tâm |
 | Tên trung tâm | Placeholder | Tên chính xác nơi thầy giảng dạy |
 
 **Không tự điền số liệu ước chừng** vào các mục trên — giao diện đã xử lý sẵn
@@ -410,3 +429,51 @@ trường hợp thiếu dữ liệu một cách trung thực.
 Repository đã được khởi tạo và các commit đã được tạo theo nhóm chức năng
 (xem `git log`). Chưa cấu hình remote — cần thêm remote và `git push` khi có
 repository từ xa.
+
+---
+
+## Mock, Sample and Placeholder Data Audit
+
+**Ngày audit:** 2026-08-07 · **Người thực hiện:** Claude (Cowork).
+
+Mục tiêu: kiểm thử dự án còn hoạt động + kiểm kê toàn bộ dữ liệu giả/mẫu/placeholder/cấu hình dev cần thay trước production. **Không** thay dữ liệu thật, **không** sáng tác nội dung, **không** đổi business logic.
+
+**Số file đã kiểm tra:** toàn bộ `src/` (~110 file), `prisma/`, `public/` (24 asset), `docs/`, `tests/`, và các file cấu hình gốc.
+
+**Số phát hiện:** 27 — **P0: 4 · P1: 13 · P2: 8 · P3: 2**. Phân loại: MOCK_PRODUCTION_RISK 2, PLACEHOLDER_REQUIRED 5, SAMPLE_CONTENT_REVIEW 4, NEEDS_CONFIRMATION 6, CONFIGURATION_REQUIRED 8, DEVELOPMENT_SEED 1, TEST_FIXTURE_SAFE 1, DEAD_OR_UNUSED 0.
+
+**Kết luận:** codebase xử lý placeholder rất kỷ luật (degrade an toàn, không hard-code học phí/secret/số liệu uy tín, testimonial gắn cờ `isPlaceholder`). Chưa deploy production **chỉ vì thiếu cấu hình thật + nội dung/ảnh thật của thầy**, không phải vì có dữ liệu giả nguy hiểm giả mạo dữ liệu thật.
+
+**4 blocker P0:** `NEXT_PUBLIC_SITE_URL` (localhost) · `DATABASE_URL` (SQLite dev) · `ADMIN_EMAIL` (admin@example.com) · `ADMIN_PASSWORD` (change-me). `AUTH_SECRET` **đã** đặt hợp lệ (57 ký tự) — không phải blocker.
+
+### File báo cáo đã tạo
+
+- `docs/MOCK_AND_SAMPLE_DATA_AUDIT.md` — báo cáo chính 18 mục.
+- `docs/MOCK_AND_SAMPLE_DATA_INVENTORY.csv` — 27 dòng, mỗi phát hiện một dòng (không chứa secret đầy đủ).
+- `docs/THAY_TUNG_CONTENT_CHECKLIST.md` — checklist thu thập nội dung để gửi thầy Tùng.
+- `docs/DATA_REPLACEMENT_PLAN.md` — kế hoạch thay dữ liệu theo 5 pha.
+
+### Script đã thêm
+
+- `scripts/check-production-placeholders.ts` + npm script `check:placeholders` (chạy bằng `tsx`, đồng bộ với `prisma.seed`).
+  - Ở dev: chỉ cảnh báo (localhost/sqlite là bình thường) → exit 0.
+  - Nhắm production (`NODE_ENV=production` hoặc cờ `--production`): 4 blocker P0 thành error → exit 1.
+  - Logic thuần (`evaluateEnv`, `scanSourceText`, `parseEnvFile`, `mask`, `isBracketPlaceholder`) tách riêng, có unit test `tests/unit/check-placeholders.test.ts`.
+  - Che secret (`mask`), allowlist các vị trí placeholder hợp lệ (`src/lib/env/public.ts`, `src/config/site.ts`, `prisma/seed.ts` — nơi `change-me` là code guard), bỏ qua `tests/`.
+- Sửa `package.json`: thêm `"check:placeholders"`.
+
+### Kiểm thử đã chạy (sandbox Linux)
+
+| Bước | Kết quả |
+|---|---|
+| `tsc --noEmit` (typecheck) | **PASS** |
+| `check:placeholders` (dev) | **PASS** (exit 0, 5 cảnh báo) |
+| `check:placeholders --production` | exit 1 đúng 4 blocker P0 (hành vi mong đợi) |
+| Logic helper của script | Đã kiểm chứng bằng smoke test qua `node --experimental-strip-types` |
+| `npm ci`, `db:generate`, `format:check`, `lint`, `test`, `build`, migrate/seed, E2E | **BLOCKED_BY_ENVIRONMENT** |
+
+**Lý do BLOCKED:** sandbox chạy Linux nhưng `node_modules` được cài trên Windows của chủ dự án → thiếu gói native theo nền tảng (Prisma query engine Linux, `@rollup/rollup-linux-x64-gnu`, esbuild của `tsx`), và egress mạng bị chặn nên không `npm ci` được. **Các lệnh này chạy được đầy đủ trên máy Windows của chủ dự án.**
+
+### Blocker còn lại & bước tiếp theo
+
+Bước tiếp theo: thu thập dữ liệu thật theo `docs/THAY_TUNG_CONTENT_CHECKLIST.md`, sau đó thực hiện thay thế production theo `docs/DATA_REPLACEMENT_PLAN.md`. Trước khi deploy, chạy trên máy chủ dự án: `npm run typecheck && npm run lint && npm run test && npm run build && NODE_ENV=production npm run check:placeholders`.

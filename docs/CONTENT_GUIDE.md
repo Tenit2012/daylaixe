@@ -78,7 +78,9 @@ NEXT_PUBLIC_ADDRESS="123 Đường ABC, TP. Thủ Đức, TP.HCM"
 NEXT_PUBLIC_TRAINING_AREA="TP. Thủ Đức và các quận lân cận"
 NEXT_PUBLIC_GOOGLE_MAPS_URL="https://maps.app.goo.gl/..."
 NEXT_PUBLIC_CENTER_NAME="Trung tâm đào tạo lái xe ..."
-NEXT_PUBLIC_YEARS_OF_EXPERIENCE="hơn 10 năm"
+NEXT_PUBLIC_EXPERIENCE_LABEL="Gần 20 năm"
+NEXT_PUBLIC_STUDENT_GROUPS="học viên hệ dân sự và hệ Công an"
+NEXT_PUBLIC_STUDENT_GROUPS_SHORT="học viên dân sự và Công an"
 NEXT_PUBLIC_CONTACT_HOURS="7:00 - 20:00 hằng ngày"
 ```
 
