@@ -5,6 +5,7 @@
   "description": "Website thuong hieu ca nhan cho thay day lai xe - tu van tuyen sinh khoa hoc lai xe",
   "scripts": {
     "dev": "next dev",
+    "dev:clean-browser": "node scripts/open-clean-browser.mjs",
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint .",
@@ -16,6 +17,7 @@
     "test:e2e:install": "playwright install --with-deps chromium",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "check:placeholders": "tsx scripts/check-production-placeholders.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:migrate:deploy": "prisma migrate deploy",
