@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, MessageCircle, Phone } from 'lucide-react';
+import { ArrowLeft, Phone } from 'lucide-react';
+import { ZaloIcon } from '@/components/ui/zalo-icon';
 import { requireSession } from '@/lib/auth/session';
 import { leadRepository } from '@/features/leads/infrastructure/prisma-lead-repository';
 import { getCourseLabel } from '@/content/courses';
@@ -193,9 +194,9 @@ export default async function AdminLeadDetailPage({ params }: PageProps) {
                   href={zaloHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-success-600 px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-success-700"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-zalo px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-zalo-dark"
                 >
-                  <MessageCircle aria-hidden="true" className="h-[1.125rem] w-[1.125rem]" />
+                  <ZaloIcon />
                   Mở Zalo
                 </a>
               </div>

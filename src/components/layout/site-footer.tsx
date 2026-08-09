@@ -5,10 +5,10 @@ import {
   Facebook,
   Mail,
   MapPin,
-  MessageCircle,
   Phone,
   Youtube,
 } from 'lucide-react';
+import { ZaloIcon } from '@/components/ui/zalo-icon';
 import { legalNav, mainNav, siteConfig } from '@/config/site';
 import {
   buildEmailHref,
@@ -98,7 +98,7 @@ export function SiteFooter() {
                 )}
               </li>
               <li className="flex items-start gap-2.5">
-                <MessageCircle aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-300" />
+                <ZaloIcon className="mt-0.5 h-4 w-4" />
                 {zaloHref ? (
                   <a
                     href={zaloHref}

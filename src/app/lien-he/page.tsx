@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { Clock, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { Clock, Mail, MapPin, Phone } from 'lucide-react';
+import { ZaloIcon } from '@/components/ui/zalo-icon';
 import { isPlaceholderValue, siteConfig } from '@/config/site';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { buildBreadcrumbJsonLd } from '@/lib/seo/structured-data';
@@ -94,8 +95,8 @@ export default function ContactPage() {
           </Card>
 
           <Card>
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-success-50 text-success-600">
-              <MessageCircle aria-hidden="true" className="h-[1.375rem] w-[1.375rem]" />
+            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-zalo/10">
+              <ZaloIcon tone="onLight" className="h-[1.375rem] w-[1.375rem]" />
             </span>
             <h2 className="mt-4 text-lg">Zalo</h2>
             {zaloHref ? (
@@ -103,7 +104,7 @@ export default function ContactPage() {
                 href={zaloHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-1.5 block rounded text-[0.9375rem] font-semibold text-brand-800 hover:text-success-700 hover:underline"
+                className="mt-1.5 block rounded text-[0.9375rem] font-semibold text-brand-800 hover:text-zalo hover:underline"
               >
                 Nhắn tin cho thầy
               </a>

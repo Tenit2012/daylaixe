@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Biểu tượng nhắn tin">
+  <title>Biểu tượng nhắn tin (chỗ dành cho logo Zalo bản trắng)</title>
+  <!--
+    ============================================================================
+    HÌNH TẠM - KHÔNG PHẢI LOGO ZALO
+    ============================================================================
+    Đây là biểu tượng bong bóng chat chung chung, cố ý KHÔNG mô phỏng logo
+    Zalo. Vẽ nhái logo của một thương hiệu vừa trông thiếu chuyên nghiệp, vừa
+    rắc rối hơn về mặt nhãn hiệu so với việc dùng hình trung tính.
+
+    BẢN NÀY DÙNG Ở ĐÂU: trên nền màu đậm (nút nền xanh Zalo, footer nền navy).
+    Vì vậy nét vẽ để màu TRẮNG cứng, không dùng currentColor - khi nạp qua
+    thẻ <img> thì currentColor không kế thừa được màu chữ bên ngoài.
+
+    CÁCH THAY BẰNG LOGO THẬT:
+      1. Tải bộ logo chính thức từ trang thương hiệu của Zalo.
+      2. Chọn bản ĐƠN SẮC MÀU TRẮNG.
+      3. Ghi đè lên đúng file này, giữ nguyên tên và đường dẫn.
+      4. Không cần sửa dòng code nào.
+
+    Bản dùng cho nền sáng nằm ở: zalo-logo-color.svg
+    ============================================================================
+  -->
+  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z" />
+</svg>

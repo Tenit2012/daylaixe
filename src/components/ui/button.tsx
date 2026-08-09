@@ -2,7 +2,13 @@ import Link from 'next/link';
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { cn } from '@/lib/utils/cn';
 
-type Variant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'success';
+type Variant =
+  | 'primary'
+  | 'secondary'
+  | 'outline'
+  | 'ghost'
+  | 'success'
+  | 'zalo';
 type Size = 'sm' | 'md' | 'lg';
 
 const baseStyles =
@@ -21,6 +27,8 @@ const variantStyles: Record<Variant, string> = {
     'bg-transparent text-brand-800 hover:bg-brand-50 focus-visible:ring-brand-500',
   success:
     'bg-success-600 text-white hover:bg-success-700 focus-visible:ring-success-600 shadow-sm',
+  /** Chi dung cho nut dan toi Zalo. */
+  zalo: 'bg-zalo text-white hover:bg-zalo-dark focus-visible:ring-zalo shadow-sm',
 };
 
 const sizeStyles: Record<Size, string> = {

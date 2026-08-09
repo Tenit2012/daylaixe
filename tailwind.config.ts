@@ -45,6 +45,11 @@ const config: Config = {
           800: 'rgb(var(--color-accent-800) / <alpha-value>)',
           900: 'rgb(var(--color-accent-900) / <alpha-value>)',
         },
+        /** Mau thuong hieu Zalo - chi dung cho nut/lien ket dan toi Zalo. */
+        zalo: {
+          DEFAULT: 'rgb(var(--color-zalo) / <alpha-value>)',
+          dark: 'rgb(var(--color-zalo-dark) / <alpha-value>)',
+        },
         success: {
           50: 'rgb(var(--color-success-50) / <alpha-value>)',
           100: 'rgb(var(--color-success-100) / <alpha-value>)',

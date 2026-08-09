@@ -6,6 +6,15 @@
  * thuoc realm khac nen phep kiem tra do se that bai.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+/**
+ * bcrypt cost 12 co tinh cham (~0.5 giay moi lan bam/so sanh) - do la muc dich
+ * cua no. Mot so test o day goi 3-4 lan lien tiep, khi chay song song voi cac
+ * file test khac thi de vuot nguong 5 giay mac dinh cua Vitest va bao fail gia.
+ * Noi long thoi gian cho rieng file nay thay vi ha cost (ha cost se lam test
+ * khong con kiem chung dung cau hinh that).
+ */
+vi.setConfig({ testTimeout: 30_000, hookTimeout: 30_000 });
 import { hashPassword, verifyPassword } from '@/features/auth/infrastructure/password';
 import {
   signSessionToken,

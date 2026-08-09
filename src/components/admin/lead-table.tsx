@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { MessageCircle, Phone } from 'lucide-react';
+import { Phone } from 'lucide-react';
+import { ZaloIcon } from '@/components/ui/zalo-icon';
 import type { Lead } from '@/features/leads/domain/lead';
 import { getCourseLabel } from '@/content/courses';
 import { formatVietnameseDateTime } from '@/lib/utils/format-date';
@@ -85,9 +86,9 @@ export function LeadTable({ leads }: LeadTableProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Mở Zalo của ${lead.fullName}`}
-                        className="inline-flex items-center gap-1 rounded text-xs font-medium text-success-700 hover:underline"
+                        className="inline-flex items-center gap-1 rounded text-xs font-medium text-zalo hover:underline"
                       >
-                        <MessageCircle aria-hidden="true" className="h-3.5 w-3.5" />
+                        <ZaloIcon tone="onLight" className="h-3.5 w-3.5" />
                         Zalo
                       </a>
                     </span>

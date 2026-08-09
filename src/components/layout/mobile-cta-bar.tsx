@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ClipboardList, MessageCircle, Phone } from 'lucide-react';
+import { ClipboardList, Phone } from 'lucide-react';
+import { ZaloIcon } from '@/components/ui/zalo-icon';
 import { siteConfig } from '@/config/site';
 import { buildPhoneHref, buildZaloHref } from '@/lib/utils/cta-links';
 import { trackEvent } from '@/lib/analytics/track';
@@ -61,14 +62,14 @@ export function MobileCtaBar() {
             onClick={() =>
               trackEvent(AnalyticsEvent.ClickZalo, { location: 'mobile_bar' })
             }
-            className="flex flex-col items-center justify-center gap-1 rounded-xl bg-success-600 px-2 py-2 text-xs font-semibold text-white transition-colors hover:bg-success-700"
+            className="flex flex-col items-center justify-center gap-1 rounded-xl bg-zalo px-2 py-2 text-xs font-semibold text-white transition-colors hover:bg-zalo-dark"
           >
-            <MessageCircle aria-hidden="true" className="h-5 w-5" />
+            <ZaloIcon className="h-5 w-5" />
             Nhắn Zalo
           </a>
         ) : (
           <span className="flex flex-col items-center justify-center gap-1 rounded-xl bg-surface-sunken px-2 py-2 text-xs font-semibold text-ink-subtle">
-            <MessageCircle aria-hidden="true" className="h-5 w-5" />
+            <ZaloIcon tone="onLight" className="h-5 w-5" />
             Đang cập nhật
           </span>
         )}

@@ -1,6 +1,7 @@
 'use client';
 
-import { MapPin, MessageCircle, Phone } from 'lucide-react';
+import { MapPin, Phone } from 'lucide-react';
+import { ZaloIcon } from './zalo-icon';
 import { siteConfig } from '@/config/site';
 import {
   buildMapsHref,
@@ -82,7 +83,7 @@ export function ZaloButton({
           'cursor-not-allowed opacity-60',
         )}
       >
-        <MessageCircle aria-hidden="true" className="h-[1.125rem] w-[1.125rem]" />
+        <ZaloIcon tone="onLight" />
         Zalo đang cập nhật
       </span>
     );
@@ -94,9 +95,9 @@ export function ZaloButton({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackEvent(AnalyticsEvent.ClickZalo, { location })}
-      className={buttonClasses('success', size, className)}
+      className={buttonClasses('zalo', size, className)}
     >
-      <MessageCircle aria-hidden="true" className="h-[1.125rem] w-[1.125rem]" />
+      <ZaloIcon />
       {label}
     </a>
   );

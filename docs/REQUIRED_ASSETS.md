@@ -157,7 +157,42 @@ image: {
 | Hiển thị tại | Khi chia sẻ trang chủ hoặc các trang chưa có ảnh riêng lên Facebook, Zalo, Messenger |
 | Yêu cầu | Có ảnh thầy hoặc xe tập lái + tên thầy + số điện thoại. Chữ lớn, tương phản cao. Chừa lề an toàn ~60px mỗi cạnh. |
 
-### 2.12 Logo cá nhân (nếu có)
+### 2.12 Logo Zalo chính thức — **ưu tiên cao**
+
+Các nút "Nhắn Zalo" trên website đang dùng **hình tạm** (bong bóng chat chung
+chung), **không phải logo Zalo**. Chúng tôi cố ý không vẽ lại logo gần giống:
+logo nhái vừa trông thiếu chuyên nghiệp, vừa rắc rối hơn về mặt nhãn hiệu.
+
+| Mục | Chi tiết |
+| --- | --- |
+| Cần tải từ | Trang tài nguyên thương hiệu chính thức của Zalo |
+| Số file | 2 |
+| Định dạng | SVG (ưu tiên) hoặc PNG nền trong suốt ≥ 128×128 |
+
+**File 1 — bản trắng đơn sắc**
+
+- Ghi đè lên: `public/images/brand/zalo-logo.svg`
+- Dùng ở: nút nền xanh Zalo, thanh CTA cố định trên mobile, footer nền navy
+
+**File 2 — bản màu đầy đủ**
+
+- Ghi đè lên: `public/images/brand/zalo-logo-color.svg`
+- Dùng ở: thẻ "Zalo" trang Liên hệ, liên kết Zalo trong bảng quản trị
+
+> **Không cần sửa dòng code nào.** Chỉ cần ghi đè đúng hai file trên, giữ nguyên
+> tên và đường dẫn — toàn bộ nút Zalo trên website sẽ tự dùng logo mới.
+
+**Lưu ý khi dùng:**
+
+- Giữ nguyên tỷ lệ, không bóp méo, không tự đổi màu ngoài các bản đơn sắc mà
+  Zalo cho phép.
+- Chỉ dùng để chỉ ra kênh liên hệ. Không đặt logo cạnh nội dung khiến người xem
+  hiểu nhầm rằng Zalo bảo trợ hoặc liên kết với website này.
+- Màu nền nút đang dùng là `#0068FF`. Nên đối chiếu lại với mã màu thương hiệu
+  chính thức của Zalo; nếu khác, sửa hai biến `--color-zalo` và
+  `--color-zalo-dark` trong `src/app/globals.css`.
+
+### 2.13 Logo cá nhân (nếu có)
 
 | Mục | Chi tiết |
 | --- | --- |

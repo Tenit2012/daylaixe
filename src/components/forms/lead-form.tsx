@@ -20,6 +20,7 @@ import { extractUtmParams } from '@/lib/utils/request-context';
 import { trackEvent } from '@/lib/analytics/track';
 import { AnalyticsEvent } from '@/lib/analytics/events';
 import { Button } from '@/components/ui/button';
+import { ZaloIcon } from '@/components/ui/zalo-icon';
 import { cn } from '@/lib/utils/cn';
 import {
   FieldWrapper,
@@ -225,8 +226,9 @@ export function LeadForm({
               onClick={() =>
                 trackEvent(AnalyticsEvent.ClickZalo, { location: 'form_success' })
               }
-              className="inline-flex h-11 items-center justify-center rounded-pill bg-success-600 px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-success-700"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-zalo px-5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-zalo-dark"
             >
+              <ZaloIcon />
               Nhắn Zalo cho thầy
             </a>
           ) : null}

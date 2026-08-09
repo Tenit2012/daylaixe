@@ -33,7 +33,18 @@
     --color-accent-800: 133 57 14;
     --color-accent-900: 110 48 15;
 
-    /* Xanh la - chi dung cho trang thai thanh cong / lien he */
+    /*
+      Xanh thuong hieu Zalo - CHI dung cho cac nut/lien ket dan toi Zalo.
+      Khong dung mau nay cho muc dich khac de nguoi dung khong hieu nham.
+
+      Gia tri dang dung: #0068FF. Day la ma mau thuong duoc dan cho thuong
+      hieu Zalo, NHUNG nen doi chieu lai voi trang thuong hieu chinh thuc
+      cua Zalo truoc khi len production - neu khac, chi can sua 2 dong duoi.
+    */
+    --color-zalo: 0 104 255;
+    --color-zalo-dark: 0 84 214;
+
+    /* Xanh la - chi dung cho trang thai thanh cong */
     --color-success-50: 236 250 241;
     --color-success-100: 209 243 222;
     --color-success-500: 22 152 85;
