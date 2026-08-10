@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "leads" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "fullName" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
     "normalizedPhone" TEXT NOT NULL,
@@ -16,21 +16,25 @@ CREATE TABLE "leads" (
     "utmTerm" TEXT,
     "status" TEXT NOT NULL DEFAULT 'NEW',
     "adminNote" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "leads_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "admin_users" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "passwordHash" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "role" TEXT NOT NULL DEFAULT 'OWNER',
     "isActive" BOOLEAN NOT NULL DEFAULT true,
-    "lastLoginAt" DATETIME,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "lastLoginAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "admin_users_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex

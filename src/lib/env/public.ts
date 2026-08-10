@@ -46,6 +46,11 @@ const publicEnvSchema = z.object({
   NEXT_PUBLIC_FACEBOOK_PIXEL_ID: z.string().default(''),
   NEXT_PUBLIC_ENABLE_FACEBOOK_PIXEL: z.string().default('false'),
   NEXT_PUBLIC_SHOW_PLACEHOLDER_BADGE: z.string().default(''),
+  /**
+   * Dat "true" tren cac ban PREVIEW/DEMO (vi du link gui Thay Tung xem) de
+   * chan cong cu tim kiem lap chi muc toan site. Mac dinh rong = cho phep index.
+   */
+  NEXT_PUBLIC_NOINDEX: z.string().default(''),
 });
 
 export type PublicEnv = z.infer<typeof publicEnvSchema>;
@@ -100,6 +105,7 @@ const parsed = publicEnvSchema.safeParse({
   NEXT_PUBLIC_SHOW_PLACEHOLDER_BADGE: orUndefined(
     process.env.NEXT_PUBLIC_SHOW_PLACEHOLDER_BADGE,
   ),
+  NEXT_PUBLIC_NOINDEX: orUndefined(process.env.NEXT_PUBLIC_NOINDEX),
 });
 
 if (!parsed.success) {

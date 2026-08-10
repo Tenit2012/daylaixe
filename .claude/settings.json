@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd d:\\\\SOURCE_CODE\\\\daylayxe; $b=[System.IO.File]::ReadAllBytes\\(\"src\\\\lib\\\\security\\\\sanitize.ts\"\\); $t=[System.Text.Encoding]::UTF8.GetString\\($b\\); $lines=$t -split \"`n\"; for\\($i=11;$i -lt 17;$i++\\){ $l=$lines[$i]; $out=\"\"; foreach\\($c in $l.ToCharArray\\(\\)\\){ $code=[int]$c; if\\($code -lt 32 -or $code -gt 126\\){ $out += \"<U+\" + $code.ToString\\(\"X4\"\\) + \">\" } else { $out += $c } }; Write-Output \"$\\($i+1\\): $out\" })",
+      "PowerShell(cd d:\\\\SOURCE_CODE\\\\daylayxe; npx eslint . 2>&1 | Select-Object -First 20; Write-Output \"EXIT=$LASTEXITCODE\")"
+    ]
+  }
+}

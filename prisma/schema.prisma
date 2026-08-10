@@ -1,20 +1,19 @@
-// Prisma schema - local development dung SQLite.
+// Prisma schema - PostgreSQL (deploy: Neon / bat ky Postgres serverless nao).
 //
-// TUONG THICH POSTGRESQL:
-//  - Khong dung tinh nang chi co o SQLite.
-//  - `status` va `role` luu dang String vi SQLite khong ho tro native enum.
-//    Gia tri hop le duoc rang buoc o tang domain (src/features/**/domain)
-//    va validate bang Zod truoc khi ghi.
-//  - Khi chuyen sang PostgreSQL/Supabase: doi `provider = "postgresql"`,
-//    cap nhat DATABASE_URL, va (tuy chon) doi String -> enum theo huong dan
-//    trong docs/DEPLOYMENT.md.
+// GHI CHU:
+//  - `status` va `role` luu dang String (khong dung native enum) de giu tang
+//    domain (src/features/**/domain) lam nguon rang buoc gia tri, validate
+//    bang Zod truoc khi ghi. Doi sang enum sau nay chi can them migration.
+//  - DATABASE_URL doc tu bien moi truong. Voi Neon dung pooled connection
+//    (host ...-pooler...) kem `?sslmode=require`.
+//  - Local development co the dung Postgres qua Docker; xem docs/DEPLOYMENT.md.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

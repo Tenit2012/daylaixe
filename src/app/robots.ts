@@ -2,6 +2,15 @@ import type { MetadataRoute } from 'next';
 import { siteConfig } from '@/config/site';
 
 export default function robots(): MetadataRoute.Robots {
+  // Ban preview/demo: chan toan bo cong cu tim kiem.
+  if (siteConfig.noindex) {
+    return {
+      rules: [{ userAgent: '*', disallow: '/' }],
+      sitemap: `${siteConfig.url}/sitemap.xml`,
+      host: siteConfig.url,
+    };
+  }
+
   return {
     rules: [
       {

@@ -33,11 +33,13 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.brandName }],
   creator: siteConfig.brandName,
   alternates: { canonical: '/' },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
-  },
+  robots: siteConfig.noindex
+    ? { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } }
+    : {
+        index: true,
+        follow: true,
+        googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+      },
   openGraph: {
     type: 'website',
     locale: siteConfig.seo.locale,

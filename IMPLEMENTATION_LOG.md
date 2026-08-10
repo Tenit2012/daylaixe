@@ -477,3 +477,33 @@ Mục tiêu: kiểm thử dự án còn hoạt động + kiểm kê toàn bộ d
 ### Blocker còn lại & bước tiếp theo
 
 Bước tiếp theo: thu thập dữ liệu thật theo `docs/THAY_TUNG_CONTENT_CHECKLIST.md`, sau đó thực hiện thay thế production theo `docs/DATA_REPLACEMENT_PLAN.md`. Trước khi deploy, chạy trên máy chủ dự án: `npm run typecheck && npm run lint && npm run test && npm run build && NODE_ENV=production npm run check:placeholders`.
+
+---
+
+## DEPLOY-02 — Chuẩn hóa PostgreSQL + cấu hình Netlify/Neon (deploy-ready)
+
+Mục tiêu: đưa website lên Netlify Free + Neon PostgreSQL Free, trả URL preview. Người dùng chọn phương án "Chuẩn bị + tự deploy" nên phần thực thi deploy (cần tài khoản Netlify/Neon) do chủ dự án bấm; báo cáo & hướng dẫn ở `docs/DEPLOY_02_REPORT.md`.
+
+### Thay đổi code/config
+- `prisma/schema.prisma`: `provider = "postgresql"`.
+- `prisma/migrations/migration_lock.toml`: `provider = "postgresql"`.
+- `prisma/migrations/20260805232713_init/migration.sql`: viết lại theo cú pháp PostgreSQL (`TIMESTAMP(3)`, `CONSTRAINT *_pkey`, giữ 5 index).
+- `scripts/create-admin.ts` (mới) + `package.json`: thêm `"admin:create"`. Tạo admin production-safe từ env, bcrypt 12 rounds, tự sinh mật khẩu nếu thiếu, không tạo lead demo.
+- `netlify.toml` (mới): build `npm run db:migrate:deploy && npm run build`, Node 20, plugin `@netlify/plugin-nextjs`.
+- `.env.example`: chuẩn hóa cho Postgres/Neon + Netlify; ghi chú `NEXT_PUBLIC_TEACHER_NAME` chỉ ghi "Tùng" (tránh "Thầy Thầy Tùng").
+- Preview `noindex`: thêm `NEXT_PUBLIC_NOINDEX` vào `src/lib/env/public.ts`, `src/config/site.ts`; áp vào `src/app/layout.tsx` (robots metadata) và `src/app/robots.ts` (disallow all khi bật).
+
+### Kiểm thử (sandbox Linux)
+| Bước | Kết quả |
+|---|---|
+| `tsc --noEmit` | **PASS** (exit 0) |
+| Prisma migration (cú pháp Postgres) | Soạn đúng chuẩn; chưa apply local (không có DB) |
+| `prisma generate`, `next build`, `eslint`, `prettier`, `vitest`, `check:placeholders` | **BLOCKED_BY_ENVIRONMENT** |
+
+**Lý do BLOCKED:** `node_modules` cài trên Windows → native binary (Prisma engines, esbuild) không chạy trên Linux sandbox; CDN engine Prisma bị chặn; không có sudo/Docker. Sẽ verify đầy đủ trong build đầu trên Netlify.
+
+### Bảo mật
+- `.env` không bị track (đã xác minh `git ls-files`), nằm trong `.gitignore` → không commit secret.
+
+### Việc còn lại (chủ dự án)
+Tạo Neon DB → push GitHub → import vào Netlify → set env vars → Deploy (build tự chạy migrate deploy) → `npm run admin:create` → chạy checklist verify ở `docs/DEPLOY_02_REPORT.md` mục 11.

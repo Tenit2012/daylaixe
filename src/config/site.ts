@@ -148,6 +148,12 @@ export const siteConfig = {
       publicEnv.NEXT_PUBLIC_FACEBOOK_PIXEL_ID.length > 0,
   },
 
+  /**
+   * Chan index toan site (dung cho ban preview/demo gui Thay Tung).
+   * Bat bang bien moi truong NEXT_PUBLIC_NOINDEX="true".
+   */
+  noindex: publicEnv.NEXT_PUBLIC_NOINDEX === 'true',
+
   /** Hien thi nhan "Nội dung mẫu" tren testimonial/gallery placeholder. */
   showPlaceholderBadge:
     publicEnv.NEXT_PUBLIC_SHOW_PLACEHOLDER_BADGE === 'true' ||
