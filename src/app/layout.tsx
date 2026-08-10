@@ -84,8 +84,26 @@ export default function RootLayout({
   const localService = buildLocalServiceJsonLd();
 
   return (
-    <html lang={siteConfig.seo.lang} className={beVietnamPro.variable}>
-      <body>
+    <html
+      lang={siteConfig.seo.lang}
+      className={beVietnamPro.variable}
+      suppressHydrationWarning
+    >
+      {/*
+        `suppressHydrationWarning` tren <html> va <body>:
+
+        Cac tien ich mo rong cua trinh duyet (Bitdefender, trinh quan ly mat
+        khau, cong cu kiem tra chinh ta...) chen them thuoc tinh vao dung hai
+        the nay TRUOC khi React kip hydrate - vi du `bis_register`,
+        `__processed_<uuid>__`, `bis_skin_checked`. React thay DOM khac voi
+        thu no tao ra nen bao hydration mismatch, du website hoan toan binh
+        thuong.
+
+        PHAM VI: thuoc tinh nay chi bo qua sai khac ngay TREN chinh the do,
+        KHONG lan xuong cac phan tu con. Nghia la moi loi hydration that su
+        trong cay component van duoc bao day du - khong che giau gi ca.
+      */}
+      <body suppressHydrationWarning>
         <a href="#main-content" className="skip-link">
           Bỏ qua và tới nội dung chính
         </a>
