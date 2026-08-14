@@ -8,12 +8,12 @@ import { JsonLd } from '@/components/ui/json-ld';
 export const metadata: Metadata = buildPageMetadata({
   title: 'Chính sách bảo mật thông tin',
   description:
-    'Cách website thu thập, sử dụng, lưu trữ và bảo vệ thông tin của học viên tiềm năng, cùng quyền yêu cầu sửa hoặc xóa dữ liệu.',
+    'Website không thu thập và không lưu trữ thông tin cá nhân của người truy cập. Trang này giải thích rõ điều đó và những gì xảy ra khi bạn chủ động liên hệ.',
   path: '/chinh-sach-bao-mat',
 });
 
 /** Ngay cap nhat chinh sach - sua khi noi dung thay doi. */
-const LAST_UPDATED = '05/08/2026';
+const LAST_UPDATED = '11/08/2026';
 
 export default function PrivacyPolicyPage() {
   const crumbs = [
@@ -46,135 +46,86 @@ export default function PrivacyPolicyPage() {
           <div className="prose-article mt-7">
             <p>
               Website này là trang cá nhân của {siteConfig.brandName}, dùng để
-              giới thiệu khóa học và tiếp nhận thông tin của người có nhu cầu
-              được tư vấn học lái xe. Chính sách dưới đây mô tả rõ dữ liệu nào
-              được thu thập và dữ liệu đó được dùng như thế nào.
+              giới thiệu khóa học lái xe. Đây là một website tĩnh: toàn bộ nội
+              dung đã được tạo sẵn từ trước, website{' '}
+              <strong>không có biểu mẫu, không có cơ sở dữ liệu</strong> và
+              không nhận bất kỳ thông tin nào bạn gửi lên.
             </p>
 
             <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
-              1. Dữ liệu được thu thập
+              1. Website không thu thập thông tin cá nhân
             </h2>
             <p>
-              Khi bạn điền biểu mẫu đăng ký tư vấn, chúng tôi lưu các thông tin
-              sau:
+              Khi bạn xem website này, chúng tôi không yêu cầu, không nhận và
+              không lưu bất kỳ thông tin nào của bạn, bao gồm:
             </p>
             <ul className="ml-5 list-disc space-y-1.5">
-              <li>Họ và tên bạn cung cấp.</li>
-              <li>Số điện thoại liên hệ.</li>
-              <li>Khóa học bạn quan tâm.</li>
-              <li>Khu vực sinh sống ở mức quận hoặc phường (không bắt buộc).</li>
-              <li>Khung giờ bạn muốn được liên hệ (không bắt buộc).</li>
-              <li>Ghi chú bạn tự nhập (không bắt buộc).</li>
-              <li>
-                Trang bạn đã gửi biểu mẫu và tham số chiến dịch (UTM) nếu bạn
-                đến từ một liên kết quảng bá.
-              </li>
-            </ul>
-
-            <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
-              2. Dữ liệu KHÔNG được thu thập
-            </h2>
-            <p>Biểu mẫu trên website cố ý không yêu cầu và không lưu:</p>
-            <ul className="ml-5 list-disc space-y-1.5">
+              <li>Họ tên, số điện thoại, email.</li>
               <li>Số căn cước công dân hoặc số giấy tờ tùy thân.</li>
-              <li>Ảnh chụp giấy tờ.</li>
-              <li>Địa chỉ nhà chính xác.</li>
-              <li>Hồ sơ hoặc thông tin sức khỏe.</li>
+              <li>Ảnh chụp giấy tờ, hồ sơ hoặc thông tin sức khỏe.</li>
+              <li>Địa chỉ nhà.</li>
               <li>Thông tin thanh toán, số tài khoản ngân hàng.</li>
             </ul>
             <p>
-              Nếu quá trình làm hồ sơ cần các giấy tờ trên, việc nộp sẽ diễn ra
-              trực tiếp tại cơ sở đào tạo theo quy trình của cơ sở đó, không qua
-              website này.
+              Bạn có thể xem toàn bộ website mà không cần để lại bất cứ thông
+              tin gì.
             </p>
 
             <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
-              3. Mục đích sử dụng
+              2. Khi bạn chủ động liên hệ
             </h2>
+            <p>
+              Các nút trên website chỉ mở ứng dụng gọi điện, Zalo hoặc Facebook
+              trên máy của bạn. Cuộc gọi và tin nhắn diễn ra trực tiếp giữa bạn
+              và thầy, không đi qua website.
+            </p>
             <ul className="ml-5 list-disc space-y-1.5">
-              <li>Liên hệ tư vấn khóa học phù hợp với nhu cầu của bạn.</li>
-              <li>Hướng dẫn bạn chuẩn bị hồ sơ và sắp xếp lịch học.</li>
-              <li>Ghi nhận tiến trình trao đổi để không hỏi lại bạn nhiều lần.</li>
               <li>
-                Thống kê tổng hợp về hiệu quả của các kênh giới thiệu (dạng số
-                liệu tổng, không gắn với cá nhân).
+                Nội dung trao đổi được lưu trên chính ứng dụng bạn dùng (Zalo,
+                Messenger, lịch sử cuộc gọi) và tuân theo chính sách bảo mật của
+                nhà cung cấp ứng dụng đó.
+              </li>
+              <li>
+                Thầy chỉ dùng thông tin bạn nhắn để tư vấn khóa học và sắp xếp
+                lịch học, không chuyển cho bên thứ ba vì mục đích tiếp thị.
+              </li>
+              <li>
+                Nếu quá trình làm hồ sơ cần giấy tờ, việc nộp diễn ra trực tiếp
+                tại cơ sở đào tạo theo quy trình của cơ sở đó.
               </li>
             </ul>
-            <p>
-              Chúng tôi <strong>không bán, không trao đổi và không cho thuê</strong>{' '}
-              thông tin của bạn cho bất kỳ bên thứ ba nào vì mục đích tiếp thị.
-            </p>
 
             <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
-              4. Thời gian lưu trữ
+              3. Quyền của bạn
             </h2>
             <p>
-              Thông tin của bạn được lưu trong thời gian cần thiết để phục vụ
-              việc tư vấn và hỗ trợ trong quá trình học, tối đa 24 tháng kể từ
-              lần liên hệ gần nhất. Sau thời gian này, dữ liệu sẽ được xóa hoặc
-              chuyển thành dạng thống kê không định danh.
+              Vì website không lưu dữ liệu, bạn không cần yêu cầu website xóa gì
+              cả. Với nội dung đã trao đổi qua Zalo, Facebook hoặc điện thoại,
+              bạn có quyền:
             </p>
-            <p>
-              Nếu bạn cho biết không còn nhu cầu, thông tin của bạn sẽ được đánh
-              dấu ngừng liên hệ và xóa trong lần rà soát dữ liệu gần nhất.
-            </p>
-
-            <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
-              5. Quyền của bạn
-            </h2>
-            <p>Bạn có quyền:</p>
             <ul className="ml-5 list-disc space-y-1.5">
-              <li>Yêu cầu biết những thông tin nào của bạn đang được lưu.</li>
-              <li>Yêu cầu sửa thông tin nếu có sai sót.</li>
-              <li>Yêu cầu xóa toàn bộ thông tin của bạn.</li>
+              <li>Yêu cầu thầy xóa thông tin bạn đã nhắn.</li>
               <li>Yêu cầu ngừng liên hệ bất cứ lúc nào.</li>
             </ul>
             <p>
-              Yêu cầu sẽ được xử lý trong vòng 7 ngày làm việc kể từ khi nhận
-              được. Bạn chỉ cần nhắn tin hoặc gọi điện, không cần làm thủ tục gì
-              phức tạp.
+              Bạn chỉ cần nhắn tin hoặc gọi điện, không cần làm thủ tục gì phức
+              tạp.
             </p>
 
             <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
-              6. Cách bảo vệ dữ liệu
-            </h2>
-            <ul className="ml-5 list-disc space-y-1.5">
-              <li>
-                Dữ liệu được lưu trong cơ sở dữ liệu chỉ truy cập được sau khi
-                đăng nhập, không hiển thị công khai trên website.
-              </li>
-              <li>
-                Trang quản trị được bảo vệ bằng tài khoản riêng, mật khẩu được mã
-                hóa một chiều và không lưu ở dạng đọc được.
-              </li>
-              <li>
-                Phiên đăng nhập dùng cookie chỉ đọc được bởi máy chủ, có thời hạn
-                và tự hết hiệu lực.
-              </li>
-              <li>
-                Biểu mẫu có cơ chế hạn chế gửi hàng loạt để giảm rủi ro bị lạm
-                dụng.
-              </li>
-              <li>
-                Trang quản trị được đánh dấu không cho công cụ tìm kiếm lập chỉ
-                mục.
-              </li>
-            </ul>
-
-            <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
-              7. Cookie và công cụ đo lường
+              4. Cookie và công cụ đo lường
             </h2>
             <p>
-              Website sử dụng cookie kỹ thuật cần thiết cho việc đăng nhập trang
-              quản trị. Với người dùng thông thường, website có thể sử dụng công
-              cụ đo lường truy cập (như Google Analytics) để biết trang nào được
-              quan tâm nhiều. Các công cụ này chỉ được kích hoạt khi quản trị
-              viên cấu hình; nếu chưa cấu hình, website hoạt động hoàn toàn bình
-              thường và không gửi dữ liệu đi đâu.
+              Website không đặt cookie đăng nhập vì không có khu vực nào cần
+              đăng nhập. Website có thể sử dụng công cụ đo lường truy cập (như
+              Google Analytics) để biết trang nào được quan tâm nhiều — số liệu
+              ở dạng tổng hợp, không định danh cá nhân. Công cụ này chỉ chạy khi
+              được cấu hình; nếu chưa cấu hình, website hoạt động bình thường và
+              không gửi dữ liệu đi đâu.
             </p>
 
             <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
-              8. Liên hệ người quản lý website
+              5. Liên hệ người quản lý website
             </h2>
             <p>
               Mọi thắc mắc hoặc yêu cầu liên quan đến dữ liệu cá nhân, bạn liên
@@ -186,7 +137,7 @@ export default function PrivacyPolicyPage() {
             </p>
 
             <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
-              9. Thay đổi chính sách
+              6. Thay đổi chính sách
             </h2>
             <p>
               Khi chính sách được cập nhật, ngày cập nhật ở đầu trang sẽ thay

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CalendarDays, Clock, RefreshCw, UserRound } from 'lucide-react';
 import {
@@ -19,9 +18,12 @@ import { formatVietnameseDate } from '@/lib/utils/format-date';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { ArticleContent } from '@/components/blog/article-content';
 import { PostCard } from '@/components/blog/post-card';
-import { CallButton, ZaloButton } from '@/components/ui/contact-buttons';
+import {
+  CallButton,
+  FacebookButton,
+  ZaloButton,
+} from '@/components/ui/contact-buttons';
 import { JsonLd } from '@/components/ui/json-ld';
-import { buttonClasses } from '@/components/ui/button';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -191,20 +193,17 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* CTA cuoi bai */}
         <aside className="mx-auto mt-10 max-w-prose rounded-card border border-brand-200 bg-brand-50 p-6 text-center sm:p-8">
-          <h2 className="text-xl sm:text-2xl">Cần tư vấn cho trường hợp của bạn?</h2>
+          <h2 className="text-xl sm:text-2xl">
+            Cần tư vấn cho trường hợp của bạn?
+          </h2>
           <p className="mx-auto mt-3 max-w-xl text-[0.9375rem] leading-relaxed text-ink-muted">
-            Mỗi người có xuất phát điểm khác nhau. Nhắn cho thầy vài dòng về tình
-            trạng hiện tại, thầy sẽ gợi ý lộ trình phù hợp với bạn.
+            Mỗi người có xuất phát điểm khác nhau. Nhắn cho thầy vài dòng về
+            tình trạng hiện tại, thầy sẽ gợi ý lộ trình phù hợp với bạn.
           </p>
           <div className="mt-6 flex flex-col justify-center gap-2.5 sm:flex-row">
             <ZaloButton location={`blog_${post.slug}`} size="md" />
             <CallButton location={`blog_${post.slug}`} size="md" />
-            <Link
-              href="/lien-he#dang-ky"
-              className={buttonClasses('outline', 'md')}
-            >
-              Đăng ký tư vấn
-            </Link>
+            <FacebookButton location={`blog_${post.slug}`} size="md" />
           </div>
         </aside>
       </article>
@@ -213,7 +212,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       {related.length > 0 ? (
         <section
           aria-labelledby="related-heading"
-          className="bg-surface-muted section-spacing"
+          className="section-spacing bg-surface-muted"
         >
           <div className="container-page">
             <h2 id="related-heading" className="text-2xl sm:text-3xl">

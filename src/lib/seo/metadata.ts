@@ -22,9 +22,29 @@ export interface PageMetadataInput {
   keywords?: string[];
 }
 
+/**
+ * URL tuyet doi cho TAI NGUYEN TINH (anh, file). Khong them dau gach cheo
+ * cuoi - `/images/og/og-default.jpg/` la duong dan sai.
+ */
 export function absoluteUrl(path: string): string {
   const normalized = path.startsWith('/') ? path : `/${path}`;
   return `${siteConfig.url}${normalized === '/' ? '' : normalized}`;
+}
+
+/**
+ * URL chinh tac cua mot TRANG. Luon ket thuc bang dau gach cheo.
+ *
+ * Ly do ton tai rieng ham nay: next.config.ts dat `trailingSlash: true`, nen
+ * dia chi that cua moi trang deu co dau gach cheo cuoi. Next.js tu chuan hoa
+ * `alternates.canonical` theo quy tac do, NHUNG khong dung toi URL ta tu viet
+ * trong sitemap. Ket qua o dot QA 14/08/2026: canonical la
+ * `https://thaytungdaylaixe.vn/khoa-hoc/` con sitemap ghi
+ * `https://thaytungdaylaixe.vn/khoa-hoc` - lech nhau, khien moi dong trong
+ * sitemap tro thanh mot lan chuyen huong 308 tren Cloudflare Pages.
+ */
+export function pageUrl(path: string): string {
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  return `${siteConfig.url}${normalized.endsWith('/') ? normalized : `${normalized}/`}`;
 }
 
 export function buildPageMetadata(input: PageMetadataInput): Metadata {
@@ -42,7 +62,11 @@ export function buildPageMetadata(input: PageMetadataInput): Metadata {
       : {
           index: true,
           follow: true,
-          googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+          googleBot: {
+            index: true,
+            follow: true,
+            'max-image-preview': 'large',
+          },
         },
     openGraph: {
       type: input.type ?? 'website',

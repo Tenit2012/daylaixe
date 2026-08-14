@@ -12,7 +12,7 @@ Website được dựng rất chỉn chu về mặt kỹ thuật và **rất tru
 
 Nhưng đứng ở vai **người sắp chuyển tiền**, website **chưa đủ bằng chứng để tôi tin đây là người thật, nơi thật**. Toàn bộ hình ảnh đều là hình minh họa (SVG), thầy chỉ có tên "Tùng" không có họ tên đầy đủ, trung tâm không có tên cụ thể, địa chỉ chỉ ghi "TP. Thủ Đức", không có bản đồ, không có link Facebook/YouTube, cảm nhận học viên đều là "bản mẫu". Với một người sợ bị lừa, đây là những khoảng trống chí mạng.
 
-Quan trọng nhất: mục tiêu bạn đặt ra — khiến học viên tin *"đăng ký với Thầy Tùng và học tại Trường Đại học An ninh Nhân dân"* — **website hiện KHÔNG chứng minh được, và thực tế còn chủ động phủ nhận** mối liên hệ này trong disclaimer ở footer và trang điều khoản. Đây là mâu thuẫn chiến lược lớn nhất cần giải quyết trước mọi việc khác.
+Quan trọng nhất: mục tiêu bạn đặt ra — khiến học viên tin _"đăng ký với Thầy Tùng và học tại Trường Đại học An ninh Nhân dân"_ — **website hiện KHÔNG chứng minh được, và thực tế còn chủ động phủ nhận** mối liên hệ này trong disclaimer ở footer và trang điều khoản. Đây là mâu thuẫn chiến lược lớn nhất cần giải quyết trước mọi việc khác.
 
 **Điểm tổng: 45/100.**
 **Kết luận: CẦN TĂNG NIỀM TIN TRƯỚC KHI CHẠY QUẢNG CÁO.**
@@ -21,13 +21,13 @@ Quan trọng nhất: mục tiêu bạn đặt ra — khiến học viên tin *"�
 
 ## First impression (30 giây đầu ở trang chủ)
 
-| Câu hỏi | Trả lời của tôi |
-| --- | --- |
-| Tôi có hiểu đây là ai không? | Một phần. "Thầy Tùng" — nhưng chỉ có tên, không có họ tên đầy đủ, không có khuôn mặt (ảnh là hình vẽ minh họa). |
-| Tôi có hiểu học ở đâu không? | Không rõ. Chỉ thấy "TP. Thủ Đức, TP.HCM" và "Trung tâm đào tạo lái xe tại TP.HCM" — không có tên trung tâm, không có địa chỉ. |
-| Tôi có hiểu đăng ký ở đâu không? | Có. Gọi / nhắn Zalo / điền form. Chỗ này rõ ràng. |
-| Tôi có hiểu ai sẽ dạy tôi không? | Mơ hồ. Thầy Tùng, nhưng không có bằng chứng thầy là ai. |
-| Tôi có tin đây là người thật không? | Chưa. Không có ảnh thật, không có họ tên đầy đủ, không có gì để kiểm chứng. |
+| Câu hỏi                                                | Trả lời của tôi                                                                                                                                               |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tôi có hiểu đây là ai không?                           | Một phần. "Thầy Tùng" — nhưng chỉ có tên, không có họ tên đầy đủ, không có khuôn mặt (ảnh là hình vẽ minh họa).                                               |
+| Tôi có hiểu học ở đâu không?                           | Không rõ. Chỉ thấy "TP. Thủ Đức, TP.HCM" và "Trung tâm đào tạo lái xe tại TP.HCM" — không có tên trung tâm, không có địa chỉ.                                 |
+| Tôi có hiểu đăng ký ở đâu không?                       | Có. Gọi / nhắn Zalo / điền form. Chỗ này rõ ràng.                                                                                                             |
+| Tôi có hiểu ai sẽ dạy tôi không?                       | Mơ hồ. Thầy Tùng, nhưng không có bằng chứng thầy là ai.                                                                                                       |
+| Tôi có tin đây là người thật không?                    | Chưa. Không có ảnh thật, không có họ tên đầy đủ, không có gì để kiểm chứng.                                                                                   |
 | Tôi có tin đây là website thật (không mạo danh) không? | Tin ở mức trung bình. Giọng văn tử tế, không "chém", có disclaimer — nhưng cũng chính vì không có danh tính rõ, tôi không loại trừ được khả năng đây là "cò". |
 
 **Cảm xúc:** dễ chịu, không bị "spam cam kết đậu 100%", nhưng trống trải. Giống một website mẫu đẹp hơn là một cơ sở có thật đang hoạt động.
@@ -36,14 +36,14 @@ Quan trọng nhất: mục tiêu bạn đặt ra — khiến học viên tin *"�
 
 ## Trust score
 
-| # | Tiêu chí | Điểm | Nhận xét ngắn |
-| --- | --- | --- | --- |
-| 1 | Uy tín (giáo viên/trung tâm/địa chỉ/hình ảnh thật) | **6 / 20** | Không có ảnh thật, không tên đầy đủ, không tên trung tâm, không địa chỉ cụ thể. |
-| 2 | Minh bạch (quy trình/học phí/địa điểm/nơi đăng ký/phát sinh) | **13 / 20** | Quy trình 9 bước và cảnh báo phát sinh rất tốt; nhưng học phí "liên hệ" và địa điểm mơ hồ. |
-| 3 | Niềm tin (không lừa đảo/chính quy/lâu năm) | **11 / 20** | Không có cảm giác lừa đảo; nhưng cảm giác "chính quy" yếu và "gần 20 năm" chưa được chứng minh. |
-| 4 | Tính xác thực (bằng chứng/hình ảnh/nhất quán/kiểm chứng) | **4 / 20** | Gần như không có gì kiểm chứng được. Email `...daihocanninh@gmail.com` còn tạo tín hiệu mâu thuẫn với disclaimer. |
-| 5 | Khả năng chuyển đổi (đăng ký/gọi/giới thiệu) | **11 / 20** | Form và CTA tốt, tôi có thể sẽ **gọi hỏi**, nhưng chưa **đăng ký/đặt cọc** và chưa dám **giới thiệu**. |
-| | **TỔNG** | **45 / 100** | |
+| #   | Tiêu chí                                                     | Điểm         | Nhận xét ngắn                                                                                                     |
+| --- | ------------------------------------------------------------ | ------------ | ----------------------------------------------------------------------------------------------------------------- |
+| 1   | Uy tín (giáo viên/trung tâm/địa chỉ/hình ảnh thật)           | **6 / 20**   | Không có ảnh thật, không tên đầy đủ, không tên trung tâm, không địa chỉ cụ thể.                                   |
+| 2   | Minh bạch (quy trình/học phí/địa điểm/nơi đăng ký/phát sinh) | **13 / 20**  | Quy trình 9 bước và cảnh báo phát sinh rất tốt; nhưng học phí "liên hệ" và địa điểm mơ hồ.                        |
+| 3   | Niềm tin (không lừa đảo/chính quy/lâu năm)                   | **11 / 20**  | Không có cảm giác lừa đảo; nhưng cảm giác "chính quy" yếu và "gần 20 năm" chưa được chứng minh.                   |
+| 4   | Tính xác thực (bằng chứng/hình ảnh/nhất quán/kiểm chứng)     | **4 / 20**   | Gần như không có gì kiểm chứng được. Email `...daihocanninh@gmail.com` còn tạo tín hiệu mâu thuẫn với disclaimer. |
+| 5   | Khả năng chuyển đổi (đăng ký/gọi/giới thiệu)                 | **11 / 20**  | Form và CTA tốt, tôi có thể sẽ **gọi hỏi**, nhưng chưa **đăng ký/đặt cọc** và chưa dám **giới thiệu**.            |
+|     | **TỔNG**                                                     | **45 / 100** |                                                                                                                   |
 
 ---
 
@@ -62,22 +62,23 @@ Quan trọng nhất: mục tiêu bạn đặt ra — khiến học viên tin *"�
 
 ## Missing evidence (thiếu bằng chứng ở đâu)
 
-Chiếu theo tiêu chí đặc biệt *"Đăng ký với Thầy Tùng và học tại Trường Đại học An ninh Nhân dân"* — 8 điểm cần chứng minh:
+Chiếu theo tiêu chí đặc biệt _"Đăng ký với Thầy Tùng và học tại Trường Đại học An ninh Nhân dân"_ — 8 điểm cần chứng minh:
 
-| # | Điều cần khiến học viên tin | Website chứng minh được chưa? |
-| --- | --- | --- |
-| 1 | Thầy Tùng là **giáo viên cơ hữu** | ❌ Chưa. Chức danh chỉ ghi "Giáo viên dạy thực hành lái xe", **không có** chữ "cơ hữu", không có bằng chứng hợp đồng/biên chế. |
-| 2 | Thầy **đang giảng dạy tại trung tâm** | ⚠️ Chỉ có lời văn khẳng định, không ảnh, không tên trung tâm, không xác nhận. |
-| 3 | Trung tâm **thuộc Trường ĐH An ninh Nhân dân** | ❌ Không hề khẳng định — footer/điều khoản còn **phủ nhận** là cổng chính thức của trường. |
-| 4 | Học viên **đăng ký qua thầy** | ✅ Rõ. Form + gọi + Zalo đều dẫn về thầy, "không qua tổng đài". |
-| 5 | Học viên **học tại trường/trung tâm** | ⚠️ Mơ hồ. Chỉ nói "sân tập của cơ sở đào tạo", không tên, không địa chỉ, không bản đồ. |
-| 6 | **Không phải trung gian** | ⚠️ Có tuyên bố "thầy trực tiếp", nhưng không kiểm chứng được. |
-| 7 | **Không phải cò tuyển sinh** | ❌ Vì thiếu danh tính và bằng chứng, tôi **không loại trừ** được khả năng này. |
-| 8 | **Không phải website mạo danh** | ⚠️ Disclaimer giúp tránh mang tiếng mạo danh, nhưng email "daihocanninh" lại kéo ngược tín hiệu. |
+| #   | Điều cần khiến học viên tin                    | Website chứng minh được chưa?                                                                                                  |
+| --- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | Thầy Tùng là **giáo viên cơ hữu**              | ❌ Chưa. Chức danh chỉ ghi "Giáo viên dạy thực hành lái xe", **không có** chữ "cơ hữu", không có bằng chứng hợp đồng/biên chế. |
+| 2   | Thầy **đang giảng dạy tại trung tâm**          | ⚠️ Chỉ có lời văn khẳng định, không ảnh, không tên trung tâm, không xác nhận.                                                  |
+| 3   | Trung tâm **thuộc Trường ĐH An ninh Nhân dân** | ❌ Không hề khẳng định — footer/điều khoản còn **phủ nhận** là cổng chính thức của trường.                                     |
+| 4   | Học viên **đăng ký qua thầy**                  | ✅ Rõ. Form + gọi + Zalo đều dẫn về thầy, "không qua tổng đài".                                                                |
+| 5   | Học viên **học tại trường/trung tâm**          | ⚠️ Mơ hồ. Chỉ nói "sân tập của cơ sở đào tạo", không tên, không địa chỉ, không bản đồ.                                         |
+| 6   | **Không phải trung gian**                      | ⚠️ Có tuyên bố "thầy trực tiếp", nhưng không kiểm chứng được.                                                                  |
+| 7   | **Không phải cò tuyển sinh**                   | ❌ Vì thiếu danh tính và bằng chứng, tôi **không loại trừ** được khả năng này.                                                 |
+| 8   | **Không phải website mạo danh**                | ⚠️ Disclaimer giúp tránh mang tiếng mạo danh, nhưng email "daihocanninh" lại kéo ngược tín hiệu.                               |
 
 **Kết luận phần đặc thù: chỉ 1/8 điểm được chứng minh (đăng ký qua thầy).** Lời hứa cốt lõi của dự án hiện **chưa được website thể hiện**, thậm chí bị chính disclaimer mâu thuẫn.
 
 Danh sách bằng chứng cần bổ sung để một người sắp trả tiền yên tâm:
+
 - Ảnh thật của thầy (chân dung + đang dạy trên xe), ảnh xe tập lái có biển tập lái, ảnh sân tập.
 - Họ tên đầy đủ của thầy + số/hạng giấy phép lái xe + (nếu có) mã/thẻ giáo viên dạy thực hành.
 - Tên chính xác của trung tâm/cơ sở đào tạo và địa chỉ cụ thể + bản đồ Google Maps thật.
@@ -102,7 +103,7 @@ Danh sách bằng chứng cần bổ sung để một người sắp trả tiề
 - **Không thấy người, không thấy nơi.** Đây là lý do lớn nhất. Tiền thật, mặt người dạy và địa điểm học là hai thứ tối thiểu tôi cần thấy.
 - **Mâu thuẫn "An ninh".** Đây là điểm nhạy cảm và cần xử lý dứt khoát. Có hai tình huống:
   - **Nếu thầy thực sự dạy tại/hợp tác với cơ sở liên quan Trường ĐH An ninh Nhân dân:** website cần **chứng minh đàng hoàng** (được phép nêu tên, có ảnh/giấy tờ xác nhận) và điều chỉnh lại disclaimer cho khớp — chứ không thể vừa gợi ý qua email vừa phủ nhận ở footer.
-  - **Nếu KHÔNG có liên hệ chính thức:** thì bản thân thông điệp *"học tại Trường ĐH An ninh Nhân dân"* là **gây hiểu nhầm** và không nên dùng để quảng cáo. Mượn tên một trường thuộc lực lượng công an để tăng uy tín, khi không có xác nhận, là rủi ro pháp lý và đạo đức rất cao.
+  - **Nếu KHÔNG có liên hệ chính thức:** thì bản thân thông điệp _"học tại Trường ĐH An ninh Nhân dân"_ là **gây hiểu nhầm** và không nên dùng để quảng cáo. Mượn tên một trường thuộc lực lượng công an để tăng uy tín, khi không có xác nhận, là rủi ro pháp lý và đạo đức rất cao.
 - **Học phí hoàn toàn ẩn.** Người sợ phát sinh sẽ muốn ít nhất một con số neo.
 - **Dấu vết "chưa xong".** Dòng hướng dẫn cấu hình Google Maps lộ ra ngoài trang Liên hệ khiến website trông như đang thi công.
 
@@ -127,7 +128,7 @@ Danh sách bằng chứng cần bổ sung để một người sắp trả tiề
 
 **Chưa — nhưng tôi sẽ gọi điện trước.**
 
-Website đủ tử tế để tôi nhấc máy gọi hỏi, nhưng **chưa đủ để tôi điền form đăng ký hay đặt cọc 2 triệu**. Với câu hỏi *"Tôi có dám chuyển khoản đặt cọc 2 triệu cho nơi này không?"* → câu trả lời của tôi là **"Có nhưng muốn gọi điện trước / muốn đến tận nơi trước"**, không phải "Có" ngay. Lý do: tôi chưa thấy mặt thầy, chưa biết học ở đâu, chưa kiểm chứng được điều gì.
+Website đủ tử tế để tôi nhấc máy gọi hỏi, nhưng **chưa đủ để tôi điền form đăng ký hay đặt cọc 2 triệu**. Với câu hỏi _"Tôi có dám chuyển khoản đặt cọc 2 triệu cho nơi này không?"_ → câu trả lời của tôi là **"Có nhưng muốn gọi điện trước / muốn đến tận nơi trước"**, không phải "Có" ngay. Lý do: tôi chưa thấy mặt thầy, chưa biết học ở đâu, chưa kiểm chứng được điều gì.
 
 ## Would I recommend to my family?
 
@@ -145,4 +146,4 @@ Nền tảng kỹ thuật và đạo đức nội dung đã tốt và hiếm có
 
 ---
 
-*Báo cáo lập theo yêu cầu Trust Audit, đánh giá dưới góc nhìn học viên tiềm năng — cố tình nghi ngờ và đi tìm lý do để không đăng ký.*
+_Báo cáo lập theo yêu cầu Trust Audit, đánh giá dưới góc nhìn học viên tiềm năng — cố tình nghi ngờ và đi tìm lý do để không đăng ký._

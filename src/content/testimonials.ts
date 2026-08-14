@@ -2,18 +2,29 @@ import type { Testimonial } from '@/types/content';
 
 /**
  * ============================================================================
- * QUAN TRONG VE DAO DUC NOI DUNG
+ * QUAN TRONG VE DAO DUC NOI DUNG - DOC TRUOC KHI SUA
  * ============================================================================
  * Toan bo muc duoi day co `isPlaceholder: true`, nghia la NOI DUNG MAU do
- * doi ngu bien tap viet ra de minh hoa bo cuc giao dien. Day KHONG phai
- * phan hoi cua hoc vien that va giao dien khong duoc trinh bay chung nhu
- * du lieu that.
+ * nguoi lam website viet ra de minh hoa bo cuc. Day KHONG phai phan hoi cua
+ * hoc vien that.
  *
- * Khi co phan hoi that:
- *  1. Xin phep hoc vien truoc khi dang.
- *  2. Dat `isPlaceholder: false`.
- *  3. Khong sua loi van cua hoc vien theo huong phong dai.
+ * Giao dien tu dong bao ve dieu do: moi the deu deo nhan "Noi dung mau" va
+ * dau khoi co mot dong noi ro. Nhan nay hien CA O PRODUCTION.
+ *
+ * CACH THAY BANG CAM NHAN THAT:
+ *   1. Xin phep hoc vien truoc khi dang - bat buoc, ke ca khi chi dung ten
+ *      viet tat.
+ *   2. Chep dung loi ho noi. KHONG sua theo huong phong dai, khong ghep loi
+ *      cua nhieu nguoi thanh mot.
+ *   3. Doi `isPlaceholder: false` -> nhan tu bien mat.
+ *   4. Xoa cac muc mau con lai. Khong de lan lon that/mau trong cung mot
+ *      danh sach.
+ *
+ * Muon TAT hoan toan khoi cam nhan: de mang nay rong `[]`. Khoi tren trang
+ * chu va trang /cam-nhan-hoc-vien se tu an, khong hien khung trong.
+ *
  * Xem them docs/CONTENT_GUIDE.md
+ * ============================================================================
  */
 export const testimonials: Testimonial[] = [
   {
@@ -84,37 +95,17 @@ export function getTestimonialsByCourse(courseSlug: string): Testimonial[] {
   return testimonials.filter((item) => item.courseSlug === courseSlug);
 }
 
-/** Chi lay cam nhan that (da duoc xac nhan) - dung khi can du lieu that. */
+/** Chi lay cam nhan THAT (da xin phep hoc vien). */
 export function getRealTestimonials(): Testimonial[] {
   return testimonials.filter((item) => !item.isPlaceholder);
 }
 
 /**
- * Video cam nhan.
- * De trong cho den khi co video that duoc hoc vien dong y chia se.
- * Xem danh sach can cung cap trong docs/REQUIRED_ASSETS.md
+ * Con muc nao la noi dung mau khong.
+ *
+ * Giao dien dung ham nay de quyet dinh co hien dong thong bao "day la noi
+ * dung mau" hay khong. Khi tat ca deu la cam nhan that, dong do tu bien mat.
  */
-export const testimonialVideos: Array<{
-  id: string;
-  title: string;
-  description: string;
-  posterImage: string;
-  videoUrl: string | null;
-}> = [
-  {
-    id: 'video-01',
-    title: 'Chia sẻ của học viên khóa số tự động',
-    description:
-      'Vị trí dành cho video cảm nhận thật. Video sẽ được đăng sau khi học viên đồng ý chia sẻ.',
-    posterImage: '/images/gallery/video-placeholder.svg',
-    videoUrl: null,
-  },
-  {
-    id: 'video-02',
-    title: 'Chia sẻ của học viên khóa bổ túc',
-    description:
-      'Vị trí dành cho video cảm nhận thật. Video sẽ được đăng sau khi học viên đồng ý chia sẻ.',
-    posterImage: '/images/gallery/video-placeholder.svg',
-    videoUrl: null,
-  },
-];
+export function hasPlaceholderTestimonials(): boolean {
+  return testimonials.some((item) => item.isPlaceholder);
+}

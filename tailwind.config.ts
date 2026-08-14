@@ -50,6 +50,11 @@ const config: Config = {
           DEFAULT: 'rgb(var(--color-zalo) / <alpha-value>)',
           dark: 'rgb(var(--color-zalo-dark) / <alpha-value>)',
         },
+        /** Mau thuong hieu Facebook - chi dung cho nut/lien ket dan toi Facebook. */
+        facebook: {
+          DEFAULT: 'rgb(var(--color-facebook) / <alpha-value>)',
+          dark: 'rgb(var(--color-facebook-dark) / <alpha-value>)',
+        },
         success: {
           50: 'rgb(var(--color-success-50) / <alpha-value>)',
           100: 'rgb(var(--color-success-100) / <alpha-value>)',

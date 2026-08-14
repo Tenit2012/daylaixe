@@ -115,16 +115,13 @@ export function SiteHeader() {
             ) : null}
 
             <Link
-              href="/lien-he#dang-ky"
-              onClick={() =>
-                trackEvent(AnalyticsEvent.OpenForm, { location: 'header' })
-              }
+              href="/lien-he#lien-he-nhanh"
               className={cn(
                 buttonClasses('primary', 'sm'),
                 'hidden whitespace-nowrap sm:inline-flex',
               )}
             >
-              Đăng ký tư vấn
+              Liên hệ tư vấn
             </Link>
 
             <button
@@ -151,7 +148,10 @@ export function SiteHeader() {
         hidden={!isMenuOpen}
         className="border-t border-line bg-surface xl:hidden"
       >
-        <nav aria-label="Điều hướng trên điện thoại" className="container-page py-3">
+        <nav
+          aria-label="Điều hướng trên điện thoại"
+          className="container-page py-3"
+        >
           <ul className="flex flex-col">
             {mainNav.map((item) => (
               <li key={item.href}>
@@ -171,10 +171,10 @@ export function SiteHeader() {
             ))}
           </ul>
           <Link
-            href="/lien-he#dang-ky"
+            href="/lien-he#lien-he-nhanh"
             className={cn(buttonClasses('primary', 'md'), 'mt-3 w-full')}
           >
-            Đăng ký tư vấn
+            Liên hệ tư vấn
           </Link>
         </nav>
       </div>

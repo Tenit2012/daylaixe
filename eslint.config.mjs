@@ -40,11 +40,7 @@ const eslintConfig = [
     },
   },
   {
-    files: [
-      'prisma/**/*.ts',
-      'scripts/**/*.{ts,mjs}',
-      'tests/**/*.{ts,tsx}',
-    ],
+    files: ['prisma/**/*.ts', 'scripts/**/*.{ts,mjs}', 'tests/**/*.{ts,tsx}'],
     rules: {
       'no-console': 'off',
     },

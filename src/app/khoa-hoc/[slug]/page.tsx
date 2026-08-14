@@ -14,7 +14,7 @@ import { Section } from '@/components/ui/section';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Accordion } from '@/components/ui/accordion';
 import { CallButton, ZaloButton } from '@/components/ui/contact-buttons';
-import { LeadFormSection } from '@/components/sections/lead-form-section';
+import { ContactSection } from '@/components/sections/contact-section';
 import { JsonLd } from '@/components/ui/json-ld';
 
 interface PageProps {
@@ -134,7 +134,10 @@ export default async function CourseDetailPage({ params }: PageProps) {
               <h3 className="text-xl sm:text-2xl">Khóa học phù hợp với ai?</h3>
               <ul className="mt-4 space-y-2.5">
                 {course.suitableFor.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-[0.9375rem] text-ink-muted">
+                  <li
+                    key={item}
+                    className="flex items-start gap-2.5 text-[0.9375rem] text-ink-muted"
+                  >
                     <Users
                       aria-hidden="true"
                       className="mt-0.5 h-[1.125rem] w-[1.125rem] flex-shrink-0 text-brand-500"
@@ -170,7 +173,10 @@ export default async function CourseDetailPage({ params }: PageProps) {
               <h3 className="text-xl sm:text-2xl">Hồ sơ cần chuẩn bị</h3>
               <ul className="mt-4 space-y-2.5">
                 {course.requiredDocuments.map((doc) => (
-                  <li key={doc} className="flex items-start gap-2.5 text-[0.9375rem] text-ink-muted">
+                  <li
+                    key={doc}
+                    className="flex items-start gap-2.5 text-[0.9375rem] text-ink-muted"
+                  >
                     <FileText
                       aria-hidden="true"
                       className="mt-0.5 h-[1.125rem] w-[1.125rem] flex-shrink-0 text-brand-500"
@@ -194,9 +200,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
                   </p>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="card-base">
-                      <h4 className="text-base text-success-700">
-                        Đã bao gồm
-                      </h4>
+                      <h4 className="text-base text-success-700">Đã bao gồm</h4>
                       <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
                         {course.tuition.included.map((item) => (
                           <li key={item}>• {item}</li>
@@ -215,7 +219,9 @@ export default async function CourseDetailPage({ params }: PageProps) {
                     </div>
                   </div>
                   {course.tuition.note ? (
-                    <p className="text-sm text-ink-subtle">{course.tuition.note}</p>
+                    <p className="text-sm text-ink-subtle">
+                      {course.tuition.note}
+                    </p>
                   ) : null}
                 </div>
               ) : (
@@ -263,14 +269,20 @@ export default async function CourseDetailPage({ params }: PageProps) {
               <dl className="mt-4 space-y-4 text-sm">
                 <div>
                   <dt className="flex items-center gap-2 font-semibold text-brand-900">
-                    <CarFront aria-hidden="true" className="h-4 w-4 text-brand-500" />
+                    <CarFront
+                      aria-hidden="true"
+                      className="h-4 w-4 text-brand-500"
+                    />
                     Loại xe
                   </dt>
                   <dd className="mt-1 text-ink-muted">{course.vehicleType}</dd>
                 </div>
                 <div>
                   <dt className="flex items-center gap-2 font-semibold text-brand-900">
-                    <Clock aria-hidden="true" className="h-4 w-4 text-brand-500" />
+                    <Clock
+                      aria-hidden="true"
+                      className="h-4 w-4 text-brand-500"
+                    />
                     Thời gian dự kiến
                   </dt>
                   <dd className="mt-1 text-ink-muted">
@@ -279,7 +291,10 @@ export default async function CourseDetailPage({ params }: PageProps) {
                 </div>
                 <div>
                   <dt className="flex items-center gap-2 font-semibold text-brand-900">
-                    <FileText aria-hidden="true" className="h-4 w-4 text-brand-500" />
+                    <FileText
+                      aria-hidden="true"
+                      className="h-4 w-4 text-brand-500"
+                    />
                     Hạng giấy phép
                   </dt>
                   <dd className="mt-1 text-ink-muted">
@@ -292,20 +307,25 @@ export default async function CourseDetailPage({ params }: PageProps) {
               </dl>
 
               <div className="mt-5 flex flex-col gap-2.5 border-t border-line pt-5">
-                <CallButton location={`course_sidebar_${course.slug}`} size="md" />
-                <ZaloButton location={`course_sidebar_${course.slug}`} size="md" />
+                <CallButton
+                  location={`course_sidebar_${course.slug}`}
+                  size="md"
+                />
+                <ZaloButton
+                  location={`course_sidebar_${course.slug}`}
+                  size="md"
+                />
               </div>
             </div>
           </aside>
         </div>
       </Section>
 
-      <LeadFormSection
-        defaultCourse={course.slug}
-        formLocation={`course_${course.slug}`}
+      <ContactSection
+        location={`course_${course.slug}`}
         tone="muted"
-        title={`Đăng ký tư vấn khóa ${course.name}`}
-        description="Thầy sẽ liên hệ để trao đổi về lịch học, hồ sơ và học phí được cập nhật mới nhất."
+        title={`Tư vấn khóa ${course.name}`}
+        description="Liên hệ với thầy để trao đổi về lịch học, hồ sơ và học phí được cập nhật mới nhất."
       />
 
       <JsonLd data={buildCourseJsonLd(course)} />

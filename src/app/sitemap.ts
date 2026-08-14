@@ -1,13 +1,19 @@
 import type { MetadataRoute } from 'next';
-import { siteConfig } from '@/config/site';
 import { getAllCourseSlugs } from '@/content/courses';
 import { blogPosts } from '@/content/blog';
+import { pageUrl } from '@/lib/seo/metadata';
+
+/**
+ * Bat buoc khi dung `output: 'export'`: bao cho Next.js biet route nay
+ * sinh ra mot lan luc build va khong bao gio doi theo request. Thieu dong
+ * nay thi `next build` dung han voi loi "not configured on route".
+ */
+export const dynamic = 'force-static';
 
 /**
  * Sitemap. Trang quan tri KHONG duoc liet ke o day.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = siteConfig.url;
   const now = new Date();
 
   const staticRoutes: Array<{
@@ -27,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
-    url: `${base}${route.path === '/' ? '' : route.path}`,
+    url: pageUrl(route.path),
     lastModified: now,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
@@ -35,7 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const courseEntries: MetadataRoute.Sitemap = getAllCourseSlugs().map(
     (slug) => ({
-      url: `${base}/khoa-hoc/${slug}`,
+      url: pageUrl(`/khoa-hoc/${slug}`),
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.85,
@@ -43,7 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   const postEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${base}/kien-thuc/${post.slug}`,
+    url: pageUrl(`/kien-thuc/${post.slug}`),
     lastModified: new Date(post.updatedAt),
     changeFrequency: 'monthly',
     priority: 0.7,

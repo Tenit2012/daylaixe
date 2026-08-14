@@ -1,13 +1,23 @@
 import { isPlaceholderValue, siteConfig } from '@/config/site';
 import type { BlogPost, Course, Faq } from '@/types/content';
-import { absoluteUrl } from './metadata';
+import { absoluteUrl, pageUrl } from './metadata';
 
 /**
  * Sinh JSON-LD (schema.org).
  *
- * LUU Y VE TINH MINH BACH: khong khai bao website nhu mot to chuc dao tao
- * chinh thuc. Chi dung `Person` cho thay va `Course` cho khoa hoc, kem
- * `provider` la trang ca nhan - tranh gay hieu nham voi don vi chinh thuc.
+ * LUU Y VE TINH MINH BACH - doc ky truoc khi sua:
+ *
+ *  - Thuc the CHINH cua website la `Person` (thay), KHONG phai to chuc.
+ *    Website nay la trang ca nhan cua thay, khong phai cong thong tin cua
+ *    trung tam.
+ *  - Trung tam duoc khai bao la `EducationalOrganization` va noi voi thay
+ *    qua `Person.worksFor`. Day la mo ta dung quan he co that: thay la giao
+ *    vien co huu cua trung tam. KHONG duoc dao nguoc (khai to chuc lam thuc
+ *    the chinh) vi nhu vay thanh mao danh trung tam.
+ *  - TUYET DOI khong sinh `aggregateRating`, `review`, `award` hay bat ky
+ *    con so nao (so hoc vien, ty le dau) khi chua co nguon kiem chung duoc.
+ *    Google phat nang du lieu co cau truc gia, va no chinh la thu bien mot
+ *    trang that thanh trang "co tuyen sinh" trong mat nguoi doc.
  */
 
 type JsonLd = Record<string, unknown>;
@@ -30,6 +40,41 @@ export function buildWebsiteJsonLd(): JsonLd {
   };
 }
 
+/**
+ * Trung tam noi thay giang day.
+ *
+ * Tra ve `null` khi chua cau hinh ten trung tam - khong bao gio sinh mot to
+ * chuc rong. Dia chi duoc khai bao dang `PostalAddress` de Google hieu day la
+ * dia diem vat ly co that.
+ */
+export function buildCenterJsonLd(): JsonLd | null {
+  const centerName = cleanValue(siteConfig.teacher.centerName);
+  if (!centerName) return null;
+
+  const address = cleanValue(siteConfig.contact.address);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    '@id': `${siteConfig.url}/#center`,
+    name: centerName,
+    ...(address
+      ? {
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: address,
+            addressLocality: 'Thủ Đức',
+            addressRegion: 'TP.HCM',
+            addressCountry: 'VN',
+          },
+        }
+      : {}),
+    ...(cleanValue(siteConfig.contact.googleMapsUrl)
+      ? { hasMap: siteConfig.contact.googleMapsUrl }
+      : {}),
+  };
+}
+
 export function buildPersonJsonLd(): JsonLd {
   const sameAs = [
     cleanValue(siteConfig.contact.facebookUrl),
@@ -37,13 +82,14 @@ export function buildPersonJsonLd(): JsonLd {
   ].filter((value): value is string => typeof value === 'string');
 
   const name = cleanValue(siteConfig.teacher.name);
+  const center = buildCenterJsonLd();
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
     '@id': `${siteConfig.url}/#person`,
     name: name ?? siteConfig.brandName,
-    jobTitle: cleanValue(siteConfig.teacher.title) ?? 'Giáo viên dạy lái xe',
+    jobTitle: siteConfig.teacher.employmentStatus,
     /**
      * Chi mo ta kinh nghiem bang cau van da duoc xac nhan.
      * KHONG khai bao aggregateRating, reviewCount, award hay so hoc vien -
@@ -55,6 +101,8 @@ export function buildPersonJsonLd(): JsonLd {
     email: cleanValue(siteConfig.contact.email),
     areaServed: cleanValue(siteConfig.contact.trainingArea) ?? 'TP.HCM',
     knowsLanguage: 'vi',
+    /** Quan he co that: giao vien co huu cua trung tam. */
+    ...(center ? { worksFor: { '@id': `${siteConfig.url}/#center` } } : {}),
     ...(sameAs.length > 0 ? { sameAs } : {}),
   };
 }
@@ -65,7 +113,7 @@ export function buildCourseJsonLd(course: Course): JsonLd {
     '@type': 'Course',
     name: course.name,
     description: course.summary,
-    url: absoluteUrl(`/khoa-hoc/${course.slug}`),
+    url: pageUrl(`/khoa-hoc/${course.slug}`),
     inLanguage: 'vi-VN',
     provider: {
       '@type': 'Person',
@@ -79,7 +127,21 @@ export function buildCourseJsonLd(course: Course): JsonLd {
       courseWorkload: course.estimatedDuration,
       location: {
         '@type': 'Place',
-        name: cleanValue(siteConfig.contact.trainingArea) ?? 'TP.HCM',
+        name:
+          cleanValue(siteConfig.teacher.centerName) ??
+          cleanValue(siteConfig.contact.trainingArea) ??
+          'TP.HCM',
+        ...(cleanValue(siteConfig.contact.address)
+          ? {
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: siteConfig.contact.address,
+                addressLocality: 'Thủ Đức',
+                addressRegion: 'TP.HCM',
+                addressCountry: 'VN',
+              },
+            }
+          : {}),
       },
     },
   };
@@ -106,10 +168,12 @@ export function buildArticleJsonLd(post: BlogPost): JsonLd {
     inLanguage: 'vi-VN',
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
+    // Anh la FILE nen dung absoluteUrl (khong dau gach cheo cuoi);
+    // mainEntityOfPage la TRANG nen dung pageUrl de khop canonical.
     image: [absoluteUrl(post.coverImage.src)],
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': absoluteUrl(`/kien-thuc/${post.slug}`),
+      '@id': pageUrl(`/kien-thuc/${post.slug}`),
     },
     author: {
       '@type': 'Person',
@@ -139,7 +203,7 @@ export function buildBreadcrumbJsonLd(items: BreadcrumbItem[]): JsonLd {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: absoluteUrl(item.path),
+      item: pageUrl(item.path),
     })),
   };
 }
@@ -168,5 +232,16 @@ export function buildLocalServiceJsonLd(): JsonLd | null {
     areaServed: area,
     availableLanguage: 'vi',
     provider: { '@id': `${siteConfig.url}/#person` },
+    ...(cleanValue(siteConfig.contact.address)
+      ? {
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: siteConfig.contact.address,
+            addressLocality: 'Thủ Đức',
+            addressRegion: 'TP.HCM',
+            addressCountry: 'VN',
+          },
+        }
+      : {}),
   };
 }

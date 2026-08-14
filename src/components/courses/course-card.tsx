@@ -12,9 +12,24 @@ interface CourseCardProps {
   course: Course;
   /** Uu tien tai anh (chi bat cho card dau tien tren trang chu). */
   priority?: boolean;
+  /**
+   * Cap cua the tieu de trong card.
+   *
+   * Mac dinh h3 vi tren trang chu card nam duoi mot muc co <h2> ("Khóa học").
+   * Nhung o trang danh sach /khoa-hoc thi card nam THANG duoi <h1>, luc do
+   * dung h3 se nhay cap h1 -> h3, khien nguoi dung trinh doc man hinh mat mot
+   * bac dieu huong. Lighthouse bat loi nay o dot QA 14/08/2026.
+   */
+  headingLevel?: 2 | 3;
 }
 
-export function CourseCard({ course, priority = false }: CourseCardProps) {
+export function CourseCard({
+  course,
+  priority = false,
+  headingLevel = 3,
+}: CourseCardProps) {
+  const Heading = `h${headingLevel}` as 'h2' | 'h3';
+
   return (
     <article className="card-base flex h-full flex-col overflow-hidden p-0 transition-shadow duration-150 hover:shadow-card-hover">
       <Link
@@ -36,7 +51,7 @@ export function CourseCard({ course, priority = false }: CourseCardProps) {
       </Link>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <h3 className="text-lg sm:text-xl">
+        <Heading className="text-lg sm:text-xl">
           <Link
             href={`/khoa-hoc/${course.slug}`}
             onClick={() =>
@@ -46,7 +61,7 @@ export function CourseCard({ course, priority = false }: CourseCardProps) {
           >
             {course.name}
           </Link>
-        </h3>
+        </Heading>
 
         <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">
           {course.summary}
@@ -55,17 +70,26 @@ export function CourseCard({ course, priority = false }: CourseCardProps) {
         <dl className="mt-4 space-y-2 text-sm text-ink-muted">
           <div className="flex items-start gap-2">
             <dt className="sr-only">Phù hợp với</dt>
-            <Users aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-500" />
+            <Users
+              aria-hidden="true"
+              className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-500"
+            />
             <dd>{course.suitableFor[0]}</dd>
           </div>
           <div className="flex items-start gap-2">
             <dt className="sr-only">Loại xe</dt>
-            <CarFront aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-500" />
+            <CarFront
+              aria-hidden="true"
+              className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-500"
+            />
             <dd>{course.vehicleType}</dd>
           </div>
           <div className="flex items-start gap-2">
             <dt className="sr-only">Thời gian dự kiến</dt>
-            <Clock aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-500" />
+            <Clock
+              aria-hidden="true"
+              className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-500"
+            />
             <dd>{course.estimatedDuration}</dd>
           </div>
         </dl>
@@ -92,16 +116,10 @@ export function CourseCard({ course, priority = false }: CourseCardProps) {
             <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </Link>
           <Link
-            href={`/khoa-hoc/${course.slug}#dang-ky`}
-            onClick={() =>
-              trackEvent(AnalyticsEvent.OpenForm, {
-                location: 'course_card',
-                course: course.slug,
-              })
-            }
+            href={`/khoa-hoc/${course.slug}#lien-he-nhanh`}
             className={buttonClasses('primary', 'md')}
           >
-            Đăng ký tư vấn
+            Liên hệ tư vấn
           </Link>
         </div>
       </div>

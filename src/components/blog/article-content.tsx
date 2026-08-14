@@ -71,11 +71,17 @@ export function ArticleContent({ content }: ArticleContentProps) {
               </li>
             ));
             return block.ordered ? (
-              <ol key={index} className="ml-5 list-decimal space-y-2 marker:text-brand-500">
+              <ol
+                key={index}
+                className="ml-5 list-decimal space-y-2 marker:text-brand-500"
+              >
                 {items}
               </ol>
             ) : (
-              <ul key={index} className="ml-5 list-disc space-y-2 marker:text-brand-500">
+              <ul
+                key={index}
+                className="ml-5 list-disc space-y-2 marker:text-brand-500"
+              >
                 {items}
               </ul>
             );

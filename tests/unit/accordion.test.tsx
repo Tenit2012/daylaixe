@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Accordion } from '@/components/ui/accordion';
-import { TestimonialCard } from '@/components/testimonials/testimonial-card';
 
 const items = [
   { question: 'Người chưa từng lái xe có học được không?', answer: 'Được.' },
@@ -66,38 +65,5 @@ describe('Accordion', () => {
 
     await user.keyboard('{Enter}');
     expect(first).toHaveAttribute('aria-expanded', 'true');
-  });
-});
-
-describe('TestimonialCard', () => {
-  const placeholderTestimonial = {
-    id: 'tm-test',
-    name: 'Học viên khóa số tự động',
-    courseSlug: 'hang-b-so-tu-dong',
-    period: 'Nội dung mẫu',
-    quote: 'Thầy hướng dẫn dễ hiểu.',
-    isPlaceholder: true,
-    avatarInitial: 'A',
-  };
-
-  it('hien thi noi dung cam nhan', () => {
-    render(<TestimonialCard testimonial={placeholderTestimonial} />);
-    expect(screen.getByText(/Thầy hướng dẫn dễ hiểu/)).toBeInTheDocument();
-    expect(screen.getByText('Học viên khóa số tự động')).toBeInTheDocument();
-  });
-
-  it('gan nhan "Nội dung mẫu" cho du lieu placeholder', () => {
-    render(<TestimonialCard testimonial={placeholderTestimonial} />);
-    // Moi truong test khong phai production nen nhan luon hien thi.
-    expect(screen.getByText('Nội dung mẫu')).toBeInTheDocument();
-  });
-
-  it('khong gan nhan cho cam nhan that', () => {
-    render(
-      <TestimonialCard
-        testimonial={{ ...placeholderTestimonial, isPlaceholder: false }}
-      />,
-    );
-    expect(screen.queryByText('Nội dung mẫu')).not.toBeInTheDocument();
   });
 });

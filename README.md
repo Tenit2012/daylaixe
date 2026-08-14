@@ -1,56 +1,66 @@
 # Website tuyển sinh cá nhân — Thầy dạy lái xe
 
-Website thương hiệu cá nhân cho một thầy đang giảng dạy / hỗ trợ tuyển sinh tại
-Trung tâm đào tạo lái xe. Mục tiêu: giới thiệu khóa học, tạo niềm tin, thu thập
-thông tin học viên tiềm năng và giúp thầy quản lý danh sách đó qua trang quản trị.
+Landing page cá nhân của Thầy Tùng — **giáo viên cơ hữu** tại Trung tâm Dạy
+nghề, Đào tạo và Sát hạch Lái xe, Trường Đại học An ninh Nhân dân. Mục tiêu:
+chứng minh người dạy và nơi học là có thật, rồi đưa học viên tới ba kênh liên hệ
+trực tiếp — **điện thoại, Zalo, Facebook**.
 
-> **Lưu ý quan trọng**
-> Đây là website **cá nhân**, **không phải** cổng thông tin chính thức của
-> Trường Đại học An ninh Nhân dân hoặc của Trung tâm đào tạo lái xe.
-> Disclaimer này được hiển thị ở footer mọi trang và trong các trang chính sách.
+Đây là **website tĩnh hoàn toàn**: không biểu mẫu, không database, không trang
+quản trị, không API route. `npm run build` sinh ra thư mục `out/` deploy thẳng
+lên **Cloudflare Pages** — xem [`docs/CLOUDFLARE_PAGES_DEPLOY.md`](docs/CLOUDFLARE_PAGES_DEPLOY.md).
+
+> **Lưu ý quan trọng — hai ý phải đi cùng nhau**
+> Thầy Tùng **là giáo viên cơ hữu** của Trung tâm (dữ liệu đã xác nhận), nhưng
+> website này là trang **cá nhân** của thầy, **không phải** cổng thông tin chính
+> thức của Trung tâm hay Nhà trường. Nêu thiếu vế đầu thành phủ nhận quan hệ có
+> thật; thiếu vế sau thành mạo danh. Disclaimer đầy đủ hiển thị ở footer mọi
+> trang và trong các trang pháp lý.
 
 ---
 
 ## 1. Tính năng chính
 
-**Phần công khai**
+**Trang chủ** xếp theo đúng thứ tự câu hỏi của người đang cân nhắc đăng ký:
+hero → dải bằng chứng → về thầy → video buổi học thật → học ở đâu (địa chỉ +
+bản đồ) → quy trình 6 bước → khóa học → cách thầy hướng dẫn → album ảnh → FAQ →
+liên hệ.
 
-- Trang chủ đầy đủ: hero, lý do chọn thầy, khóa học nổi bật, lộ trình 9 bước,
-  giới thiệu thầy, cảm nhận học viên, album ảnh, FAQ, form đăng ký.
-- Danh sách khóa học và trang chi tiết cho từng khóa (route động).
-- Trang học phí & lộ trình với bảng so sánh khóa học.
-- Trang cảm nhận học viên có bộ lọc theo khóa.
+- Danh sách khóa học và trang chi tiết cho từng khóa (route động, prerender sẵn).
+- Trang học phí & lộ trình với bảng so sánh khóa học và lộ trình 9 bước đầy đủ.
 - Blog kiến thức với 8 bài viết nguyên bản, mục lục tự động, bài viết liên quan.
 - Trang liên hệ, chính sách bảo mật, điều khoản sử dụng.
-- Thanh CTA cố định ở đáy màn hình trên điện thoại (Gọi / Zalo / Đăng ký).
+- CTA theo kích thước màn hình: dưới 1024px là thanh ngang cố định đáy màn hình,
+  từ 1024px trở lên là hai nút nổi góc phải. Không popup, không đếm ngược.
 - SEO: metadata từng trang, canonical, Open Graph, Twitter Card, `robots.txt`,
-  `sitemap.xml`, breadcrumb, JSON-LD (Person, Course, FAQPage, Article,
-  BreadcrumbList, ProfessionalService).
+  `sitemap.xml`, `manifest.webmanifest`, breadcrumb, JSON-LD (Person,
+  EducationalOrganization, Course, FAQPage, Article, BreadcrumbList,
+  ProfessionalService). **Không** sinh rating/review giả.
 
-**Thu thập & quản lý học viên tiềm năng**
+**Ba kênh liên hệ**
 
-- Form đăng ký với validate cả phía client và server, honeypot, rate limiting,
-  chống gửi trùng, chuẩn hóa số điện thoại Việt Nam, ghi nhận UTM và trang nguồn.
-- Trang quản trị: đăng nhập, danh sách lead có tìm kiếm / lọc / sắp xếp / phân
-  trang, trang chi tiết, cập nhật trạng thái và ghi chú, nút gọi nhanh và mở Zalo.
+Nút Gọi, Zalo và Facebook dùng chung một cơ chế: đường dẫn được dựng từ
+`src/config/site.ts`. Khi giá trị trong `.env` còn là placeholder dạng
+`[Facebook URL]`, nút Gọi/Zalo hiển thị trạng thái "đang cập nhật" còn nút
+Facebook tự ẩn — không bao giờ tạo ra link hỏng.
+
+**Cảm nhận học viên** đã được gỡ khỏi website ở đợt refactor 13/08/2026 vì toàn
+bộ là nội dung mẫu. Hướng dẫn khôi phục khi có cảm nhận thật nằm trong
+`src/types/content.ts`.
 
 ---
 
 ## 2. Công nghệ sử dụng
 
-| Thành phần | Lựa chọn |
-| --- | --- |
-| Framework | Next.js 15 (App Router, React Server Components) |
-| Ngôn ngữ | TypeScript (strict mode, `noUncheckedIndexedAccess`) |
-| UI | Tailwind CSS 3 + design tokens dạng CSS variables |
-| Icon | lucide-react |
-| Form | React Hook Form + Zod |
-| ORM | Prisma 6 |
-| Database | SQLite (local) — schema tương thích PostgreSQL/Supabase |
-| Xác thực | Session credentials tự triển khai: bcrypt + JWT (`jose`) trong cookie HTTP-only |
-| Unit / Integration test | Vitest + React Testing Library |
-| E2E test | Playwright |
-| Chất lượng mã | ESLint 9 (flat config) + Prettier |
+| Thành phần               | Lựa chọn                                             |
+| ------------------------ | ---------------------------------------------------- |
+| Framework                | Next.js 15 (App Router, React Server Components)     |
+| Ngôn ngữ                 | TypeScript (strict mode, `noUncheckedIndexedAccess`) |
+| UI                       | Tailwind CSS 3 + design tokens dạng CSS variables    |
+| Icon                     | lucide-react (+ icon Zalo/Facebook tự vẽ)            |
+| Kiểm tra biến môi trường | Zod                                                  |
+| Unit test                | Vitest + React Testing Library                       |
+| E2E test                 | Playwright                                           |
+| Chất lượng mã            | ESLint 9 (flat config) + Prettier                    |
 
 Nội dung website được quản lý bằng **TypeScript data files** trong `src/content/`
 — không phụ thuộc CMS bên ngoài.
@@ -66,41 +76,38 @@ src/
     gioi-thieu/
     khoa-hoc/               # Danh sách + [slug] chi tiết
     hoc-phi-lo-trinh/
-    cam-nhan-hoc-vien/
     kien-thuc/              # Blog + [slug] bài viết
     lien-he/
     chinh-sach-bao-mat/
     dieu-khoan-su-dung/
-    admin/                  # login, leads, leads/[id]
-    api/                    # leads, auth/session
-    sitemap.ts, robots.ts, not-found.tsx, error.tsx
+    sitemap.ts, robots.ts, manifest.ts, not-found.tsx, error.tsx
   components/
-    layout/                 # header, footer, thanh CTA mobile, analytics
+    layout/                 # header, footer, CTA mobile + CTA nổi, analytics
     sections/               # các section của trang chủ và trang con
-    courses/ blog/ testimonials/ gallery/ forms/ admin/ ui/
+    courses/ blog/ gallery/ ui/
   config/site.ts            # ★ Toàn bộ thông tin có thể thay đổi
-  content/                  # courses, testimonials, faqs, gallery, blog/...
-  features/
-    leads/{domain,application,infrastructure,presentation}
-    auth/{domain,application,infrastructure,presentation}
-  lib/                      # analytics, auth, db, env, rate-limit, seo, security, utils, validation
+  content/                  # courses, faqs, gallery, trust, videos,
+                            # registration-process, learning-process, blog/...
+  lib/                      # analytics, env, seo, utils, validation
   types/
-  middleware.ts             # Bảo vệ /admin/* + phát sinh cookie CSRF
-prisma/
-  schema.prisma             # SQLite (đang dùng)
-  schema.postgresql.prisma  # Bản tham chiếu cho PostgreSQL
-  seed.ts
-  migrations/
-public/images/              # Ảnh minh họa SVG (sẽ thay bằng ảnh thật)
-scripts/                    # Script sinh ảnh placeholder
-tests/{unit,integration,e2e}/
+assets/{photos,videos}/     # File GỐC chưa xử lý - không phục vụ ra web
+public/
+  images/{teacher,center,courses,gallery,blog,brand,og}/
+  videos/
+  _headers                  # Header HTTP cho Cloudflare Pages
+scripts/                    # Xử lý ảnh/video, sinh placeholder, kiểm tra placeholder
+tests/{unit,e2e}/
 docs/
+out/                        # ★ Kết quả build - thư mục deploy lên Cloudflare
 ```
 
 Nguyên tắc phân tách: **Content** (`src/content`), **UI** (`src/components`),
-**Validation** (`src/lib/validation`, `features/*/domain`), **Business logic**
-(`features/*/application`), **Data access** (`features/*/infrastructure`),
-**Auth** (`features/auth`), **Admin** (`src/app/admin`).
+**Cấu hình** (`src/config/site.ts`), **Tiện ích dùng chung** (`src/lib`).
+
+Riêng với ảnh và video: `assets/` là **nguồn**, `public/` là **kết quả**.
+Đừng sửa tay file trong `public/` — chạy `node scripts/process-photos.mjs` hoặc
+`node scripts/process-video.mjs` để sinh lại. Chi tiết:
+[`assets/README.md`](assets/README.md).
 
 ---
 
@@ -108,7 +115,7 @@ Nguyên tắc phân tách: **Content** (`src/content`), **UI** (`src/components`
 
 - **Node.js >= 20.9** (đã kiểm thử trên 20.14)
 - **npm >= 10**
-- Không cần cài database riêng — SQLite chạy trực tiếp từ file.
+- Không cần database, không cần dịch vụ ngoài nào.
 
 ---
 
@@ -121,122 +128,59 @@ npm install
 # 2. Tạo file .env từ mẫu rồi điền giá trị thật
 cp .env.example .env        # Windows: copy .env.example .env
 
-# 3. Sinh Prisma Client
-npm run db:generate
-
-# 4. Tạo database và bảng
-npm run db:migrate
-
-# 5. Seed tài khoản quản trị + vài lead mẫu
-npm run db:seed
-
-# 6. Chạy môi trường phát triển
+# 3. Chạy môi trường phát triển
 npm run dev
 ```
 
-Mở http://localhost:3000 — trang quản trị tại http://localhost:3000/admin/leads
+Mở http://localhost:3000
 
 ### Các lệnh có sẵn
 
-| Lệnh | Công dụng |
-| --- | --- |
-| `npm run dev` | Chạy dev server |
-| `npm run build` | Sinh Prisma Client rồi build production |
-| `npm run start` | Chạy bản build production |
-| `npm run lint` | ESLint |
-| `npm run lint:fix` | ESLint tự sửa |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm run test` | Unit + integration test (Vitest) |
-| `npm run test:watch` | Vitest chế độ theo dõi |
-| `npm run test:e2e` | Playwright E2E (cần `npm run build` trước) |
-| `npm run test:e2e:install` | Tải trình duyệt cho Playwright |
-| `npm run format` | Prettier |
-| `npm run db:generate` | `prisma generate` |
-| `npm run db:migrate` | `prisma migrate dev` |
-| `npm run db:migrate:deploy` | Áp dụng migration ở production |
-| `npm run db:seed` | Chạy seed |
-| `npm run db:studio` | Mở Prisma Studio |
-| `npm run db:reset` | Xóa và tạo lại database dev |
+| Lệnh                         | Công dụng                                  |
+| ---------------------------- | ------------------------------------------ |
+| `npm run dev`                | Chạy dev server                            |
+| `npm run build`              | Static export → sinh thư mục `out/`        |
+| `npm run preview`            | Phục vụ `out/` tại http://localhost:4173   |
+| `npm run lint`               | ESLint                                     |
+| `npm run lint:fix`           | ESLint tự sửa                              |
+| `npm run typecheck`          | `tsc --noEmit`                             |
+| `npm run test`               | Unit test (Vitest)                         |
+| `npm run test:watch`         | Vitest chế độ theo dõi                     |
+| `npm run test:e2e`           | Playwright E2E (cần `npm run build` trước) |
+| `npm run test:e2e:install`   | Tải trình duyệt cho Playwright             |
+| `npm run format`             | Prettier                                   |
+| `npm run check:placeholders` | Cảnh báo biến môi trường còn placeholder   |
 
 ---
 
-## 6. Migration và seed
-
-```bash
-# Tạo migration mới sau khi sửa prisma/schema.prisma
-npm run db:migrate -- --name ten_migration
-
-# Áp dụng migration ở môi trường production
-npm run db:migrate:deploy
-
-# Seed lại (bỏ qua nếu bảng lead đã có dữ liệu)
-npm run db:seed
-
-# Làm mới hoàn toàn database dev
-npm run db:reset
-```
-
-Seed tạo:
-
-- **1 tài khoản quản trị** — email và mật khẩu đọc từ `ADMIN_EMAIL` /
-  `ADMIN_PASSWORD` trong `.env`. Mật khẩu được hash bằng bcrypt trước khi lưu.
-- **8 lead mẫu** — mọi bản ghi đều có ghi chú `[DEV SEED]` và dùng dải số
-  `0912 34x xxx` để không trùng số thật.
-
-Seed **không** ghi đè lead nếu bảng đã có dữ liệu.
-
----
-
-## 7. Tài khoản quản trị (development)
-
-Tài khoản **không được hard-code trong source**. Nó được tạo từ biến môi trường
-khi chạy `npm run db:seed`:
-
-```env
-ADMIN_EMAIL="admin@example.com"
-ADMIN_PASSWORD="change-me"
-```
-
-Đổi giá trị trong `.env` rồi chạy lại `npm run db:seed` — mật khẩu của tài khoản
-sẽ được cập nhật.
-
-> **Trước khi triển khai thật, bắt buộc đổi `ADMIN_PASSWORD` và `AUTH_SECRET`.**
-> Xem `docs/DEPLOYMENT.md`.
-
-Sinh `AUTH_SECRET` ngẫu nhiên:
-
-```bash
-node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
-```
-
----
-
-## 8. Biến môi trường
+## 6. Biến môi trường
 
 Xem `.env.example` để có danh sách đầy đủ kèm chú thích. Tóm tắt:
 
-| Biến | Bắt buộc | Ghi chú |
-| --- | --- | --- |
-| `DATABASE_URL` | ✅ | `file:./dev.db` cho SQLite |
-| `NEXT_PUBLIC_SITE_URL` | ✅ | Dùng cho canonical, OG, sitemap |
-| `NEXT_PUBLIC_TEACHER_NAME` | ✅ | Tên thầy |
-| `NEXT_PUBLIC_PHONE_NUMBER` | ✅ | Số điện thoại liên hệ |
-| `NEXT_PUBLIC_ZALO_URL` | ✅ | URL Zalo hoặc số điện thoại |
-| `NEXT_PUBLIC_CONTACT_EMAIL` | ✅ | Email liên hệ |
-| `ADMIN_EMAIL`, `ADMIN_PASSWORD` | ✅ | Tài khoản quản trị |
-| `AUTH_SECRET` | ✅ | Tối thiểu 32 ký tự |
-| `NEXT_PUBLIC_*` còn lại | ➖ | Địa chỉ, khu vực, Maps, mạng xã hội... |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | ➖ | Để trống thì website vẫn chạy bình thường |
-| `GOOGLE_SITE_VERIFICATION` | ➖ | Xác minh Google Search Console |
+| Biến                            | Bắt buộc | Ghi chú                                                                   |
+| ------------------------------- | -------- | ------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`          | ✅       | Dùng cho canonical, OG, sitemap                                           |
+| `NEXT_PUBLIC_TEACHER_NAME`      | ✅       | Tên thầy                                                                  |
+| `NEXT_PUBLIC_PHONE_NUMBER`      | ✅       | Số điện thoại liên hệ                                                     |
+| `NEXT_PUBLIC_ZALO_URL`          | ✅       | URL Zalo hoặc số điện thoại                                               |
+| `NEXT_PUBLIC_CENTER_NAME`       | ✅       | Tên đầy đủ trung tâm — dùng ở `<h1>`, disclaimer, JSON-LD                 |
+| `NEXT_PUBLIC_ADDRESS`           | ✅       | Địa chỉ trung tâm                                                         |
+| `NEXT_PUBLIC_CONSULT_LOCATION`  | ➖       | Vị trí trong trung tâm, ví dụ "Lầu 2, trong khuôn viên trung tâm"         |
+| `NEXT_PUBLIC_GOOGLE_MAPS_URL`   | ✅       | Thiếu thì nút "Đến tư vấn tại trung tâm" tự ẩn                            |
+| `NEXT_PUBLIC_FACEBOOK_URL`      | ➖       | `facebook.com/...` hoặc `m.me/...`; để placeholder thì nút Facebook tự ẩn |
+| `NEXT_PUBLIC_CONTACT_EMAIL`     | ✅       | Email liên hệ                                                             |
+| `NEXT_PUBLIC_*` còn lại         | ➖       | Khu vực đào tạo, giờ liên hệ, YouTube...                                  |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | ➖       | Để trống thì website vẫn chạy bình thường                                 |
+| `GOOGLE_SITE_VERIFICATION`      | ➖       | Xác minh Google Search Console                                            |
 
 Mọi biến `NEXT_PUBLIC_*` chưa cấu hình sẽ rơi về placeholder dạng `[Tên thầy]`,
 và giao diện tự chuyển sang trạng thái "đang cập nhật" thay vì tạo link hỏng.
 
 ---
 
-## 9. Cách thay đổi nội dung
+## 7. Cách thay đổi nội dung
 
-### 9.1 Đổi tên thầy, số điện thoại, Zalo
+### 7.1 Đổi tên thầy, số điện thoại, Zalo, Facebook
 
 **Cách khuyến nghị** — sửa `.env` rồi khởi động lại server:
 
@@ -244,16 +188,18 @@ và giao diện tự chuyển sang trạng thái "đang cập nhật" thay vì t
 NEXT_PUBLIC_TEACHER_NAME="Nguyễn Văn A"
 NEXT_PUBLIC_PHONE_NUMBER="0912345678"
 NEXT_PUBLIC_ZALO_URL="https://zalo.me/0912345678"
+NEXT_PUBLIC_FACEBOOK_URL="https://www.facebook.com/ten.trang"
 NEXT_PUBLIC_CONTACT_EMAIL="thay.a@example.com"
 ```
 
-Toàn bộ header, footer, hero, nút gọi, nút Zalo, disclaimer, SEO title và
-JSON-LD đều đọc từ một nơi duy nhất: [`src/config/site.ts`](src/config/site.ts).
+Toàn bộ header, footer, hero, nút gọi, nút Zalo, nút Facebook, disclaimer,
+SEO title và JSON-LD đều đọc từ một nơi duy nhất:
+[`src/config/site.ts`](src/config/site.ts).
 Không có placeholder nào rải rác trong component.
 
 Cách thứ hai: sửa trực tiếp giá trị mặc định trong `src/config/site.ts`.
 
-### 9.2 Thêm khóa học
+### 7.2 Thêm khóa học
 
 Mở [`src/content/courses.ts`](src/content/courses.ts), thêm một phần tử vào mảng
 `courses`. Trang chi tiết `/khoa-hoc/<slug>`, sitemap, dropdown trong form đăng
@@ -262,7 +208,7 @@ ký và bảng so sánh học phí đều tự cập nhật.
 Để trống học phí bằng `tuition: null` — giao diện sẽ hiển thị câu
 "Vui lòng liên hệ để nhận thông tin học phí…". **Không tự điền số ước chừng.**
 
-### 9.3 Thêm bài blog
+### 7.3 Thêm bài blog
 
 1. Tạo file mới trong [`src/content/blog/`](src/content/blog/), export
    `post: BlogPost`.
@@ -271,7 +217,7 @@ ký và bảng so sánh học phí đều tự cập nhật.
 Mục lục, thời gian đọc, bài viết liên quan, metadata SEO và JSON-LD `Article`
 được sinh tự động.
 
-### 9.4 Thêm FAQ và cảm nhận học viên
+### 7.4 Thêm FAQ và cảm nhận học viên
 
 - FAQ chung: [`src/content/faqs.ts`](src/content/faqs.ts)
 - FAQ riêng của khóa: trường `faqs` trong từng khóa học
@@ -281,7 +227,7 @@ Mọi cảm nhận mẫu **bắt buộc** có `isPlaceholder: true`. Chỉ đặ
 phản hồi thật và học viên đã đồng ý cho đăng. Xem
 [`docs/CONTENT_GUIDE.md`](docs/CONTENT_GUIDE.md).
 
-### 9.5 Thay ảnh
+### 7.5 Thay ảnh
 
 Ảnh hiện tại là hình minh họa SVG trong `public/images/`, được sinh bởi
 `node scripts/generate-placeholder-images.mjs`.
@@ -292,33 +238,47 @@ kèm kích thước đề xuất: [`docs/REQUIRED_ASSETS.md`](docs/REQUIRED_ASSE
 
 ---
 
-## 10. Kiểm thử
+## 8. Kiểm thử
 
 ```bash
-npm run test        # 202 unit + integration test
-npm run build       # bắt buộc trước khi chạy E2E
-npm run test:e2e    # 29 E2E test (Playwright)
+npm run format:check   # Prettier
+npm run lint           # ESLint
+npm run typecheck      # tsc --noEmit
+npm run test           # 91 unit test (Vitest)
+npm run build          # bắt buộc trước khi chạy E2E - sinh ra out/
+npm run test:e2e       # 33 E2E test chạy TRỰC TIẾP trên out/ (Playwright)
 ```
 
 Lần đầu chạy E2E cần tải trình duyệt: `npm run test:e2e:install`.
 
-E2E dùng database riêng `prisma/e2e.db`, được xóa và tạo lại trước mỗi lần chạy.
-Database phát triển `prisma/dev.db` không bị ảnh hưởng.
+E2E cố ý phục vụ thẳng thư mục `out/` thay vì chạy `next start` — vừa vì
+`next start` không dùng được với static export, vừa để kiểm chứng đúng thứ sẽ
+được deploy.
 
 ---
 
-## 11. Triển khai
+## 9. Triển khai
 
-Xem hướng dẫn chi tiết trong [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md):
-deploy lên Vercel, chuyển SQLite sang PostgreSQL/Supabase, cấu hình domain,
-Google Search Console, Google Analytics, sao lưu database và đổi mật khẩu quản trị.
+`npm run build` sinh ra thư mục **`out/`** — đẩy thẳng lên Cloudflare Pages.
+
+| Trường                 | Giá trị                      |
+| ---------------------- | ---------------------------- |
+| Build command          | `npm run build`              |
+| Build output directory | `out`                        |
+| Framework preset       | Next.js (Static HTML Export) |
+
+Hướng dẫn đầy đủ (biến môi trường, tên miền, DNS, header, xử lý sự cố):
+[`docs/CLOUDFLARE_PAGES_DEPLOY.md`](docs/CLOUDFLARE_PAGES_DEPLOY.md).
 
 ---
 
-## 12. Tài liệu khác
+## 10. Tài liệu khác
 
+- [`docs/CLOUDFLARE_PAGES_DEPLOY.md`](docs/CLOUDFLARE_PAGES_DEPLOY.md) — hướng dẫn triển khai
+- [`docs/REFACTOR_01_REPORT.md`](docs/REFACTOR_01_REPORT.md) — báo cáo đợt refactor 13/08/2026
 - [`docs/CONTENT_GUIDE.md`](docs/CONTENT_GUIDE.md) — hướng dẫn biên tập nội dung
-- [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — hướng dẫn triển khai
 - [`docs/REQUIRED_ASSETS.md`](docs/REQUIRED_ASSETS.md) — ảnh và video cần cung cấp
+- [`docs/TRUST_AUDIT_REPORT.md`](docs/TRUST_AUDIT_REPORT.md) — audit độ tin cậy
+- [`assets/README.md`](assets/README.md) — quy trình xử lý ảnh/video
 - [`IMPLEMENTATION_LOG.md`](IMPLEMENTATION_LOG.md) — nhật ký triển khai, quyết định
   kỹ thuật và những việc còn lại

@@ -1,21 +1,37 @@
+import type { LearningStep } from '@/types/content';
 import { learningProcess } from '@/content/learning-process';
 import { Section, SectionHeading } from '@/components/ui/section';
 import { getIcon } from '@/components/ui/icon';
 
 interface LearningProcessSectionProps {
   tone?: 'default' | 'muted';
+  /**
+   * Danh sach buoc. Mac dinh la lo trinh 9 buoc day du.
+   * Trang chu truyen vao ban rut gon 6 buoc (`registrationProcess`) de nguoi
+   * doc nam duoc duong di trong mot lan luot man hinh.
+   */
+  steps?: LearningStep[];
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
 }
 
 export function LearningProcessSection({
   tone = 'default',
+  steps = learningProcess,
+  id = 'lo-trinh',
+  eyebrow = 'Lộ trình',
+  title = 'Lộ trình học từ lúc liên hệ đến khi nhận bằng',
+  description = 'Bạn luôn biết mình đang ở bước nào và bước tiếp theo cần chuẩn bị gì.',
 }: LearningProcessSectionProps) {
   return (
-    <Section id="lo-trinh" tone={tone} ariaLabelledBy="lo-trinh-heading">
+    <Section id={id} tone={tone} ariaLabelledBy={`${id}-heading`}>
       <SectionHeading
-        id="lo-trinh-heading"
-        eyebrow="Lộ trình"
-        title="Lộ trình học từ lúc liên hệ đến khi nhận bằng"
-        description="Bạn luôn biết mình đang ở bước nào và bước tiếp theo cần chuẩn bị gì."
+        id={`${id}-heading`}
+        eyebrow={eyebrow}
+        title={title}
+        description={description}
       />
 
       <ol className="relative mt-10 space-y-5 sm:space-y-0">
@@ -25,7 +41,7 @@ export function LearningProcessSection({
           className="absolute left-[1.375rem] top-4 hidden h-[calc(100%-2rem)] w-0.5 bg-line sm:block"
         />
 
-        {learningProcess.map((step) => {
+        {steps.map((step) => {
           const Icon = getIcon(step.icon);
           return (
             <li key={step.order} className="relative sm:pb-6 sm:pl-16">
@@ -39,7 +55,9 @@ export function LearningProcessSection({
                     {step.order}
                   </span>
                   <h3 className="text-base sm:text-lg">
-                    <span className="hidden sm:inline">Bước {step.order}. </span>
+                    <span className="hidden sm:inline">
+                      Bước {step.order}.{' '}
+                    </span>
                     {step.title}
                   </h3>
                   {step.duration ? (

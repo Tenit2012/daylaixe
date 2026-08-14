@@ -47,7 +47,13 @@ ${body}
 }
 
 /** Khoi xe hoi nhin nghieng, dat tai (x, y) voi chieu rong w. */
-function carShape(x, y, w, bodyColor = palette.navy, roofColor = palette.navyLight) {
+function carShape(
+  x,
+  y,
+  w,
+  bodyColor = palette.navy,
+  roofColor = palette.navyLight,
+) {
   const h = w * 0.42;
   return `  <g transform="translate(${x} ${y})">
     <rect x="0" y="${h * 0.42}" width="${w}" height="${h * 0.42}" rx="${h * 0.16}" fill="${bodyColor}"/>

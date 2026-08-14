@@ -57,6 +57,27 @@ export interface Faq {
   category?: string;
 }
 
+/**
+ * CAM NHAN HOC VIEN
+ *
+ * LICH SU: khoi nay tung bi go khoi website ngay 13/08/2026 vi toan bo cam
+ * nhan deu la noi dung mau. Duoc dung lai ngay 14/08/2026 theo yeu cau cua
+ * chu website, voi dieu kien nhan "Noi dung mau" hien CA O PRODUCTION chu
+ * khong chi o dev nhu ban truoc.
+ *
+ * QUY TAC BAT BUOC khi dong vao du lieu nay:
+ *   1. `isPlaceholder: true`  -> giao dien TU DONG hien nhan "Noi dung mau"
+ *      tren tung the va mot dong thong bao dau khoi. Khong duoc go nhan de
+ *      cho no trong giong phan hoi that.
+ *   2. `isPlaceholder: false` -> CHI dat khi do la loi that cua hoc vien
+ *      that VA da xin phep ho. Luc do nhan tu bien mat.
+ *   3. KHONG dua cam nhan vao JSON-LD dang `review`/`aggregateRating` tru khi
+ *      kiem chung duoc - Google phat nang du lieu co cau truc gia.
+ *
+ * LUU Y NEU CHAY GOOGLE ADS: cam nhan mau, du co nhan, van la rui ro ve
+ * chinh sach trinh bay sai su that. Nen thay bang cam nhan that truoc khi
+ * bat quang cao. Xem them docs/CONTENT_GUIDE.md
+ */
 export interface Testimonial {
   id: string;
   /** Ten hien thi. Voi noi dung mau: dung ten chung chung. */
@@ -71,8 +92,6 @@ export interface Testimonial {
    * bo cuc, KHONG phai phan hoi cua hoc vien that.
    */
   isPlaceholder: boolean;
-  /** Duong dan video cam nhan, neu co. */
-  videoUrl?: string;
   /** Anh dai dien - dung avatar chu cai khi khong co anh that. */
   avatarInitial: string;
 }
@@ -88,6 +107,7 @@ export interface GalleryItem {
 
 export type GalleryCategory =
   | 'xe-tap-lai'
+  | 'cabin-mo-phong'
   | 'san-tap'
   | 'sa-hinh'
   | 'duong-truong'
@@ -99,6 +119,22 @@ export interface ImageAsset {
   alt: string;
   width: number;
   height: number;
+}
+
+/** Video tu luu tren chinh website (khong nhung tu YouTube). */
+export interface VideoAsset {
+  id: string;
+  title: string;
+  description: string;
+  /** Duong dan file MP4 trong /public. */
+  src: string;
+  /**
+   * Anh hien truoc khi bam play. BAT BUOC: the <video> dung `preload="none"`
+   * nen khong co poster thi nguoi dung chi thay mot o den.
+   */
+  poster: ImageAsset;
+  /** Do dai tinh bang giay - hien cho nguoi dung biet truoc khi bam. */
+  durationSeconds: number;
 }
 
 export interface LearningStep {
@@ -115,7 +151,12 @@ export type BlockContent =
   | { type: 'paragraph'; text: string }
   | { type: 'heading'; level: 2 | 3; text: string; id: string }
   | { type: 'list'; ordered: boolean; items: string[] }
-  | { type: 'callout'; tone: 'info' | 'warning' | 'tip'; title: string; text: string }
+  | {
+      type: 'callout';
+      tone: 'info' | 'warning' | 'tip';
+      title: string;
+      text: string;
+    }
   | { type: 'quote'; text: string };
 
 export interface BlogPost {

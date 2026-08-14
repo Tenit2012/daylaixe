@@ -1,14 +1,7 @@
 import Link from 'next/link';
-import {
-  Car,
-  Clock,
-  Facebook,
-  Mail,
-  MapPin,
-  Phone,
-  Youtube,
-} from 'lucide-react';
+import { Car, Clock, Mail, MapPin, Phone, Youtube } from 'lucide-react';
 import { ZaloIcon } from '@/components/ui/zalo-icon';
+import { FacebookIcon } from '@/components/ui/facebook-icon';
 import { legalNav, mainNav, siteConfig } from '@/config/site';
 import {
   buildEmailHref,
@@ -48,7 +41,9 @@ export function SiteFooter() {
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10">
                 <Car aria-hidden="true" className="h-5 w-5" />
               </span>
-              <span className="text-base font-bold">{siteConfig.brandName}</span>
+              <span className="text-base font-bold">
+                {siteConfig.brandName}
+              </span>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-brand-200">
               {siteConfig.messaging.secondary}
@@ -63,7 +58,7 @@ export function SiteFooter() {
                     aria-label="Trang Facebook"
                     className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
                   >
-                    <Facebook aria-hidden="true" className="h-4 w-4" />
+                    <FacebookIcon className="h-4 w-4" />
                   </a>
                 ) : null}
                 {youtubeHref ? (
@@ -88,13 +83,21 @@ export function SiteFooter() {
             </h2>
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex items-start gap-2.5">
-                <Phone aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-300" />
+                <Phone
+                  aria-hidden="true"
+                  className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-300"
+                />
                 {phoneHref ? (
-                  <a href={phoneHref} className="hover:text-white hover:underline">
+                  <a
+                    href={phoneHref}
+                    className="hover:text-white hover:underline"
+                  >
                     {formatVietnamesePhone(siteConfig.contact.phone)}
                   </a>
                 ) : (
-                  <span className="text-brand-300">Số điện thoại đang cập nhật</span>
+                  <span className="text-brand-300">
+                    Số điện thoại đang cập nhật
+                  </span>
                 )}
               </li>
               <li className="flex items-start gap-2.5">
@@ -113,9 +116,15 @@ export function SiteFooter() {
                 )}
               </li>
               <li className="flex items-start gap-2.5">
-                <Mail aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-300" />
+                <Mail
+                  aria-hidden="true"
+                  className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-300"
+                />
                 {emailHref ? (
-                  <a href={emailHref} className="break-all hover:text-white hover:underline">
+                  <a
+                    href={emailHref}
+                    className="break-all hover:text-white hover:underline"
+                  >
                     {siteConfig.contact.email}
                   </a>
                 ) : (
@@ -123,7 +132,10 @@ export function SiteFooter() {
                 )}
               </li>
               <li className="flex items-start gap-2.5">
-                <Clock aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-300" />
+                <Clock
+                  aria-hidden="true"
+                  className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-300"
+                />
                 <span>{hoursText}</span>
               </li>
             </ul>
@@ -136,7 +148,10 @@ export function SiteFooter() {
             </h2>
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex items-start gap-2.5">
-                <MapPin aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-300" />
+                <MapPin
+                  aria-hidden="true"
+                  className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-300"
+                />
                 <span>{addressText}</span>
               </li>
               {mapsHref ? (
@@ -165,14 +180,20 @@ export function SiteFooter() {
             <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm sm:grid-cols-1">
               {mainNav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-white hover:underline">
+                  <Link
+                    href={item.href}
+                    className="hover:text-white hover:underline"
+                  >
                     {item.label}
                   </Link>
                 </li>
               ))}
               {legalNav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-white hover:underline">
+                  <Link
+                    href={item.href}
+                    className="hover:text-white hover:underline"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -199,7 +220,10 @@ export function SiteFooter() {
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {legalNav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-white hover:underline">
+                <Link
+                  href={item.href}
+                  className="hover:text-white hover:underline"
+                >
                   {item.label}
                 </Link>
               </li>

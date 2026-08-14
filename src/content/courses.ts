@@ -189,7 +189,8 @@ export const courses: Course[] = [
       'Người đã quen lái xe con và muốn nâng hạng phù hợp nhu cầu',
     ],
     vehicleType: 'Xe tải hạng nhẹ theo cấu hình của cơ sở đào tạo',
-    estimatedDuration: 'Thường dài hơn hạng B, cần xác nhận theo lịch khai giảng',
+    estimatedDuration:
+      'Thường dài hơn hạng B, cần xác nhận theo lịch khai giảng',
     curriculum: [
       {
         title: 'Làm quen xe tải',
@@ -212,7 +213,8 @@ export const courses: Course[] = [
       },
       {
         title: 'Bài thi sa hình',
-        details: 'Luyện toàn bộ bài sa hình với xe tải, chú trọng kiểm soát tốc độ.',
+        details:
+          'Luyện toàn bộ bài sa hình với xe tải, chú trọng kiểm soát tốc độ.',
       },
       {
         title: 'Đường trường',
@@ -353,7 +355,8 @@ export const courses: Course[] = [
       },
       {
         title: 'Dừng và khởi hành ngang dốc',
-        details: 'Bài hay mất điểm nhất - luyện đến khi xe không trôi và không chết máy.',
+        details:
+          'Bài hay mất điểm nhất - luyện đến khi xe không trôi và không chết máy.',
       },
       {
         title: 'Đường vuông góc và đường vòng quanh co',

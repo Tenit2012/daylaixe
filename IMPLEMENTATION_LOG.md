@@ -190,18 +190,18 @@ tại đặt `true`, giao diện hiển thị nhãn "Nội dung mẫu" và hộp
 
 ### Production
 
-| Package | Phiên bản | Mục đích |
-| --- | --- | --- |
-| `next` | 15.5.22 | Framework, App Router |
-| `react` / `react-dom` | 19.2.8 | UI runtime |
-| `@prisma/client` | 6.19.3 | Database client |
-| `zod` | ^3.24 | Validate schema (client + server) |
-| `react-hook-form` + `@hookform/resolvers` | ^7.54 / ^3.9 | Quản lý form |
-| `jose` | ^5.9 | Ký/xác thực JWT session (chạy được trên Edge) |
-| `bcryptjs` | ^2.4 | Hash mật khẩu (thuần JS, không cần build native) |
-| `lucide-react` | ^0.468 | Icon |
-| `clsx` + `tailwind-merge` | ^2.1 / ^2.5 | Gộp class Tailwind |
-| `server-only` | ^0.0.1 | Chặn import module server vào client bundle |
+| Package                                   | Phiên bản    | Mục đích                                         |
+| ----------------------------------------- | ------------ | ------------------------------------------------ |
+| `next`                                    | 15.5.22      | Framework, App Router                            |
+| `react` / `react-dom`                     | 19.2.8       | UI runtime                                       |
+| `@prisma/client`                          | 6.19.3       | Database client                                  |
+| `zod`                                     | ^3.24        | Validate schema (client + server)                |
+| `react-hook-form` + `@hookform/resolvers` | ^7.54 / ^3.9 | Quản lý form                                     |
+| `jose`                                    | ^5.9         | Ký/xác thực JWT session (chạy được trên Edge)    |
+| `bcryptjs`                                | ^2.4         | Hash mật khẩu (thuần JS, không cần build native) |
+| `lucide-react`                            | ^0.468       | Icon                                             |
+| `clsx` + `tailwind-merge`                 | ^2.1 / ^2.5  | Gộp class Tailwind                               |
+| `server-only`                             | ^0.0.1       | Chặn import module server vào client bundle      |
 
 ### Development
 
@@ -217,8 +217,8 @@ tại đặt `true`, giao diện hiển thị nhãn "Nội dung mẫu" và hộp
 
 ## 4. Migration đã tạo
 
-| Tên | Nội dung |
-| --- | --- |
+| Tên                   | Nội dung                                                                                                                           |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `20260805232713_init` | Tạo bảng `leads` (20 cột, 4 index: `normalizedPhone`, `status`, `createdAt`, `interestedCourse`) và `admin_users` (unique `email`) |
 
 Seed data:
@@ -234,21 +234,21 @@ Seed data:
 
 ### 5.1 Unit + Integration — 202 test, 13 file
 
-| File | Số test | Nội dung |
-| --- | --- | --- |
-| `tests/unit/phone.test.ts` | 16 | Chuẩn hóa và validate số điện thoại VN |
-| `tests/unit/cta-links.test.ts` | 18 | Sinh URL `tel:`, Zalo, Maps, email; xử lý placeholder |
-| `tests/unit/lead-schema.test.ts` | 18 | Schema form, metadata UTM, schema cập nhật |
-| `tests/unit/content.test.ts` | 24 | Slug khóa học/bài viết, metadata SEO, id heading duy nhất, **từ ngữ bị cấm**, FAQ không chứa số học phí |
-| `tests/unit/site-config.test.ts` | 14 | Placeholder, disclaimer, thông điệp, điều hướng, Pixel mặc định tắt |
-| `tests/unit/request-context.test.ts` | 13 | Lấy IP client, trích xuất UTM |
-| `tests/unit/rate-limiter.test.ts` | 8 | Cửa sổ trượt, tách theo key, reset |
-| `tests/unit/auth.test.ts` | 23 | Hash/verify mật khẩu, ký/xác thực JWT, `AuthService` |
-| `tests/unit/sanitize.test.ts` | 21 | Sanitize text, chặn CSV injection, chặn open-redirect |
-| `tests/unit/lead-repository.test.ts` | 17 | CRUD, lọc, phân trang, phát hiện trùng |
-| `tests/unit/lead-form.test.tsx` | 9 | Giao diện form: validate client, honeypot, giữ dữ liệu khi lỗi |
-| `tests/unit/accordion.test.tsx` | 9 | Accordion (ARIA, bàn phím), nhãn nội dung mẫu |
-| `tests/integration/lead-service.test.ts` | 21 | Luồng schema → service → repository |
+| File                                     | Số test | Nội dung                                                                                                |
+| ---------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------- |
+| `tests/unit/phone.test.ts`               | 16      | Chuẩn hóa và validate số điện thoại VN                                                                  |
+| `tests/unit/cta-links.test.ts`           | 18      | Sinh URL `tel:`, Zalo, Maps, email; xử lý placeholder                                                   |
+| `tests/unit/lead-schema.test.ts`         | 18      | Schema form, metadata UTM, schema cập nhật                                                              |
+| `tests/unit/content.test.ts`             | 24      | Slug khóa học/bài viết, metadata SEO, id heading duy nhất, **từ ngữ bị cấm**, FAQ không chứa số học phí |
+| `tests/unit/site-config.test.ts`         | 14      | Placeholder, disclaimer, thông điệp, điều hướng, Pixel mặc định tắt                                     |
+| `tests/unit/request-context.test.ts`     | 13      | Lấy IP client, trích xuất UTM                                                                           |
+| `tests/unit/rate-limiter.test.ts`        | 8       | Cửa sổ trượt, tách theo key, reset                                                                      |
+| `tests/unit/auth.test.ts`                | 23      | Hash/verify mật khẩu, ký/xác thực JWT, `AuthService`                                                    |
+| `tests/unit/sanitize.test.ts`            | 21      | Sanitize text, chặn CSV injection, chặn open-redirect                                                   |
+| `tests/unit/lead-repository.test.ts`     | 17      | CRUD, lọc, phân trang, phát hiện trùng                                                                  |
+| `tests/unit/lead-form.test.tsx`          | 9       | Giao diện form: validate client, honeypot, giữ dữ liệu khi lỗi                                          |
+| `tests/unit/accordion.test.tsx`          | 9       | Accordion (ARIA, bàn phím), nhãn nội dung mẫu                                                           |
+| `tests/integration/lead-service.test.ts` | 21      | Luồng schema → service → repository                                                                     |
 
 Integration test bao phủ đúng các trường hợp yêu cầu: submit thành công, thiếu
 field bắt buộc, số điện thoại không hợp lệ, honeypot bị phát hiện, duplicate
@@ -279,17 +279,17 @@ E2E dùng database riêng `prisma/e2e.db`, được xóa và tạo lại trướ
 
 ## 6. Kết quả chạy lệnh kiểm tra cuối cùng
 
-| Lệnh | Kết quả |
-| --- | --- |
-| `npm install` | ✅ up to date, 0 lỗi |
-| `npm run db:generate` | ✅ Generated Prisma Client v6.19.3 |
-| `npm run db:migrate` | ✅ Already in sync, no pending migration |
-| `npm run db:seed` | ✅ Tài khoản quản trị OK, bỏ qua lead (đã có 8 bản ghi) |
-| `npm run lint` | ✅ exit 0 — **0 error, 0 warning** |
-| `npm run typecheck` | ✅ exit 0 — **0 TypeScript error** |
-| `npm run test` | ✅ **202/202 passed**, 13 file, ~8s |
-| `npm run build` | ✅ Compiled successfully, **29/29 static pages** |
-| `npm run test:e2e` | ✅ **29/29 passed**, ~22s |
+| Lệnh                  | Kết quả                                                 |
+| --------------------- | ------------------------------------------------------- |
+| `npm install`         | ✅ up to date, 0 lỗi                                    |
+| `npm run db:generate` | ✅ Generated Prisma Client v6.19.3                      |
+| `npm run db:migrate`  | ✅ Already in sync, no pending migration                |
+| `npm run db:seed`     | ✅ Tài khoản quản trị OK, bỏ qua lead (đã có 8 bản ghi) |
+| `npm run lint`        | ✅ exit 0 — **0 error, 0 warning**                      |
+| `npm run typecheck`   | ✅ exit 0 — **0 TypeScript error**                      |
+| `npm run test`        | ✅ **202/202 passed**, 13 file, ~8s                     |
+| `npm run build`       | ✅ Compiled successfully, **29/29 static pages**        |
+| `npm run test:e2e`    | ✅ **29/29 passed**, ~22s                               |
 
 Không có lệnh nào bị bỏ qua hay bị vô hiệu hóa để build thành công.
 
@@ -297,16 +297,16 @@ Không có lệnh nào bị bỏ qua hay bị vô hiệu hóa để build thành
 
 ## 7. Vấn đề đã gặp và cách xử lý
 
-| # | Vấn đề | Xử lý |
-| --- | --- | --- |
-| 1 | `vite-tsconfig-paths` ESM-only, không load được từ `vitest.config.ts` (CJS) | Gỡ gói, khai báo alias `@` trực tiếp trong `resolve.alias` |
-| 2 | `jose` báo `payload must be an instance of Uint8Array` trong jsdom | `TextEncoder` của jsdom tạo Uint8Array khác realm. Cho `tests/unit/auth.test.ts` chạy ở môi trường `node` bằng docblock `@vitest-environment node` |
-| 3 | Trang `/admin/login` crash ở production | Next.js 15 không cho ghi cookie khi render Server Component. Chuyển việc sinh cookie CSRF sang middleware |
-| 4 | `keywords` từ `as const` không gán được vào `Metadata` của Next | Tách `seoKeywords` thành `const seoKeywords: string[]` |
-| 5 | `normalizeVietnamesePhone` không xử lý tiền tố quay số quốc tế `00` | Thêm bước quy `00…` → `+…` trước khi xử lý |
-| 6 | E2E: click checkbox thất bại do layout shift khi thông báo lỗi xuất hiện | Tích ô đồng ý **trước** khi điền các trường khác |
-| 7 | `prisma db push --force-reset` bị Prisma chặn khi gọi bởi AI agent | Thay bằng xóa file `prisma/e2e.db` trong `global-setup.ts` rồi `db push` trên file rỗng — an toàn hơn và chỉ tác động đúng database test |
-| 8 | Ký tự escape `\uXXXX` bị chuyển thành ký tự thật khi ghi file | Xây regex ký tự điều khiển bằng `String.fromCharCode()` trong `sanitize.ts` |
+| #   | Vấn đề                                                                      | Xử lý                                                                                                                                              |
+| --- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `vite-tsconfig-paths` ESM-only, không load được từ `vitest.config.ts` (CJS) | Gỡ gói, khai báo alias `@` trực tiếp trong `resolve.alias`                                                                                         |
+| 2   | `jose` báo `payload must be an instance of Uint8Array` trong jsdom          | `TextEncoder` của jsdom tạo Uint8Array khác realm. Cho `tests/unit/auth.test.ts` chạy ở môi trường `node` bằng docblock `@vitest-environment node` |
+| 3   | Trang `/admin/login` crash ở production                                     | Next.js 15 không cho ghi cookie khi render Server Component. Chuyển việc sinh cookie CSRF sang middleware                                          |
+| 4   | `keywords` từ `as const` không gán được vào `Metadata` của Next             | Tách `seoKeywords` thành `const seoKeywords: string[]`                                                                                             |
+| 5   | `normalizeVietnamesePhone` không xử lý tiền tố quay số quốc tế `00`         | Thêm bước quy `00…` → `+…` trước khi xử lý                                                                                                         |
+| 6   | E2E: click checkbox thất bại do layout shift khi thông báo lỗi xuất hiện    | Tích ô đồng ý **trước** khi điền các trường khác                                                                                                   |
+| 7   | `prisma db push --force-reset` bị Prisma chặn khi gọi bởi AI agent          | Thay bằng xóa file `prisma/e2e.db` trong `global-setup.ts` rồi `db push` trên file rỗng — an toàn hơn và chỉ tác động đúng database test           |
+| 8   | Ký tự escape `\uXXXX` bị chuyển thành ký tự thật khi ghi file               | Xây regex ký tự điều khiển bằng `String.fromCharCode()` trong `sanitize.ts`                                                                        |
 
 ---
 
@@ -315,36 +315,36 @@ Không có lệnh nào bị bỏ qua hay bị vô hiệu hóa để build thành
 Tất cả nằm trong `.env` (hoặc biến môi trường của Vercel). Website vẫn chạy khi
 chưa thay, nhưng giao diện sẽ hiển thị "đang cập nhật" ở các chỗ liên quan.
 
-| Biến | Placeholder hiện tại | Bắt buộc |
-| --- | --- | --- |
-| `NEXT_PUBLIC_TEACHER_NAME` | `[Tên thầy]` | ✅ |
-| `NEXT_PUBLIC_TEACHER_TITLE` | `[Chức danh]` | ✅ |
-| `NEXT_PUBLIC_PHONE_NUMBER` | `[Số điện thoại]` | ✅ |
-| `NEXT_PUBLIC_ZALO_URL` | `[Zalo URL]` | ✅ |
-| `NEXT_PUBLIC_CONTACT_EMAIL` | `[Email]` | ✅ |
-| `NEXT_PUBLIC_ADDRESS` | `[Địa chỉ]` | ✅ |
-| `NEXT_PUBLIC_TRAINING_AREA` | `[Khu vực đào tạo]` | ✅ |
-| `NEXT_PUBLIC_CENTER_NAME` | `[Tên trung tâm]` | ✅ |
-| `NEXT_PUBLIC_CONTACT_HOURS` | `[Thời gian liên hệ]` | ✅ |
-| `NEXT_PUBLIC_GOOGLE_MAPS_URL` | `[Google Maps URL]` | ➖ |
-| `NEXT_PUBLIC_FACEBOOK_URL` | `[Facebook URL]` | ➖ |
-| `NEXT_PUBLIC_YOUTUBE_URL` | `[YouTube URL]` | ➖ |
-| `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | ✅ đổi thành domain thật |
-| `ADMIN_PASSWORD` | `change-me` | ✅ **bắt buộc đổi** |
-| `AUTH_SECRET` | chuỗi dev | ✅ **bắt buộc sinh ngẫu nhiên** |
+| Biến                          | Placeholder hiện tại    | Bắt buộc                        |
+| ----------------------------- | ----------------------- | ------------------------------- |
+| `NEXT_PUBLIC_TEACHER_NAME`    | `[Tên thầy]`            | ✅                              |
+| `NEXT_PUBLIC_TEACHER_TITLE`   | `[Chức danh]`           | ✅                              |
+| `NEXT_PUBLIC_PHONE_NUMBER`    | `[Số điện thoại]`       | ✅                              |
+| `NEXT_PUBLIC_ZALO_URL`        | `[Zalo URL]`            | ✅                              |
+| `NEXT_PUBLIC_CONTACT_EMAIL`   | `[Email]`               | ✅                              |
+| `NEXT_PUBLIC_ADDRESS`         | `[Địa chỉ]`             | ✅                              |
+| `NEXT_PUBLIC_TRAINING_AREA`   | `[Khu vực đào tạo]`     | ✅                              |
+| `NEXT_PUBLIC_CENTER_NAME`     | `[Tên trung tâm]`       | ✅                              |
+| `NEXT_PUBLIC_CONTACT_HOURS`   | `[Thời gian liên hệ]`   | ✅                              |
+| `NEXT_PUBLIC_GOOGLE_MAPS_URL` | `[Google Maps URL]`     | ➖                              |
+| `NEXT_PUBLIC_FACEBOOK_URL`    | `[Facebook URL]`        | ➖                              |
+| `NEXT_PUBLIC_YOUTUBE_URL`     | `[YouTube URL]`         | ➖                              |
+| `NEXT_PUBLIC_SITE_URL`        | `http://localhost:3000` | ✅ đổi thành domain thật        |
+| `ADMIN_PASSWORD`              | `change-me`             | ✅ **bắt buộc đổi**             |
+| `AUTH_SECRET`                 | chuỗi dev               | ✅ **bắt buộc sinh ngẫu nhiên** |
 
 Dự án có sẵn hàm `getUnresolvedPlaceholders()` trong `src/config/site.ts` để liệt
 kê những mục chưa thay.
 
 ### Đã thay bằng dữ liệu thật — `VERIFIED_REAL_DATA`
 
-| Thông tin | Giá trị đã xác nhận | Biến môi trường | Ngày |
-| --- | --- | --- | --- |
-| Tên thầy | Tùng | `NEXT_PUBLIC_TEACHER_NAME` | 06/08/2026 |
-| Số điện thoại | 0967569733 | `NEXT_PUBLIC_PHONE_NUMBER` | 06/08/2026 |
-| Zalo | `zalo.me/0967569733` | `NEXT_PUBLIC_ZALO_URL` | 06/08/2026 |
+| Thông tin                 | Giá trị đã xác nhận                    | Biến môi trường                | Ngày           |
+| ------------------------- | -------------------------------------- | ------------------------------ | -------------- |
+| Tên thầy                  | Tùng                                   | `NEXT_PUBLIC_TEACHER_NAME`     | 06/08/2026     |
+| Số điện thoại             | 0967569733                             | `NEXT_PUBLIC_PHONE_NUMBER`     | 06/08/2026     |
+| Zalo                      | `zalo.me/0967569733`                   | `NEXT_PUBLIC_ZALO_URL`         | 06/08/2026     |
 | **Kinh nghiệm giảng dạy** | **Gần 20 năm giảng dạy tại trung tâm** | `NEXT_PUBLIC_EXPERIENCE_LABEL` | **07/08/2026** |
-| **Đối tượng học viên** | **Cả hệ dân sự và hệ Công an** | `NEXT_PUBLIC_STUDENT_GROUPS` | **07/08/2026** |
+| **Đối tượng học viên**    | **Cả hệ dân sự và hệ Công an**         | `NEXT_PUBLIC_STUDENT_GROUPS`   | **07/08/2026** |
 
 Chi tiết lần thay dữ liệu kinh nghiệm: [`docs/DATA_02_REPORT.md`](docs/DATA_02_REPORT.md).
 
@@ -370,16 +370,16 @@ Danh sách đầy đủ kèm kích thước, tỷ lệ và yêu cầu nội dung
 
 ### 9.2 Nội dung nghiệp vụ
 
-| Mục | Trạng thái hiện tại | Cần cung cấp |
-| --- | --- | --- |
-| Học phí từng khóa | `tuition: null` → hiện câu "Vui lòng liên hệ…" | Con số chính thức + các khoản đã gồm / có thể phát sinh |
-| Danh mục hồ sơ | Mô tả chung, có nhắc xác nhận lại | Danh sách chính xác theo quy định tại thời điểm hiện tại |
-| Điều kiện dự học hạng C1 | Ghi "phụ thuộc quy định hiện hành" | Điều kiện cụ thể đã kiểm chứng |
-| Cảm nhận học viên | 6 bản mẫu, `isPlaceholder: true` | Phản hồi thật đã được học viên đồng ý cho đăng |
-| Video cảm nhận | 2 vị trí trống | Video thật (30–90 giây) |
-| ~~Số năm kinh nghiệm~~ | ✅ **Đã có: "Gần 20 năm"** | — (đã xong 07/08/2026) |
-| ~~Đối tượng học viên~~ | ✅ **Đã có: hệ dân sự và hệ Công an** | Nên xác nhận cách gọi chính thức của trung tâm |
-| Tên trung tâm | Placeholder | Tên chính xác nơi thầy giảng dạy |
+| Mục                      | Trạng thái hiện tại                            | Cần cung cấp                                             |
+| ------------------------ | ---------------------------------------------- | -------------------------------------------------------- |
+| Học phí từng khóa        | `tuition: null` → hiện câu "Vui lòng liên hệ…" | Con số chính thức + các khoản đã gồm / có thể phát sinh  |
+| Danh mục hồ sơ           | Mô tả chung, có nhắc xác nhận lại              | Danh sách chính xác theo quy định tại thời điểm hiện tại |
+| Điều kiện dự học hạng C1 | Ghi "phụ thuộc quy định hiện hành"             | Điều kiện cụ thể đã kiểm chứng                           |
+| Cảm nhận học viên        | 6 bản mẫu, `isPlaceholder: true`               | Phản hồi thật đã được học viên đồng ý cho đăng           |
+| Video cảm nhận           | 2 vị trí trống                                 | Video thật (30–90 giây)                                  |
+| ~~Số năm kinh nghiệm~~   | ✅ **Đã có: "Gần 20 năm"**                     | — (đã xong 07/08/2026)                                   |
+| ~~Đối tượng học viên~~   | ✅ **Đã có: hệ dân sự và hệ Công an**          | Nên xác nhận cách gọi chính thức của trung tâm           |
+| Tên trung tâm            | Placeholder                                    | Tên chính xác nơi thầy giảng dạy                         |
 
 **Không tự điền số liệu ước chừng** vào các mục trên — giao diện đã xử lý sẵn
 trường hợp thiếu dữ liệu một cách trung thực.
@@ -464,13 +464,13 @@ Mục tiêu: kiểm thử dự án còn hoạt động + kiểm kê toàn bộ d
 
 ### Kiểm thử đã chạy (sandbox Linux)
 
-| Bước | Kết quả |
-|---|---|
-| `tsc --noEmit` (typecheck) | **PASS** |
-| `check:placeholders` (dev) | **PASS** (exit 0, 5 cảnh báo) |
-| `check:placeholders --production` | exit 1 đúng 4 blocker P0 (hành vi mong đợi) |
-| Logic helper của script | Đã kiểm chứng bằng smoke test qua `node --experimental-strip-types` |
-| `npm ci`, `db:generate`, `format:check`, `lint`, `test`, `build`, migrate/seed, E2E | **BLOCKED_BY_ENVIRONMENT** |
+| Bước                                                                                | Kết quả                                                             |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `tsc --noEmit` (typecheck)                                                          | **PASS**                                                            |
+| `check:placeholders` (dev)                                                          | **PASS** (exit 0, 5 cảnh báo)                                       |
+| `check:placeholders --production`                                                   | exit 1 đúng 4 blocker P0 (hành vi mong đợi)                         |
+| Logic helper của script                                                             | Đã kiểm chứng bằng smoke test qua `node --experimental-strip-types` |
+| `npm ci`, `db:generate`, `format:check`, `lint`, `test`, `build`, migrate/seed, E2E | **BLOCKED_BY_ENVIRONMENT**                                          |
 
 **Lý do BLOCKED:** sandbox chạy Linux nhưng `node_modules` được cài trên Windows của chủ dự án → thiếu gói native theo nền tảng (Prisma query engine Linux, `@rollup/rollup-linux-x64-gnu`, esbuild của `tsx`), và egress mạng bị chặn nên không `npm ci` được. **Các lệnh này chạy được đầy đủ trên máy Windows của chủ dự án.**
 
@@ -485,6 +485,7 @@ Bước tiếp theo: thu thập dữ liệu thật theo `docs/THAY_TUNG_CONTENT_
 Mục tiêu: đưa website lên Netlify Free + Neon PostgreSQL Free, trả URL preview. Người dùng chọn phương án "Chuẩn bị + tự deploy" nên phần thực thi deploy (cần tài khoản Netlify/Neon) do chủ dự án bấm; báo cáo & hướng dẫn ở `docs/DEPLOY_02_REPORT.md`.
 
 ### Thay đổi code/config
+
 - `prisma/schema.prisma`: `provider = "postgresql"`.
 - `prisma/migrations/migration_lock.toml`: `provider = "postgresql"`.
 - `prisma/migrations/20260805232713_init/migration.sql`: viết lại theo cú pháp PostgreSQL (`TIMESTAMP(3)`, `CONSTRAINT *_pkey`, giữ 5 index).
@@ -494,16 +495,162 @@ Mục tiêu: đưa website lên Netlify Free + Neon PostgreSQL Free, trả URL p
 - Preview `noindex`: thêm `NEXT_PUBLIC_NOINDEX` vào `src/lib/env/public.ts`, `src/config/site.ts`; áp vào `src/app/layout.tsx` (robots metadata) và `src/app/robots.ts` (disallow all khi bật).
 
 ### Kiểm thử (sandbox Linux)
-| Bước | Kết quả |
-|---|---|
-| `tsc --noEmit` | **PASS** (exit 0) |
-| Prisma migration (cú pháp Postgres) | Soạn đúng chuẩn; chưa apply local (không có DB) |
-| `prisma generate`, `next build`, `eslint`, `prettier`, `vitest`, `check:placeholders` | **BLOCKED_BY_ENVIRONMENT** |
+
+| Bước                                                                                  | Kết quả                                         |
+| ------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `tsc --noEmit`                                                                        | **PASS** (exit 0)                               |
+| Prisma migration (cú pháp Postgres)                                                   | Soạn đúng chuẩn; chưa apply local (không có DB) |
+| `prisma generate`, `next build`, `eslint`, `prettier`, `vitest`, `check:placeholders` | **BLOCKED_BY_ENVIRONMENT**                      |
 
 **Lý do BLOCKED:** `node_modules` cài trên Windows → native binary (Prisma engines, esbuild) không chạy trên Linux sandbox; CDN engine Prisma bị chặn; không có sudo/Docker. Sẽ verify đầy đủ trong build đầu trên Netlify.
 
 ### Bảo mật
+
 - `.env` không bị track (đã xác minh `git ls-files`), nằm trong `.gitignore` → không commit secret.
 
 ### Việc còn lại (chủ dự án)
+
 Tạo Neon DB → push GitHub → import vào Netlify → set env vars → Deploy (build tự chạy migrate deploy) → `npm run admin:create` → chạy checklist verify ở `docs/DEPLOY_02_REPORT.md` mục 11.
+
+---
+
+## REFACTOR-01 — Landing page tĩnh cho Cloudflare Pages (13/08/2026)
+
+Báo cáo đầy đủ: [`docs/REFACTOR_01_REPORT.md`](docs/REFACTOR_01_REPORT.md).
+Hướng dẫn deploy: [`docs/CLOUDFLARE_PAGES_DEPLOY.md`](docs/CLOUDFLARE_PAGES_DEPLOY.md).
+
+> **Lưu ý:** mục DEPLOY-02 phía trên (Postgres/Neon + Netlify + admin) đã **không
+> còn hiệu lực**. Website không còn backend, không còn database, không còn trang
+> quản trị. Giữ lại phần đó làm lịch sử, đừng làm theo.
+
+### Thay đổi kiến trúc
+
+- `next.config.ts`: `output: 'export'`, `images.unoptimized`, `trailingSlash`.
+  `npm run build` sinh ra `out/` (23 file HTML tĩnh).
+- `headers()` mất hiệu lực khi export → header bảo mật chuyển sang
+  `public/_headers` (định dạng Cloudflare Pages).
+- `robots.ts`, `sitemap.ts`, `manifest.ts` (mới) phải có
+  `export const dynamic = 'force-static'` — thiếu thì build dừng.
+- Playwright chuyển từ `next start` sang phục vụ trực tiếp `out/` bằng `serve`.
+- `npm run build` thêm `NODE_OPTIONS=--max-old-space-size=4096` qua `cross-env`
+  (build từng chết vì heap out of memory trên máy Windows).
+
+### Nội dung
+
+- Dữ liệu tin cậy vào `src/config/site.ts`: `employmentStatus` ("Giáo viên cơ
+  hữu"), `centerName`, `centerShortName`, `contact.consultLocation`, domain
+  `thaytungdaylaixe.vn`.
+- Disclaimer viết lại nêu **đồng thời** quan hệ cơ hữu có thật **và** giới hạn
+  của website (không phải cổng thông tin chính thức). Có test bảo vệ cả hai vế.
+- Trang chủ lắp lại theo 11 mục, thêm 3 section mới: `TrustBadgesSection`,
+  `WhereToStudySection`, quy trình 6 bước (`registration-process.ts`).
+- Meta description rút từ ~285 → 152 ký tự (Google cắt ở ~160).
+
+### Đã xoá
+
+- Toàn bộ 7 testimonial **nội dung mẫu** + trang `/cam-nhan-hoc-vien` +
+  components + tests. Hướng dẫn khôi phục ghi trong `src/types/content.ts`.
+- `server-only` (không còn ai import), `public/images/{about,hero}/`,
+  `video-placeholder.svg`.
+
+### Ảnh
+
+- Cấu trúc mới `public/images/{teacher,center,courses,gallery}/`.
+- Ảnh thật chuyển sang **WebP** (15,4 MB gốc → 0,5 MB). Ảnh OG **giữ JPEG** vì
+  trình thu thập của Zalo/Facebook không phải bản nào cũng đọc được WebP.
+
+### Kiểm thử
+
+`format:check`, `lint`, `typecheck` sạch · unit **91/91** · E2E **33/33**
+(15 public-pages + 18 landing-page mới) chạy trực tiếp trên `out/` ·
+`npm run build` tạo `out/` thành công.
+
+### Việc còn lại
+
+Xem mục 7 của `docs/REFACTOR_01_REPORT.md`. Chặn phát hành: xác nhận đã xin phép
+học viên trong ảnh/video, xác nhận bản quyền 2 ảnh, kiểm tra lại link Google Maps.
+
+---
+
+## FINAL_PREVIEW_QA — 14/08/2026
+
+Kiểm định toàn bộ website trước khi deploy Cloudflare Pages.
+Báo cáo đầy đủ: `docs/FINAL_PREVIEW_QA.md`.
+
+**Kết luận: READY FOR PREVIEW** — đủ chất lượng gửi Thầy Tùng xem.
+Chưa phải "sẵn sàng công khai": còn 3 việc phải xác nhận với Thầy (đồng ý của
+học viên trong ảnh/video, bản quyền 2 ảnh, link Google Maps).
+
+### Sáu lỗi thật phát hiện và đã sửa
+
+1. Mô tả `/gioi-thieu` dài 177 ký tự (Google cắt ở ~160) → rút còn 142.
+2. Tiêu đề trang chủ 64 ký tự, mất từ khoá `TP.HCM` khi bị cắt → viết lại còn
+   56 ký tự, đưa địa danh lên đầu, giữ đủ mọi từ khoá.
+3. **Cả 21 URL trong sitemap thiếu dấu gạch chéo cuối** nên lệch với canonical
+   → mỗi dòng là một chuyển hướng 308 trên Cloudflare. Thêm `pageUrl()` tách
+   bạch với `absoluteUrl()` (trang vs tệp).
+4. JSON-LD (`Course.url`, `Article.mainEntityOfPage.@id`, `BreadcrumbList.item`)
+   dùng URL không chính tắc → chuyển sang `pageUrl()`.
+5. **31 phần tử vi phạm tương phản WCAG AA**, nặng nhất là nút CTA chính
+   (2,95:1, chuẩn cần 4,5:1) → làm tối thang màu cam bậc 500–900 và
+   `ink-subtle`. Giá trị mới tính bằng công thức WCAG. Nút CTA nay đạt 5,18:1.
+   _Đây là thay đổi nhìn thấy được duy nhất: nút cam đậm hơn trước._
+6. Nhảy cấp tiêu đề h1→h3 ở `/khoa-hoc` và `/kien-thuc` → thêm tham số
+   `headingLevel` cho `CourseCard`/`PostCard` (mặc định 3, truyền 2 ở trang
+   danh sách).
+
+### Bịt lỗ hổng kiểm thử
+
+Cả 6 lỗi trên đều lọt qua nhiều đợt kiểm trước. Nguyên nhân chung: **test chỉ
+kiểm trang chủ**. Bốn nhóm test mới đều duyệt toàn bộ route:
+
+- tiêu đề + mô tả trong ngưỡng Google (15 route)
+- URL sitemap khớp tuyệt đối canonical (21 URL)
+- không nhảy cấp tiêu đề (10 route)
+- `seo-url.test.ts`: khoá khác biệt `pageUrl` vs `absoluteUrl` (5 test)
+
+Hai guard quan trọng nhất đã **kiểm chứng bằng cách cố tình phá bản build** —
+cả hai đều báo lỗi đúng chỗ, khôi phục thì xanh lại.
+
+### Kết quả đo
+
+|                | Desktop | Mobile  |
+| -------------- | ------- | ------- |
+| Performance    | **100** | 87      |
+| Accessibility  | **100** | **100** |
+| Best Practices | **100** | **100** |
+| SEO            | **100** | **100** |
+
+Quét accessibility **toàn bộ 21 trang**: 100 điểm, 0 vi phạm tương phản
+(trước khi sửa: 96 điểm, 31 vi phạm).
+
+Trang chủ truyền 471 KB / 34 request. Video 5,7 MB không tải khi vào trang.
+702 link nội bộ — 0 link hỏng. 179 thẻ `<img>` — 0 thiếu alt, 0 thiếu
+width/height, 0 ảnh hỏng. Không tràn ngang ở 390/768/1024/1440 px.
+
+### Kiểm thử
+
+`format:check`, `lint`, `typecheck` sạch · unit **97/97** · E2E **43/43**
+chạy trực tiếp trên `out/` · `npm run build` tạo `out/` thành công (23 HTML).
+
+### Việc còn mở (không chặn preview)
+
+- Mobile Performance 87 (mục tiêu ≥90). LCP là chữ `<h1>`, 88% thời gian là
+  render delay do CSS chặn hiển thị. **Phải đo lại trên tên miền thật** vì
+  Cloudflare có Brotli + HTTP/2/3 + CDN biên, tác động thẳng vào phần này.
+- **Lighthouse 13 không chạy được trên Node 20** (`URL.parse is not a
+function`, điểm SEO trả về null dễ nhầm là 0). Phải dùng `npx lighthouse@12`
+  hoặc nâng Node ≥22.
+- Chưa có `favicon.ico` (chỉ có `icon.svg`) — Safari cũ sẽ hiện icon trắng.
+- Build cần RAM: `exit 134` khi máy còn dưới ~2 GB trống. Không phải lỗi mã.
+
+### Cập nhật 14/08/2026 — xác nhận 2/3 việc chặn phát hành
+
+Chủ website xác nhận trực tiếp:
+
+- ✅ **Ảnh có mặt học viên đã được học viên đồng ý.** Cam kết trên trang
+  Điều khoản sử dụng là đúng sự thật.
+- ✅ **Link Google Maps chỉ đúng địa chỉ** Km 18 Võ Nguyên Giáp.
+
+Còn lại **một** việc chặn phát hành: xác nhận bản quyền hai ảnh
+`cabin-mo-phong-hoc-vien.jpg` và `dan-xe-tap-lai.jpg`.

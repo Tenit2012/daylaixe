@@ -70,38 +70,45 @@ const ENV_RULES: EnvRule[] = [
     forbiddenMessage: 'van tro toi localhost',
   },
   {
-    key: 'DATABASE_URL',
-    productionBlocker: true,
-    forbidden: /^file:/i,
-    forbiddenMessage: 'dang dung SQLite (file:) - production can Postgres',
+    key: 'NEXT_PUBLIC_TEACHER_NAME',
+    productionBlocker: false,
+    requiredNonPlaceholder: true,
   },
   {
-    key: 'ADMIN_EMAIL',
-    productionBlocker: true,
-    forbidden: /@example\.com$/i,
-    forbiddenMessage: 'dang dung email mau @example.com',
+    key: 'NEXT_PUBLIC_PHONE_NUMBER',
+    productionBlocker: false,
+    requiredNonPlaceholder: true,
   },
   {
-    key: 'ADMIN_PASSWORD',
-    productionBlocker: true,
-    forbidden: /^(change-?me|changeme|password|123456)$/i,
-    forbiddenMessage: 'dang dung mat khau mac dinh / yeu',
+    key: 'NEXT_PUBLIC_ZALO_URL',
+    productionBlocker: false,
+    requiredNonPlaceholder: true,
   },
   {
-    key: 'AUTH_SECRET',
-    productionBlocker: true,
-    forbidden: /^(replace-with|change|secret)/i,
-    forbiddenMessage: 'la gia tri mac dinh mau',
-    minLength: 32,
+    key: 'NEXT_PUBLIC_TEACHER_TITLE',
+    productionBlocker: false,
+    requiredNonPlaceholder: true,
   },
-  { key: 'NEXT_PUBLIC_TEACHER_NAME', productionBlocker: false, requiredNonPlaceholder: true },
-  { key: 'NEXT_PUBLIC_PHONE_NUMBER', productionBlocker: false, requiredNonPlaceholder: true },
-  { key: 'NEXT_PUBLIC_ZALO_URL', productionBlocker: false, requiredNonPlaceholder: true },
-  { key: 'NEXT_PUBLIC_TEACHER_TITLE', productionBlocker: false, requiredNonPlaceholder: true },
-  { key: 'NEXT_PUBLIC_ADDRESS', productionBlocker: false, requiredNonPlaceholder: true },
-  { key: 'NEXT_PUBLIC_TRAINING_AREA', productionBlocker: false, requiredNonPlaceholder: true },
-  { key: 'NEXT_PUBLIC_CENTER_NAME', productionBlocker: false, requiredNonPlaceholder: true },
-  { key: 'NEXT_PUBLIC_CONTACT_EMAIL', productionBlocker: false, requiredNonPlaceholder: true },
+  {
+    key: 'NEXT_PUBLIC_ADDRESS',
+    productionBlocker: false,
+    requiredNonPlaceholder: true,
+  },
+  {
+    key: 'NEXT_PUBLIC_TRAINING_AREA',
+    productionBlocker: false,
+    requiredNonPlaceholder: true,
+  },
+  {
+    key: 'NEXT_PUBLIC_CENTER_NAME',
+    productionBlocker: false,
+    requiredNonPlaceholder: true,
+  },
+  {
+    key: 'NEXT_PUBLIC_CONTACT_EMAIL',
+    productionBlocker: false,
+    requiredNonPlaceholder: true,
+  },
 ];
 
 /**
@@ -193,16 +200,56 @@ export function parseEnvFile(content: string): Record<string, string> {
  * Cac pattern KHONG duoc xuat hien trong source di production. Placeholder
  * `[...]` hop le chi ton tai o file ha tang (allowlist ben duoi).
  */
-const DANGEROUS_SOURCE_PATTERNS: Array<{ code: string; regex: RegExp; message: string }> = [
-  { code: 'PHONE_0900', regex: /0900000000/, message: 'so dien thoai mau 0900000000' },
-  { code: 'PHONE_0123', regex: /0123456789/, message: 'so dien thoai mau 0123456789' },
-  { code: 'EMAIL_EXAMPLE', regex: /example@example\.com/i, message: 'email mau example@example.com' },
-  { code: 'CHANGE_ME', regex: /change-?me|changeme/i, message: 'chuoi "change-me"' },
-  { code: 'BRACKET_TEACHER', regex: /\[Tên thầy\]/, message: 'placeholder [Tên thầy]' },
-  { code: 'BRACKET_PHONE', regex: /\[Số điện thoại\]/, message: 'placeholder [Số điện thoại]' },
-  { code: 'BRACKET_ZALO', regex: /\[Zalo URL\]/, message: 'placeholder [Zalo URL]' },
-  { code: 'BRACKET_ADDRESS', regex: /\[Địa chỉ\]/, message: 'placeholder [Địa chỉ]' },
-  { code: 'EXAMPLE_DOMAIN', regex: /https?:\/\/[^\s"']*example\.com/i, message: 'domain example.com' },
+const DANGEROUS_SOURCE_PATTERNS: Array<{
+  code: string;
+  regex: RegExp;
+  message: string;
+}> = [
+  {
+    code: 'PHONE_0900',
+    regex: /0900000000/,
+    message: 'so dien thoai mau 0900000000',
+  },
+  {
+    code: 'PHONE_0123',
+    regex: /0123456789/,
+    message: 'so dien thoai mau 0123456789',
+  },
+  {
+    code: 'EMAIL_EXAMPLE',
+    regex: /example@example\.com/i,
+    message: 'email mau example@example.com',
+  },
+  {
+    code: 'CHANGE_ME',
+    regex: /change-?me|changeme/i,
+    message: 'chuoi "change-me"',
+  },
+  {
+    code: 'BRACKET_TEACHER',
+    regex: /\[Tên thầy\]/,
+    message: 'placeholder [Tên thầy]',
+  },
+  {
+    code: 'BRACKET_PHONE',
+    regex: /\[Số điện thoại\]/,
+    message: 'placeholder [Số điện thoại]',
+  },
+  {
+    code: 'BRACKET_ZALO',
+    regex: /\[Zalo URL\]/,
+    message: 'placeholder [Zalo URL]',
+  },
+  {
+    code: 'BRACKET_ADDRESS',
+    regex: /\[Địa chỉ\]/,
+    message: 'placeholder [Địa chỉ]',
+  },
+  {
+    code: 'EXAMPLE_DOMAIN',
+    regex: /https?:\/\/[^\s"']*example\.com/i,
+    message: 'domain example.com',
+  },
 ];
 
 /**
@@ -212,14 +259,10 @@ const DANGEROUS_SOURCE_PATTERNS: Array<{ code: string; regex: RegExp; message: s
 const SOURCE_ALLOWLIST = [
   'src/lib/env/public.ts', // default `[...]` co chu dich cho dev
   'src/config/site.ts', // isPlaceholderValue helper + nhan
-  'prisma/seed.ts', // tham chieu 'change-me' o day la CODE GUARD chan mat khau mac dinh khi production, khong phai placeholder di production
 ];
 
 /** Quet mot doan text (thuan, de test). */
-export function scanSourceText(
-  text: string,
-  filePath: string,
-): Finding[] {
+export function scanSourceText(text: string, filePath: string): Finding[] {
   const findings: Finding[] = [];
   const lines = text.split(/\r?\n/);
 
@@ -244,9 +287,15 @@ export function scanSourceText(
 // 3) Duyet file (chi phan I/O; logic o tren de test rieng)
 // ---------------------------------------------------------------------------
 
-const SCAN_DIRS = ['src', 'prisma'];
+const SCAN_DIRS = ['src'];
 const SCAN_EXT = new Set(['.ts', '.tsx']);
-const IGNORE_DIRS = new Set(['node_modules', '.next', 'dist', 'build', 'coverage']);
+const IGNORE_DIRS = new Set([
+  'node_modules',
+  '.next',
+  'dist',
+  'build',
+  'coverage',
+]);
 
 function toPosix(p: string): string {
   return p.split(sep).join('/');

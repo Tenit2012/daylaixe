@@ -5,7 +5,7 @@ import { buildBreadcrumbJsonLd } from '@/lib/seo/structured-data';
 import { Section, SectionHeading } from '@/components/ui/section';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { CourseCard } from '@/components/courses/course-card';
-import { LeadFormSection } from '@/components/sections/lead-form-section';
+import { ContactSection } from '@/components/sections/contact-section';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { JsonLd } from '@/components/ui/json-ld';
 import { siteConfig } from '@/config/site';
@@ -42,10 +42,12 @@ export default function CoursesPage() {
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {sortedCourses.map((course, index) => (
+            // headingLevel=2 vi o trang danh sach nay card nam thang duoi <h1>.
             <CourseCard
               key={course.slug}
               course={course}
               priority={index < 2}
+              headingLevel={2}
             />
           ))}
         </div>
@@ -64,7 +66,7 @@ export default function CoursesPage() {
         location="courses_page"
       />
 
-      <LeadFormSection formLocation="courses_page" tone="muted" />
+      <ContactSection location="courses_page" tone="muted" />
 
       <JsonLd data={buildBreadcrumbJsonLd(crumbs)} />
     </>

@@ -41,9 +41,9 @@ export default function TermsPage() {
               1. Về website này
             </h2>
             <p>
-              Đây là website cá nhân của {siteConfig.brandName}, phục vụ mục đích
-              giới thiệu các khóa học lái xe và tiếp nhận nhu cầu tư vấn của
-              người học.
+              Đây là website cá nhân của {siteConfig.brandName}, phục vụ mục
+              đích giới thiệu các khóa học lái xe và tiếp nhận nhu cầu tư vấn
+              của người học.
             </p>
             <p>
               Website <strong>không phải</strong> cổng thông tin chính thức của
@@ -62,9 +62,9 @@ export default function TermsPage() {
               xác nhận lại tại cơ sở đào tạo ở thời điểm bạn đăng ký.
             </p>
             <p>
-              Chúng tôi không khẳng định các nội dung liên quan đến quy định pháp
-              luật khi chưa kiểm chứng, và luôn khuyến nghị bạn đối chiếu với
-              nguồn chính thức.
+              Chúng tôi không khẳng định các nội dung liên quan đến quy định
+              pháp luật khi chưa kiểm chứng, và luôn khuyến nghị bạn đối chiếu
+              với nguồn chính thức.
             </p>
 
             <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
@@ -72,31 +72,31 @@ export default function TermsPage() {
             </h2>
             <p>
               Kỳ sát hạch được tổ chức theo quy định và kết quả phụ thuộc vào
-              năng lực thực tế của từng học viên. Website không đưa ra bất kỳ cam
-              kết nào về việc bảo đảm đỗ, và bạn nên thận trọng với mọi lời hứa
-              dạng đó từ bất kỳ nguồn nào.
+              năng lực thực tế của từng học viên. Website không đưa ra bất kỳ
+              cam kết nào về việc bảo đảm đỗ, và bạn nên thận trọng với mọi lời
+              hứa dạng đó từ bất kỳ nguồn nào.
             </p>
 
             <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
-              4. Sử dụng biểu mẫu đăng ký
+              4. Liên hệ qua điện thoại, Zalo và Facebook
             </h2>
+            <p>
+              Website không có biểu mẫu và không nhận thông tin nào từ bạn. Các
+              nút trên trang chỉ mở ứng dụng gọi điện hoặc nhắn tin trên máy của
+              bạn. Khi liên hệ, mong bạn:
+            </p>
             <ul className="ml-5 list-disc space-y-1.5">
               <li>
-                Bạn chỉ nên gửi thông tin của chính mình hoặc của người đã đồng ý
-                cho bạn cung cấp thông tin thay.
+                Chỉ cung cấp thông tin của chính mình hoặc của người đã đồng ý
+                cho bạn cung cấp thay.
               </li>
               <li>
-                Vui lòng không gửi thông tin sai lệch hoặc gửi hàng loạt gây quá
-                tải hệ thống.
-              </li>
-              <li>
-                Không sử dụng biểu mẫu để gửi nội dung quảng cáo, spam hoặc nội
-                dung vi phạm pháp luật.
+                Không gửi nội dung quảng cáo, spam hoặc nội dung vi phạm pháp
+                luật.
               </li>
             </ul>
             <p>
-              Việc bạn gửi biểu mẫu đồng nghĩa với việc bạn đồng ý cho chúng tôi
-              liên hệ tư vấn theo{' '}
+              Thông tin bạn nhắn được xử lý theo{' '}
               <Link
                 href="/chinh-sach-bao-mat"
                 className="font-medium text-brand-700 underline underline-offset-2 hover:text-brand-900"
@@ -112,12 +112,14 @@ export default function TermsPage() {
             <p>
               Các bài viết trong mục Kiến thức là nội dung nguyên bản do chúng
               tôi biên soạn. Bạn có thể trích dẫn với điều kiện ghi rõ nguồn và
-              dẫn liên kết về trang gốc. Vui lòng không sao chép toàn bộ bài viết
-              để đăng lại ở nơi khác.
+              dẫn liên kết về trang gốc. Vui lòng không sao chép toàn bộ bài
+              viết để đăng lại ở nơi khác.
             </p>
             <p>
-              Hình ảnh trên website hiện là hình minh họa. Khi có hình ảnh thật
-              của học viên, chúng chỉ được đăng sau khi học viên đồng ý.
+              Website dùng cả ảnh chụp thật tại nơi thầy giảng dạy lẫn hình minh
+              họa. Ảnh có mặt học viên chỉ được đăng sau khi học viên đồng ý;
+              nếu bạn xuất hiện trong một tấm ảnh và muốn gỡ, chỉ cần nhắn cho
+              thầy là ảnh sẽ được gỡ xuống.
             </p>
 
             <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
@@ -134,18 +136,18 @@ export default function TermsPage() {
               7. Giới hạn trách nhiệm
             </h2>
             <p>
-              Chúng tôi cố gắng giữ thông tin trên website chính xác và cập nhật,
-              nhưng không chịu trách nhiệm cho thiệt hại phát sinh từ việc bạn sử
-              dụng thông tin mà chưa xác nhận lại tại cơ sở đào tạo.
+              Chúng tôi cố gắng giữ thông tin trên website chính xác và cập
+              nhật, nhưng không chịu trách nhiệm cho thiệt hại phát sinh từ việc
+              bạn sử dụng thông tin mà chưa xác nhận lại tại cơ sở đào tạo.
             </p>
 
             <h2 className="!mt-9 text-xl text-brand-900 sm:text-2xl">
               8. Thay đổi điều khoản
             </h2>
             <p>
-              Điều khoản có thể được cập nhật. Ngày cập nhật ở đầu trang phản ánh
-              phiên bản mới nhất. Việc bạn tiếp tục sử dụng website sau khi điều
-              khoản thay đổi được hiểu là bạn chấp nhận nội dung mới.
+              Điều khoản có thể được cập nhật. Ngày cập nhật ở đầu trang phản
+              ánh phiên bản mới nhất. Việc bạn tiếp tục sử dụng website sau khi
+              điều khoản thay đổi được hiểu là bạn chấp nhận nội dung mới.
             </p>
           </div>
 

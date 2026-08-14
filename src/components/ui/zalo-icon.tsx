@@ -1,35 +1,28 @@
 import { cn } from '@/lib/utils/cn';
 
 interface ZaloIconProps {
-  /**
-   * `onDark`  - dung tren nen mau dam (nut nen xanh Zalo, footer navy).
-   * `onLight` - dung tren nen sang (the o trang Lien he, bang quan tri).
-   */
-  tone?: 'onDark' | 'onLight';
   className?: string;
 }
 
 /**
- * Bieu tuong cho cac nut/lien ket dan toi Zalo.
+ * Logo Zalo chinh chu, dung cho moi nut/lien ket dan toi Zalo.
  *
- * Anh duoc nap tu file trong `public/images/brand/`. Muon thay bang logo
- * Zalo chinh thuc thi chi can GHI DE hai file svg do - khong phai sua bat ky
- * dong code nao. Huong dan chi tiet nam ngay trong file svg va trong
- * `docs/REQUIRED_ASSETS.md`.
+ * MOT FILE DUNG CHO MOI NEN. Truoc day cho nay co hai ban (don sac cho nen
+ * dam, ban mau cho nen sang) vi logo con la hinh tam tu ve. Logo that doc
+ * duoc tren ca ba nen cua website - nut xanh Zalo, footer navy va the nen
+ * sang - nen khong can tach ban nua.
+ *
+ * Muon doi logo thi chi can GHI DE `public/images/brand/zalo-logo.svg`,
+ * khong phai sua dong code nao.
  *
  * Dung the <img> thay vi next/image vi day la icon rat nho, khong can toi
  * co che toi uu anh va se khong bao gio can srcset.
  */
-export function ZaloIcon({ tone = 'onDark', className }: ZaloIconProps) {
-  const src =
-    tone === 'onDark'
-      ? '/images/brand/zalo-logo.svg'
-      : '/images/brand/zalo-logo-color.svg';
-
+export function ZaloIcon({ className }: ZaloIconProps) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={src}
+      src="/images/brand/zalo-logo.svg"
       alt=""
       aria-hidden="true"
       width={20}

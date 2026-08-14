@@ -23,7 +23,10 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
           return (
             <li key={item.path} className="flex items-center gap-1">
               {isLast ? (
-                <span aria-current="page" className="font-medium text-ink-muted">
+                <span
+                  aria-current="page"
+                  className="font-medium text-ink-muted"
+                >
                   {item.name}
                 </span>
               ) : (

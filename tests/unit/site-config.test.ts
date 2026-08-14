@@ -35,18 +35,33 @@ describe('siteConfig', () => {
     expect(siteConfig.url.startsWith('http')).toBe(true);
   });
 
-  it('disclaimer neu ro khong phai cong thong tin chinh thuc', () => {
+  /**
+   * Disclaimer phai neu DONG THOI hai y: thay LA giao vien co huu cua trung
+   * tam (quan he co that), NHUNG day khong phai cong thong tin chinh thuc.
+   * Thieu y dau -> phu nhan quan he co that; thieu y sau -> thanh mao danh.
+   */
+  /**
+   * LUU Y: cac test duoi day KHONG kiem tra gia tri that ("An ninh Nhan dan",
+   * "Vo Nguyen Giap"...) vi moi truong test khong nap file .env - config se roi
+   * ve placeholder. Chung kiem tra dieu quan trong hon va luon dung: phan van
+   * ban CO DINH duoc viet dung, va gia tri tu config duoc NOI vao dung cho.
+   */
+  it('disclaimer neu ca quan he that lan gioi han cua website', () => {
+    expect(siteConfig.disclaimer).toContain('giáo viên cơ hữu');
     expect(siteConfig.disclaimer).toContain(
       'không phải cổng thông tin chính thức',
     );
-    expect(siteConfig.disclaimer).toContain('An ninh Nhân dân');
+    // Ten trung tam phai duoc noi vao, du la gia tri that hay placeholder.
+    expect(siteConfig.disclaimer).toContain(siteConfig.teacher.centerName);
   });
 
-  it('thong diep chinh va phu dung nhu yeu cau', () => {
-    expect(siteConfig.messaging.primary).toContain(
-      'tận tình từ buổi đầu đến ngày thi sát hạch',
+  it('hero neu ro day la ai, hoc o dau, dang ky voi ai', () => {
+    expect(siteConfig.messaging.heroTitle).toContain('giáo viên cơ hữu');
+    expect(siteConfig.messaging.heroTitle).toContain(
+      siteConfig.teacher.centerName,
     );
-    expect(siteConfig.messaging.secondary).toContain('lịch học linh hoạt');
+    expect(siteConfig.messaging.heroSubtitle).toContain('kinh nghiệm');
+    expect(siteConfig.messaging.heroSubtitle).toContain('Đăng ký trực tiếp');
   });
 
   it('triet ly dao tao dung nguyen van', () => {
@@ -55,10 +70,36 @@ describe('siteConfig', () => {
     );
   });
 
-  it('SEO description dung noi dung yeu cau', () => {
-    expect(siteConfig.seo.defaultDescription).toBe(
-      'Tư vấn học lái xe hạng B, C1 và bổ túc tay lái. Hướng dẫn tận tình, lịch học linh hoạt và minh bạch thông tin từ đăng ký đến ngày thi.',
+  it('SEO description neu ro vi tri cong tac va dia diem hoc', () => {
+    const description = siteConfig.seo.defaultDescription;
+    expect(description).toContain('giáo viên cơ hữu');
+    expect(description).toContain('Thủ Đức');
+    expect(description).toContain('không trung gian');
+  });
+
+  /**
+   * Google cat mo ta o khoang 160 ky tu. Vuot nguong la cau cuoi bi cat giua
+   * chung tren trang ket qua tim kiem.
+   *
+   * CAN THAN: moi truong test KHONG nap .env nen `teacherName` la placeholder
+   * "[Tên thầy]" -> chuoi o day ngan hon ban that. Do thang do dai chuoi hien
+   * tai la BAY: no tung cho ket qua 154 ky tu trong khi ban production that su
+   * la 162. Vi vay phai do tren TRUONG HOP XAU NHAT: thay ten hien tai bang
+   * mot ten dai hop ly.
+   *
+   * Kiem tra tren HTML that da build nam o tests/e2e/landing-page.spec.ts.
+   */
+  it('SEO description khong vuot 160 ky tu ke ca voi ten thay dai', () => {
+    const LONGEST_REALISTIC_NAME = 'Nguyễn Văn Thành'; // 16 ky tu
+    const worstCase = siteConfig.seo.defaultDescription.replace(
+      siteConfig.teacher.name,
+      LONGEST_REALISTIC_NAME,
     );
+
+    expect(
+      worstCase.length,
+      `mo ta dai ${worstCase.length} ky tu: "${worstCase}"`,
+    ).toBeLessThanOrEqual(160);
   });
 
   it('khong dung tu ngu cam ket ket qua thi', () => {
@@ -162,7 +203,6 @@ describe('dieu huong', () => {
       '/gioi-thieu',
       '/khoa-hoc',
       '/hoc-phi-lo-trinh',
-      '/cam-nhan-hoc-vien',
       '/kien-thuc',
       '/lien-he',
     ]) {

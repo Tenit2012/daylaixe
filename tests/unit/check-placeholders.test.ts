@@ -53,10 +53,6 @@ describe('check-production-placeholders helpers', () => {
       const findings = evaluateEnv(
         {
           NEXT_PUBLIC_SITE_URL: 'http://localhost:3000',
-          DATABASE_URL: 'file:./dev.db',
-          ADMIN_EMAIL: 'admin@example.com',
-          ADMIN_PASSWORD: 'change-me',
-          AUTH_SECRET: 'replace-with-a-long-random-secret-at-least-32-chars',
         },
         true,
       );
@@ -64,20 +60,11 @@ describe('check-production-placeholders helpers', () => {
         .filter((f) => f.severity === 'error')
         .map((f) => f.code);
       expect(errorCodes).toContain('ENV_FORBIDDEN'); // ít nhất một blocker
-      // Không được lộ giá trị secret đầy đủ trong message.
-      const secretMsg = findings.find((f) => f.message.includes('AUTH_SECRET'));
-      expect(secretMsg?.message.includes('replace-with-a-long-random')).toBe(
-        false,
-      );
     });
 
     it('khong bao loi khi env da la gia tri production hop le', () => {
       const findings = evaluateEnv({
         NEXT_PUBLIC_SITE_URL: 'https://thaytungdaylaixe.vn',
-        DATABASE_URL: 'postgresql://u:p@host:5432/db?schema=public',
-        ADMIN_EMAIL: 'thaytung@gmail.com',
-        ADMIN_PASSWORD: 'a-strong-password-123',
-        AUTH_SECRET: 'x'.repeat(48),
         NEXT_PUBLIC_TEACHER_NAME: 'Tùng',
         NEXT_PUBLIC_PHONE_NUMBER: '0967569733',
         NEXT_PUBLIC_ZALO_URL: 'https://zalo.me/0967569733',

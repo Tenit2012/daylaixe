@@ -2,8 +2,10 @@
 
 import { MapPin, Phone } from 'lucide-react';
 import { ZaloIcon } from './zalo-icon';
+import { FacebookIcon } from './facebook-icon';
 import { siteConfig } from '@/config/site';
 import {
+  buildExternalHref,
   buildMapsHref,
   buildPhoneHref,
   buildZaloHref,
@@ -83,7 +85,7 @@ export function ZaloButton({
           'cursor-not-allowed opacity-60',
         )}
       >
-        <ZaloIcon tone="onLight" />
+        <ZaloIcon />
         Zalo đang cập nhật
       </span>
     );
@@ -98,6 +100,66 @@ export function ZaloButton({
       className={buttonClasses('zalo', size, className)}
     >
       <ZaloIcon />
+      {label}
+    </a>
+  );
+}
+
+/**
+ * Nut nhan qua Facebook.
+ *
+ * Khac voi Goi va Zalo: neu chua cau hinh URL thi KHONG render gi ca.
+ * Ly do - so dien thoai va Zalo la kenh bat buoc nen can bao "dang cap nhat",
+ * con Facebook la kenh bo sung, hien o trong se lam loang khoi CTA.
+ */
+export function FacebookButton({
+  location,
+  size = 'md',
+  className,
+  label = 'Nhắn Facebook',
+}: CtaProps) {
+  const href = buildExternalHref(siteConfig.contact.facebookUrl);
+  if (!href) return null;
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => trackEvent(AnalyticsEvent.ClickFacebook, { location })}
+      className={buttonClasses('facebook', size, className)}
+    >
+      <FacebookIcon />
+      {label}
+    </a>
+  );
+}
+
+/**
+ * Nut "Den tu van tai trung tam" - mo chi duong Google Maps.
+ *
+ * Tach rieng khoi `MapsLink` (dang link chu) vi o hero day la MOT TRONG BA
+ * CTA chinh, phuc vu nhom nguoi doc muon kiem chung tan noi truoc khi dang ky.
+ * Khong cau hinh Maps thi khong render - tot hon la mot nut chet.
+ */
+export function VisitCenterButton({
+  location,
+  size = 'md',
+  className,
+  label = 'Đến tư vấn tại trung tâm',
+}: CtaProps) {
+  const href = buildMapsHref(siteConfig.contact.googleMapsUrl);
+  if (!href) return null;
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => trackEvent(AnalyticsEvent.ClickMaps, { location })}
+      className={buttonClasses('outline', size, className)}
+    >
+      <MapPin aria-hidden="true" className="h-[1.125rem] w-[1.125rem]" />
       {label}
     </a>
   );

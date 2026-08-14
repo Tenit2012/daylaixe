@@ -9,7 +9,7 @@ import { Section, SectionHeading } from '@/components/ui/section';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Card } from '@/components/ui/card';
 import { LearningProcessSection } from '@/components/sections/learning-process-section';
-import { LeadFormSection } from '@/components/sections/lead-form-section';
+import { ContactSection } from '@/components/sections/contact-section';
 import { JsonLd } from '@/components/ui/json-ld';
 import { buttonClasses } from '@/components/ui/button';
 
@@ -84,8 +84,14 @@ export default function TuitionPage() {
             </thead>
             <tbody className="divide-y divide-line">
               {sortedCourses.map((course) => (
-                <tr key={course.slug} className="align-top hover:bg-surface-muted">
-                  <th scope="row" className="px-4 py-4 font-semibold text-brand-900">
+                <tr
+                  key={course.slug}
+                  className="align-top hover:bg-surface-muted"
+                >
+                  <th
+                    scope="row"
+                    className="px-4 py-4 font-semibold text-brand-900"
+                  >
                     <Link
                       href={`/khoa-hoc/${course.slug}`}
                       className="rounded hover:text-brand-600 hover:underline"
@@ -108,7 +114,20 @@ export default function TuitionPage() {
                         {course.tuition.displayValue}
                       </span>
                     ) : (
-                      <span className="text-accent-700">Liên hệ để nhận báo giá</span>
+                      /*
+                       * Chua chot hoc phi -> dua thang nguoi doc toi trang
+                       * Lien he. De dang chu tinh thi o giua bang so sanh no
+                       * thanh ngo cut: doc xong khong biet di dau tiep.
+                       * Gach chan luon hien vi trong mot bang du lieu, chu
+                       * chi doi mau khong du de nhan ra la bam duoc.
+                       */
+                      <Link
+                        href="/lien-he"
+                        aria-label={`Liên hệ để nhận báo giá khóa ${course.name}`}
+                        className="rounded font-semibold text-accent-700 underline underline-offset-4 hover:text-accent-800"
+                      >
+                        Liên hệ để nhận báo giá
+                      </Link>
                     )}
                   </td>
                 </tr>
@@ -132,14 +151,20 @@ export default function TuitionPage() {
             </h2>
             <div className="prose-article mt-4">
               <p>
+                Học phí do trung tâm công bố, và bạn đóng trực tiếp cho trung
+                tâm chứ không đóng cho tôi. Tôi không thu bất kỳ khoản nào riêng
+                và không nhận tiền đặt cọc giữ chỗ.
+              </p>
+              <p>
                 Tôi không đưa ra một con số chung cho mọi người, vì chi phí thực
                 tế phụ thuộc vào khóa bạn chọn, số giờ thực hành bạn cần và các
                 khoản liên quan đến hồ sơ tại thời điểm đăng ký.
               </p>
               <p>
-                Khi bạn liên hệ, tôi sẽ hỏi rõ nhu cầu rồi gửi bảng chi phí gồm:
-                phần học phí đào tạo, các khoản bắt buộc theo quy định, và những
-                khoản chỉ phát sinh nếu bạn chủ động yêu cầu thêm.
+                Khi bạn liên hệ, tôi sẽ hỏi rõ nhu cầu rồi nói lại mức trung tâm
+                đang áp dụng, gồm: phần học phí đào tạo, các khoản bắt buộc theo
+                quy định, và những khoản chỉ phát sinh nếu bạn chủ động yêu cầu
+                thêm.
               </p>
               <p>
                 Bạn nên hỏi kỹ trước khi nộp hồ sơ. Việc biết trước toàn bộ chi
@@ -152,7 +177,10 @@ export default function TuitionPage() {
             <h2 className="text-xl">Chính sách minh bạch chi phí</h2>
             <ul className="mt-4 space-y-3">
               {transparencyPoints.map((point) => (
-                <li key={point} className="flex items-start gap-2.5 text-[0.9375rem] text-ink-muted">
+                <li
+                  key={point}
+                  className="flex items-start gap-2.5 text-[0.9375rem] text-ink-muted"
+                >
                   <Check
                     aria-hidden="true"
                     className="mt-0.5 h-[1.125rem] w-[1.125rem] flex-shrink-0 text-success-600"
@@ -171,7 +199,10 @@ export default function TuitionPage() {
             id="notes-heading"
             className="flex items-center gap-2.5 text-2xl sm:text-3xl"
           >
-            <AlertTriangle aria-hidden="true" className="h-6 w-6 text-accent-600" />
+            <AlertTriangle
+              aria-hidden="true"
+              className="h-6 w-6 text-accent-600"
+            />
             Các lưu ý quan trọng
           </h2>
           <ul className="mt-6 space-y-3">
@@ -186,17 +217,20 @@ export default function TuitionPage() {
           </ul>
 
           <div className="mt-8 text-center">
-            <Link href="#dang-ky" className={buttonClasses('primary', 'lg')}>
+            <Link
+              href="#lien-he-nhanh"
+              className={buttonClasses('primary', 'lg')}
+            >
               Nhận thông tin học phí mới nhất
             </Link>
           </div>
         </div>
       </Section>
 
-      <LeadFormSection
-        formLocation="tuition_page"
+      <ContactSection
+        location="tuition_page"
         title="Nhận bảng chi phí và lịch khai giảng"
-        description="Để lại thông tin, thầy sẽ gửi bảng chi phí chi tiết cùng lịch khai giảng gần nhất."
+        description="Gọi hoặc nhắn tin cho thầy để nhận bảng chi phí chi tiết cùng lịch khai giảng gần nhất."
       />
 
       <JsonLd data={buildBreadcrumbJsonLd(crumbs)} />

@@ -62,8 +62,19 @@ export const siteConfig = {
      */
     studentGroups: publicEnv.NEXT_PUBLIC_STUDENT_GROUPS,
     studentGroupsShort: publicEnv.NEXT_PUBLIC_STUDENT_GROUPS_SHORT,
-    /** Ten trung tam noi thay dang giang day / ho tro tuyen sinh. */
+    /** Ten day du cua trung tam noi thay giang day. */
     centerName: publicEnv.NEXT_PUBLIC_CENTER_NAME,
+    /** Ten rut gon - dung o badge, breadcrumb, cho hep. */
+    centerShortName:
+      publicEnv.NEXT_PUBLIC_CENTER_SHORT_NAME ||
+      publicEnv.NEXT_PUBLIC_CENTER_NAME,
+    /**
+     * DU LIEU THAT DA XAC NHAN: thay la giao vien CO HUU cua trung tam,
+     * khong phai cong tac vien hay moi gioi tuyen sinh. Day la chi tiet
+     * quan trong nhat de phan biet voi "co tuyen sinh" nen duoc tach rieng
+     * thay vi gop vao `title`.
+     */
+    employmentStatus: 'Giáo viên cơ hữu',
   },
 
   /**
@@ -83,7 +94,9 @@ export const siteConfig = {
     /** Dong hien thi trong trust indicator o hero. */
     audienceShort: `Dạy cả ${publicEnv.NEXT_PUBLIC_STUDENT_GROUPS_SHORT}`,
     /** Doan gioi thieu day du - dung o trang /gioi-thieu. */
-    biography: `Với ${experienceLabel.toLowerCase()} kinh nghiệm giảng dạy tại trung tâm, ${
+    biography: `Với ${experienceLabel.toLowerCase()} kinh nghiệm giảng dạy trong vai trò giáo viên cơ hữu tại ${
+      publicEnv.NEXT_PUBLIC_CENTER_NAME
+    }, ${
       isPlaceholderValue(teacherName) ? 'thầy' : `Thầy ${teacherName}`
     } đã trực tiếp hướng dẫn nhiều thế hệ học viên, từ học viên dân sự đến học viên thuộc lực lượng Công an. Kinh nghiệm thực tế lâu năm giúp thầy hiểu những khó khăn thường gặp của người mới học lái và có phương pháp hướng dẫn rõ ràng, dễ tiếp thu, chú trọng kỹ năng lái xe an toàn.`,
   },
@@ -95,6 +108,8 @@ export const siteConfig = {
     facebookUrl: publicEnv.NEXT_PUBLIC_FACEBOOK_URL,
     youtubeUrl: publicEnv.NEXT_PUBLIC_YOUTUBE_URL,
     address: publicEnv.NEXT_PUBLIC_ADDRESS,
+    /** Vi tri cu the ben trong trung tam - vi du "Lầu 2, trong khuôn viên trung tâm". */
+    consultLocation: publicEnv.NEXT_PUBLIC_CONSULT_LOCATION,
     trainingArea: publicEnv.NEXT_PUBLIC_TRAINING_AREA,
     googleMapsUrl: publicEnv.NEXT_PUBLIC_GOOGLE_MAPS_URL,
     /** Vi du: "7:00 - 20:00 hằng ngày". */
@@ -104,40 +119,69 @@ export const siteConfig = {
   url: publicEnv.NEXT_PUBLIC_SITE_URL.replace(/\/$/, ''),
 
   seo: {
+    /**
+     * Google cat tieu de o khoang 60 ky tu. Ban cu ("Học lái xe cùng thầy
+     * Tùng — giáo viên cơ hữu tại Thủ Đức, TP.HCM") dai 64 ky tu nen bi cat
+     * mat dung phan dia danh - tu khoa quan trong nhat cho tim kiem dia
+     * phuong. Ban nay dua dia danh len truoc va van vua 56 ky tu.
+     */
     defaultTitle: isPlaceholderValue(teacherName)
-      ? 'Học lái xe cùng thầy tại TP.HCM'
-      : `Học lái xe cùng thầy ${teacherName} tại TP.HCM`,
+      ? 'Học lái xe Thủ Đức, TP.HCM — giáo viên cơ hữu'
+      : `Học lái xe Thủ Đức, TP.HCM — Thầy ${teacherName}, giáo viên cơ hữu`,
     titleTemplate: isPlaceholderValue(teacherName)
       ? '%s | Học lái xe cùng thầy'
       : `%s | Thầy ${teacherName}`,
-    defaultDescription:
-      'Tư vấn học lái xe hạng B, C1 và bổ túc tay lái. Hướng dẫn tận tình, lịch học linh hoạt và minh bạch thông tin từ đăng ký đến ngày thi.',
+    /**
+     * Google cat mo ta o khoang 155-160 ky tu. Cau nay co y NGAN, khong nhet
+     * ten day du cua trung tam (rat dai) vao - ten do da nam o <h1> va o
+     * JSON-LD roi. Uu tien cua mo ta la lam nguoi doc bam vao, khong phai
+     * nhoi tu khoa.
+     */
+    defaultDescription: `Học lái xe cùng ${
+      isPlaceholderValue(teacherName) ? 'thầy' : `thầy ${teacherName}`
+    } — giáo viên cơ hữu, ${experienceLabel.toLowerCase()} kinh nghiệm. Học và thi tại trung tâm ở Thủ Đức, TP.HCM. Tư vấn trực tiếp, không trung gian.`,
     /** Dung cho og:locale va thuoc tinh lang cua the <html>. */
     locale: 'vi_VN',
     lang: 'vi',
-    ogImage: '/images/og/og-default.svg',
+    /**
+     * Anh hien thi khi chia se link len Zalo/Facebook. Phai la anh bitmap
+     * (jpg/png) - nhieu ung dung nhan tin KHONG doc duoc SVG.
+     */
+    ogImage: '/images/og/og-default.jpg',
     keywords: seoKeywords,
   },
 
   messaging: {
-    primary: isPlaceholderValue(teacherName)
-      ? 'Học lái xe cùng thầy — tận tình từ buổi đầu đến ngày thi sát hạch.'
-      : `Học lái xe cùng thầy ${teacherName} — tận tình từ buổi đầu đến ngày thi sát hạch.`,
+    /**
+     * Tieu de chinh o hero. Neu ba dieu nay: DAY LA AI (giao vien co huu),
+     * HOC O DAU (ten trung tam), DANG KY VOI AI (truc tiep voi thay) -
+     * chinh la ba cau hoi ma bao cao TRUST_AUDIT cham diem thap nhat.
+     */
+    heroTitle: `Học lái xe cùng giáo viên cơ hữu tại ${publicEnv.NEXT_PUBLIC_CENTER_NAME}`,
+    heroSubtitle: `${experienceLabel} kinh nghiệm giảng dạy • Hướng dẫn ${studentGroups} • Đăng ký trực tiếp với ${
+      isPlaceholderValue(teacherName) ? 'thầy' : `thầy ${teacherName}`
+    }`,
     secondary:
-      'Tư vấn khóa học phù hợp, hỗ trợ hồ sơ, lịch học linh hoạt và hướng dẫn thực hành dễ hiểu cho người mới.',
+      'Tư vấn khóa học phù hợp, hướng dẫn chuẩn bị hồ sơ và sắp xếp lịch học. Bạn trao đổi trực tiếp với thầy, đăng ký và học tại trung tâm.',
     philosophy:
       'Tôi không chỉ hướng dẫn học viên vượt qua kỳ thi, mà còn mong mỗi học viên đủ bình tĩnh và tự tin để lái xe an toàn sau khi nhận bằng.',
     feeNotConfigured:
-      'Vui lòng liên hệ để nhận thông tin học phí và lịch khai giảng được cập nhật tại thời điểm đăng ký.',
+      'Học phí và lịch khai giảng do trung tâm công bố và có thể thay đổi theo từng đợt. Bạn liên hệ để nhận thông tin được cập nhật tại thời điểm đăng ký.',
   },
 
   /**
-   * Disclaimer BAT BUOC hien thi o footer va cac trang lien quan.
-   * Website nay la trang ca nhan, khong phai cong thong tin chinh thuc.
+   * Disclaimer BAT BUOC hien thi o footer va cac trang phap ly.
+   *
+   * LUU Y VE CACH DIEN DAT: thay LA giao vien co huu cua trung tam - day la
+   * du lieu that da xac nhan nen website noi ro. Nhung website nay van la
+   * trang CA NHAN cua thay, khong phai cong thong tin chinh thuc cua trung
+   * tam hay nha truong. Hai y do khong mau thuan nhau va phai duoc neu CUNG
+   * NHAU: neu chi neu y dau se thanh mao danh, neu chi neu y sau se thanh
+   * phu nhan chinh moi quan he co that.
    */
   disclaimer: isPlaceholderValue(teacherName)
-    ? 'Đây là website giới thiệu và tư vấn học viên của thầy dạy lái xe. Website không phải cổng thông tin chính thức của Trường Đại học An ninh Nhân dân hoặc Trung tâm đào tạo lái xe. Thông tin về lịch khai giảng, học phí và quy định đào tạo cần được xác nhận lại tại thời điểm đăng ký.'
-    : `Đây là website giới thiệu và tư vấn học viên của thầy ${teacherName}. Website không phải cổng thông tin chính thức của Trường Đại học An ninh Nhân dân hoặc Trung tâm đào tạo lái xe. Thông tin về lịch khai giảng, học phí và quy định đào tạo cần được xác nhận lại tại thời điểm đăng ký.`,
+    ? `Đây là trang cá nhân của giáo viên cơ hữu tại ${publicEnv.NEXT_PUBLIC_CENTER_NAME}, dùng để tư vấn và hướng dẫn học viên. Đây không phải cổng thông tin chính thức của Trung tâm hay Nhà trường. Lịch khai giảng, học phí và quy định đào tạo do Trung tâm công bố và cần được xác nhận lại tại thời điểm đăng ký.`
+    : `Đây là trang cá nhân của thầy ${teacherName} — giáo viên cơ hữu tại ${publicEnv.NEXT_PUBLIC_CENTER_NAME} — dùng để tư vấn và hướng dẫn học viên. Đây không phải cổng thông tin chính thức của Trung tâm hay Nhà trường. Lịch khai giảng, học phí và quy định đào tạo do Trung tâm công bố và cần được xác nhận lại tại thời điểm đăng ký.`,
 
   analytics: {
     gaMeasurementId: publicEnv.NEXT_PUBLIC_GA_MEASUREMENT_ID,

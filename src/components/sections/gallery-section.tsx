@@ -9,7 +9,7 @@ export function GallerySection() {
         id="hinh-anh-heading"
         eyebrow="Hình ảnh"
         title="Hình ảnh lớp học và sân tập"
-        description="Hình ảnh hiện tại là bản minh họa. Ảnh chụp thật tại sân tập sẽ được cập nhật."
+        description="Ảnh chụp thật tại nơi thầy giảng dạy. Một số hình còn là bản minh họa và sẽ được thay bằng ảnh thật khi có."
       />
       <div className="mt-10">
         <GalleryGrid items={galleryItems} />

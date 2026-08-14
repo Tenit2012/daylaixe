@@ -30,7 +30,12 @@ export function Accordion({
   const baseId = useId();
 
   return (
-    <div className={cn('divide-y divide-line rounded-card border border-line bg-surface', className)}>
+    <div
+      className={cn(
+        'divide-y divide-line rounded-card border border-line bg-surface',
+        className,
+      )}
+    >
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         const buttonId = `${baseId}-trigger-${index}`;
@@ -45,9 +50,7 @@ export function Accordion({
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                className="flex w-full items-start justify-between gap-4 px-5 py-4 text-left
-                  text-base font-semibold text-brand-900 transition-colors hover:bg-surface-muted
-                  sm:px-6 sm:py-5"
+                className="flex w-full items-start justify-between gap-4 px-5 py-4 text-left text-base font-semibold text-brand-900 transition-colors hover:bg-surface-muted sm:px-6 sm:py-5"
               >
                 <span className="flex-1">{item.question}</span>
                 <ChevronDown

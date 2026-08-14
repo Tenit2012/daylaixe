@@ -20,7 +20,7 @@ export function Card({
       className={cn(
         'card-base p-5 sm:p-6',
         interactive &&
-          'transition-shadow duration-150 hover:shadow-card-hover focus-within:shadow-card-hover',
+          'transition-shadow duration-150 focus-within:shadow-card-hover hover:shadow-card-hover',
         className,
       )}
     >

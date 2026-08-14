@@ -20,15 +20,8 @@ next-env.d.ts
 /build
 /dist
 
-# database (local dev - co the chua du lieu ca nhan cua lead)
-*.db
-*.db-journal
-*.sqlite
-*.sqlite3
-/prisma/dev.db
-/prisma/dev.db-journal
-/prisma/test.db
-/prisma/test.db-journal
+# Thu muc build tam khi can build song song voi `next dev` dang chay
+/.next-verify/
 
 # env / secrets
 .env

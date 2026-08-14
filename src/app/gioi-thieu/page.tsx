@@ -10,16 +10,23 @@ import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Card } from '@/components/ui/card';
 import { GalleryGrid } from '@/components/gallery/gallery-grid';
 import { LearningProcessSection } from '@/components/sections/learning-process-section';
-import { LeadFormSection } from '@/components/sections/lead-form-section';
+import { LessonVideoSection } from '@/components/sections/lesson-video-section';
+import { ContactSection } from '@/components/sections/contact-section';
 import { JsonLd } from '@/components/ui/json-ld';
 
 const teacherLabel = isPlaceholderValue(siteConfig.teacher.name)
   ? 'thầy dạy lái xe'
   : `thầy ${siteConfig.teacher.name}`;
 
+/**
+ * Mo ta phai duoi 160 ky tu - Google cat o do. Ban cu ghep ca cum
+ * `withAudience` lan mot cau dai thanh 177 ky tu nen bi cat giua chung tren
+ * trang ket qua. Do dai duoc chan boi tests/e2e/landing-page.spec.ts, kiem
+ * tren HTML da build cua MOI trang chu khong rieng trang chu.
+ */
 export const metadata: Metadata = buildPageMetadata({
   title: 'Giới thiệu về thầy dạy lái xe',
-  description: `${siteConfig.experience.withAudience}. Câu chuyện nghề, giá trị giảng dạy và cách đồng hành cùng học viên từ buổi học đầu tiên đến ngày thi sát hạch.`,
+  description: `${siteConfig.experience.withAudience}. Câu chuyện nghề và cách thầy đồng hành cùng học viên đến ngày thi sát hạch.`,
   path: '/gioi-thieu',
 });
 
@@ -64,10 +71,10 @@ export default function AboutPage() {
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
           <div className="overflow-hidden rounded-card border border-line bg-surface-muted shadow-card">
             <Image
-              src="/images/about/chan-dung-thay.svg"
-              alt="Vị trí đặt ảnh chân dung của thầy dạy lái xe"
-              width={600}
-              height={750}
+              src="/images/teacher/thay-tung-chan-dung.webp"
+              alt={`Chân dung ${siteConfig.brandName} tại phòng làm việc trong trung tâm`}
+              width={900}
+              height={1125}
               priority
               sizes="(max-width: 1024px) 100vw, 40vw"
               className="h-auto w-full"
@@ -82,7 +89,8 @@ export default function AboutPage() {
               Câu chuyện nghề của {teacherLabel}
             </h1>
             <p className="mt-2 text-[0.9375rem] font-medium text-brand-600">
-              {siteConfig.teacher.title} · {siteConfig.teacher.centerName}
+              {siteConfig.teacher.employmentStatus} ·{' '}
+              {siteConfig.teacher.centerName}
             </p>
 
             {/* Doan mo dau lay tu config - du lieu kinh nghiem da xac nhan */}
@@ -92,18 +100,18 @@ export default function AboutPage() {
 
             <div className="prose-article mt-6">
               <p>
-                Tôi bắt đầu công việc hướng dẫn lái xe từ mong muốn rất đơn giản:
-                giúp người mới bớt sợ khi lần đầu ngồi vào ghế lái. Trong những
-                năm đi dạy, tôi nhận ra phần khó nhất với đa số học viên không
-                phải thao tác tay chân, mà là cảm giác không kiểm soát được chiếc
-                xe trong vài buổi đầu.
+                Tôi bắt đầu công việc hướng dẫn lái xe từ mong muốn rất đơn
+                giản: giúp người mới bớt sợ khi lần đầu ngồi vào ghế lái. Trong
+                những năm đi dạy, tôi nhận ra phần khó nhất với đa số học viên
+                không phải thao tác tay chân, mà là cảm giác không kiểm soát
+                được chiếc xe trong vài buổi đầu.
               </p>
               <p>
                 Vì vậy cách tôi dạy tập trung vào việc giải thích nguyên nhân.
                 Khi học viên hiểu tại sao xe chết máy, tại sao xe trôi dốc, tại
-                sao bánh cán vạch, họ tự sửa được ở lần sau mà không cần tôi nhắc.
-                Đó là điều tôi tin sẽ theo họ suốt quá trình cầm lái, chứ không
-                chỉ đến ngày thi.
+                sao bánh cán vạch, họ tự sửa được ở lần sau mà không cần tôi
+                nhắc. Đó là điều tôi tin sẽ theo họ suốt quá trình cầm lái, chứ
+                không chỉ đến ngày thi.
               </p>
               <p>
                 Tôi cũng chọn cách trực tiếp trao đổi với từng học viên thay vì
@@ -148,9 +156,9 @@ export default function AboutPage() {
           </h2>
           <div className="prose-article mt-5">
             <p>
-              Mỗi buổi học đều có mục tiêu cụ thể được thống nhất từ đầu buổi. Ví
-              dụ buổi đầu chỉ tập trung vào cảm nhận chân ga, chân phanh và dừng
-              xe êm; buổi thứ hai mới thêm phần đánh lái và canh làn.
+              Mỗi buổi học đều có mục tiêu cụ thể được thống nhất từ đầu buổi.
+              Ví dụ buổi đầu chỉ tập trung vào cảm nhận chân ga, chân phanh và
+              dừng xe êm; buổi thứ hai mới thêm phần đánh lái và canh làn.
             </p>
             <p>
               Tôi hạn chế nói liên tục trong lúc học viên đang lái, vì việc bị
@@ -159,8 +167,8 @@ export default function AboutPage() {
             </p>
             <p>
               Với học viên hay lo lắng, chúng ta bắt đầu từ khung giờ vắng và
-              đoạn đường quen. Tự tin cần được xây dần từ những lần làm được, chứ
-              không đến từ việc bị ép vào tình huống quá sức.
+              đoạn đường quen. Tự tin cần được xây dần từ những lần làm được,
+              chứ không đến từ việc bị ép vào tình huống quá sức.
             </p>
           </div>
 
@@ -188,18 +196,20 @@ export default function AboutPage() {
           id="album-heading"
           eyebrow="Hình ảnh"
           title="Album hoạt động"
-          description="Hình ảnh minh họa các buổi học. Ảnh chụp thật sẽ được cập nhật khi có sự đồng ý của học viên."
+          description="Hình ảnh các buổi học. Ảnh có mặt học viên chỉ được đăng khi có sự đồng ý."
         />
         <div className="mt-10">
           <GalleryGrid items={galleryItems} />
         </div>
       </Section>
 
-      <LeadFormSection
-        formLocation="about"
-        tone="muted"
+      {/* Nen xen ke: Album(sang) - Video(toi) - Lien he(sang). */}
+      <LessonVideoSection location="about" tone="muted" />
+
+      <ContactSection
+        location="about"
         title="Muốn trao đổi trực tiếp với thầy?"
-        description="Để lại thông tin, thầy sẽ liên hệ để nghe rõ nhu cầu của bạn trước khi tư vấn khóa học."
+        description="Gọi hoặc nhắn tin để thầy nghe rõ nhu cầu của bạn trước khi tư vấn khóa học."
       />
 
       <JsonLd data={buildBreadcrumbJsonLd(crumbs)} />

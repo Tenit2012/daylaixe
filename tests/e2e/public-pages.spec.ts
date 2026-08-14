@@ -14,7 +14,6 @@ const publicRoutes = [
   '/khoa-hoc',
   '/khoa-hoc/hang-b-so-tu-dong',
   '/hoc-phi-lo-trinh',
-  '/cam-nhan-hoc-vien',
   '/kien-thuc',
   '/kien-thuc/nguoi-moi-nen-hoc-lai-xe-so-san-hay-so-tu-dong',
   '/lien-he',
@@ -78,12 +77,11 @@ test('sitemap.xml liệt kê các trang chính và không lộ trang quản tr�
   expect(body).not.toContain('/admin');
 });
 
-test('robots.txt chặn thu thập khu vực quản trị', async ({ request }) => {
+test('robots.txt khai báo sitemap', async ({ request }) => {
   const response = await request.get('/robots.txt');
   expect(response.status()).toBe(200);
 
   const body = await response.text();
-  expect(body).toContain('Disallow: /admin');
   expect(body).toContain('Sitemap:');
 });
 

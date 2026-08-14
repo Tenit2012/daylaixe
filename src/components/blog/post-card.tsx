@@ -7,9 +7,21 @@ import { formatVietnameseDate } from '@/lib/utils/format-date';
 interface PostCardProps {
   post: BlogPost;
   priority?: boolean;
+  /**
+   * Cap cua the tieu de trong card. Xem giai thich day du o CourseCard:
+   * mac dinh h3 (card nam duoi mot muc co <h2>), nhung trang danh sach
+   * /kien-thuc dat card thang duoi <h1> nen phai truyen 2.
+   */
+  headingLevel?: 2 | 3;
 }
 
-export function PostCard({ post, priority = false }: PostCardProps) {
+export function PostCard({
+  post,
+  priority = false,
+  headingLevel = 3,
+}: PostCardProps) {
+  const Heading = `h${headingLevel}` as 'h2' | 'h3';
+
   return (
     <article className="card-base flex h-full flex-col overflow-hidden p-0 transition-shadow duration-150 hover:shadow-card-hover">
       <Link
@@ -34,14 +46,14 @@ export function PostCard({ post, priority = false }: PostCardProps) {
         <p className="text-xs font-semibold uppercase tracking-wide text-accent-600">
           {post.category}
         </p>
-        <h3 className="mt-2 text-lg leading-snug">
+        <Heading className="mt-2 text-lg leading-snug">
           <Link
             href={`/kien-thuc/${post.slug}`}
             className="rounded transition-colors hover:text-brand-600"
           >
             {post.title}
           </Link>
-        </h3>
+        </Heading>
         <p className="mt-2 flex-1 text-[0.9375rem] leading-relaxed text-ink-muted">
           {post.description}
         </p>

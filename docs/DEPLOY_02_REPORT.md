@@ -1,6 +1,19 @@
+> ## ⚠️ TÀI LIỆU ĐÃ HẾT HIỆU LỰC — GIỮ LÀM LỊCH SỬ
+>
+> Báo cáo này mô tả kiến trúc **Netlify + Neon (PostgreSQL) + Prisma + trang
+> quản trị**. Toàn bộ phần đó đã bị gỡ khỏi dự án trong đợt refactor
+> **13/08/2026**. Website hiện là **static export deploy trên Cloudflare Pages**,
+> không có database, không có API, không có trang quản trị.
+>
+> **Đừng làm theo tài liệu này.** Hướng dẫn deploy hiện hành:
+> [`CLOUDFLARE_PAGES_DEPLOY.md`](CLOUDFLARE_PAGES_DEPLOY.md).
+> Chi tiết những gì đã đổi: [`REFACTOR_01_REPORT.md`](REFACTOR_01_REPORT.md).
+
+---
+
 # DEPLOY-02 REPORT — Netlify + Neon (PostgreSQL)
 
-> Trạng thái ngắn gọn: **Repo đã sẵn sàng deploy (deploy-ready). Chưa có URL preview vì bước deploy thật cần bạn đăng nhập tài khoản Netlify + Neon.** Bạn đã chọn phương án *"Chuẩn bị + tôi tự deploy"*, nên phần dưới có hướng dẫn 6 bước để bạn bấm deploy trong ~10–15 phút và có link `https://xxxxx.netlify.app`.
+> Trạng thái ngắn gọn: **Repo đã sẵn sàng deploy (deploy-ready). Chưa có URL preview vì bước deploy thật cần bạn đăng nhập tài khoản Netlify + Neon.** Bạn đã chọn phương án _"Chuẩn bị + tôi tự deploy"_, nên phần dưới có hướng dẫn 6 bước để bạn bấm deploy trong ~10–15 phút và có link `https://xxxxx.netlify.app`.
 >
 > Vì sao tôi không tự deploy được: tôi không có quyền tạo/đăng nhập tài khoản Netlify hay Neon của bạn, và môi trường sandbox của tôi không chạy được toolchain của dự án (xem mục "Giới hạn môi trường").
 
@@ -37,39 +50,40 @@ Chưa tạo (cần bạn đăng nhập). Sau khi có, cấu hình `DATABASE_URL`
 
 ## 5. Environment variables (khai báo trên Netlify, KHÔNG commit)
 
-| Biến | Bắt buộc | Ghi chú |
-| --- | --- | --- |
-| `DATABASE_URL` | ✅ | Chuỗi Neon pooled, kèm `?sslmode=require`. |
-| `AUTH_SECRET` | ✅ | ≥ 32 ký tự. Tạo: `node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"`. |
-| `ADMIN_EMAIL` | ✅ | Email đăng nhập admin (đừng dùng `@example.com`). |
-| `ADMIN_PASSWORD` | ✅ | ≥ 12 ký tự (dùng cho `admin:create`). |
-| `NEXT_PUBLIC_SITE_URL` | ✅ | URL Netlify thật sau khi deploy. |
-| `NEXT_PUBLIC_TEACHER_NAME` | ✅ | Chỉ ghi **`Tùng`** — web tự thêm "Thầy". |
-| `NEXT_PUBLIC_PHONE_NUMBER` | ✅ | `0967569733`. |
-| `NEXT_PUBLIC_ZALO_URL` | ✅ | `https://zalo.me/0967569733`. |
-| `NEXT_PUBLIC_NOINDEX` | ⚠️ preview | Đặt `true` cho bản demo (chặn Google index). |
-| `NEXT_PUBLIC_TEACHER_TITLE`, `_ADDRESS`, `_TRAINING_AREA`, `_CENTER_NAME`, `_CONTACT_EMAIL`, `_CONTACT_HOURS`, `_GOOGLE_MAPS_URL`, `_FACEBOOK_URL`, `_YOUTUBE_URL` | tùy | Điền dần; còn `[...]` thì giao diện hiển thị "đang cập nhật". |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID`, `_FACEBOOK_PIXEL_ID`, `_ENABLE_FACEBOOK_PIXEL` | không | **Để trống trên preview** (không GA/Ads). |
+| Biến                                                                                                                                                               | Bắt buộc   | Ghi chú                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | -------------------------------------------------------------------------------------------------- |
+| `DATABASE_URL`                                                                                                                                                     | ✅         | Chuỗi Neon pooled, kèm `?sslmode=require`.                                                         |
+| `AUTH_SECRET`                                                                                                                                                      | ✅         | ≥ 32 ký tự. Tạo: `node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"`. |
+| `ADMIN_EMAIL`                                                                                                                                                      | ✅         | Email đăng nhập admin (đừng dùng `@example.com`).                                                  |
+| `ADMIN_PASSWORD`                                                                                                                                                   | ✅         | ≥ 12 ký tự (dùng cho `admin:create`).                                                              |
+| `NEXT_PUBLIC_SITE_URL`                                                                                                                                             | ✅         | URL Netlify thật sau khi deploy.                                                                   |
+| `NEXT_PUBLIC_TEACHER_NAME`                                                                                                                                         | ✅         | Chỉ ghi **`Tùng`** — web tự thêm "Thầy".                                                           |
+| `NEXT_PUBLIC_PHONE_NUMBER`                                                                                                                                         | ✅         | `0967569733`.                                                                                      |
+| `NEXT_PUBLIC_ZALO_URL`                                                                                                                                             | ✅         | `https://zalo.me/0967569733`.                                                                      |
+| `NEXT_PUBLIC_NOINDEX`                                                                                                                                              | ⚠️ preview | Đặt `true` cho bản demo (chặn Google index).                                                       |
+| `NEXT_PUBLIC_TEACHER_TITLE`, `_ADDRESS`, `_TRAINING_AREA`, `_CENTER_NAME`, `_CONTACT_EMAIL`, `_CONTACT_HOURS`, `_GOOGLE_MAPS_URL`, `_FACEBOOK_URL`, `_YOUTUBE_URL` | tùy        | Điền dần; còn `[...]` thì giao diện hiển thị "đang cập nhật".                                      |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID`, `_FACEBOOK_PIXEL_ID`, `_ENABLE_FACEBOOK_PIXEL`                                                                                    | không      | **Để trống trên preview** (không GA/Ads).                                                          |
 
 `.env.example` đã được cập nhật đầy đủ. `.env` nằm trong `.gitignore` (đã xác minh không bị track) → không có secret nào bị commit.
 
 ## 6. Netlify configuration (đã thực hiện)
 
 `netlify.toml`:
+
 - `command = "npm run db:migrate:deploy && npm run build"` → migrate Neon rồi build (migrate deploy idempotent, an toàn chạy lại).
 - `NODE_VERSION = "20"`, `NPM_FLAGS = "--include=dev"`, `NEXT_TELEMETRY_DISABLED = "1"`.
 - Plugin `@netlify/plugin-nextjs` (Netlify tự cài — không đụng `package-lock.json`) → hỗ trợ Server Actions, Route Handlers, server runtime.
 
 ## 7. Quality gate (kết quả THẬT — không báo PASS thứ chưa chạy)
 
-| Kiểm tra | Kết quả | Ghi chú |
-| --- | --- | --- |
-| `tsc --noEmit` (typecheck) | ✅ **PASS** | Chạy thật trong sandbox, exit 0 — toàn bộ thay đổi biên dịch sạch. |
-| Prisma migration (cú pháp) | ✅ Soạn đúng chuẩn Postgres | Chưa apply local (không có DB). Sẽ apply trên Neon khi deploy. |
-| `prisma generate` / `next build` | ⏳ **PENDING trên Netlify** | Không chạy được trong sandbox (xem "Giới hạn môi trường"). |
-| `eslint` | ⏳ chưa chạy xong local | ESLint khởi động > giới hạn 45s của sandbox. Đã review thủ công. |
-| `prettier --check` | ⏳ chưa chạy xong local | Như trên. |
-| `vitest` / `check:placeholders` | ⏳ không chạy được local | Chạy qua tsx/esbuild — binary là bản Windows, không chạy trên Linux sandbox. |
+| Kiểm tra                         | Kết quả                     | Ghi chú                                                                      |
+| -------------------------------- | --------------------------- | ---------------------------------------------------------------------------- |
+| `tsc --noEmit` (typecheck)       | ✅ **PASS**                 | Chạy thật trong sandbox, exit 0 — toàn bộ thay đổi biên dịch sạch.           |
+| Prisma migration (cú pháp)       | ✅ Soạn đúng chuẩn Postgres | Chưa apply local (không có DB). Sẽ apply trên Neon khi deploy.               |
+| `prisma generate` / `next build` | ⏳ **PENDING trên Netlify** | Không chạy được trong sandbox (xem "Giới hạn môi trường").                   |
+| `eslint`                         | ⏳ chưa chạy xong local     | ESLint khởi động > giới hạn 45s của sandbox. Đã review thủ công.             |
+| `prettier --check`               | ⏳ chưa chạy xong local     | Như trên.                                                                    |
+| `vitest` / `check:placeholders`  | ⏳ không chạy được local    | Chạy qua tsx/esbuild — binary là bản Windows, không chạy trên Linux sandbox. |
 
 > Kết luận trung thực: bước biên dịch TypeScript đã xanh; các gate còn lại sẽ được xác nhận ngay trong lần build đầu trên Netlify (môi trường Linux có mạng tải engine bình thường).
 
@@ -83,13 +97,14 @@ Những giới hạn này **không ảnh hưởng khi deploy trên Netlify** —
 
 ## 9. Hướng dẫn deploy (bạn thực hiện, ~10–15 phút)
 
-**Bước 1 — Neon:** vào https://neon.tech → đăng nhập → *Create project* (region Singapore gần VN nhất) → copy **Connection string** (chọn *Pooled connection*, có `-pooler`, kèm `?sslmode=require`).
+**Bước 1 — Neon:** vào https://neon.tech → đăng nhập → _Create project_ (region Singapore gần VN nhất) → copy **Connection string** (chọn _Pooled connection_, có `-pooler`, kèm `?sslmode=require`).
 
 **Bước 2 — Đẩy code lên GitHub:** commit các thay đổi (đừng commit `.env`) và push lên một repo GitHub riêng tư.
 
-**Bước 3 — Netlify:** vào https://app.netlify.com → *Add new site* → *Import from GitHub* → chọn repo. Netlify tự nhận Next.js; giữ nguyên build command trong `netlify.toml`.
+**Bước 3 — Netlify:** vào https://app.netlify.com → _Add new site_ → _Import from GitHub_ → chọn repo. Netlify tự nhận Next.js; giữ nguyên build command trong `netlify.toml`.
 
 **Bước 4 — Environment variables (Site settings → Environment variables):** thêm tối thiểu:
+
 ```
 DATABASE_URL       = (chuỗi Neon pooled ?sslmode=require)
 AUTH_SECRET        = (chuỗi random ≥ 32 ký tự)
@@ -102,9 +117,10 @@ NEXT_PUBLIC_ZALO_URL     = https://zalo.me/0967569733
 NEXT_PUBLIC_NOINDEX      = true
 ```
 
-**Bước 5 — Deploy:** bấm *Deploy site*. Build sẽ tự chạy `prisma migrate deploy` (tạo bảng trên Neon) rồi `next build`. Nếu lần đầu chưa biết URL để điền `NEXT_PUBLIC_SITE_URL`, cứ deploy trước, lấy URL Netlify cấp, cập nhật biến rồi *Trigger deploy* lại.
+**Bước 5 — Deploy:** bấm _Deploy site_. Build sẽ tự chạy `prisma migrate deploy` (tạo bảng trên Neon) rồi `next build`. Nếu lần đầu chưa biết URL để điền `NEXT_PUBLIC_SITE_URL`, cứ deploy trước, lấy URL Netlify cấp, cập nhật biến rồi _Trigger deploy_ lại.
 
 **Bước 6 — Tạo admin:** sau khi bảng đã có trên Neon, tạo tài khoản admin bằng một trong hai cách:
+
 - Local (nếu máy bạn chạy được Node): đặt `DATABASE_URL` trỏ Neon trong `.env` rồi chạy `npm run admin:create`.
 - Hoặc trên Netlify: dùng Netlify CLI `netlify env:...` + chạy script qua một lần build, hoặc dùng Neon SQL editor để insert (khuyên dùng `admin:create` để hash bcrypt đúng).
 
@@ -118,7 +134,7 @@ Public: `/`, `/gioi-thieu`, `/khoa-hoc`, `/lien-he` mở được. Conversion: n
 
 ## 12. Rollback plan
 
-- **Web:** Netlify → *Deploys* → chọn deploy tốt trước đó → *Publish deploy* (khôi phục tức thì).
+- **Web:** Netlify → _Deploys_ → chọn deploy tốt trước đó → _Publish deploy_ (khôi phục tức thì).
 - **Schema:** migration `_init` chỉ tạo bảng mới, không phá dữ liệu cũ. Muốn làm lại từ đầu: xóa project Neon và tạo mới, đổi `DATABASE_URL`, deploy lại.
 - **Code:** `git revert` các commit deploy để quay về SQLite/local nếu cần.
 

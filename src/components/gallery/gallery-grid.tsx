@@ -23,7 +23,12 @@ export function GalleryGrid({ items, columns = 3 }: GalleryGridProps) {
           className="card-base overflow-hidden p-0 transition-shadow duration-150 hover:shadow-card-hover"
         >
           <figure>
-            <div className="relative bg-surface-muted">
+            {/*
+              Khung ti le co dinh 4:3: album tron ca anh chup that (4:3 va 16:9)
+              lan hinh minh hoa SVG. Neu de anh tu quyet chieu cao thi luoi se
+              bi so le. `object-cover` cat phan thua thay vi bop meo anh.
+            */}
+            <div className="relative aspect-[4/3] bg-surface-muted">
               <Image
                 src={item.image.src}
                 alt={item.image.alt}
@@ -31,7 +36,7 @@ export function GalleryGrid({ items, columns = 3 }: GalleryGridProps) {
                 height={item.image.height}
                 loading="lazy"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="h-auto w-full"
+                className="h-full w-full object-cover"
               />
               {item.isPlaceholder && siteConfig.showPlaceholderBadge ? (
                 <span className="absolute right-3 top-3">

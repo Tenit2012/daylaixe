@@ -8,7 +8,8 @@ type Variant =
   | 'outline'
   | 'ghost'
   | 'success'
-  | 'zalo';
+  | 'zalo'
+  | 'facebook';
 type Size = 'sm' | 'md' | 'lg';
 
 const baseStyles =
@@ -29,6 +30,9 @@ const variantStyles: Record<Variant, string> = {
     'bg-success-600 text-white hover:bg-success-700 focus-visible:ring-success-600 shadow-sm',
   /** Chi dung cho nut dan toi Zalo. */
   zalo: 'bg-zalo text-white hover:bg-zalo-dark focus-visible:ring-zalo shadow-sm',
+  /** Chi dung cho nut dan toi Facebook. */
+  facebook:
+    'bg-facebook text-white hover:bg-facebook-dark focus-visible:ring-facebook shadow-sm',
 };
 
 const sizeStyles: Record<Size, string> = {

@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import { ZaloIcon } from '@/components/ui/zalo-icon';
+import { FacebookIcon } from '@/components/ui/facebook-icon';
 import { isPlaceholderValue, siteConfig } from '@/config/site';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { buildBreadcrumbJsonLd } from '@/lib/seo/structured-data';
 import {
   buildEmailHref,
+  buildExternalHref,
   buildMapsHref,
   buildPhoneHref,
   buildZaloHref,
@@ -14,14 +16,19 @@ import { formatVietnamesePhone } from '@/lib/validation/phone';
 import { Section, SectionHeading } from '@/components/ui/section';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Card } from '@/components/ui/card';
-import { CallButton, MapsLink, ZaloButton } from '@/components/ui/contact-buttons';
-import { LeadFormSection } from '@/components/sections/lead-form-section';
+import {
+  CallButton,
+  FacebookButton,
+  MapsLink,
+  ZaloButton,
+} from '@/components/ui/contact-buttons';
+import { ContactSection } from '@/components/sections/contact-section';
 import { JsonLd } from '@/components/ui/json-ld';
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Liên hệ tư vấn học lái xe',
   description:
-    'Thông tin liên hệ: số điện thoại, Zalo, email và khu vực đào tạo. Để lại thông tin để được thầy tư vấn khóa học phù hợp.',
+    'Thông tin liên hệ: số điện thoại, Zalo, Facebook, email và khu vực đào tạo. Gọi hoặc nhắn tin để được thầy tư vấn khóa học phù hợp.',
   path: '/lien-he',
 });
 
@@ -37,9 +44,9 @@ const contactTips = [
       'Thuận tiện để gửi ảnh giấy tờ cần kiểm tra hình thức, hoặc trao đổi lịch học theo tuần.',
   },
   {
-    title: 'Điền biểu mẫu khi bận',
+    title: 'Nhắn Facebook nếu quen dùng Messenger',
     description:
-      'Bạn để lại thông tin và khung giờ muốn được liên hệ, thầy sẽ chủ động gọi vào đúng khung giờ đó.',
+      'Bạn có thể nhắn qua trang Facebook của thầy và để lại khung giờ muốn được gọi lại, thầy sẽ chủ động liên hệ vào đúng khung giờ đó.',
   },
 ];
 
@@ -56,6 +63,7 @@ export default function ContactPage() {
   );
   const emailHref = buildEmailHref(siteConfig.contact.email);
   const mapsHref = buildMapsHref(siteConfig.contact.googleMapsUrl);
+  const facebookHref = buildExternalHref(siteConfig.contact.facebookUrl);
 
   return (
     <>
@@ -71,10 +79,10 @@ export default function ContactPage() {
           as="h1"
           eyebrow="Liên hệ"
           title="Liên hệ với thầy"
-          description="Bạn có thể gọi điện, nhắn Zalo hoặc để lại thông tin trong biểu mẫu. Cách nào cũng đến trực tiếp thầy, không qua tổng đài."
+          description="Bạn có thể gọi điện, nhắn Zalo hoặc nhắn Facebook. Cách nào cũng đến trực tiếp thầy, không qua tổng đài."
         />
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           <Card>
             <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
               <Phone aria-hidden="true" className="h-[1.375rem] w-[1.375rem]" />
@@ -96,7 +104,7 @@ export default function ContactPage() {
 
           <Card>
             <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-zalo/10">
-              <ZaloIcon tone="onLight" className="h-[1.375rem] w-[1.375rem]" />
+              <ZaloIcon className="h-[1.375rem] w-[1.375rem]" />
             </span>
             <h2 className="mt-4 text-lg">Zalo</h2>
             {zaloHref ? (
@@ -114,6 +122,23 @@ export default function ContactPage() {
               </p>
             )}
           </Card>
+
+          {facebookHref ? (
+            <Card>
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-facebook/10 text-facebook">
+                <FacebookIcon className="h-[1.375rem] w-[1.375rem]" />
+              </span>
+              <h2 className="mt-4 text-lg">Facebook</h2>
+              <a
+                href={facebookHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1.5 block rounded text-[0.9375rem] font-semibold text-brand-800 hover:text-facebook hover:underline"
+              >
+                Nhắn tin cho thầy
+              </a>
+            </Card>
+          ) : null}
 
           <Card>
             <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
@@ -150,6 +175,7 @@ export default function ContactPage() {
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
           <CallButton location="contact_page" size="lg" />
           <ZaloButton location="contact_page" size="lg" />
+          <FacebookButton location="contact_page" size="lg" />
         </div>
       </Section>
 
@@ -161,7 +187,10 @@ export default function ContactPage() {
             </h2>
             <ul className="mt-5 space-y-4 text-[0.9375rem] text-ink-muted">
               <li className="flex items-start gap-3">
-                <MapPin aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-500" />
+                <MapPin
+                  aria-hidden="true"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-500"
+                />
                 <span>
                   <strong className="block font-semibold text-brand-900">
                     Địa chỉ
@@ -172,7 +201,10 @@ export default function ContactPage() {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-500" />
+                <MapPin
+                  aria-hidden="true"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-500"
+                />
                 <span>
                   <strong className="block font-semibold text-brand-900">
                     Khu vực nhận học viên
@@ -194,14 +226,20 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="flex h-full min-h-[16rem] flex-col items-center justify-center gap-3 bg-brand-50 p-8 text-center transition-colors hover:bg-brand-100"
               >
-                <MapPin aria-hidden="true" className="h-10 w-10 text-brand-600" />
+                <MapPin
+                  aria-hidden="true"
+                  className="h-10 w-10 text-brand-600"
+                />
                 <span className="text-[0.9375rem] font-semibold text-brand-800">
                   Mở bản đồ chỉ đường
                 </span>
               </a>
             ) : (
               <div className="flex h-full min-h-[16rem] flex-col items-center justify-center gap-3 bg-surface-sunken p-8 text-center">
-                <MapPin aria-hidden="true" className="h-10 w-10 text-ink-subtle" />
+                <MapPin
+                  aria-hidden="true"
+                  className="h-10 w-10 text-ink-subtle"
+                />
                 <p className="text-[0.9375rem] font-medium text-ink-muted">
                   Bản đồ sẽ hiển thị sau khi cấu hình đường dẫn Google Maps
                 </p>
@@ -233,7 +271,7 @@ export default function ContactPage() {
         </ul>
       </Section>
 
-      <LeadFormSection formLocation="contact_page" tone="muted" />
+      <ContactSection location="contact_page" tone="muted" />
 
       <JsonLd data={buildBreadcrumbJsonLd(crumbs)} />
     </>

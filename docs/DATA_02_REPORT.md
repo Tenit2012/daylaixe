@@ -29,13 +29,13 @@ Phân loại: **VERIFIED_REAL_DATA** — thay thế hoàn toàn giá trị tạm
 
 ## 2. Nguyên tắc áp dụng khi diễn đạt
 
-| Nguyên tắc | Cách thực hiện |
-|---|---|
-| Giữ nguyên tính ước lượng | Lưu **"Gần 20 năm"**, không làm tròn thành "20 năm" ở bất kỳ đâu |
-| Không lưu số tuyệt đối | Kiểu dữ liệu là **nhãn chữ** (`experienceLabel: string`), không phải `experienceYears: number` |
-| Wording có thể đổi sau | Cách gọi nhóm học viên nằm trong biến môi trường, component không hard-code |
-| Không bịa thêm | Không thêm số học viên, tỷ lệ thi đậu, thành tích, chức vụ, cấp bậc, danh hiệu |
-| Không nhồi từ khóa | Cụm "gần 20 năm" chỉ xuất hiện ở 4 vị trí có ngữ cảnh phù hợp |
+| Nguyên tắc                | Cách thực hiện                                                                                 |
+| ------------------------- | ---------------------------------------------------------------------------------------------- |
+| Giữ nguyên tính ước lượng | Lưu **"Gần 20 năm"**, không làm tròn thành "20 năm" ở bất kỳ đâu                               |
+| Không lưu số tuyệt đối    | Kiểu dữ liệu là **nhãn chữ** (`experienceLabel: string`), không phải `experienceYears: number` |
+| Wording có thể đổi sau    | Cách gọi nhóm học viên nằm trong biến môi trường, component không hard-code                    |
+| Không bịa thêm            | Không thêm số học viên, tỷ lệ thi đậu, thành tích, chức vụ, cấp bậc, danh hiệu                 |
+| Không nhồi từ khóa        | Cụm "gần 20 năm" chỉ xuất hiện ở 4 vị trí có ngữ cảnh phù hợp                                  |
 
 ### Những gì KHÔNG được thêm (đã kiểm tra)
 
@@ -52,12 +52,12 @@ Phân loại: **VERIFIED_REAL_DATA** — thay thế hoàn toàn giá trị tạm
 
 ### 3.1 Biến môi trường
 
-| Trước | Sau | Lý do |
-|---|---|---|
-| `NEXT_PUBLIC_YEARS_OF_EXPERIENCE="nhiều năm"` | **đã bỏ** | Tên biến gợi ý "số năm", dễ dẫn tới việc điền số tuyệt đối |
-| — | `NEXT_PUBLIC_EXPERIENCE_LABEL="Gần 20 năm"` | Tên nói rõ đây là **nhãn chữ** |
-| — | `NEXT_PUBLIC_STUDENT_GROUPS="học viên hệ dân sự và hệ Công an"` | Dùng trong câu văn đầy đủ |
-| — | `NEXT_PUBLIC_STUDENT_GROUPS_SHORT="học viên dân sự và Công an"` | Dùng trong nhãn ngắn ở hero |
+| Trước                                         | Sau                                                             | Lý do                                                      |
+| --------------------------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------- |
+| `NEXT_PUBLIC_YEARS_OF_EXPERIENCE="nhiều năm"` | **đã bỏ**                                                       | Tên biến gợi ý "số năm", dễ dẫn tới việc điền số tuyệt đối |
+| —                                             | `NEXT_PUBLIC_EXPERIENCE_LABEL="Gần 20 năm"`                     | Tên nói rõ đây là **nhãn chữ**                             |
+| —                                             | `NEXT_PUBLIC_STUDENT_GROUPS="học viên hệ dân sự và hệ Công an"` | Dùng trong câu văn đầy đủ                                  |
+| —                                             | `NEXT_PUBLIC_STUDENT_GROUPS_SHORT="học viên dân sự và Công an"` | Dùng trong nhãn ngắn ở hero                                |
 
 Đã cập nhật: `.env`, `.env.example`, `src/lib/env/public.ts`,
 `docs/CONTENT_GUIDE.md`, `docs/DEPLOYMENT.md`.
@@ -87,15 +87,15 @@ ghép chuỗi. Muốn đổi cách diễn đạt chỉ sửa một chỗ.
 
 ## 4. Vị trí đã cập nhật trên website
 
-| # | Vị trí | File | Nội dung hiển thị | Nguồn |
-|---|---|---|---|---|
-| 1 | Hero — nhãn trên tiêu đề | `hero-section.tsx` | "Gần 20 năm kinh nghiệm giảng dạy lái xe tại trung tâm" | `experience.short` |
-| 2 | Hero — trust indicator đầu tiên | `hero-section.tsx` | "Dạy cả học viên dân sự và Công an" | `experience.audienceShort` |
-| 3 | Trang chủ — mục "Về thầy" (ô thông tin) | `about-teacher-section.tsx` | "Gần 20 năm kinh nghiệm giảng dạy" + ô mới "Học viên đã hướng dẫn" | `experience.compact`, `teacher.studentGroups` |
-| 4 | Trang chủ — mục "Về thầy" (đoạn văn) | `about-teacher-section.tsx` | Đoạn giới thiệu đầy đủ | `experience.biography` |
-| 5 | `/gioi-thieu` — đoạn mở đầu nổi bật | `app/gioi-thieu/page.tsx` | Đoạn giới thiệu đầy đủ | `experience.biography` |
-| 6 | `/gioi-thieu` — meta description | `app/gioi-thieu/page.tsx` | "Gần 20 năm kinh nghiệm hướng dẫn học viên hệ dân sự và hệ Công an. …" | `experience.withAudience` |
-| 7 | Person JSON-LD — trường `description` | `lib/seo/structured-data.ts` | "Gần 20 năm kinh nghiệm hướng dẫn học viên hệ dân sự và hệ Công an" | `experience.withAudience` |
+| #   | Vị trí                                  | File                         | Nội dung hiển thị                                                      | Nguồn                                         |
+| --- | --------------------------------------- | ---------------------------- | ---------------------------------------------------------------------- | --------------------------------------------- |
+| 1   | Hero — nhãn trên tiêu đề                | `hero-section.tsx`           | "Gần 20 năm kinh nghiệm giảng dạy lái xe tại trung tâm"                | `experience.short`                            |
+| 2   | Hero — trust indicator đầu tiên         | `hero-section.tsx`           | "Dạy cả học viên dân sự và Công an"                                    | `experience.audienceShort`                    |
+| 3   | Trang chủ — mục "Về thầy" (ô thông tin) | `about-teacher-section.tsx`  | "Gần 20 năm kinh nghiệm giảng dạy" + ô mới "Học viên đã hướng dẫn"     | `experience.compact`, `teacher.studentGroups` |
+| 4   | Trang chủ — mục "Về thầy" (đoạn văn)    | `about-teacher-section.tsx`  | Đoạn giới thiệu đầy đủ                                                 | `experience.biography`                        |
+| 5   | `/gioi-thieu` — đoạn mở đầu nổi bật     | `app/gioi-thieu/page.tsx`    | Đoạn giới thiệu đầy đủ                                                 | `experience.biography`                        |
+| 6   | `/gioi-thieu` — meta description        | `app/gioi-thieu/page.tsx`    | "Gần 20 năm kinh nghiệm hướng dẫn học viên hệ dân sự và hệ Công an. …" | `experience.withAudience`                     |
+| 7   | Person JSON-LD — trường `description`   | `lib/seo/structured-data.ts` | "Gần 20 năm kinh nghiệm hướng dẫn học viên hệ dân sự và hệ Công an"    | `experience.withAudience`                     |
 
 **Không đưa vào:** trang chủ (ngoài 4 vị trí trên), khóa học, học phí, blog, liên hệ,
 footer — để tránh nhồi cụm từ chỉ vì SEO.
@@ -126,13 +126,13 @@ cần số liệu chưa có nguồn xác thực.
 
 ## 6. Kiểm thử
 
-| Lệnh | Kết quả |
-|---|---|
-| `npm run lint` | ✅ 0 lỗi, 0 cảnh báo |
-| `npm run typecheck` | ✅ 0 lỗi |
-| `npm run test` | ✅ 212/212 |
-| `npm run build` | ✅ 29/29 trang |
-| `npm run test:e2e` | ✅ 29/29 |
+| Lệnh                | Kết quả              |
+| ------------------- | -------------------- |
+| `npm run lint`      | ✅ 0 lỗi, 0 cảnh báo |
+| `npm run typecheck` | ✅ 0 lỗi             |
+| `npm run test`      | ✅ 212/212           |
+| `npm run build`     | ✅ 29/29 trang       |
+| `npm run test:e2e`  | ✅ 29/29             |
 
 Bổ sung ràng buộc tự động trong `tests/unit/site-config.test.ts`:
 
@@ -144,8 +144,8 @@ Bổ sung ràng buộc tự động trong `tests/unit/site-config.test.ts`:
 
 ## 7. Việc còn lại liên quan
 
-| Việc | Chủ sở hữu | Ghi chú |
-|---|---|---|
-| Xác nhận **cách gọi chính thức** của "hệ Công an" tại trung tâm | Teacher + Center | Nếu khác, chỉ sửa `NEXT_PUBLIC_STUDENT_GROUPS` và `_SHORT` |
-| Xác nhận có được phép nêu việc giảng dạy hệ Công an trên web cá nhân không | Teacher + Center | Liên quan mục 11–12 của checklist |
-| Chức danh, tên trung tâm, địa chỉ, giờ liên hệ | Teacher | Vẫn là giá trị tạm (F12, F14, F15) |
+| Việc                                                                       | Chủ sở hữu       | Ghi chú                                                    |
+| -------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------------- |
+| Xác nhận **cách gọi chính thức** của "hệ Công an" tại trung tâm            | Teacher + Center | Nếu khác, chỉ sửa `NEXT_PUBLIC_STUDENT_GROUPS` và `_SHORT` |
+| Xác nhận có được phép nêu việc giảng dạy hệ Công an trên web cá nhân không | Teacher + Center | Liên quan mục 11–12 của checklist                          |
+| Chức danh, tên trung tâm, địa chỉ, giờ liên hệ                             | Teacher          | Vẫn là giá trị tạm (F12, F14, F15)                         |

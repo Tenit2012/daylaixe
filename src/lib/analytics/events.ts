@@ -5,11 +5,8 @@
 export const AnalyticsEvent = {
   ClickPhone: 'click_phone',
   ClickZalo: 'click_zalo',
+  ClickFacebook: 'click_facebook',
   ClickCourse: 'click_course',
-  OpenForm: 'open_lead_form',
-  SubmitForm: 'submit_lead_form',
-  SubmitFormSuccess: 'submit_lead_form_success',
-  SubmitFormError: 'submit_lead_form_error',
   ClickMaps: 'click_google_maps',
   ClickVideo: 'click_video',
 } as const;

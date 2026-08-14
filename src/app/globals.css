@@ -21,17 +21,32 @@
     --color-brand-900: 17 34 66;
     --color-brand-950: 10 21 43;
 
-    /* Cam - CTA chinh */
+    /*
+      Cam - CTA chinh.
+
+      Cac bac 500-900 da duoc LAM TOI trong dot QA 14/08/2026. Ly do: ban cu
+      (accent-500 = #ea760e) chi dat do tuong phan 2.96:1 voi chu trang, trong
+      khi WCAG AA yeu cau 4.5:1. Loi nay roi dung vao nut CTA chinh - thu ma
+      nguoi dung can doc duoc nhat, thuong la tren dien thoai ngoai troi nang.
+      Lighthouse bao 31 phan tu vi pham.
+
+      Cac bac 50-400 giu nguyen vi chi dung lam NEN nhat, khong cho chu trang.
+      Gia tri moi duoc tinh theo cong thuc WCAG, khong uoc luong bang mat:
+        accent-500 #b0520a  chu trang 5.18:1
+        accent-600 #9a4709  chu trang 6.40:1 - va dat >=4.5 khi lam CHU tren
+                            ca ba nen sang (trang, muted, accent-50)
+        accent-700 #8a3e08  chu trang 7.57:1
+    */
     --color-accent-50: 255 245 235;
     --color-accent-100: 255 232 209;
     --color-accent-200: 254 208 158;
     --color-accent-300: 252 179 103;
     --color-accent-400: 249 148 55;
-    --color-accent-500: 234 118 14;
-    --color-accent-600: 202 93 9;
-    --color-accent-700: 165 71 10;
-    --color-accent-800: 133 57 14;
-    --color-accent-900: 110 48 15;
+    --color-accent-500: 176 82 10;
+    --color-accent-600: 154 71 9;
+    --color-accent-700: 138 62 8;
+    --color-accent-800: 115 51 8;
+    --color-accent-900: 94 42 8;
 
     /*
       Xanh thuong hieu Zalo - CHI dung cho cac nut/lien ket dan toi Zalo.
@@ -43,6 +58,14 @@
     */
     --color-zalo: 0 104 255;
     --color-zalo-dark: 0 84 214;
+
+    /*
+      Xanh thuong hieu Facebook - CHI dung cho nut/lien ket dan toi Facebook.
+      Gia tri dang dung: #0866FF (mau thuong duoc dan cho Facebook hien tai).
+      Neu doi chieu voi trang thuong hieu chinh thuc thay khac, sua 2 dong duoi.
+    */
+    --color-facebook: 8 102 255;
+    --color-facebook-dark: 6 82 209;
 
     /* Xanh la - chi dung cho trang thai thanh cong */
     --color-success-50: 236 250 241;
@@ -65,7 +88,12 @@
     /* Chu */
     --color-ink: 21 32 48;
     --color-ink-muted: 78 92 112;
-    --color-ink-subtle: 116 130 150;
+    /*
+      Lam toi tu #748296 trong dot QA 14/08/2026: mau cu chi dat 3.48:1 tren
+      nen sunken, truot chuan WCAG AA. Mau nay danh cho chu NHO (12-14px) nen
+      cang can tuong phan. Ban moi dat 4.68:1 o truong hop xau nhat.
+    */
+    --color-ink-subtle: 97 109 126;
     --color-ink-inverted: 255 255 255;
 
     /* Duong vien */
@@ -89,7 +117,12 @@
 
   body {
     @apply bg-surface text-ink antialiased;
-    font-family: var(--font-sans), system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-family:
+      var(--font-sans),
+      system-ui,
+      -apple-system,
+      'Segoe UI',
+      sans-serif;
     text-rendering: optimizeLegibility;
   }
 
@@ -159,9 +192,7 @@
   }
 
   .skip-link {
-    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100]
-      focus:rounded-md focus:bg-brand-900 focus:px-4 focus:py-2 focus:text-sm
-      focus:font-semibold focus:text-ink-inverted;
+    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand-900 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-ink-inverted;
   }
 }
 

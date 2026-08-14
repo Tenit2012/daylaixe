@@ -4,15 +4,19 @@ const PORT = Number(process.env.E2E_PORT ?? 3100);
 const baseURL = process.env.E2E_BASE_URL ?? `http://127.0.0.1:${PORT}`;
 
 /**
- * E2E chay tren production build voi database SQLite rieng (prisma/e2e.db)
- * de khong dung vao du lieu dev.
+ * E2E chay tren CHINH thu muc `out/` - dung thu se duoc deploy len Cloudflare.
+ *
+ * Truoc day dung `next start`, nhung `next start` KHONG chay duoc voi
+ * `output: 'export'`. Quan trong hon: phuc vu truc tiep `out/` bang mot may
+ * chu tinh moi kiem chung dung thu ma nguoi dung thuc su nhan duoc, ke ca cach
+ * `trailingSlash` sinh ra thu muc con.
+ *
+ * Bat buoc chay `npm run build` truoc.
  */
 export default defineConfig({
   testDir: './tests/e2e',
   testMatch: '**/*.spec.ts',
-  globalSetup: './tests/e2e/global-setup.ts',
-  fullyParallel: false,
-  workers: 1,
+  fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : 'list',
@@ -31,13 +35,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `npm run start -- --port ${PORT}`,
+    command: `npx serve out -l ${PORT}`,
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
-    env: {
-      DATABASE_URL: process.env.E2E_DATABASE_URL ?? 'file:./e2e.db',
-      NODE_ENV: 'production',
-    },
   },
 });

@@ -5,9 +5,11 @@ import { siteConfig } from '@/config/site';
 import { SiteHeader } from '@/components/layout/site-header';
 import { SiteFooter } from '@/components/layout/site-footer';
 import { MobileCtaBar } from '@/components/layout/mobile-cta-bar';
+import { FloatingCta } from '@/components/layout/floating-cta';
 import { AnalyticsScripts } from '@/components/layout/analytics-scripts';
 import { JsonLd } from '@/components/ui/json-ld';
 import {
+  buildCenterJsonLd,
   buildLocalServiceJsonLd,
   buildPersonJsonLd,
   buildWebsiteJsonLd,
@@ -34,7 +36,12 @@ export const metadata: Metadata = {
   creator: siteConfig.brandName,
   alternates: { canonical: '/' },
   robots: siteConfig.noindex
-    ? { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } }
+    ? {
+        index: false,
+        follow: false,
+        nocache: true,
+        googleBot: { index: false, follow: false },
+      }
     : {
         index: true,
         follow: true,
@@ -84,6 +91,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const localService = buildLocalServiceJsonLd();
+  const center = buildCenterJsonLd();
 
   return (
     <html
@@ -118,8 +126,10 @@ export default function RootLayout({
 
         <SiteFooter />
         <MobileCtaBar />
+        <FloatingCta />
 
         <JsonLd data={buildWebsiteJsonLd()} />
+        {center ? <JsonLd data={center} /> : null}
         <JsonLd data={buildPersonJsonLd()} />
         {localService ? <JsonLd data={localService} /> : null}
 

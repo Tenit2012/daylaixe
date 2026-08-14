@@ -19,7 +19,10 @@ export function WhyChooseSection() {
           return (
             <Card as="li" key={reason.title} interactive>
               <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
-                <Icon aria-hidden="true" className="h-[1.375rem] w-[1.375rem]" />
+                <Icon
+                  aria-hidden="true"
+                  className="h-[1.375rem] w-[1.375rem]"
+                />
               </span>
               <h3 className="mt-4 text-lg">{reason.title}</h3>
               <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">

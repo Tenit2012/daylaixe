@@ -28,11 +28,12 @@
     }
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "vitest.setup.ts"
+    "next-env.d.ts",
+    "vitest.setup.ts",
+    ".next-verify/types/**/*.ts"
   ],
   "exclude": ["node_modules", ".next", "out"]
 }

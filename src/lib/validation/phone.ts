@@ -82,7 +82,9 @@ export function normalizeVietnamesePhone(input: string): string | null {
   if (!/^0\d{9}$/.test(value)) return null;
 
   const prefix = value.slice(0, 3);
-  if (!VN_MOBILE_PREFIXES.includes(prefix as (typeof VN_MOBILE_PREFIXES)[number])) {
+  if (
+    !VN_MOBILE_PREFIXES.includes(prefix as (typeof VN_MOBILE_PREFIXES)[number])
+  ) {
     return null;
   }
 

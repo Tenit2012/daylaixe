@@ -46,7 +46,9 @@ page.on('pageerror', (error) => {
 
 try {
   await page.goto(url, { waitUntil: 'domcontentloaded' });
-  console.log(`Da mo ${url} bang trinh duyet sach (khong co tien ich mo rong).`);
+  console.log(
+    `Da mo ${url} bang trinh duyet sach (khong co tien ich mo rong).`,
+  );
   console.log('Dong cua so trinh duyet de ket thuc.');
 } catch (error) {
   console.error(

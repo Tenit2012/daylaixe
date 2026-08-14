@@ -52,7 +52,13 @@ export default function BlogIndexPage() {
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post, index) => (
-            <PostCard key={post.slug} post={post} priority={index < 3} />
+            // headingLevel=2 vi o trang danh sach nay card nam thang duoi <h1>.
+            <PostCard
+              key={post.slug}
+              post={post}
+              priority={index < 3}
+              headingLevel={2}
+            />
           ))}
         </div>
       </Section>

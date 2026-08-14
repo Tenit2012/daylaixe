@@ -16,10 +16,14 @@ import {
   getPostBySlug,
   getRelatedPosts,
 } from '@/content/blog';
-import { testimonials } from '@/content/testimonials';
 import { generalFaqs } from '@/content/faqs';
 import { galleryItems } from '@/content/gallery';
 import { learningProcess } from '@/content/learning-process';
+import {
+  getRealTestimonials,
+  hasPlaceholderTestimonials,
+  testimonials,
+} from '@/content/testimonials';
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -79,9 +83,9 @@ describe('courses', () => {
   });
 
   it('courseOptions co lua chon "chua-xac-dinh"', () => {
-    expect(courseOptions.some((option) => option.value === 'chua-xac-dinh')).toBe(
-      true,
-    );
+    expect(
+      courseOptions.some((option) => option.value === 'chua-xac-dinh'),
+    ).toBe(true);
   });
 
   it('getCourseLabel tra ve nhan doc duoc', () => {
@@ -136,7 +140,10 @@ describe('blog', () => {
   it('relatedSlugs deu tro toi bai co that', () => {
     for (const post of blogPosts) {
       for (const slug of post.relatedSlugs) {
-        expect(getPostBySlug(slug), `${post.slug} tro toi ${slug}`).toBeDefined();
+        expect(
+          getPostBySlug(slug),
+          `${post.slug} tro toi ${slug}`,
+        ).toBeDefined();
       }
     }
   });
@@ -181,26 +188,6 @@ describe('blog', () => {
   });
 });
 
-describe('testimonials', () => {
-  it('moi cam nhan mau deu duoc danh dau isPlaceholder', () => {
-    for (const testimonial of testimonials) {
-      expect(
-        typeof testimonial.isPlaceholder,
-        `${testimonial.id} thieu co isPlaceholder`,
-      ).toBe('boolean');
-    }
-  });
-
-  it('toan bo du lieu hien tai la noi dung mau', () => {
-    expect(testimonials.every((item) => item.isPlaceholder)).toBe(true);
-  });
-
-  it('id cam nhan la duy nhat', () => {
-    const ids = testimonials.map((item) => item.id);
-    expect(new Set(ids).size).toBe(ids.length);
-  });
-});
-
 describe('faqs va gallery', () => {
   it('co day du cac cau hoi bat buoc', () => {
     expect(generalFaqs.length).toBeGreaterThanOrEqual(9);
@@ -220,6 +207,59 @@ describe('faqs va gallery', () => {
       expect(item.image.alt.length).toBeGreaterThan(0);
       expect(item.image.src.startsWith('/images/')).toBe(true);
     }
+  });
+});
+
+describe('testimonials', () => {
+  it('moi cam nhan tro toi mot khoa hoc co that', () => {
+    const slugs = new Set(courses.map((course) => course.slug));
+    for (const item of testimonials) {
+      expect(slugs.has(item.courseSlug)).toBe(true);
+    }
+  });
+
+  it('id khong trung nhau va noi dung du dai de co nghia', () => {
+    const ids = testimonials.map((item) => item.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const item of testimonials) {
+      expect(item.quote.length).toBeGreaterThan(40);
+      expect(item.name.length).toBeGreaterThan(0);
+      expect(item.avatarInitial.length).toBe(1);
+    }
+  });
+
+  /**
+   * RANG BUOC DAO DUC, khong phai kiem tra ky thuat.
+   *
+   * Cam nhan mau bat buoc phai deo nhan de khach khong tuong la loi that.
+   * `TestimonialCard` deo nhan dua vao dung co `isPlaceholder`, con o day
+   * chan chieu nguoc lai: khong ai duoc lang le doi co sang `false` cho
+   * mot muc van la noi dung mau.
+   *
+   * Khi co cam nhan THAT (da xin phep hoc vien): dat `isPlaceholder: false`
+   * VA xoa `period: 'Nội dung mẫu'` - luc do test nay tu dong cho qua.
+   */
+  it('muc nao con nhan "Noi dung mau" thi phai giu isPlaceholder = true', () => {
+    for (const item of testimonials) {
+      if (item.period.toLowerCase().includes('nội dung mẫu')) {
+        expect(item.isPlaceholder).toBe(true);
+      }
+    }
+  });
+
+  it('hasPlaceholderTestimonials phan anh dung du lieu', () => {
+    expect(hasPlaceholderTestimonials()).toBe(
+      testimonials.some((item) => item.isPlaceholder),
+    );
+    expect(getRealTestimonials()).toEqual(
+      testimonials.filter((item) => !item.isPlaceholder),
+    );
+  });
+
+  it('khong bia con so hoc phi hay ty le dau trong loi cam nhan', () => {
+    const haystack = testimonials.map((item) => item.quote).join(' ');
+    expect(haystack).not.toMatch(/\d[\d.,]*\s*(đ|vnđ|vnd|triệu)/i);
+    expect(haystack).not.toMatch(/\d+\s*%/);
   });
 });
 

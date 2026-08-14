@@ -1,53 +1,40 @@
 import type { NextConfig } from 'next';
 
 /**
- * Security headers ap dung cho toan bo site.
- * Luu y: khong dat Content-Security-Policy qua chat o day de tranh chan
- * chinh Next.js runtime; CSP duoc khai bao rieng ben duoi voi cac gia tri
- * toi thieu can thiet cho Next App Router.
+ * Cau hinh cho STATIC EXPORT tren Cloudflare Pages.
+ *
+ * `npm run build` sinh ra thu muc `out/` chua HTML/CSS/JS tinh - khong can
+ * Node.js chay nen, khong can server. Xem docs/CLOUDFLARE_PAGES_DEPLOY.md.
+ *
+ * HAI DIEU BI MAT KHI DUNG `output: 'export'` - da co phuong an thay the:
+ *
+ *  1. `headers()` KHONG con hieu luc. Header bao mat duoc khai bao trong
+ *     `public/_headers` - dinh dang rieng cua Cloudflare Pages, file nay
+ *     duoc copy nguyen ven vao `out/`.
+ *  2. Toi uu anh cua Next.js KHONG con hieu luc (`images.unoptimized`).
+ *     Bu lai, anh da duoc cat va nen san sang dinh dang WebP boi
+ *     `node scripts/process-photos.mjs`, nen kich thuoc file van nho.
  */
-const securityHeaders = [
-  { key: 'X-DNS-Prefetch-Control', value: 'on' },
-  { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
-  { key: 'X-Content-Type-Options', value: 'nosniff' },
-  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-  {
-    key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
-  },
-  {
-    key: 'Strict-Transport-Security',
-    value: 'max-age=63072000; includeSubDomains; preload',
-  },
-];
-
 const nextConfig: NextConfig = {
+  output: 'export',
+
   reactStrictMode: true,
   poweredByHeader: false,
+
   images: {
-    formats: ['image/avif', 'image/webp'],
-    // Toan bo anh hien tai la asset local trong /public.
-    // Khi bo sung anh tu CDN, khai bao remotePatterns tai day.
-    remotePatterns: [],
+    /**
+     * Bat buoc voi static export: khong co may chu nao de toi uu anh luc
+     * chay. Anh duoc toi uu san o buoc build asset thay vi luc phuc vu.
+     */
+    unoptimized: true,
   },
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: securityHeaders,
-      },
-      {
-        // Trang quan tri khong duoc index boi cong cu tim kiem.
-        source: '/admin/:path*',
-        headers: [
-          {
-            key: 'X-Robots-Tag',
-            value: 'noindex, nofollow, noarchive',
-          },
-        ],
-      },
-    ];
-  },
+
+  /**
+   * Sinh `out/khoa-hoc/index.html` thay vi `out/khoa-hoc.html`.
+   * Cloudflare Pages phuc vu ca hai duoc, nhung dang thu muc cho URL nhat
+   * quan hon khi nguoi dung go thieu/thua dau `/` o cuoi.
+   */
+  trailingSlash: true,
 };
 
 export default nextConfig;

@@ -1,0 +1,27 @@
+# Header HTTP cho Cloudflare Pages.
+#
+# VI SAO FILE NAY TON TAI: website dung `output: 'export'` nen ham `headers()`
+# trong next.config.ts KHONG con hieu luc - khong co may chu Next.js nao chay
+# de gan header. Cloudflare Pages doc file nay va tu gan header khi phuc vu.
+#
+# File nam trong `public/` nen duoc copy nguyen ven vao `out/` luc build.
+# Cu phap: mot dong duong dan, cac dong sau thut le 2 dau cach la header.
+# Tai lieu: https://developers.cloudflare.com/pages/configuration/headers/
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-DNS-Prefetch-Control: on
+
+# Tai nguyen co van tay trong ten file (hash) - cache vinh vien an toan.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Anh, video, font: doi ten file khi doi noi dung nen cache dai duoc.
+/images/*
+  Cache-Control: public, max-age=2592000
+/videos/*
+  Cache-Control: public, max-age=2592000

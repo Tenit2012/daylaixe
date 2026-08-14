@@ -188,7 +188,7 @@ export const post: BlogPost = {
   publishedAt: '2026-08-06',
   updatedAt: '2026-08-06',
   author: 'Thầy dạy lái xe',
-  category: 'Kinh nghiệm học lái',  // hoặc: Chuẩn bị hồ sơ | Kỹ năng lái xe | Tâm lý khi lái xe
+  category: 'Kinh nghiệm học lái', // hoặc: Chuẩn bị hồ sơ | Kỹ năng lái xe | Tâm lý khi lái xe
   readingTimeMinutes: 6,
   coverImage: {
     src: '/images/blog/anh-bia.svg',
@@ -213,13 +213,13 @@ export const post: BlogPost = {
 
 ### Các loại block nội dung
 
-| `type` | Thuộc tính | Dùng khi |
-| --- | --- | --- |
-| `paragraph` | `text` | Đoạn văn thường |
-| `heading` | `level` (2 hoặc 3), `text`, `id` | Tiêu đề mục — `id` phải **duy nhất trong bài** |
-| `list` | `ordered` (true/false), `items[]` | Danh sách gạch đầu dòng hoặc đánh số |
-| `callout` | `tone` (`info`/`warning`/`tip`), `title`, `text` | Hộp lưu ý nổi bật |
-| `quote` | `text` | Trích dẫn |
+| `type`      | Thuộc tính                                       | Dùng khi                                       |
+| ----------- | ------------------------------------------------ | ---------------------------------------------- |
+| `paragraph` | `text`                                           | Đoạn văn thường                                |
+| `heading`   | `level` (2 hoặc 3), `text`, `id`                 | Tiêu đề mục — `id` phải **duy nhất trong bài** |
+| `list`      | `ordered` (true/false), `items[]`                | Danh sách gạch đầu dòng hoặc đánh số           |
+| `callout`   | `tone` (`info`/`warning`/`tip`), `title`, `text` | Hộp lưu ý nổi bật                              |
+| `quote`     | `text`                                           | Trích dẫn                                      |
 
 **Tự động sinh:** mục lục (từ các block `heading`), bài viết liên quan, metadata
 SEO, canonical, Open Graph, JSON-LD `Article`, và mục trong `sitemap.xml`.
@@ -255,10 +255,10 @@ File: `src/content/testimonials.ts`
 
 Trường `isPlaceholder` là **bắt buộc** và có ý nghĩa pháp lý / đạo đức:
 
-| Giá trị | Ý nghĩa | Giao diện |
-| --- | --- | --- |
-| `true` | Nội dung mẫu do biên tập viết | Hiện nhãn "Nội dung mẫu" + hộp cảnh báo giải thích |
-| `false` | Phản hồi thật của học viên | Hiển thị bình thường |
+| Giá trị | Ý nghĩa                       | Giao diện                                          |
+| ------- | ----------------------------- | -------------------------------------------------- |
+| `true`  | Nội dung mẫu do biên tập viết | Hiện nhãn "Nội dung mẫu" + hộp cảnh báo giải thích |
+| `false` | Phản hồi thật của học viên    | Hiển thị bình thường                               |
 
 **Chỉ đặt `false` khi cả ba điều sau đều đúng:**
 
@@ -274,12 +274,27 @@ Trường `isPlaceholder` là **bắt buộc** và có ý nghĩa pháp lý / đ�
 - Không đăng họ tên đầy đủ nếu học viên không muốn — dùng tên rút gọn.
 - Không đăng số điện thoại, địa chỉ nhà hay ảnh giấy tờ của học viên.
 - Ảnh có mặt học viên chỉ đăng khi có sự đồng ý rõ ràng.
-- Khi học viên yêu cầu gỡ, gỡ ngay và xóa cả dữ liệu trong trang quản trị.
+- Khi học viên yêu cầu gỡ, xóa mục đó khỏi `testimonials.ts` và đăng lại web.
 
-### 5.3 Video cảm nhận
+### 5.3 Tắt hoàn toàn khối cảm nhận
 
-Danh sách video ở cuối `testimonials.ts`, trường `videoUrl` đang để `null` (chỉ
-hiển thị khung chờ). Khi có video thật và học viên đồng ý, điền URL vào.
+Để mảng `testimonials` thành `[]`. Khối trên trang chủ tự ẩn (không hiện khung
+trống), trang `/cam-nhan-hoc-vien` vẫn còn nhưng chỉ hiển thị album và phần liên
+hệ. Không cần sửa dòng code nào ở các trang gọi nó.
+
+### 5.4 Lịch sử khối này
+
+Khối cảm nhận từng bị **gỡ hẳn ngày 13/08/2026** vì toàn bộ nội dung đều là bản
+mẫu — lý do ghi trong `docs/TRUST_AUDIT_REPORT.md`. Được **dựng lại ngày
+14/08/2026** theo yêu cầu chủ website, kèm một thay đổi so với bản cũ: nhãn
+"Nội dung mẫu" nay hiện **cả ở production**, không còn chỉ hiện ở môi trường
+dev. Nghĩa là chừng nào còn `isPlaceholder: true` thì khách vào web thật vẫn
+thấy rõ đây là nội dung mẫu.
+
+> ⚠️ **Nếu chạy Google Ads:** cảm nhận mẫu — dù có dán nhãn — vẫn là rủi ro theo
+> chính sách trình bày sai sự thật, và theo bản kiểm toán niềm tin thì đây là
+> thứ làm người đọc mất lòng tin nhất khi họ nhận ra. Nên thay bằng cảm nhận
+> thật trước khi bật quảng cáo.
 
 ---
 

@@ -16,10 +16,10 @@ export function AboutTeacherSection() {
       <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
         <div className="overflow-hidden rounded-card border border-line bg-surface-muted shadow-card">
           <Image
-            src="/images/about/chan-dung-thay.svg"
-            alt="Vị trí đặt ảnh chân dung của thầy dạy lái xe"
-            width={600}
-            height={750}
+            src="/images/teacher/thay-tung-chan-dung.webp"
+            alt={`Chân dung ${siteConfig.brandName} tại phòng làm việc trong trung tâm`}
+            width={900}
+            height={1125}
             loading="lazy"
             sizes="(max-width: 1024px) 100vw, 40vw"
             className="h-auto w-full"
@@ -36,7 +36,7 @@ export function AboutTeacherSection() {
               : `Thầy ${teacher.name}`}
           </h2>
           <p className="mt-1.5 text-[0.9375rem] font-medium text-brand-600">
-            {teacher.title}
+            {teacher.employmentStatus} · {centerText}
           </p>
 
           <dl className="mt-5 grid gap-3 sm:grid-cols-3">
@@ -59,10 +59,10 @@ export function AboutTeacherSection() {
             </div>
             <div className="rounded-lg border border-line bg-surface-muted p-4">
               <dt className="text-xs font-semibold uppercase tracking-wide text-ink-subtle">
-                Nơi giảng dạy
+                Vị trí công tác
               </dt>
               <dd className="mt-1 text-[0.9375rem] font-medium text-brand-900">
-                {centerText}
+                {teacher.employmentStatus}
               </dd>
             </div>
           </dl>
@@ -74,8 +74,8 @@ export function AboutTeacherSection() {
                 Phong cách hướng dẫn:
               </strong>{' '}
               chia mỗi thao tác thành các bước nhỏ, giải thích bằng ngôn ngữ đời
-              thường và cho học viên lặp lại đến khi thành phản xạ. Tôi không hối
-              thúc, cũng không bỏ qua lỗi cho xong buổi.
+              thường và cho học viên lặp lại đến khi thành phản xạ. Tôi không
+              hối thúc, cũng không bỏ qua lỗi cho xong buổi.
             </p>
             <p>
               <strong className="font-semibold text-brand-900">
