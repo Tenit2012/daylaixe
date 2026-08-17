@@ -314,6 +314,15 @@ const blogCovers = [
   ['duong-dong-tphcm', 'Lái xe đường đông tại TP.HCM'],
   ['giu-binh-tinh', 'Giữ bình tĩnh khi lái xe'],
   ['bo-tuc-tay-lai', 'Khi nào nên bổ túc tay lái?'],
+  ['on-thi-ly-thuyet', 'Ôn thi lý thuyết lái xe'],
+  ['thi-mo-phong', 'Thi mô phỏng tình huống'],
+  ['ngay-thi-sat-hach', 'Ngày thi sát hạch'],
+  ['loi-truat-quyen', 'Lỗi bị truất quyền sát hạch'],
+  ['bai-ghep-xe', 'Bài ghép xe dọc và ngang'],
+  ['khoi-hanh-ngang-doc', 'Khởi hành ngang dốc'],
+  ['thi-duong-truong', 'Thi đường trường'],
+  ['truot-sat-hach', 'Trượt sát hạch rồi thi lại'],
+  ['lo-trinh-30-ngay', 'Lộ trình ôn luyện 30 ngày'],
 ];
 
 blogCovers.forEach(([slug, title], index) => {

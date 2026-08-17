@@ -1,3 +1,5 @@
+import { existsSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   courseOptions,
@@ -20,12 +22,24 @@ import { generalFaqs } from '@/content/faqs';
 import { galleryItems } from '@/content/gallery';
 import { learningProcess } from '@/content/learning-process';
 import {
+  commonConcerns,
   getRealTestimonials,
   hasPlaceholderTestimonials,
+  ILLUSTRATIVE_LABEL,
   testimonials,
+  testimonialsDisclosure,
 } from '@/content/testimonials';
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+/**
+ * Bat con so tien te bi hard-code trong noi dung ("500.000đ", "20 triệu").
+ *
+ * `(?![\p{L}])` o cuoi la BAT BUOC: thieu no thi don vi "đ" se an vao dau
+ * moi tu tieng Viet bat dau bang chu d - vi du "học C1 để phục vụ" bi cham
+ * nham thanh "1 đ". Can co flag `u` de dung duoc `\p{L}`.
+ */
+const MONEY_PATTERN = /\d[\d.,]*\s*(?:vnđ|vnd|triệu|nghìn|ngàn|đ)(?![\p{L}])/iu;
 
 describe('courses', () => {
   it('co du cac khoa hoc bat buoc', () => {
@@ -186,6 +200,62 @@ describe('blog', () => {
     if (!first) return;
     expect(estimateReadingTime(first.content)).toBeGreaterThan(0);
   });
+
+  /**
+   * Cac rang buoc noi dung o docs/CONTENT_GUIDE.md muc 0 ap dung cho MOI noi
+   * dung, nhung truoc day chi `courses` duoc kiem tra. Bai viet la noi de lot
+   * nhat vi dai va viet tu do hon.
+   */
+  it('khong dung tu ngu cam ket ket qua thi', () => {
+    const banned = ['bao đậu', 'cam kết đậu', 'chống trượt', 'rẻ nhất'];
+    for (const post of blogPosts) {
+      const haystack = (
+        JSON.stringify(post.content) +
+        post.title +
+        post.description
+      ).toLowerCase();
+      for (const phrase of banned) {
+        expect(
+          haystack,
+          `bai ${post.slug} chua cum tu bi cam: ${phrase}`,
+        ).not.toContain(phrase);
+      }
+    }
+  });
+
+  it('bai viet khong hard-code con so hoc phi', () => {
+    for (const post of blogPosts) {
+      const haystack = JSON.stringify(post.content) + post.description;
+      expect(haystack, `bai ${post.slug} co con so tien`).not.toMatch(
+        MONEY_PATTERN,
+      );
+    }
+  });
+
+  /**
+   * Chan loi "bai viet mo coi": tao file trong src/content/blog nhung quen
+   * them vao mang trong index.ts. Khi do bai khong len sitemap, khong co
+   * trang, va MOI test khac deu cho qua vi chung chi duyet `blogPosts` -
+   * bai bi thieu thi khong co gi de kiem tra. Loi nay im lang hoan toan.
+   */
+  it('moi file bai viet deu duoc noi vao index', () => {
+    const dir = join(process.cwd(), 'src', 'content', 'blog');
+    const files = readdirSync(dir)
+      .filter((name) => name.endsWith('.ts') && name !== 'index.ts')
+      .sort();
+    expect(files.length, 'khong doc duoc thu muc bai viet').toBeGreaterThan(0);
+    expect(
+      blogPosts.length,
+      `co ${files.length} file bai viet nhung index chi xuat ${blogPosts.length}`,
+    ).toBe(files.length);
+  });
+
+  it('anh bia cua moi bai ton tai that trong public/', () => {
+    for (const post of blogPosts) {
+      const file = join(process.cwd(), 'public', post.coverImage.src);
+      expect(existsSync(file), `thieu anh bia cua bai ${post.slug}`).toBe(true);
+    }
+  });
 });
 
 describe('faqs va gallery', () => {
@@ -199,7 +269,7 @@ describe('faqs va gallery', () => {
 
   it('FAQ khong hard-code con so hoc phi', () => {
     const haystack = generalFaqs.map((faq) => faq.answer).join(' ');
-    expect(haystack).not.toMatch(/\d[\d.,]*\s*(đ|vnđ|vnd|triệu)/i);
+    expect(haystack).not.toMatch(MONEY_PATTERN);
   });
 
   it('moi anh gallery co alt text', () => {
@@ -231,20 +301,36 @@ describe('testimonials', () => {
   /**
    * RANG BUOC DAO DUC, khong phai kiem tra ky thuat.
    *
-   * Cam nhan mau bat buoc phai deo nhan de khach khong tuong la loi that.
-   * `TestimonialCard` deo nhan dua vao dung co `isPlaceholder`, con o day
-   * chan chieu nguoc lai: khong ai duoc lang le doi co sang `false` cho
-   * mot muc van la noi dung mau.
+   * Noi dung minh hoa bat buoc phai deo nhan de khach khong tuong la loi
+   * that. `TestimonialCard` deo nhan dua vao dung co `isPlaceholder`, con o
+   * day chan chieu nguoc lai: khong ai duoc lang le doi co sang `false` cho
+   * mot muc van dang mang nhan minh hoa.
    *
    * Khi co cam nhan THAT (da xin phep hoc vien): dat `isPlaceholder: false`
-   * VA xoa `period: 'Nội dung mẫu'` - luc do test nay tu dong cho qua.
+   * VA doi `period` thanh thoi gian hoc that - luc do test tu dong cho qua.
    */
-  it('muc nao con nhan "Noi dung mau" thi phai giu isPlaceholder = true', () => {
+  it('muc nao con nhan minh hoa thi phai giu isPlaceholder = true', () => {
     for (const item of testimonials) {
-      if (item.period.toLowerCase().includes('nội dung mẫu')) {
+      if (item.period === ILLUSTRATIVE_LABEL) {
         expect(item.isPlaceholder).toBe(true);
       }
     }
+  });
+
+  /**
+   * Doan giai thich phai noi ro noi dung nay LA GI, khong chi phu dinh.
+   * Neu ai do rut gon no thanh mot cau chung chung thi test bao ngay.
+   */
+  it('doan giai thich neu ro day la minh hoa va se duoc thay bang loi that', () => {
+    expect(testimonialsDisclosure).toMatch(/minh họa/i);
+    expect(testimonialsDisclosure).toMatch(/thực tế|đồng ý chia sẻ/i);
+    expect(testimonialsDisclosure.length).toBeGreaterThan(100);
+  });
+
+  it('danh sach quan tam chung khong hua hen dieu khong kiem chung duoc', () => {
+    expect(commonConcerns.length).toBeGreaterThan(0);
+    const haystack = commonConcerns.join(' ');
+    expect(haystack).not.toMatch(/cam kết|bảo đảm|đảm bảo|100%|chắc chắn đậu/i);
   });
 
   it('hasPlaceholderTestimonials phan anh dung du lieu', () => {
@@ -258,7 +344,7 @@ describe('testimonials', () => {
 
   it('khong bia con so hoc phi hay ty le dau trong loi cam nhan', () => {
     const haystack = testimonials.map((item) => item.quote).join(' ');
-    expect(haystack).not.toMatch(/\d[\d.,]*\s*(đ|vnđ|vnd|triệu)/i);
+    expect(haystack).not.toMatch(MONEY_PATTERN);
     expect(haystack).not.toMatch(/\d+\s*%/);
   });
 });

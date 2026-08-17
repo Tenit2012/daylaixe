@@ -3,6 +3,7 @@ import { Info } from 'lucide-react';
 import {
   hasPlaceholderTestimonials,
   testimonials,
+  testimonialsDisclosure,
 } from '@/content/testimonials';
 import { Section, SectionHeading } from '@/components/ui/section';
 import { TestimonialCard } from '@/components/testimonials/testimonial-card';
@@ -41,11 +42,7 @@ export function TestimonialsSection({
             aria-hidden="true"
             className="mt-0.5 h-[1.125rem] w-[1.125rem] flex-shrink-0 text-accent-600"
           />
-          <span>
-            Các nội dung dưới đây là <strong>bản mẫu minh họa</strong> do người
-            làm website viết, chưa phải phản hồi của học viên thật. Cảm nhận
-            thật sẽ được đăng sau khi học viên đồng ý chia sẻ.
-          </span>
+          <span>{testimonialsDisclosure}</span>
         </p>
       ) : null}
 

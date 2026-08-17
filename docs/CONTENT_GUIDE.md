@@ -31,11 +31,13 @@ Không viết "đã đào tạo 5.000 học viên", "tỷ lệ đỗ 98%" nếu 
 kiểm chứng được. Các chỉ báo tạo niềm tin trên trang chủ được viết theo hướng
 **định tính** ("Hướng dẫn dễ hiểu", "Lịch học linh hoạt") thay vì con số.
 
-### 0.3 Không trình bày nội dung mẫu như dữ liệu thật
+### 0.3 Không trình bày nội dung minh họa như dữ liệu thật
 
-Mọi cảm nhận học viên hiện có đều là **bản mẫu do đội ngũ biên tập viết** để minh
-họa bố cục. Chúng được đánh dấu `isPlaceholder: true` và giao diện hiển thị nhãn
-"Nội dung mẫu" kèm một hộp cảnh báo giải thích rõ điều này.
+Mọi cảm nhận học viên hiện có đều là **trải nghiệm minh họa dựa trên các tình
+huống học lái xe thường gặp**, không phải phản hồi của một học viên có thật.
+Chúng được đánh dấu `isPlaceholder: true`; giao diện hiển thị nhãn "Minh họa
+trải nghiệm" trên từng thẻ kèm một đoạn giải thích ở đầu khối — **cả hai đều
+hiện ở production**, không chỉ ở môi trường dev.
 
 ### 0.4 Không khẳng định quy định pháp luật chưa kiểm chứng
 
@@ -251,14 +253,17 @@ File: `src/content/testimonials.ts`
 }
 ```
 
-### 5.1 Đánh dấu nội dung thật vs nội dung mẫu
+### 5.1 Đánh dấu nội dung thật vs nội dung minh họa
 
 Trường `isPlaceholder` là **bắt buộc** và có ý nghĩa pháp lý / đạo đức:
 
-| Giá trị | Ý nghĩa                       | Giao diện                                          |
-| ------- | ----------------------------- | -------------------------------------------------- |
-| `true`  | Nội dung mẫu do biên tập viết | Hiện nhãn "Nội dung mẫu" + hộp cảnh báo giải thích |
-| `false` | Phản hồi thật của học viên    | Hiển thị bình thường                               |
+| Giá trị | Ý nghĩa                                             | Giao diện                                                   |
+| ------- | --------------------------------------------------- | ----------------------------------------------------------- |
+| `true`  | Trải nghiệm minh họa dựa trên tình huống thường gặp | Hiện nhãn "Minh họa trải nghiệm" + đoạn giải thích đầu khối |
+| `false` | Phản hồi thật của học viên                          | Hiển thị bình thường, kèm thời gian học ở `period`          |
+
+Chữ trên nhãn nằm ở hằng `ILLUSTRATIVE_LABEL` trong `src/content/testimonials.ts`
+— sửa một chỗ, nhãn và test tự đổi theo.
 
 **Chỉ đặt `false` khi cả ba điều sau đều đúng:**
 
@@ -286,12 +291,15 @@ hệ. Không cần sửa dòng code nào ở các trang gọi nó.
 
 Khối cảm nhận từng bị **gỡ hẳn ngày 13/08/2026** vì toàn bộ nội dung đều là bản
 mẫu — lý do ghi trong `docs/TRUST_AUDIT_REPORT.md`. Được **dựng lại ngày
-14/08/2026** theo yêu cầu chủ website, kèm một thay đổi so với bản cũ: nhãn
-"Nội dung mẫu" nay hiện **cả ở production**, không còn chỉ hiện ở môi trường
-dev. Nghĩa là chừng nào còn `isPlaceholder: true` thì khách vào web thật vẫn
-thấy rõ đây là nội dung mẫu.
+14/08/2026** theo yêu cầu chủ website, kèm hai thay đổi so với bản cũ:
 
-> ⚠️ **Nếu chạy Google Ads:** cảm nhận mẫu — dù có dán nhãn — vẫn là rủi ro theo
+1. Nhãn nay hiện **cả ở production**, không còn chỉ hiện ở môi trường dev. Chừng
+   nào còn `isPlaceholder: true` thì khách vào web thật vẫn thấy rõ.
+2. Cách diễn đạt đổi từ phủ định ("không phải phản hồi thật") sang mô tả đúng nó
+   **là gì** — "trải nghiệm minh họa dựa trên các tình huống thường gặp". Người
+   đọc hiểu nhanh hơn và không thấy bị lập lờ.
+
+> ⚠️ **Nếu chạy Google Ads:** cảm nhận minh họa — dù có dán nhãn — vẫn là rủi ro theo
 > chính sách trình bày sai sự thật, và theo bản kiểm toán niềm tin thì đây là
 > thứ làm người đọc mất lòng tin nhất khi họ nhận ra. Nên thay bằng cảm nhận
 > thật trước khi bật quảng cáo.

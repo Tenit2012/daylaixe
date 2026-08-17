@@ -59,14 +59,24 @@ export function Badge({ children, tone = 'neutral', className }: BadgeProps) {
 }
 
 /**
- * Nhan canh bao noi dung mau.
+ * Nhan canh bao noi dung chua phai du lieu that.
  * Bat buoc dung o moi noi hien thi testimonial/gallery chua phai du lieu that,
  * de nguoi xem khong hieu nham day la phan hoi cua hoc vien that.
+ *
+ * `label` cho phep doi chu cho hop ngu canh - vi du khoi cam nhan dung
+ * "Minh hoa trai nghiem" vi noi dung o do mo ta tinh huong hoc thuong gap,
+ * chinh xac hon la goi chung chung "Noi dung mau". Bo trong thi giu mac dinh.
  */
-export function PlaceholderBadge({ className }: { className?: string }) {
+export function PlaceholderBadge({
+  className,
+  label = 'Nội dung mẫu',
+}: {
+  className?: string;
+  label?: string;
+}) {
   return (
     <Badge tone="warning" className={cn('uppercase', className)}>
-      Nội dung mẫu
+      {label}
     </Badge>
   );
 }

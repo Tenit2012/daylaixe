@@ -205,19 +205,19 @@ Zalo phát hành, không phải hình vẽ lại: khối squircle xanh `#0068FF`
 trắng chiếm gần hết khung, đuôi lưỡi liềm ở góc dưới bên trái, chữ ký hiệu
 "Zalo" màu xanh.
 
-| Mục       | Chi tiết                                                |
-| --------- | ------------------------------------------------------- |
-| Đường dẫn | `public/images/brand/zalo-logo.svg`                     |
-| Số file   | 1 — dùng chung cho mọi nền                              |
-| Định dạng | SVG, khung nhìn 50 × 50, co giãn không vỡ nét           |
+| Mục       | Chi tiết                                      |
+| --------- | --------------------------------------------- |
+| Đường dẫn | `public/images/brand/zalo-logo.svg`           |
+| Số file   | 1 — dùng chung cho mọi nền                    |
+| Định dạng | SVG, khung nhìn 50 × 50, co giãn không vỡ nét |
 
 **Một file dùng cho cả ba nền của website.** Đã kiểm tra thực tế:
 
-| Nền                            | Logo hiện ra thế nào                                    |
-| ------------------------------ | ------------------------------------------------------- |
+| Nền                             | Logo hiện ra thế nào                                              |
+| ------------------------------- | ----------------------------------------------------------------- |
 | Nút xanh Zalo, thanh CTA mobile | Khối squircle hòa vào nền nút, còn lại bong bóng trắng + chữ xanh |
-| Footer nền navy                 | Hiện nguyên như một huy hiệu app icon                   |
-| Thẻ "Zalo" trang Liên hệ        | Còn lại viền lưỡi liềm xanh + chữ xanh                  |
+| Footer nền navy                 | Hiện nguyên như một huy hiệu app icon                             |
+| Thẻ "Zalo" trang Liên hệ        | Còn lại viền lưỡi liềm xanh + chữ xanh                            |
 
 > **Muốn đổi logo thì chỉ cần ghi đè đúng file trên**, giữ nguyên tên và đường
 > dẫn — không phải sửa dòng code nào.

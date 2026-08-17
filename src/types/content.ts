@@ -61,12 +61,12 @@ export interface Faq {
  * CAM NHAN HOC VIEN
  *
  * LICH SU: khoi nay tung bi go khoi website ngay 13/08/2026 vi toan bo cam
- * nhan deu la noi dung mau. Duoc dung lai ngay 14/08/2026 theo yeu cau cua
- * chu website, voi dieu kien nhan "Noi dung mau" hien CA O PRODUCTION chu
+ * nhan deu la noi dung minh hoa. Duoc dung lai ngay 14/08/2026 theo yeu cau
+ * chu website, voi dieu kien nhan "Minh hoa trai nghiem" hien CA O PRODUCTION chu
  * khong chi o dev nhu ban truoc.
  *
  * QUY TAC BAT BUOC khi dong vao du lieu nay:
- *   1. `isPlaceholder: true`  -> giao dien TU DONG hien nhan "Noi dung mau"
+ *   1. `isPlaceholder: true`  -> giao dien TU DONG hien nhan minh hoa
  *      tren tung the va mot dong thong bao dau khoi. Khong duoc go nhan de
  *      cho no trong giong phan hoi that.
  *   2. `isPlaceholder: false` -> CHI dat khi do la loi that cua hoc vien
@@ -80,7 +80,7 @@ export interface Faq {
  */
 export interface Testimonial {
   id: string;
-  /** Ten hien thi. Voi noi dung mau: dung ten chung chung. */
+  /** Ten hien thi. Voi muc minh hoa: dat theo tinh huong, khong dat ten nguoi. */
   name: string;
   /** Khoa hoc lien quan - dung slug cua Course de loc duoc. */
   courseSlug: string;
@@ -88,7 +88,7 @@ export interface Testimonial {
   period: string;
   quote: string;
   /**
-   * BAT BUOC. `true` nghia la noi dung mau do doi ngu viet de minh hoa
+   * BAT BUOC. `true` nghia la trai nghiem minh hoa do doi ngu viet de mo ta
    * bo cuc, KHONG phai phan hoi cua hoc vien that.
    */
   isPlaceholder: boolean;

@@ -1,6 +1,7 @@
 import { Quote } from 'lucide-react';
 import type { Testimonial } from '@/types/content';
 import { getCourseLabel } from '@/content/courses';
+import { ILLUSTRATIVE_LABEL } from '@/content/testimonials';
 import { PlaceholderBadge } from '@/components/ui/card';
 
 interface TestimonialCardProps {
@@ -18,6 +19,20 @@ interface TestimonialCardProps {
  * chu khong sua o day.
  */
 export function TestimonialCard({ testimonial }: TestimonialCardProps) {
+  const courseLabel = getCourseLabel(testimonial.courseSlug);
+  /*
+   * Vai muc co tieu de dat trung ten khoa ("Bổ túc tay lái", "Luyện sa hình").
+   * Khi do bo dong phu di cho khoi lap y hai lan lien nhau.
+   */
+  const showCourseLabel =
+    courseLabel.toLowerCase() !== testimonial.name.toLowerCase();
+  const periodSuffix =
+    !testimonial.isPlaceholder && testimonial.period
+      ? ` · ${testimonial.period}`
+      : '';
+  const subLine =
+    `${showCourseLabel ? courseLabel : ''}${periodSuffix}`.replace(/^ · /, '');
+
   return (
     <figure className="card-base flex h-full flex-col p-5 sm:p-6">
       <div className="flex items-start justify-between gap-3">
@@ -25,7 +40,9 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
           aria-hidden="true"
           className="h-7 w-7 flex-shrink-0 text-brand-200"
         />
-        {testimonial.isPlaceholder ? <PlaceholderBadge /> : null}
+        {testimonial.isPlaceholder ? (
+          <PlaceholderBadge label={ILLUSTRATIVE_LABEL} />
+        ) : null}
       </div>
 
       <blockquote className="mt-3 flex-1">
@@ -45,10 +62,17 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
           <span className="block truncate text-sm font-semibold text-brand-900">
             {testimonial.name}
           </span>
-          <span className="block truncate text-xs text-ink-subtle">
-            {getCourseLabel(testimonial.courseSlug)}
-            {testimonial.isPlaceholder ? ` · ${testimonial.period}` : ''}
-          </span>
+          {/*
+            Muc minh hoa: chi hien ten khoa. Nhan o goc tren da noi ro day la
+            minh hoa roi, lap lai o day chi lam dong chu dai them.
+            Muc that: hien them thoi gian hoc (`period`) de nguoi doc biet
+            phan hoi nay tu bao gio.
+          */}
+          {subLine ? (
+            <span className="block truncate text-xs text-ink-subtle">
+              {subLine}
+            </span>
+          ) : null}
         </span>
       </figcaption>
     </figure>

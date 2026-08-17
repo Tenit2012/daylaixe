@@ -1,7 +1,12 @@
 import type { Metadata } from 'next';
-import { Info } from 'lucide-react';
-import { hasPlaceholderTestimonials } from '@/content/testimonials';
+import { Check, Info } from 'lucide-react';
+import {
+  commonConcerns,
+  hasPlaceholderTestimonials,
+  testimonialsDisclosure,
+} from '@/content/testimonials';
 import { galleryItems } from '@/content/gallery';
+import { siteConfig } from '@/config/site';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { buildBreadcrumbJsonLd } from '@/lib/seo/structured-data';
 import { Section, SectionHeading } from '@/components/ui/section';
@@ -22,7 +27,7 @@ export const metadata: Metadata = buildPageMetadata({
  * Trang cam nhan hoc vien.
  *
  * KHONG co JSON-LD dang `Review`/`AggregateRating`. Day la co y: khi cam
- * nhan con la noi dung mau thi khai bao du lieu co cau truc nhu that vua
+ * nhan con la noi dung minh hoa thi khai bao du lieu co cau truc nhu that
  * sai su that vua bi Google phat. Chi them lai khi co cam nhan that kiem
  * chung duoc.
  */
@@ -55,12 +60,7 @@ export default function TestimonialsPage() {
               aria-hidden="true"
               className="mt-0.5 h-[1.125rem] w-[1.125rem] flex-shrink-0 text-accent-600"
             />
-            <span>
-              Các cảm nhận đang hiển thị là <strong>nội dung mẫu</strong> do
-              người làm website viết để minh họa bố cục trang. Đây không phải
-              phản hồi của học viên thật. Khi có cảm nhận thật được học viên
-              đồng ý chia sẻ, chúng sẽ thay thế toàn bộ nội dung mẫu này.
-            </span>
+            <span>{testimonialsDisclosure}</span>
           </div>
         ) : null}
 
@@ -81,8 +81,47 @@ export default function TestimonialsPage() {
         </div>
       </Section>
 
+      <Section ariaLabelledBy="concerns-heading">
+        <SectionHeading
+          id="concerns-heading"
+          eyebrow="Quan tâm chung"
+          title="Điều nhiều học viên quan tâm"
+          description="Những điểm mà người đi học thường mong muốn khi chọn nơi học lái xe."
+        />
+
+        <ul className="mx-auto mt-8 grid max-w-3xl gap-3 sm:grid-cols-2">
+          {commonConcerns.map((item) => (
+            <li
+              key={item}
+              className="flex items-start gap-2.5 rounded-card border border-line bg-surface p-4"
+            >
+              <Check
+                aria-hidden="true"
+                className="mt-0.5 h-[1.125rem] w-[1.125rem] flex-shrink-0 text-success-600"
+              />
+              <span className="text-[0.9375rem] leading-relaxed text-ink-muted">
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <p className="mx-auto mt-8 max-w-3xl text-center text-[0.9375rem] leading-relaxed text-ink-muted">
+          Nếu anh/chị muốn tìm hiểu thêm về quy trình học, lịch khai giảng hoặc
+          cần tư vấn khóa học phù hợp, có thể liên hệ trực tiếp với{' '}
+          {/*
+            Dung `brandName` chu khong phai `teacher.name`: truong name chi
+            luu "Tùng", con brandName ghep san "Thầy Tùng" va co san nhanh
+            du phong khi ten thay chua duoc cau hinh trong bien moi truong.
+          */}
+          <strong className="text-brand-900">{siteConfig.brandName}</strong> để
+          được hỗ trợ.
+        </p>
+      </Section>
+
       <ContactSection
         location="testimonials_page"
+        tone="muted"
         title="Muốn bắt đầu như các học viên khác?"
         description="Gọi hoặc nhắn Zalo cho thầy để được tư vấn khóa học phù hợp với bạn."
       />

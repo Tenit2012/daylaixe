@@ -4,89 +4,117 @@ import type { Testimonial } from '@/types/content';
  * ============================================================================
  * QUAN TRONG VE DAO DUC NOI DUNG - DOC TRUOC KHI SUA
  * ============================================================================
- * Toan bo muc duoi day co `isPlaceholder: true`, nghia la NOI DUNG MAU do
- * nguoi lam website viet ra de minh hoa bo cuc. Day KHONG phai phan hoi cua
- * hoc vien that.
+ * Toan bo muc duoi day co `isPlaceholder: true`: day la TRAI NGHIEM MINH HOA
+ * dung tren cac tinh huong hoc lai xe thuong gap, KHONG phai phan hoi cua
+ * mot hoc vien co that.
  *
- * Giao dien tu dong bao ve dieu do: moi the deu deo nhan "Noi dung mau" va
- * dau khoi co mot dong noi ro. Nhan nay hien CA O PRODUCTION.
+ * Giao dien tu dong bao ve dieu do: moi the deo nhan "Minh hoa trai nghiem"
+ * va dau khoi co mot doan noi ro. Nhan nay hien CA O PRODUCTION.
  *
  * CACH THAY BANG CAM NHAN THAT:
  *   1. Xin phep hoc vien truoc khi dang - bat buoc, ke ca khi chi dung ten
  *      viet tat.
  *   2. Chep dung loi ho noi. KHONG sua theo huong phong dai, khong ghep loi
  *      cua nhieu nguoi thanh mot.
- *   3. Doi `isPlaceholder: false` -> nhan tu bien mat.
- *   4. Xoa cac muc mau con lai. Khong de lan lon that/mau trong cung mot
- *      danh sach.
+ *   3. Doi `isPlaceholder: false` va dat `period` thanh thoi gian hoc that
+ *      (vi du 'Tháng 6/2026') -> nhan tu bien mat, dong thoi gian hien ra.
+ *   4. Xoa cac muc minh hoa con lai. Khong de lan lon that/minh hoa trong
+ *      cung mot danh sach.
  *
  * Muon TAT hoan toan khoi cam nhan: de mang nay rong `[]`. Khoi tren trang
- * chu va trang /cam-nhan-hoc-vien se tu an, khong hien khung trong.
+ * chu va luoi tren /cam-nhan-hoc-vien se tu an, khong hien khung trong.
  *
  * Xem them docs/CONTENT_GUIDE.md
  * ============================================================================
  */
+
+/** Nhan hien tren the va dung de doi chieu trong test. */
+export const ILLUSTRATIVE_LABEL = 'Minh họa trải nghiệm';
+
 export const testimonials: Testimonial[] = [
   {
     id: 'tm-01',
-    name: 'Học viên khóa số tự động',
+    name: 'Người mới bắt đầu học lái',
     courseSlug: 'hang-b-so-tu-dong',
-    period: 'Nội dung mẫu',
+    period: ILLUSTRATIVE_LABEL,
     quote:
-      'Buổi đầu mình khá run vì chưa từng ngồi ghế lái. Thầy cho tập chậm trong sân đến khi quen chân ga chân phanh rồi mới ra đường. Cách hướng dẫn dễ hiểu, không hối thúc nên mình bớt căng thẳng hẳn.',
+      'Lúc đầu mình khá run vì chưa từng cầm vô lăng. Thầy không cho ra đường ngay mà hướng dẫn làm quen xe, tập chân ga – chân phanh và cách quan sát trước. Sau vài buổi mình thấy tự tin hơn rất nhiều, đặc biệt là khi xử lý những tình huống cơ bản.',
     isPlaceholder: true,
     avatarInitial: 'A',
   },
   {
     id: 'tm-02',
-    name: 'Học viên khóa số sàn',
+    name: 'Học số sàn từ đầu',
     courseSlug: 'hang-b-so-san',
-    period: 'Nội dung mẫu',
+    period: ILLUSTRATIVE_LABEL,
     quote:
-      'Mình hay chết máy ở bài lên dốc. Thầy chỉ lại từng bước, giải thích rõ lúc nào nhả côn lúc nào mớm ga chứ không chỉ nói làm theo. Tập vài buổi là thấy chắc tay hơn nhiều.',
+      'Phần khó nhất với mình là lên dốc và nhả côn. Thầy giải thích rất kỹ từng bước, cho tập lại nhiều lần và sửa đúng lỗi mình đang gặp. Mình thích cách dạy có giải thích lý do chứ không chỉ bảo làm theo.',
     isPlaceholder: true,
     avatarInitial: 'B',
   },
   {
     id: 'tm-03',
-    name: 'Học viên khóa bổ túc',
+    name: 'Bổ túc tay lái',
     courseSlug: 'bo-tuc-tay-lai',
-    period: 'Nội dung mẫu',
+    period: ILLUSTRATIVE_LABEL,
     quote:
-      'Có bằng ba năm rồi mà mình chưa dám tự chạy. Thầy chạy cùng đúng tuyến đường đi làm của mình, chỉ cách canh làn và vào hầm chung cư. Giờ mình tự chạy đi làm được rồi.',
+      'Mình đã có bằng nhưng lâu không lái nên khá ngại. Thầy cho chạy đúng những tuyến đường mình thường đi, hướng dẫn cách canh khoảng cách, quay đầu và vào hầm gửi xe. Sau khóa bổ túc mình đã tự lái đi làm hằng ngày.',
     isPlaceholder: true,
     avatarInitial: 'C',
   },
   {
     id: 'tm-04',
-    name: 'Học viên luyện sa hình',
+    name: 'Luyện sa hình',
     courseSlug: 'luyen-sa-hinh',
-    period: 'Nội dung mẫu',
+    period: ILLUSTRATIVE_LABEL,
     quote:
-      'Mình trượt bài ghép ngang một lần nên khá nản. Thầy phân tích đúng chỗ mình sai và cho chạy lại đến khi thành phản xạ. Quan trọng là thầy nói thẳng chỗ nào chưa được chứ không khen cho qua chuyện.',
+      'Mình từng làm sai bài ghép ngang nên rất mất tự tin. Thầy chỉ ra đúng chỗ sai, hướng dẫn cách canh điểm và cho tập đến khi làm được ổn định. Điều mình thích là thầy nói thẳng nhưng rất dễ hiểu.',
     isPlaceholder: true,
     avatarInitial: 'D',
   },
   {
     id: 'tm-05',
-    name: 'Học viên khóa C1',
+    name: 'Học C1 phục vụ công việc',
     courseSlug: 'hang-c1',
-    period: 'Nội dung mẫu',
+    period: ILLUSTRATIVE_LABEL,
     quote:
-      'Mình cần bằng để chạy xe tải nhẹ giao hàng. Thầy giải thích rõ khác biệt khi canh đường với xe dài và cho tập lùi nhiều lần. Hồ sơ cũng được hướng dẫn chuẩn bị từng bước.',
+      'Mình cần học C1 để phục vụ công việc nên khá quan tâm phần thực hành. Thầy hướng dẫn kỹ cách điều khiển xe dài, lùi xe và xử lý trong không gian hẹp. Hồ sơ và lịch học cũng được hướng dẫn rõ ràng nên mình không bị lúng túng.',
     isPlaceholder: true,
     avatarInitial: 'E',
   },
   {
     id: 'tm-06',
-    name: 'Học viên đi làm bận rộn',
+    name: 'Người đi làm bận rộn',
     courseSlug: 'hang-b-so-tu-dong',
-    period: 'Nội dung mẫu',
+    period: ILLUSTRATIVE_LABEL,
     quote:
-      'Mình chỉ rảnh cuối tuần và buổi tối. Thầy chủ động trao đổi lịch từ đầu tuần nên mình sắp xếp được, không bị dồn buổi hay phải nghỉ làm.',
+      'Mình chỉ rảnh buổi tối và cuối tuần. Thầy sắp xếp lịch khá linh hoạt nên mình vẫn theo được khóa học mà không phải nghỉ làm nhiều. Mỗi buổi học đều có mục tiêu rõ ràng nên cảm giác tiến bộ khá nhanh.',
     isPlaceholder: true,
     avatarInitial: 'F',
   },
+];
+
+/**
+ * Doan giai thich dat ngay dau khoi cam nhan.
+ *
+ * Viet o dang mo ta ro noi dung NAY LA GI (tinh huong minh hoa) chu khong chi
+ * phu dinh "khong phai that" - nguoi doc hieu nhanh hon va it thay bi lap lo.
+ */
+export const testimonialsDisclosure =
+  'Những chia sẻ dưới đây là trải nghiệm minh họa dựa trên các tình huống học lái xe thường gặp. Mục đích là giúp anh/chị hình dung quá trình học và phương pháp hướng dẫn. Khi có phản hồi thực tế từ học viên được đồng ý chia sẻ, chúng tôi sẽ cập nhật thay thế các nội dung minh họa này.';
+
+/**
+ * Nhung dieu nguoi hoc thuong quan tam, dat cuoi trang cam nhan.
+ *
+ * Day la mong muon chung cua nguoi di hoc, KHONG phai loi hua ve dich vu -
+ * giu nguyen giong mo ta de khong bien thanh cam ket khong kiem chung duoc.
+ */
+export const commonConcerns = [
+  'Học đúng tại trung tâm.',
+  'Được hướng dẫn trực tiếp.',
+  'Lịch học rõ ràng.',
+  'Không bị thúc ép.',
+  'Có người sửa lỗi cụ thể trong quá trình thực hành.',
 ];
 
 /** Loc cam nhan theo khoa hoc. `all` tra ve toan bo. */
@@ -101,10 +129,10 @@ export function getRealTestimonials(): Testimonial[] {
 }
 
 /**
- * Con muc nao la noi dung mau khong.
+ * Con muc nao la noi dung minh hoa khong.
  *
- * Giao dien dung ham nay de quyet dinh co hien dong thong bao "day la noi
- * dung mau" hay khong. Khi tat ca deu la cam nhan that, dong do tu bien mat.
+ * Giao dien dung ham nay de quyet dinh co hien doan giai thich hay khong.
+ * Khi tat ca deu la cam nhan that, doan do tu bien mat.
  */
 export function hasPlaceholderTestimonials(): boolean {
   return testimonials.some((item) => item.isPlaceholder);

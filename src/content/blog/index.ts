@@ -8,6 +8,15 @@ import { post as quyTrinhDangKy } from './quy-trinh-dang-ky-hoc-lai-xe';
 import { post as duongDongTphcm } from './kinh-nghiem-lai-xe-duong-dong-tphcm';
 import { post as giuBinhTinh } from './cach-giu-binh-tinh-khi-lai-xe';
 import { post as boTucTayLai } from './khi-nao-nen-bo-tuc-tay-lai';
+import { post as onThiLyThuyet } from './on-thi-ly-thuyet-lai-xe';
+import { post as thiMoPhong } from './thi-mo-phong-tinh-huong-giao-thong';
+import { post as ngayThiSatHach } from './ngay-thi-sat-hach-chuan-bi';
+import { post as loiTruatQuyen } from './nhung-loi-bi-truat-quyen-sat-hach';
+import { post as baiGhepXe } from './bai-ghep-xe-doc-va-ngang';
+import { post as khoiHanhNgangDoc } from './dung-va-khoi-hanh-ngang-doc';
+import { post as thiDuongTruong } from './kinh-nghiem-thi-duong-truong';
+import { post as truotSatHach } from './truot-sat-hach-nen-lam-gi';
+import { post as loTrinh30Ngay } from './lo-trinh-on-luyen-30-ngay';
 
 /**
  * Danh sach bai viet.
@@ -26,6 +35,15 @@ const allPosts: BlogPost[] = [
   duongDongTphcm,
   giuBinhTinh,
   boTucTayLai,
+  onThiLyThuyet,
+  thiMoPhong,
+  ngayThiSatHach,
+  loiTruatQuyen,
+  baiGhepXe,
+  khoiHanhNgangDoc,
+  thiDuongTruong,
+  truotSatHach,
+  loTrinh30Ngay,
 ];
 
 /** Bai viet sap xep theo ngay dang, moi nhat truoc. */
