@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480" role="img" aria-label="Sơ đồ minh họa bài dừng và khởi hành ngang dốc">
+  <title>Sơ đồ minh họa bài dừng và khởi hành ngang dốc: vạch dừng và hai khả năng khi khởi hành</title>
+  <!--
+    So do nguyen ly (khong phai kich thuoc chuan). Ve tu noi dung bai viet
+    "Dung va khoi hanh ngang doc", khong sao chep giao dien cua bat ky ung
+    dung hay san pham nao khac.
+  -->
+  <defs>
+    <linearGradient id="slopeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3C6CB2" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#F7F9FC" stop-opacity="0"/>
+    </linearGradient>
+    <!--
+      Ca hai marker deu dung HINH TAM GIAC CHI SANG PHAI trong khong gian
+      cuc bo (dung quy uoc chuan cua SVG marker). `orient="auto-start-reverse"`
+      se tu xoay hinh nay theo huong that su cua duong ke khi ve - neu ve san
+      tam giac chi xuong/len roi de auto-orient xoay tiep se bi xoay chong,
+      mui ten se lech ngang thay vi thang huong doc nhu y muon.
+    -->
+    <marker id="arrowOrangeDoc2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#EA760E"/>
+    </marker>
+    <marker id="arrowGreenDoc2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#169855"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="480" fill="#FFFFFF"/>
+  <rect x="40" y="30" width="720" height="420" rx="12" fill="#DEE9F7"/>
+
+  <rect x="300" y="60" width="200" height="360" fill="url(#slopeGrad)" stroke="#C6D0DE" stroke-width="2"/>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#182F58">ĐỈNH DỐC</text>
+  <text x="400" y="442" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#182F58">CHÂN DỐC</text>
+
+  <line x1="300" y1="250" x2="500" y2="250" stroke="#182F58" stroke-width="3" stroke-dasharray="8 6"/>
+  <text x="510" y="244" text-anchor="start" font-family="system-ui, sans-serif" font-size="14" fill="#182F58">Vạch dừng</text>
+
+  <g>
+    <rect x="374" y="252" width="52" height="110" rx="10" fill="#182F58"/>
+    <rect x="384" y="262" width="32" height="22" rx="4" fill="#DEE9F7"/>
+    <rect x="368" y="272" width="6" height="18" rx="2" fill="#112242"/>
+    <rect x="426" y="272" width="6" height="18" rx="2" fill="#112242"/>
+    <rect x="368" y="337" width="6" height="18" rx="2" fill="#112242"/>
+    <rect x="426" y="337" width="6" height="18" rx="2" fill="#112242"/>
+  </g>
+
+  <line x1="340" y1="270" x2="340" y2="326" stroke="#EA760E" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowOrangeDoc2)"/>
+  <line x1="460" y1="330" x2="460" y2="274" stroke="#169855" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowGreenDoc2)"/>
+
+  <text x="280" y="296" text-anchor="end" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#182F58">Trôi nếu nhả</text>
+  <text x="280" y="316" text-anchor="end" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#182F58">phanh sớm</text>
+
+  <text x="520" y="296" text-anchor="start" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#182F58">Đi lên nếu đúng</text>
+  <text x="520" y="316" text-anchor="start" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#182F58">điểm bám côn</text>
+</svg>

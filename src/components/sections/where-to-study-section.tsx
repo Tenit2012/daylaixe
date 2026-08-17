@@ -33,14 +33,14 @@ export function WhereToStudySection({
       <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-12">
         <div className="overflow-hidden rounded-card border border-line bg-surface-muted shadow-card">
           <Image
-            src="/images/center/cong-trung-tam.svg"
+            src="/images/center/cong-truong.webp"
             alt={
               hasCenterName
                 ? `Cổng ${teacher.centerName}`
                 : 'Cổng trung tâm đào tạo lái xe'
             }
             width={1200}
-            height={674}
+            height={561}
             loading="lazy"
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="h-auto w-full"

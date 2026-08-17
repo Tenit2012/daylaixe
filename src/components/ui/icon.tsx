@@ -20,6 +20,7 @@ import {
   Receipt,
   Route,
   ShieldCheck,
+  Stethoscope,
   UserCheck,
   type LucideIcon,
 } from 'lucide-react';
@@ -50,6 +51,7 @@ const iconMap: Record<string, LucideIcon> = {
   Receipt,
   Route,
   ShieldCheck,
+  Stethoscope,
   UserCheck,
 };
 

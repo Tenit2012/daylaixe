@@ -1,6 +1,5 @@
-import { Quote } from 'lucide-react';
+import { Quote, Tag } from 'lucide-react';
 import type { Testimonial } from '@/types/content';
-import { getCourseLabel } from '@/content/courses';
 import { ILLUSTRATIVE_LABEL } from '@/content/testimonials';
 import { PlaceholderBadge } from '@/components/ui/card';
 
@@ -17,22 +16,12 @@ interface TestimonialCardProps {
  * nhan mau trong y het cam nhan that - dung thu da khien khoi nay bi go.
  * Neu can go nhan thi phai co cam nhan that va dat `isPlaceholder: false`,
  * chu khong sua o day.
+ *
+ * Khong dung avatar chu cai + ten cho noi dung minh hoa - lam vay se goi y
+ * day la mot nguoi co that. Chi hien avatar/ten khi `testimonial.name` co
+ * gia tri, tuc la cam nhan THAT da duoc hoc vien dong y dung ten.
  */
 export function TestimonialCard({ testimonial }: TestimonialCardProps) {
-  const courseLabel = getCourseLabel(testimonial.courseSlug);
-  /*
-   * Vai muc co tieu de dat trung ten khoa ("Bổ túc tay lái", "Luyện sa hình").
-   * Khi do bo dong phu di cho khoi lap y hai lan lien nhau.
-   */
-  const showCourseLabel =
-    courseLabel.toLowerCase() !== testimonial.name.toLowerCase();
-  const periodSuffix =
-    !testimonial.isPlaceholder && testimonial.period
-      ? ` · ${testimonial.period}`
-      : '';
-  const subLine =
-    `${showCourseLabel ? courseLabel : ''}${periodSuffix}`.replace(/^ · /, '');
-
   return (
     <figure className="card-base flex h-full flex-col p-5 sm:p-6">
       <div className="flex items-start justify-between gap-3">
@@ -51,29 +40,37 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
         </p>
       </blockquote>
 
-      <figcaption className="mt-5 flex items-center gap-3 border-t border-line pt-4">
-        <span
-          aria-hidden="true"
-          className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-700"
-        >
-          {testimonial.avatarInitial}
-        </span>
-        <span className="min-w-0">
-          <span className="block truncate text-sm font-semibold text-brand-900">
-            {testimonial.name}
-          </span>
-          {/*
-            Muc minh hoa: chi hien ten khoa. Nhan o goc tren da noi ro day la
-            minh hoa roi, lap lai o day chi lam dong chu dai them.
-            Muc that: hien them thoi gian hoc (`period`) de nguoi doc biet
-            phan hoi nay tu bao gio.
-          */}
-          {subLine ? (
-            <span className="block truncate text-xs text-ink-subtle">
-              {subLine}
+      <figcaption className="mt-5 flex items-center gap-2.5 border-t border-line pt-4">
+        {testimonial.name ? (
+          <>
+            <span
+              aria-hidden="true"
+              className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-700"
+            >
+              {testimonial.avatarInitial}
             </span>
-          ) : null}
-        </span>
+            <span className="min-w-0">
+              <span className="block truncate text-sm font-semibold text-brand-900">
+                {testimonial.name}
+              </span>
+              {!testimonial.isPlaceholder && testimonial.period ? (
+                <span className="block truncate text-xs text-ink-subtle">
+                  {testimonial.situation} · {testimonial.period}
+                </span>
+              ) : null}
+            </span>
+          </>
+        ) : (
+          <>
+            <Tag
+              aria-hidden="true"
+              className="h-4 w-4 flex-shrink-0 text-brand-400"
+            />
+            <span className="truncate text-sm font-medium text-ink-muted">
+              {testimonial.situation}
+            </span>
+          </>
+        )}
       </figcaption>
     </figure>
   );

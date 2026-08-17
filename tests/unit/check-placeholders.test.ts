@@ -24,7 +24,7 @@ describe('check-production-placeholders helpers', () => {
     });
     it('khong nham gia tri that', () => {
       expect(isBracketPlaceholder('Tùng')).toBe(false);
-      expect(isBracketPlaceholder('https://zalo.me/0967569733')).toBe(false);
+      expect(isBracketPlaceholder('https://zalo.me/0971397882')).toBe(false);
     });
   });
 
@@ -66,8 +66,8 @@ describe('check-production-placeholders helpers', () => {
       const findings = evaluateEnv({
         NEXT_PUBLIC_SITE_URL: 'https://thaytungdaylaixe.vn',
         NEXT_PUBLIC_TEACHER_NAME: 'Tùng',
-        NEXT_PUBLIC_PHONE_NUMBER: '0967569733',
-        NEXT_PUBLIC_ZALO_URL: 'https://zalo.me/0967569733',
+        NEXT_PUBLIC_PHONE_NUMBER: '0971397882',
+        NEXT_PUBLIC_ZALO_URL: 'https://zalo.me/0971397882',
         NEXT_PUBLIC_TEACHER_TITLE: 'Giáo viên dạy thực hành lái xe',
         NEXT_PUBLIC_ADDRESS: 'TP. Thủ Đức',
         NEXT_PUBLIC_TRAINING_AREA: 'TP. Thủ Đức',

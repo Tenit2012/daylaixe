@@ -138,9 +138,11 @@ export function FacebookButton({
 /**
  * Nut "Den tu van tai trung tam" - mo chi duong Google Maps.
  *
- * Tach rieng khoi `MapsLink` (dang link chu) vi o hero day la MOT TRONG BA
- * CTA chinh, phuc vu nhom nguoi doc muon kiem chung tan noi truoc khi dang ky.
- * Khong cau hinh Maps thi khong render - tot hon la mot nut chet.
+ * Tach rieng khoi `MapsLink` (dang link chu) de dung o nhung noi can mot CTA
+ * day du dang nut, phuc vu nhom nguoi doc muon kiem chung tan noi truoc khi
+ * dang ky. Khong cau hinh Maps thi khong render - tot hon la mot nut chet.
+ * Hien khong con noi nao goi component nay (da go khoi hero) - giu lai vi la
+ * CTA hop le, co the dung lai o trang khac sau nay.
  */
 export function VisitCenterButton({
   location,

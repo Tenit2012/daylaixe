@@ -242,35 +242,56 @@ SEO, canonical, Open Graph, JSON-LD `Article`, và mục trong `sitemap.xml`.
 File: `src/content/testimonials.ts`
 
 ```ts
+// Noi dung minh hoa (khong co that): KHONG dat name/avatarInitial.
 {
-  id: 'tm-07',                       // duy nhất
+  id: 'tm-11',                       // duy nhất
+  situation: 'Người mới bắt đầu',    // nhan tinh huong/doi tuong - chuoi tu do,
+                                      // KHONG bat buoc khop ten khoa hoc
+  period: ILLUSTRATIVE_LABEL,
+  quote: 'Nội dung tình huống minh họa, viết tự nhiên như lời kể.',
+  isPlaceholder: true,               // ★ xem bên dưới
+}
+
+// Cam nhan THAT (da xin phep hoc vien): co them name/avatarInitial.
+{
+  id: 'tm-12',
+  situation: 'Hạng B số tự động',
   name: 'Tên hiển thị',
-  courseSlug: 'hang-b-so-tu-dong',   // phải khớp slug của một khóa học
   period: 'Tháng 6/2026',
   quote: 'Nội dung cảm nhận, giữ đúng giọng của học viên.',
-  isPlaceholder: false,              // ★ xem bên dưới
+  isPlaceholder: false,
   avatarInitial: 'G',
 }
 ```
+
+`situation` là nhãn phân loại hiển thị trên thẻ và dùng để lọc — chuỗi tự do,
+không cần trùng slug của `courses.ts` (nhiều mục minh họa mô tả **đối tượng
+học** như "Người đi làm", "Người mới bắt đầu" chứ không phải một khóa học cụ
+thể). `TestimonialFilter` tự sinh danh sách nút lọc từ các giá trị `situation`
+đang có trong mảng, không cần khai báo riêng.
 
 ### 5.1 Đánh dấu nội dung thật vs nội dung minh họa
 
 Trường `isPlaceholder` là **bắt buộc** và có ý nghĩa pháp lý / đạo đức:
 
-| Giá trị | Ý nghĩa                                             | Giao diện                                                   |
-| ------- | --------------------------------------------------- | ----------------------------------------------------------- |
-| `true`  | Trải nghiệm minh họa dựa trên tình huống thường gặp | Hiện nhãn "Minh họa trải nghiệm" + đoạn giải thích đầu khối |
-| `false` | Phản hồi thật của học viên                          | Hiển thị bình thường, kèm thời gian học ở `period`          |
+| Giá trị | Ý nghĩa                                    | Giao diện                                                                 |
+| ------- | ------------------------------------------- | -------------------------------------------------------------------------- |
+| `true`  | Tình huống minh họa, không gắn tên người   | Hiện nhãn "Tình huống minh họa" + đoạn giải thích đầu khối, KHÔNG có tên/avatar |
+| `false` | Phản hồi thật của học viên, đã xin phép    | Hiển thị tên + avatar chữ cái + thời gian học ở `period`                   |
 
 Chữ trên nhãn nằm ở hằng `ILLUSTRATIVE_LABEL` trong `src/content/testimonials.ts`
 — sửa một chỗ, nhãn và test tự đổi theo.
 
-**Chỉ đặt `false` khi cả ba điều sau đều đúng:**
+**Chỉ đặt `false`, kèm `name`/`avatarInitial`, khi cả ba điều sau đều đúng:**
 
 1. Đây là phản hồi có thật của một học viên có thật.
-2. Học viên đã **đồng ý** cho đăng công khai.
+2. Học viên đã **đồng ý** cho đăng công khai, kể cả việc dùng tên.
 3. Nội dung **không bị sửa theo hướng phóng đại**. Sửa lỗi chính tả thì được;
    thêm câu khen mà học viên không nói thì không.
+
+Với mục `isPlaceholder: true`, **không** đặt `name`/`avatarInitial` — có test
+tự động chặn việc này (`tests/unit/content.test.ts`). Gắn tên hay avatar cho
+một tình huống hư cấu là gợi ý sai rằng đây là một người có thật.
 
 Đăng đánh giá giả là hành vi lừa dối người tiêu dùng. Đừng làm.
 
@@ -298,6 +319,22 @@ mẫu — lý do ghi trong `docs/TRUST_AUDIT_REPORT.md`. Được **dựng lại
 2. Cách diễn đạt đổi từ phủ định ("không phải phản hồi thật") sang mô tả đúng nó
    **là gì** — "trải nghiệm minh họa dựa trên các tình huống thường gặp". Người
    đọc hiểu nhanh hơn và không thấy bị lập lờ.
+
+Cập nhật **ngày 17/08/2026**: thay 6 mục cũ (có tên và khóa học gán sẵn) bằng
+10 tình huống minh họa mới, kèm 3 thay đổi cấu trúc:
+
+1. Nhãn đổi thành **"Tình huống minh họa"** (trước đó là "Minh họa trải
+   nghiệm", rồi "Tình huống thường gặp") — vẫn chỉ sửa một chỗ ở
+   `ILLUSTRATIVE_LABEL`.
+2. Trường phân loại đổi từ `courseSlug` (bắt buộc khớp một khóa học có thật)
+   sang `situation` (chuỗi tự do). Lý do: nhiều tình huống mô tả **đối tượng
+   học** ("Người mới bắt đầu", "Người đi làm") chứ không phải một khóa học cụ
+   thể — gán ép vào `courseSlug` sẽ ngầm khẳng định điều quote không hề nói.
+   Bộ lọc (`TestimonialFilter`) đổi theo, tự sinh nút lọc từ `situation`.
+3. Bỏ hẳn `name`/`avatarInitial` khỏi các mục minh họa (hai trường này thành
+   optional trong type, chỉ dùng khi có cảm nhận thật). Trước đó các mục minh
+   họa vẫn mang tên người ("Chị Bích Ngân"...) dù nội dung là hư cấu — dễ bị
+   hiểu nhầm là học viên có thật dù đã có nhãn cảnh báo.
 
 > ⚠️ **Nếu chạy Google Ads:** cảm nhận minh họa — dù có dán nhãn — vẫn là rủi ro theo
 > chính sách trình bày sai sự thật, và theo bản kiểm toán niềm tin thì đây là

@@ -39,18 +39,23 @@ script tương ứng, rồi chạy lại lệnh trên.
 | `photos/thay-tai-phong-lam-viec.jpeg`        | Chân dung thầy — trang chủ và `/gioi-thieu` |
 | `photos/thay-giai-thich-man-hinh-cabin.jpeg` | Hero trang chủ + ảnh Open Graph             |
 | `photos/thay-huong-dan-vo-lang.jpeg`         | Album                                       |
-| `photos/cabin-mo-phong-hoc-vien.jpg`         | Album                                       |
 | `photos/dan-xe-tap-lai.jpg`                  | Album                                       |
 | `photos/xe-tap-lai-san-tap.jpeg`             | Album (mục "Sân tập")                       |
+| `photos/congtruong.jpg`                      | Album (mục "Cổng trung tâm", có watermark)  |
+| `photos/NguyenThanhTung-laixeanninh.jpg`     | Album (mục "Thầy Tùng")                     |
 
 ### Video
 
-| File                          | Dùng ở                                                      |
-| ----------------------------- | ----------------------------------------------------------- |
-| `videos/buoi-hoc-thuc-te.mov` | Mục "Xem một buổi học thực tế" — trang chủ và `/gioi-thieu` |
+| File                            | Dùng ở                                                      |
+| -------------------------------- | ----------------------------------------------------------- |
+| `videos/buoi-hoc-thuc-te.mp4`    | Mục "Xem một buổi học thực tế" — trang chủ và `/gioi-thieu` |
+| `videos/videoplayback.mp4`       | Mục "Thực hành tại sân tập" — trang chủ và `/gioi-thieu`    |
 
-Video dài 37 giây, quay dọc 480×854. Bản MP4 nặng khoảng 5,7 MB nên trang
-**chỉ tải ảnh poster** (~54 KB) cho tới khi người dùng bấm nút play — xem
+Video đầu dài 25 giây, quay dọc 480×854, nặng khoảng 2,9 MB. Video thứ hai
+dài 46 giây, quay ngang 640×362, nặng khoảng 3,6 MB — từng đăng YouTube trước
+đó, tải lại về để tự lưu trên site (không nhúng iframe YouTube), nên độ phân
+giải thấp hơn do đã qua nén lại của YouTube. Cả hai trang **chỉ tải ảnh
+poster** (~40-55 KB) cho tới khi người dùng bấm nút play — xem
 `src/components/ui/video-player.tsx`.
 
 ## Chưa dùng — cân nhắc kỹ trước khi đưa lên
@@ -72,12 +77,16 @@ Ngoài ra ảnh có nhiều cán bộ không liên quan đến việc dạy lái
 ## Quyền riêng tư và bản quyền
 
 - **File có mặt học viên** — `photos/thay-huong-dan-vo-lang.jpeg`,
-  `photos/thay-giai-thich-man-hinh-cabin.jpeg` và **`videos/buoi-hoc-thuc-te.mov`**
-  (video thấy rõ mặt học viên suốt 37 giây): chỉ đăng khi học viên đã đồng ý.
+  `photos/thay-giai-thich-man-hinh-cabin.jpeg` và **`videos/buoi-hoc-thuc-te.mp4`**
+  (video thấy rõ mặt học viên suốt 25 giây): chỉ đăng khi học viên đã đồng ý.
   Trang Điều khoản sử dụng đã cam kết gỡ ngay khi người trong ảnh yêu cầu.
+- **`videos/videoplayback.mp4`**: chủ website xác nhận đây là video do
+  chính mình/trung tâm tự quay và từng đăng YouTube trước đó (18/08/2026),
+  nay tải lại để tự lưu trên site.
 - **Xe trong video có dán phù hiệu trường.** Đây là xe tập lái thật dùng trong
   buổi học nên việc nó xuất hiện là tất yếu, khác với ảnh tập thể mang tính nghi
   lễ ở trên. Nhưng vẫn nên biết là nó có ở đó.
-- **`photos/cabin-mo-phong-hoc-vien.jpg` và `photos/dan-xe-tap-lai.jpg`**: cần
-  xác nhận đây là ảnh tự chụp. Nếu lấy từ website của trung tâm thì phải được
-  trung tâm đồng ý trước khi dùng trên trang cá nhân.
+- **`photos/dan-xe-tap-lai.jpg`**: cần xác nhận đây là ảnh tự chụp. Nếu lấy từ
+  website của trung tâm thì phải được trung tâm đồng ý trước khi dùng trên
+  trang cá nhân. (`photos/cabin-mo-phong-hoc-vien.jpg` cùng nhóm nghi vấn này
+  đã được gỡ khỏi Album ngày 18/08/2026.)

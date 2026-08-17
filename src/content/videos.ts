@@ -21,6 +21,20 @@ export const lessonVideos: VideoAsset[] = [
       width: 480,
       height: 854,
     },
-    durationSeconds: 37,
+    durationSeconds: 25,
+  },
+  {
+    id: 'v-02',
+    title: 'Thực hành tại sân tập',
+    description:
+      'Quay tại sân tập của trung tâm, ghi lại buổi thực hành lái xe thực tế.',
+    src: '/videos/thuc-hanh-san-tap.mp4',
+    poster: {
+      src: '/images/center/thuc-hanh-san-tap-poster.jpg',
+      alt: 'Thầy đứng cạnh xe tập lái tại sân tập của trung tâm',
+      width: 640,
+      height: 362,
+    },
+    durationSeconds: 46,
   },
 ];

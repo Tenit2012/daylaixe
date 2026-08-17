@@ -28,6 +28,37 @@ const SOURCE_DIR = 'assets/photos';
 const OUTPUT_ROOT = 'public/images';
 
 /**
+ * Tao lop phu PNG chua chu ky/watermark, dat giua-duoi (KHONG dat goc-phai).
+ *
+ * Ly do dat giua thay vi goc: gallery hien anh trong khung ti le co dinh
+ * (`aspect-[4/3]`, `object-cover`), crop can giua theo chieu ngang. Anh nguon
+ * cang "toan canh" (ti le rong) thi crop cang an vao 2 canh - chu o goc duoi-
+ * phai co the bi cat mat mot phan. Dat giua-duoi la vung song sot moi kieu
+ * crop-can-giua, du ti le khung hien thi la gi.
+ *
+ * Dung vien den mo (stroke) quanh chu trang de doc duoc tren moi nen anh ma
+ * khong can them thanh mau phia sau - giu anh sach, khong che noi dung.
+ *
+ * Rasterize SVG roi resize ep dung `width x height`: librsvg co the xuat ra
+ * kich thuoc lech 1px so voi khai bao trong SVG, khien `composite()` bao loi
+ * "must have same dimensions or smaller" neu dua thang buffer SVG vao.
+ */
+async function watermarkOverlay(text, width, height) {
+  const fontSize = Math.round(width * 0.024);
+  const paddingY = Math.round(height * 0.05);
+  const escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const svg = Buffer.from(
+    `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+      <text x="${width / 2}" y="${height - paddingY}" text-anchor="middle"
+        font-family="system-ui, sans-serif" font-size="${fontSize}" font-weight="600"
+        fill="rgba(255,255,255,0.92)" stroke="rgba(0,0,0,0.55)"
+        stroke-width="${Math.max(2, Math.round(fontSize * 0.12))}" paint-order="stroke">${escaped}</text>
+    </svg>`,
+  );
+  return sharp(svg).resize(width, height, { fit: 'fill' }).png().toBuffer();
+}
+
+/**
  * `position` nhan gia tri cua sharp: 'top' | 'center' | 'bottom' | 'left' |
  * 'right' ... Voi anh chan dung cat thanh khung ngang, thuong phai chon 'top'
  * hoac 'center' de giu phan dau nguoi.
@@ -35,6 +66,10 @@ const OUTPUT_ROOT = 'public/images';
  * `format` mac dinh 'webp'. Chi dung 'jpeg' cho anh Open Graph: nhieu trinh
  * thu thap cua mang xa hoi (Zalo, mot so phien ban Facebook) van khong doc
  * duoc WebP khi render anh xem truoc.
+ *
+ * `watermarkText` (tuy chon): dong chu ky nho o goc duoi-phai anh, vi du
+ * ten mien website. Chi dung cho anh chup dia diem/hoat dong chung - KHONG
+ * dung cho chan dung ca nhan.
  */
 const JOBS = [
   {
@@ -62,12 +97,15 @@ const JOBS = [
     note: 'Gallery - thay cam vo lang huong dan hoc vien',
   },
   {
-    source: 'cabin-mo-phong-hoc-vien.jpg',
-    output: 'center/cabin-mo-phong.webp',
-    width: 1200,
-    height: 674,
+    source: 'NguyenThanhTung-laixeanninh.jpg',
+    // Anh nguon vuong 598x598, do phan giai thap - GIU nguyen ty le goc
+    // (598x449, cat 4:3) thay vi phong to len 1200 nhu cac anh khac, tranh
+    // lam anh ro net thap cang lo hon.
+    output: 'teacher/thay-tung-ben-xe.webp',
+    width: 598,
+    height: 449,
     position: 'center',
-    note: 'Trang thiet bi cua trung tam - cabin hoc lai mo phong',
+    note: 'Chan dung thay Tung dung canh xe - Album',
   },
   {
     source: 'dan-xe-tap-lai.jpg',
@@ -86,6 +124,18 @@ const JOBS = [
     height: 720,
     position: 'center',
     note: 'San tap - xe tap lai do trong o ke vach vang',
+  },
+  {
+    source: 'congtruong.jpg',
+    // Anh goc rat panorama (1241x580, ti le ~2.14:1) - giu dung ti le goc
+    // (1200x561) thay vi ep 1200x674 nhu cac anh khac, vi ep vay se can
+    // phong to anh len (withoutEnlargement se chan va gay loi composite).
+    output: 'center/cong-truong.webp',
+    width: 1200,
+    height: 561,
+    position: 'center',
+    watermarkText: 'thaytungdaylaixe.com',
+    note: 'Cong Trung tam Sat hach Lai xe - Truong Dai hoc An ninh Nhan dan',
   },
   {
     source: 'thay-giai-thich-man-hinh-cabin.jpeg',
@@ -117,6 +167,20 @@ async function run() {
         position: job.position,
         withoutEnlargement: true,
       });
+
+    if (job.watermarkText) {
+      pipeline.composite([
+        {
+          input: await watermarkOverlay(
+            job.watermarkText,
+            job.width,
+            job.height,
+          ),
+          top: 0,
+          left: 0,
+        },
+      ]);
+    }
 
     if (job.format === 'jpeg') {
       pipeline.jpeg({ quality: 82, mozjpeg: true, progressive: true });

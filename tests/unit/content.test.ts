@@ -256,6 +256,34 @@ describe('blog', () => {
       expect(existsSync(file), `thieu anh bia cua bai ${post.slug}`).toBe(true);
     }
   });
+
+  /**
+   * Block `image` chen giua noi dung (khac coverImage o dau trang) - them
+   * tu dot viet 3 so do minh hoa cho bai ghep xe va bai len doc. Kiem tra
+   * rieng vi coverImage va anh chen giua la hai truong khac nhau trong kieu
+   * du lieu, khong the goi chung.
+   */
+  it('anh chen giua noi dung (block image) ton tai that va co alt text', () => {
+    for (const post of blogPosts) {
+      const imageBlocks = post.content.filter(
+        (
+          block,
+        ): block is Extract<(typeof post.content)[number], { type: 'image' }> =>
+          block.type === 'image',
+      );
+      for (const block of imageBlocks) {
+        expect(
+          block.alt.length,
+          `anh trong bai ${post.slug} (${block.src}) thieu alt text`,
+        ).toBeGreaterThan(0);
+        const file = join(process.cwd(), 'public', block.src);
+        expect(
+          existsSync(file),
+          `bai ${post.slug} tro toi anh khong ton tai: ${block.src}`,
+        ).toBe(true);
+      }
+    }
+  });
 });
 
 describe('faqs va gallery', () => {
@@ -281,11 +309,8 @@ describe('faqs va gallery', () => {
 });
 
 describe('testimonials', () => {
-  it('moi cam nhan tro toi mot khoa hoc co that', () => {
-    const slugs = new Set(courses.map((course) => course.slug));
-    for (const item of testimonials) {
-      expect(slugs.has(item.courseSlug)).toBe(true);
-    }
+  it('co dung 10 tinh huong minh hoa', () => {
+    expect(testimonials.length).toBe(10);
   });
 
   it('id khong trung nhau va noi dung du dai de co nghia', () => {
@@ -293,8 +318,26 @@ describe('testimonials', () => {
     expect(new Set(ids).size).toBe(ids.length);
     for (const item of testimonials) {
       expect(item.quote.length).toBeGreaterThan(40);
-      expect(item.name.length).toBeGreaterThan(0);
-      expect(item.avatarInitial.length).toBe(1);
+      expect(item.situation.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('nhan situation khong trung nhau giua cac tinh huong', () => {
+    const situations = testimonials.map((item) => item.situation);
+    expect(new Set(situations).size).toBe(situations.length);
+  });
+
+  /**
+   * RANG BUOC DAO DUC: noi dung minh hoa khong duoc mang ten nguoi/avatar
+   * that - dieu nay se goi y day la mot hoc vien co that. Chi cam nhan THAT
+   * (isPlaceholder: false, da xin phep hoc vien) moi duoc dat `name`.
+   */
+  it('noi dung minh hoa khong duoc gan ten hay avatar nguoi', () => {
+    for (const item of testimonials) {
+      if (item.isPlaceholder) {
+        expect(item.name).toBeUndefined();
+        expect(item.avatarInitial).toBeUndefined();
+      }
     }
   });
 

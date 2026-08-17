@@ -26,12 +26,25 @@ const SOURCE_DIR = 'assets/videos';
 
 const JOBS = [
   {
-    source: 'buoi-hoc-thuc-te.mov',
+    source: 'buoi-hoc-thuc-te.mp4',
     video: 'public/videos/buoi-hoc-thuc-te.mp4',
     poster: 'public/images/teacher/buoi-hoc-thuc-te-poster.jpg',
     /** Giay thu may dung lam anh poster - chon khung thay ro ca thay lan hoc vien. */
     posterAtSecond: 12,
+    /**
+     * File goc co watermark "CapCut Ai" co dinh o goc tren-trai suot video.
+     * Bop khung 7% (het canh tren + vien trai/phai) roi phong lai dung kich
+     * thuoc cu de cat watermark ma khong bop meo ty le khung hinh 480x854.
+     */
+    cropFilter: 'crop=446:794:17:60,scale=480:854',
     note: 'Thay huong dan hoc vien tren xe tap lai',
+  },
+  {
+    source: 'videoplayback.mp4',
+    video: 'public/videos/thuc-hanh-san-tap.mp4',
+    poster: 'public/images/center/thuc-hanh-san-tap-poster.jpg',
+    posterAtSecond: 20,
+    note: 'Thuc hanh tai san tap - video da tung dang YouTube, tai lai de tu luu',
   },
 ];
 
@@ -53,10 +66,12 @@ async function run() {
     await mkdir(dirname(job.poster), { recursive: true });
 
     const before = (await stat(sourcePath)).size;
+    const cropArgs = job.cropFilter ? ['-vf', job.cropFilter] : [];
 
     ffmpeg([
       '-i',
       sourcePath,
+      ...cropArgs,
       // H.264 High profile + yuv420p: to hop duoc moi trinh duyet hien nay doc.
       '-c:v',
       'libx264',
@@ -82,6 +97,7 @@ async function run() {
       String(job.posterAtSecond),
       '-i',
       sourcePath,
+      ...cropArgs,
       '-frames:v',
       '1',
       '-q:v',

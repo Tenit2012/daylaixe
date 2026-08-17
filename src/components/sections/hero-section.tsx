@@ -2,11 +2,7 @@ import Image from 'next/image';
 import { BadgeCheck, Building2, MapPin, Phone } from 'lucide-react';
 import { isPlaceholderValue, siteConfig } from '@/config/site';
 import { formatVietnamesePhone } from '@/lib/validation/phone';
-import {
-  CallButton,
-  VisitCenterButton,
-  ZaloButton,
-} from '@/components/ui/contact-buttons';
+import { CallButton, ZaloButton } from '@/components/ui/contact-buttons';
 
 /**
  * Hero cua landing page.
@@ -14,8 +10,8 @@ import {
  * Tieu de co y DAI va co y neu thang ten trung tam. Bao cao TRUST_AUDIT ket
  * luan nguoi xem roi trang vi khong tra loi duoc "hoc o dau" va "day la ai";
  * mot tieu de ngan gon kieu "Hoc lai xe cung thay" khong giai quyet duoc dieu
- * do. Ba nut CTA tuong ung ba muc do san sang khac nhau cua nguoi doc:
- * goi ngay (san sang), nhan Zalo (con ngai goi), den tan noi (muon kiem chung).
+ * do. Hai nut CTA tuong ung hai muc do san sang khac nhau cua nguoi doc:
+ * goi ngay (san sang), nhan Zalo (con ngai goi).
  */
 export function HeroSection() {
   const { contact, teacher, messaging } = siteConfig;
@@ -49,7 +45,6 @@ export function HeroSection() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <CallButton location="hero" size="lg" />
               <ZaloButton location="hero" size="lg" />
-              <VisitCenterButton location="hero" size="lg" />
             </div>
 
             <dl className="mt-7 flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap sm:gap-6">

@@ -4,11 +4,11 @@ import type { Testimonial } from '@/types/content';
  * ============================================================================
  * QUAN TRONG VE DAO DUC NOI DUNG - DOC TRUOC KHI SUA
  * ============================================================================
- * Toan bo muc duoi day co `isPlaceholder: true`: day la TRAI NGHIEM MINH HOA
+ * Toan bo muc duoi day co `isPlaceholder: true`: day la TINH HUONG MINH HOA
  * dung tren cac tinh huong hoc lai xe thuong gap, KHONG phai phan hoi cua
  * mot hoc vien co that.
  *
- * Giao dien tu dong bao ve dieu do: moi the deo nhan "Minh hoa trai nghiem"
+ * Giao dien tu dong bao ve dieu do: moi the deo nhan "Tinh huong minh hoa"
  * va dau khoi co mot doan noi ro. Nhan nay hien CA O PRODUCTION.
  *
  * CACH THAY BANG CAM NHAN THAT:
@@ -16,8 +16,9 @@ import type { Testimonial } from '@/types/content';
  *      viet tat.
  *   2. Chep dung loi ho noi. KHONG sua theo huong phong dai, khong ghep loi
  *      cua nhieu nguoi thanh mot.
- *   3. Doi `isPlaceholder: false` va dat `period` thanh thoi gian hoc that
- *      (vi du 'Tháng 6/2026') -> nhan tu bien mat, dong thoi gian hien ra.
+ *   3. Dat `name` (va `avatarInitial` neu muon co avatar), doi `isPlaceholder:
+ *      false` va dat `period` thanh thoi gian hoc that (vi du 'Tháng 6/2026')
+ *      -> nhan tu bien mat, ten va thoi gian hien ra thay cho nhan tinh huong.
  *   4. Xoa cac muc minh hoa con lai. Khong de lan lon that/minh hoa trong
  *      cung mot danh sach.
  *
@@ -29,68 +30,88 @@ import type { Testimonial } from '@/types/content';
  */
 
 /** Nhan hien tren the va dung de doi chieu trong test. */
-export const ILLUSTRATIVE_LABEL = 'Minh họa trải nghiệm';
+export const ILLUSTRATIVE_LABEL = 'Tình huống minh họa';
 
 export const testimonials: Testimonial[] = [
   {
     id: 'tm-01',
-    name: 'Người mới bắt đầu học lái',
-    courseSlug: 'hang-b-so-tu-dong',
+    situation: 'Người mới bắt đầu',
     period: ILLUSTRATIVE_LABEL,
     quote:
-      'Lúc đầu mình khá run vì chưa từng cầm vô lăng. Thầy không cho ra đường ngay mà hướng dẫn làm quen xe, tập chân ga – chân phanh và cách quan sát trước. Sau vài buổi mình thấy tự tin hơn rất nhiều, đặc biệt là khi xử lý những tình huống cơ bản.',
+      'Trước giờ mình chưa từng lái xe nên lúc mới học cũng hơi run. Thầy cho làm quen từng bước, từ cách chỉnh ghế, vô-lăng rồi mới bắt đầu chạy. Tập vài buổi thấy tự tin hơn hẳn.',
     isPlaceholder: true,
-    avatarInitial: 'A',
   },
   {
     id: 'tm-02',
-    name: 'Học số sàn từ đầu',
-    courseSlug: 'hang-b-so-san',
+    situation: 'Luyện sa hình',
     period: ILLUSTRATIVE_LABEL,
     quote:
-      'Phần khó nhất với mình là lên dốc và nhả côn. Thầy giải thích rất kỹ từng bước, cho tập lại nhiều lần và sửa đúng lỗi mình đang gặp. Mình thích cách dạy có giải thích lý do chứ không chỉ bảo làm theo.',
+      'Mình tưởng phần sa hình khó lắm, nhất là mấy đoạn phải canh xe. Thầy chỉ cho từng mốc cần nhìn và cho chạy lại nhiều lần nên dần dần mình nhớ được cách xử lý.',
     isPlaceholder: true,
-    avatarInitial: 'B',
   },
   {
     id: 'tm-03',
-    name: 'Bổ túc tay lái',
-    courseSlug: 'bo-tuc-tay-lai',
+    situation: 'Bổ túc tay lái',
     period: ILLUSTRATIVE_LABEL,
     quote:
-      'Mình đã có bằng nhưng lâu không lái nên khá ngại. Thầy cho chạy đúng những tuyến đường mình thường đi, hướng dẫn cách canh khoảng cách, quay đầu và vào hầm gửi xe. Sau khóa bổ túc mình đã tự lái đi làm hằng ngày.',
+      'Mình có bằng rồi nhưng bỏ xe khá lâu nên lúc ngồi lại cũng không tự tin lắm. Học lại một thời gian thấy tay lái ổn hơn, nhất là mấy tình huống trong đường đông.',
     isPlaceholder: true,
-    avatarInitial: 'C',
   },
   {
     id: 'tm-04',
-    name: 'Luyện sa hình',
-    courseSlug: 'luyen-sa-hinh',
+    situation: 'Người đi làm',
     period: ILLUSTRATIVE_LABEL,
     quote:
-      'Mình từng làm sai bài ghép ngang nên rất mất tự tin. Thầy chỉ ra đúng chỗ sai, hướng dẫn cách canh điểm và cho tập đến khi làm được ổn định. Điều mình thích là thầy nói thẳng nhưng rất dễ hiểu.',
+      'Mình đi làm cả ngày nên ban đầu cũng lo không sắp xếp được lịch học. Trao đổi trước với thầy thì hai bên thống nhất được thời gian phù hợp, đỡ phải nghỉ làm nhiều.',
     isPlaceholder: true,
-    avatarInitial: 'D',
   },
   {
     id: 'tm-05',
-    name: 'Học C1 phục vụ công việc',
-    courseSlug: 'hang-c1',
+    situation: 'Hạng B số tự động',
     period: ILLUSTRATIVE_LABEL,
     quote:
-      'Mình cần học C1 để phục vụ công việc nên khá quan tâm phần thực hành. Thầy hướng dẫn kỹ cách điều khiển xe dài, lùi xe và xử lý trong không gian hẹp. Hồ sơ và lịch học cũng được hướng dẫn rõ ràng nên mình không bị lúng túng.',
+      'Mình chọn học số tự động vì chủ yếu cần xe để đi làm và đi lại hằng ngày. Thầy hướng dẫn khá kỹ phần quan sát và xử lý tình huống chứ không chỉ tập cho biết chạy xe.',
     isPlaceholder: true,
-    avatarInitial: 'E',
   },
   {
     id: 'tm-06',
-    name: 'Người đi làm bận rộn',
-    courseSlug: 'hang-b-so-tu-dong',
+    situation: 'Hạng B số sàn',
     period: ILLUSTRATIVE_LABEL,
     quote:
-      'Mình chỉ rảnh buổi tối và cuối tuần. Thầy sắp xếp lịch khá linh hoạt nên mình vẫn theo được khóa học mà không phải nghỉ làm nhiều. Mỗi buổi học đều có mục tiêu rõ ràng nên cảm giác tiến bộ khá nhanh.',
+      'Phần mình ngại nhất là côn với số, mấy buổi đầu xe hay tắt máy. Thầy cho tập riêng từng thao tác rồi kết hợp lại, tập nhiều nên sau đó đỡ bị cuống hơn.',
     isPlaceholder: true,
-    avatarInitial: 'F',
+  },
+  {
+    id: 'tm-07',
+    situation: 'Thực hành đường phố',
+    period: ILLUSTRATIVE_LABEL,
+    quote:
+      'Mình chạy trong sân thì còn ổn chứ ra đường đông là khá căng. Thầy cho tập những đoạn đường phù hợp trước rồi mới tăng dần, chủ yếu nhắc mình quan sát và xử lý bình tĩnh.',
+    isPlaceholder: true,
+  },
+  {
+    id: 'tm-08',
+    situation: 'Học để phục vụ công việc',
+    period: ILLUSTRATIVE_LABEL,
+    quote:
+      'Mình học bằng lái chủ yếu để phục vụ công việc nên quan trọng nhất là sau này phải tự tin lái được. Thầy có hướng dẫn thêm những tình huống thực tế chứ không chỉ tập đúng bài thi.',
+    isPlaceholder: true,
+  },
+  {
+    id: 'tm-09',
+    situation: 'Học bài bản',
+    period: ILLUSTRATIVE_LABEL,
+    quote:
+      'Mình không đặt nặng chuyện học thật nhanh, chủ yếu muốn hiểu cách lái và xử lý cho đúng. Thầy thường để mình tự làm rồi mới sửa những chỗ chưa ổn nên cũng dễ nhớ hơn.',
+    isPlaceholder: true,
+  },
+  {
+    id: 'tm-10',
+    situation: 'Ôn thi sát hạch',
+    period: ILLUSTRATIVE_LABEL,
+    quote:
+      'Gần tới ngày thi mình khá áp lực vì sợ vào bài lại quên thao tác. Thầy cho ôn lại từng bài, nhất là những chỗ mình hay mắc lỗi. Nhờ vậy lúc vào sân mình bình tĩnh hơn.',
+    isPlaceholder: true,
   },
 ];
 
@@ -101,7 +122,7 @@ export const testimonials: Testimonial[] = [
  * phu dinh "khong phai that" - nguoi doc hieu nhanh hon va it thay bi lap lo.
  */
 export const testimonialsDisclosure =
-  'Những chia sẻ dưới đây là trải nghiệm minh họa dựa trên các tình huống học lái xe thường gặp. Mục đích là giúp anh/chị hình dung quá trình học và phương pháp hướng dẫn. Khi có phản hồi thực tế từ học viên được đồng ý chia sẻ, chúng tôi sẽ cập nhật thay thế các nội dung minh họa này.';
+  'Lưu ý: Các nội dung dưới đây là tình huống minh họa dựa trên những băn khoăn thường gặp khi học lái xe, không phải lời nhận xét của một học viên cụ thể. Khi có phản hồi thực tế được học viên đồng ý chia sẻ, nội dung sẽ được cập nhật thay thế.';
 
 /**
  * Nhung dieu nguoi hoc thuong quan tam, dat cuoi trang cam nhan.
@@ -116,12 +137,6 @@ export const commonConcerns = [
   'Không bị thúc ép.',
   'Có người sửa lỗi cụ thể trong quá trình thực hành.',
 ];
-
-/** Loc cam nhan theo khoa hoc. `all` tra ve toan bo. */
-export function getTestimonialsByCourse(courseSlug: string): Testimonial[] {
-  if (courseSlug === 'all') return testimonials;
-  return testimonials.filter((item) => item.courseSlug === courseSlug);
-}
 
 /** Chi lay cam nhan THAT (da xin phep hoc vien). */
 export function getRealTestimonials(): Testimonial[] {

@@ -10,10 +10,10 @@
 | Hero trang chủ | `public/images/hero/thay-huong-dan-cabin.jpg`       | Thầy chỉ màn hình cabin mô phỏng cho học viên          |
 | Chân dung thầy | `public/images/about/chan-dung-thay.jpg`            | Thầy tại phòng làm việc                                |
 | Album          | `public/images/gallery/thay-huong-dan-hoc-vien.jpg` | Thầy cầm vô lăng làm mẫu                               |
-| Album          | `public/images/gallery/cabin-mo-phong.jpg`          | Học viên tập trên cabin mô phỏng                       |
 | Album          | `public/images/gallery/xe-tap-lai.jpg`              | Dàn xe tải tập lái                                     |
 | Album          | `public/images/gallery/san-tap.jpg`                 | Xe tập lái đỗ trong ô kẻ vạch tại sân tập              |
-| **Video**      | `public/videos/buoi-hoc-thuc-te.mp4`                | Buổi học thực tế, 37 giây — trang chủ và `/gioi-thieu` |
+| **Video**      | `public/videos/buoi-hoc-thuc-te.mp4`                | Buổi học thực tế, 25 giây — trang chủ và `/gioi-thieu` |
+| **Video**      | `public/videos/thuc-hanh-san-tap.mp4`               | Thực hành tại sân tập, 46 giây — trang chủ và `/gioi-thieu` |
 | Open Graph     | `public/images/og/og-default.jpg`                   | Ảnh hiện khi chia sẻ link                              |
 
 **Còn là hình minh họa SVG** (sinh bởi
@@ -255,15 +255,16 @@ trắng chiếm gần hết khung, đuôi lưỡi liềm ở góc dưới bên t
 
 ### 3.1 Video buổi học — ✅ đã có
 
-`src/content/videos.ts` đang có 1 video: buổi dạy thực tế, 37 giây, quay dọc
-480×854. Hiển thị ở trang chủ và `/gioi-thieu`.
+`src/content/videos.ts` đang có 2 video: buổi dạy thực tế (25 giây, quay dọc
+480×854) và thực hành tại sân tập (46 giây, quay ngang 640×362). Cả hai hiển
+thị ở trang chủ và `/gioi-thieu`.
 
 Thêm video mới: bỏ file vào `assets/videos/`, khai báo một mục trong mảng `JOBS`
 của [`scripts/process-video.mjs`](../scripts/process-video.mjs), chạy
 `node scripts/process-video.mjs`, rồi thêm một mục vào `src/content/videos.ts`.
 
 Script tự đóng gói lại thành MP4 chuẩn web và trích ảnh poster. Ảnh poster là
-bắt buộc: trang chỉ tải poster (~54 KB) chứ **không** tải video (~5,7 MB) cho
+bắt buộc: trang chỉ tải poster (~51 KB) chứ **không** tải video (~2,9 MB) cho
 tới khi người dùng bấm play — nếu thiếu poster, người dùng chỉ thấy một ô đen.
 
 ### 3.2 Video cảm nhận học viên — chưa có

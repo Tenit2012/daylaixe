@@ -96,6 +96,15 @@ export const post: BlogPost = {
       text: 'Điểm mà học viên hay làm sai là bước ba và bốn: họ nhả côn tới điểm bám rồi tiếp tục nhả thêm trong lúc nhả phanh. Hãy tách bạch — chân côn đứng yên hoàn toàn trong lúc bạn thao tác phanh.',
     },
     {
+      type: 'image',
+      src: '/images/blog/so-do-khoi-hanh-doc.svg',
+      alt: 'Sơ đồ minh họa xe dừng tại vạch trên dốc với hai khả năng khi khởi hành: trôi xuống nếu nhả phanh sớm, đi lên nếu đúng điểm bám côn',
+      width: 800,
+      height: 480,
+      caption:
+        'Cùng một điểm dừng nhưng ra hai kết quả khác nhau — khác biệt nằm ở thời điểm nhả phanh so với điểm bám côn, không phải ở sức mạnh chân ga.',
+    },
+    {
       type: 'heading',
       level: 2,
       text: 'Bài tập tách động tác',

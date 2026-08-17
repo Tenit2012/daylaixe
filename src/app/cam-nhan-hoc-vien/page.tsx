@@ -17,9 +17,9 @@ import { ContactSection } from '@/components/sections/contact-section';
 import { JsonLd } from '@/components/ui/json-ld';
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Cảm nhận học viên',
+  title: 'Trải nghiệm học lái xe',
   description:
-    'Chia sẻ của học viên về quá trình học lái xe, từ buổi đầu làm quen tay lái đến ngày thi sát hạch.',
+    'Những tình huống thường gặp trong quá trình học lái xe và cách hướng dẫn xử lý, từ buổi đầu làm quen tay lái đến ngày thi sát hạch.',
   path: '/cam-nhan-hoc-vien',
 });
 
@@ -34,7 +34,7 @@ export const metadata: Metadata = buildPageMetadata({
 export default function TestimonialsPage() {
   const crumbs = [
     { name: 'Trang chủ', path: '/' },
-    { name: 'Cảm nhận học viên', path: '/cam-nhan-hoc-vien' },
+    { name: 'Trải nghiệm học lái xe', path: '/cam-nhan-hoc-vien' },
   ];
 
   return (
@@ -49,9 +49,9 @@ export default function TestimonialsPage() {
         <SectionHeading
           id="testimonials-heading"
           as="h1"
-          eyebrow="Cảm nhận"
-          title="Cảm nhận học viên"
-          description="Những chia sẻ về quá trình học. Bạn có thể lọc theo khóa học để xem cảm nhận sát với trường hợp của mình."
+          eyebrow="Trải nghiệm"
+          title="Trải nghiệm học lái xe"
+          description="Những tình huống thường gặp trong quá trình học và cách thầy hướng dẫn xử lý. Bạn có thể lọc theo tình huống để xem nội dung phù hợp với bạn."
         />
 
         {hasPlaceholderTestimonials() ? (

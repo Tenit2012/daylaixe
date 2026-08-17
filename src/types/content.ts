@@ -80,11 +80,13 @@ export interface Faq {
  */
 export interface Testimonial {
   id: string;
-  /** Ten hien thi. Voi muc minh hoa: dat theo tinh huong, khong dat ten nguoi. */
-  name: string;
-  /** Khoa hoc lien quan - dung slug cua Course de loc duoc. */
-  courseSlug: string;
-  /** Nam/thang hoc, dang chuoi tu do. */
+  /**
+   * Nhan phan loai tinh huong/doi tuong - dung de hien thi tren the va de loc.
+   * Chuoi tu do, KHONG bat buoc khop ten khoa hoc that (vi du 'Nguoi moi bat
+   * dau', 'Nguoi di lam' khong phai san pham khoa hoc nao ca).
+   */
+  situation: string;
+  /** Nam/thang hoc, dang chuoi tu do. Chi co y nghia khi la cam nhan THAT. */
   period: string;
   quote: string;
   /**
@@ -92,8 +94,14 @@ export interface Testimonial {
    * bo cuc, KHONG phai phan hoi cua hoc vien that.
    */
   isPlaceholder: boolean;
-  /** Anh dai dien - dung avatar chu cai khi khong co anh that. */
-  avatarInitial: string;
+  /**
+   * Ten hoc vien - CHI dien khi day la cam nhan THAT da duoc hoc vien dong y.
+   * Bo trong (undefined) voi noi dung minh hoa - khong dat ten nguoi cho tinh
+   * huong hu cau.
+   */
+  name?: string;
+  /** Anh dai dien chu cai - chi dung kem `name`, cho cam nhan that. */
+  avatarInitial?: string;
 }
 
 export interface GalleryItem {
@@ -112,7 +120,8 @@ export type GalleryCategory =
   | 'sa-hinh'
   | 'duong-truong'
   | 'ly-thuyet'
-  | 'huong-dan';
+  | 'huong-dan'
+  | 'co-so';
 
 export interface ImageAsset {
   src: string;
@@ -157,7 +166,22 @@ export type BlockContent =
       title: string;
       text: string;
     }
-  | { type: 'quote'; text: string };
+  | { type: 'quote'; text: string }
+  | {
+      /**
+       * Anh hoac so do minh hoa chen giua noi dung bai viet - vi du so do
+       * duong di cua xe trong mot bai sa hinh cu the. Khac voi `coverImage`
+       * cua ca bai (chi mot anh dau trang), block nay dat duoc o BAT KY vi
+       * tri nao trong `content` de minh hoa dung doan dang noi toi.
+       */
+      type: 'image';
+      src: string;
+      alt: string;
+      width: number;
+      height: number;
+      /** Chu thich hien duoi anh - vi du ghi ro day la so do minh hoa. */
+      caption?: string;
+    };
 
 export interface BlogPost {
   slug: string;

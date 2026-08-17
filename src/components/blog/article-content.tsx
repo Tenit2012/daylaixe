@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Info, Lightbulb, TriangleAlert } from 'lucide-react';
 import type { BlockContent } from '@/types/content';
 
@@ -121,6 +122,28 @@ export function ArticleContent({ content }: ArticleContentProps) {
               >
                 {block.text}
               </blockquote>
+            );
+
+          case 'image':
+            return (
+              <figure key={index} className="!my-8">
+                <div className="overflow-hidden rounded-card border border-line bg-surface-muted">
+                  <Image
+                    src={block.src}
+                    alt={block.alt}
+                    width={block.width}
+                    height={block.height}
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, 42rem"
+                    className="h-auto w-full"
+                  />
+                </div>
+                {block.caption ? (
+                  <figcaption className="mt-2.5 text-center text-sm text-ink-subtle">
+                    {block.caption}
+                  </figcaption>
+                ) : null}
+              </figure>
             );
 
           default:

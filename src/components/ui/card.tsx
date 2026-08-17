@@ -64,8 +64,8 @@ export function Badge({ children, tone = 'neutral', className }: BadgeProps) {
  * de nguoi xem khong hieu nham day la phan hoi cua hoc vien that.
  *
  * `label` cho phep doi chu cho hop ngu canh - vi du khoi cam nhan dung
- * "Minh hoa trai nghiem" vi noi dung o do mo ta tinh huong hoc thuong gap,
- * chinh xac hon la goi chung chung "Noi dung mau". Bo trong thi giu mac dinh.
+ * "Tinh huong minh hoa" vi noi dung o do la tinh huong minh hoa, chinh xac
+ * hon la goi chung chung "Noi dung mau". Bo trong thi giu mac dinh.
  */
 export function PlaceholderBadge({
   className,

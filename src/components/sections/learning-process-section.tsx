@@ -7,7 +7,7 @@ interface LearningProcessSectionProps {
   tone?: 'default' | 'muted';
   /**
    * Danh sach buoc. Mac dinh la lo trinh 9 buoc day du.
-   * Trang chu truyen vao ban rut gon 6 buoc (`registrationProcess`) de nguoi
+   * Trang chu truyen vao ban rut gon 7 buoc (`registrationProcess`) de nguoi
    * doc nam duoc duong di trong mot lan luot man hinh.
    */
   steps?: LearningStep[];

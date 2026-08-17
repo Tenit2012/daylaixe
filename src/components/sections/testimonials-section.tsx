@@ -31,9 +31,9 @@ export function TestimonialsSection({
     <Section id="cam-nhan" tone={tone} ariaLabelledBy="cam-nhan-heading">
       <SectionHeading
         id="cam-nhan-heading"
-        eyebrow="Cảm nhận"
-        title="Cảm nhận học viên"
-        description="Những chia sẻ về quá trình học, viết lại bằng đúng giọng của người học."
+        eyebrow="Trải nghiệm"
+        title="Trải nghiệm học lái xe"
+        description="Những tình huống thường gặp trong quá trình học và cách thầy hướng dẫn xử lý."
       />
 
       {hasPlaceholderTestimonials() ? (
@@ -59,7 +59,7 @@ export function TestimonialsSection({
           href="/cam-nhan-hoc-vien"
           className={buttonClasses('outline', 'md')}
         >
-          Xem tất cả cảm nhận
+          Xem tất cả trải nghiệm
         </Link>
       </div>
     </Section>

@@ -31,20 +31,6 @@ export const galleryItems: GalleryItem[] = [
     isPlaceholder: false,
   },
   {
-    id: 'g-02',
-    title: 'Cabin học lái mô phỏng',
-    description:
-      'Học viên tập làm quen vô lăng, chân côn và chân ga trên cabin mô phỏng trước khi ra xe thật.',
-    category: 'cabin-mo-phong',
-    image: {
-      src: '/images/center/cabin-mo-phong.webp',
-      alt: 'Học viên ngồi trên cabin học lái mô phỏng với ba màn hình, bên cạnh là bảng biển báo giao thông',
-      width: 1200,
-      height: 674,
-    },
-    isPlaceholder: false,
-  },
-  {
     id: 'g-03',
     title: 'Xe tập lái',
     description:
@@ -74,45 +60,30 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'g-05',
-    title: 'Buổi học sa hình',
+    title: 'Cổng trung tâm',
     description:
-      'Luyện từng bài trong sa hình: ghép dọc, ghép ngang, đường vòng quanh co.',
-    category: 'sa-hinh',
+      'Cổng Trung tâm Dạy nghề, Đào tạo và Sát hạch Lái xe — Trường Đại học An ninh Nhân dân, nơi diễn ra các buổi học và sát hạch.',
+    category: 'co-so',
     image: {
-      src: '/images/gallery/sa-hinh.svg',
-      alt: 'Hình minh họa sơ đồ bài thi sa hình',
-      width: 800,
-      height: 600,
+      src: '/images/center/cong-truong.webp',
+      alt: 'Cổng Trung tâm Dạy nghề, Đào tạo và Sát hạch Lái xe - Trường Đại học An ninh Nhân dân, có đội ngũ đứng chụp ảnh phía trước',
+      width: 1200,
+      height: 561,
     },
-    isPlaceholder: true,
+    isPlaceholder: false,
   },
   {
     id: 'g-06',
-    title: 'Buổi học đường trường',
-    description:
-      'Học viên chạy thực tế trên đường, tập quan sát và giữ khoảng cách an toàn.',
-    category: 'duong-truong',
+    title: 'Thầy Tùng',
+    description: 'Thầy Tùng mặc đồng phục trung tâm, chụp cùng xe tại nơi làm việc.',
+    category: 'huong-dan',
     image: {
-      src: '/images/gallery/duong-truong.svg',
-      alt: 'Hình minh họa xe chạy trên đường trường',
-      width: 800,
-      height: 600,
+      src: '/images/teacher/thay-tung-ben-xe.webp',
+      alt: 'Thầy dạy lái xe mặc đồng phục xanh đứng cạnh xe ô tô, tay đặt trên nắp capo',
+      width: 598,
+      height: 449,
     },
-    isPlaceholder: true,
-  },
-  {
-    id: 'g-07',
-    title: 'Buổi học lý thuyết',
-    description:
-      'Ôn bộ câu hỏi lý thuyết và phân tích các tình huống dễ nhầm lẫn.',
-    category: 'ly-thuyet',
-    image: {
-      src: '/images/gallery/ly-thuyet.svg',
-      alt: 'Hình minh họa buổi học lý thuyết với bảng và tài liệu',
-      width: 800,
-      height: 600,
-    },
-    isPlaceholder: true,
+    isPlaceholder: false,
   },
 ];
 
@@ -122,6 +93,7 @@ export const galleryCategories: Array<{
 }> = [
   { value: 'all', label: 'Tất cả' },
   { value: 'huong-dan', label: 'Hướng dẫn' },
+  { value: 'co-so', label: 'Cơ sở' },
   { value: 'cabin-mo-phong', label: 'Cabin mô phỏng' },
   { value: 'xe-tap-lai', label: 'Xe tập lái' },
   { value: 'san-tap', label: 'Sân tập' },

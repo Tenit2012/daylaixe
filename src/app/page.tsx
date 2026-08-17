@@ -59,7 +59,7 @@ export default function HomePage() {
         id="quy-trinh"
         eyebrow="Quy trình"
         title="Đăng ký và học như thế nào"
-        description="Sáu bước từ lúc bạn gọi cho thầy đến ngày thi sát hạch. Bạn luôn biết mình đang ở bước nào."
+        description="Bảy bước từ lúc bạn gọi cho thầy đến ngày thi sát hạch. Bạn luôn biết mình đang ở bước nào."
       />
       <CoursesSection />
       <WhyChooseSection />

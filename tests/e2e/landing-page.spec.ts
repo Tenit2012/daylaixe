@@ -12,7 +12,7 @@ import { expect, test } from '@playwright/test';
  *   - Khong con tu ngu kieu "co tuyen sinh".
  */
 
-const PHONE = '0967569733';
+const PHONE = '0971397882';
 
 test.describe('hero va CTA', () => {
   test('hero neu ro vi tri cong tac va noi hoc', async ({ page }) => {

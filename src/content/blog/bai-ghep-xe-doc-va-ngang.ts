@@ -80,6 +80,15 @@ export const post: BlogPost = {
       ],
     },
     {
+      type: 'image',
+      src: '/images/blog/so-do-ghep-doc.svg',
+      alt: 'Sơ đồ minh họa bài ghép xe dọc: vị trí chuẩn bị, điểm đánh lái và vị trí hoàn tất',
+      width: 800,
+      height: 520,
+      caption:
+        'Sơ đồ nguyên lý ba bước trên — không thay thế cho điểm mốc thật bạn xác định cùng giáo viên trên chính chiếc xe đang tập.',
+    },
+    {
       type: 'paragraph',
       text: 'Toàn bộ bài này nên đi ở tốc độ chậm nhất mà xe còn bò được. Với xe số sàn, đó thường là nhả côn tới điểm bám rồi giữ nguyên, không thêm ga. Xe càng chậm, bạn càng nhiều thời gian đọc gương và sửa.',
     },
@@ -103,6 +112,24 @@ export const post: BlogPost = {
         'Khi đuôi đã vào, trả lái ngược lại để kéo đầu xe theo. Đây là bước nhiều người quên nên đầu xe còn nằm ngoài.',
         'Chỉnh thẳng và lùi nốt tới vị trí dừng.',
       ],
+    },
+    {
+      type: 'image',
+      src: '/images/blog/so-do-ghep-ngang.svg',
+      alt: 'Sơ đồ minh họa bài ghép xe ngang: vị trí chuẩn bị, điểm đánh lái và vị trí hoàn tất',
+      width: 800,
+      height: 480,
+      caption:
+        'Ghép ngang có thêm một góc chếch giữa vị trí chuẩn bị và chuồng — đây là chỗ nhiều học viên đánh lái sớm quá.',
+    },
+    {
+      type: 'image',
+      src: '/images/center/san-tap-xe-tap-lai.webp',
+      alt: 'Xe tập lái màu bạc gắn biển TẬP LÁI đỗ trong ô kẻ vạch vàng tại sân tập',
+      width: 960,
+      height: 720,
+      caption:
+        'Ảnh chụp thật tại sân tập của trung tâm — nơi học viên luyện bài ghép xe trước khi ra sa hình chính thức.',
     },
     {
       type: 'heading',
