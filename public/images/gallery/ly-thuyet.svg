@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Minh họa buổi học lý thuyết">
+  <title>Minh họa buổi học lý thuyết</title>
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#DEE9F7"/>
+      <stop offset="100%" stop-color="#F7F9FC"/>
+    </linearGradient>
+    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#182F58"/>
+      <stop offset="100%" stop-color="#112242"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="#F7F9FC"/>
+  <rect x="120" y="70" width="560" height="300" rx="10" fill="url(#navyGrad)"/>
+  <g fill="#FFFFFF" opacity="0.85">
+    <rect x="160" y="120" width="330" height="16" rx="8"/>
+    <rect x="160" y="160" width="440" height="12" rx="6"/>
+    <rect x="160" y="192" width="400" height="12" rx="6"/>
+    <rect x="160" y="224" width="300" height="12" rx="6"/>
+  </g>
+  <g fill="#FCB367">
+    <circle cx="560" cy="300" r="34"/>
+  </g>
+  <g>
+    <circle cx="230" cy="433.2" r="31.2" fill="#3C6CB2"/>
+    <path d="M 176.96 529.92 a 53.04 59.279999999999994 0 0 1 106.08 0 Z" fill="#3C6CB2"/>
+  </g>
+  <g>
+    <circle cx="380" cy="433.2" r="31.2" fill="#3C6CB2"/>
+    <path d="M 326.96 529.92 a 53.04 59.279999999999994 0 0 1 106.08 0 Z" fill="#3C6CB2"/>
+  </g>
+  <g>
+    <circle cx="530" cy="433.2" r="31.2" fill="#3C6CB2"/>
+    <path d="M 476.96 529.92 a 53.04 59.279999999999994 0 0 1 106.08 0 Z" fill="#3C6CB2"/>
+  </g>
+  <text x="400" y="560" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" font-weight="600" fill="#182F58">Buổi học lý thuyết</text>
+</svg>

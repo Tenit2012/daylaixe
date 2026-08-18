@@ -137,32 +137,13 @@ ${label(300, 651, 'Ảnh chân dung — cần bổ sung', 19, palette.navyLight)
   ),
 });
 
-// --- Khoa hoc -------------------------------------------------------------
-const courseImages = [
-  ['hang-b-so-tu-dong', 'Hạng B — Số tự động', palette.navyLight],
-  ['hang-b-so-san', 'Hạng B — Số sàn', palette.navy],
-  ['hang-c1', 'Hạng C1', palette.navyDeep],
-  ['bo-tuc-tay-lai', 'Bổ túc tay lái', palette.green],
-  ['luyen-sa-hinh', 'Luyện sa hình', palette.orange],
-];
-
-for (const [slug, title, accent] of courseImages) {
-  images.push({
-    path: `images/courses/${slug}.svg`,
-    content: svgWrapper(
-      800,
-      500,
-      `  <rect width="800" height="500" fill="url(#skyGrad)"/>
-  <rect x="0" y="380" width="800" height="120" fill="${palette.paper}"/>
-  <rect x="0" y="380" width="800" height="5" fill="${palette.line}"/>
-  <rect x="0" y="0" width="10" height="500" fill="${accent}"/>
-${carShape(220, 210, 400, accent, palette.navyLight)}
-${trainingSign(360, 200, 76)}
-${label(400, 448, title, 26, palette.navy)}`,
-      `Minh họa khóa học ${title}`,
-    ),
-  });
-}
+/*
+ * --- Khoa hoc -------------------------------------------------------------
+ * Da BO khoi day (19/08/2026): ca 5 khoa hoc deu dung ANH CHUP THAT trong
+ * `public/images/courses/*.webp`, sinh boi `scripts/process-photos.mjs`.
+ * Neu can lai anh minh hoa cho mot khoa moi chua co anh that, xem lich su
+ * git cua file nay de lay lai doan sinh SVG.
+ */
 
 // --- Gallery --------------------------------------------------------------
 images.push({

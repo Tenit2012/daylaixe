@@ -73,15 +73,76 @@ export const galleryItems: GalleryItem[] = [
     isPlaceholder: false,
   },
   {
-    id: 'g-06',
-    title: 'Thầy Tùng',
-    description: 'Thầy Tùng mặc đồng phục trung tâm, chụp cùng xe tại nơi làm việc.',
+    id: 'g-07',
+    title: 'Xe tập lái hạng B',
+    description:
+      'Xe con tập lái đỗ trong nhà xe của trung tâm, mỗi xe có số hiệu riêng và mang biển "TẬP LÁI".',
+    category: 'xe-tap-lai',
+    image: {
+      src: '/images/center/xe-tap-lai-hang-b.webp',
+      alt: 'Xe con tập lái màu vàng cát gắn biển TẬP LÁI, đỗ trong nhà xe có bảng đánh số xe',
+      width: 592,
+      height: 444,
+    },
+    isPlaceholder: false,
+  },
+  /*
+   * `g-11` va `g-10` la CUNG MOT chiec xe (bien 51F-292.97) chup hai goc.
+   * Co y xep xen ke - de canh nhau tren luoi 3 cot trong nhu dang bi lap anh.
+   */
+  {
+    id: 'g-11',
+    title: 'Đầu xe gắn biển TẬP LÁI',
+    description:
+      'Mỗi xe dùng cho buổi thực hành đều gắn biển "TẬP LÁI" phía trước theo đúng quy định.',
+    category: 'xe-tap-lai',
+    image: {
+      src: '/images/center/xe-tap-lai-chinh-dien.webp',
+      alt: 'Đầu xe con tập lái màu trắng nhìn chính diện, gắn biển TẬP LÁI màu xanh cạnh biển số',
+      width: 592,
+      height: 444,
+    },
+    isPlaceholder: false,
+  },
+  {
+    id: 'g-09',
+    title: 'Trong buổi thực hành',
+    description:
+      'Học viên ngồi ghế lái trên xe số tự động trong giờ thực hành, tập làm quen vô lăng và các thao tác cơ bản.',
     category: 'huong-dan',
     image: {
-      src: '/images/teacher/thay-tung-ben-xe.webp',
-      alt: 'Thầy dạy lái xe mặc đồng phục xanh đứng cạnh xe ô tô, tay đặt trên nắp capo',
-      width: 598,
-      height: 449,
+      src: '/images/center/trong-buoi-thuc-hanh.webp',
+      alt: 'Học viên ngồi ghế lái, tay đặt cạnh vô lăng xe số tự động trong buổi thực hành',
+      width: 789,
+      height: 592,
+    },
+    isPlaceholder: false,
+  },
+  {
+    id: 'g-10',
+    title: 'Xe tập lái tại sân',
+    description:
+      'Xe con tập lái đỗ tại khu vực sân của trung tâm, nơi học viên nhận xe trước mỗi buổi thực hành.',
+    category: 'san-tap',
+    image: {
+      src: '/images/center/xe-tap-lai-goc-cheo.webp',
+      alt: 'Xe con tập lái màu trắng gắn biển TẬP LÁI đỗ cạnh thanh chắn tại sân trung tâm',
+      width: 789,
+      height: 592,
+    },
+    isPlaceholder: false,
+  },
+  {
+    id: 'g-08',
+    title: 'Xe tải tập lái hạng C1',
+    description:
+      'Xe tải dùng cho các buổi thực hành hạng C1, mang biển "TẬP LÁI" theo quy định.',
+    category: 'xe-tap-lai',
+    image: {
+      src: '/images/center/xe-tai-tap-lai-c1.webp',
+      alt: 'Xe tải thùng màu trắng gắn biển TẬP LÁI đỗ tại sân tập của trung tâm',
+      width: 789,
+      height: 592,
     },
     isPlaceholder: false,
   },

@@ -46,6 +46,22 @@ const JOBS = [
     posterAtSecond: 20,
     note: 'Thuc hanh tai san tap - video da tung dang YouTube, tai lai de tu luu',
   },
+  {
+    source: 'hoc-vien-lai-xe-tai.mov',
+    video: 'public/videos/hoc-vien-lai-xe-tai.mp4',
+    poster: 'public/images/center/hoc-vien-lai-xe-tai-poster.jpg',
+    /** Giay thu 3: hoc vien dang cam vo lang, khung hinh ro va tu nhien. */
+    posterAtSecond: 3,
+    note: 'Hoc vien tap lai xe tai - CO MAT HOC VIEN, chu website da xac nhan xin phep',
+  },
+  {
+    source: 'thuc-hanh-xe-tai-trong-san.mov',
+    video: 'public/videos/thuc-hanh-xe-tai-trong-san.mp4',
+    poster: 'public/images/center/thuc-hanh-xe-tai-trong-san-poster.jpg',
+    /** Giay thu 60: thay ca tay cam vo lang lan khung canh san tap phia truoc. */
+    posterAtSecond: 60,
+    note: 'Thuc hanh xe tai trong san - chi thay tay, khong ro mat hoc vien',
+  },
 ];
 
 /** Chay ffmpeg, chi in loi khi that bai. */

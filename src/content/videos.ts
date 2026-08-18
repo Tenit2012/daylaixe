@@ -37,4 +37,32 @@ export const lessonVideos: VideoAsset[] = [
     },
     durationSeconds: 46,
   },
+  {
+    id: 'v-03',
+    title: 'Học viên tập lái xe tải',
+    description:
+      'Học viên cầm lái xe tải trong buổi thực hành hạng C1, quay trong điều kiện trời mưa.',
+    src: '/videos/hoc-vien-lai-xe-tai.mp4',
+    poster: {
+      src: '/images/center/hoc-vien-lai-xe-tai-poster.jpg',
+      alt: 'Học viên ngồi ghế lái xe tải, hai tay đặt trên vô lăng, bên ngoài trời mưa',
+      width: 480,
+      height: 848,
+    },
+    durationSeconds: 38,
+  },
+  {
+    id: 'v-04',
+    title: 'Thực hành xe tải trong sân',
+    description:
+      'Góc nhìn từ ghế lái khi học viên điều khiển xe tải chạy trong sân tập của trung tâm.',
+    src: '/videos/thuc-hanh-xe-tai-trong-san.mp4',
+    poster: {
+      src: '/images/center/thuc-hanh-xe-tai-trong-san-poster.jpg',
+      alt: 'Tay học viên cầm vô lăng xe tải, phía trước là sân tập của trung tâm',
+      width: 480,
+      height: 848,
+    },
+    durationSeconds: 69,
+  },
 ];

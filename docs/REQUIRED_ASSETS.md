@@ -14,11 +14,15 @@
 | Album          | `public/images/gallery/san-tap.jpg`                 | Xe tập lái đỗ trong ô kẻ vạch tại sân tập              |
 | **Video**      | `public/videos/buoi-hoc-thuc-te.mp4`                | Buổi học thực tế, 25 giây — trang chủ và `/gioi-thieu` |
 | **Video**      | `public/videos/thuc-hanh-san-tap.mp4`               | Thực hành tại sân tập, 46 giây — trang chủ và `/gioi-thieu` |
+| **Video**      | `public/videos/hoc-vien-lai-xe-tai.mp4`             | Học viên tập lái xe tải, 38 giây — trang chủ và `/gioi-thieu` |
+| **Video**      | `public/videos/thuc-hanh-xe-tai-trong-san.mp4`      | Thực hành xe tải trong sân, 69 giây — trang chủ và `/gioi-thieu` |
 | Open Graph     | `public/images/og/og-default.jpg`                   | Ảnh hiện khi chia sẻ link                              |
+
+Ảnh 5 khóa học cũng đã là **ảnh chụp thật** — xem mục 2.9.
 
 **Còn là hình minh họa SVG** (sinh bởi
 `node scripts/generate-placeholder-images.mjs`) — xem danh sách ở mục 2:
-sa hình, đường trường, lý thuyết, ảnh từng khóa học, ảnh bìa blog.
+ảnh bìa blog và một vài hình sơ đồ trong bài viết.
 
 ---
 
@@ -159,13 +163,21 @@ image: {
 
 ### 2.9 Ảnh minh họa từng khóa học
 
-| Đường dẫn                                     | Kích thước  | Tỷ lệ | Nội dung gợi ý                   |
-| --------------------------------------------- | ----------- | ----- | -------------------------------- |
-| `public/images/courses/hang-b-so-tu-dong.jpg` | 1600 × 1000 | 8:5   | Xe số tự động, cần số ở vị trí D |
-| `public/images/courses/hang-b-so-san.jpg`     | 1600 × 1000 | 8:5   | Cần số sàn, chân côn             |
-| `public/images/courses/hang-c1.jpg`           | 1600 × 1000 | 8:5   | Xe tải nhẹ dùng để tập           |
-| `public/images/courses/bo-tuc-tay-lai.jpg`    | 1600 × 1000 | 8:5   | Buổi bổ túc trên đường thực tế   |
-| `public/images/courses/luyen-sa-hinh.jpg`     | 1600 × 1000 | 8:5   | Xe đang chạy bài sa hình         |
+✅ **Đã có ảnh thật cho cả 5 khóa** (19/08/2026), sinh bởi
+`node scripts/process-photos.mjs`:
+
+| Đường dẫn                                      | Kích thước | Ảnh gốc                       |
+| ---------------------------------------------- | ---------- | ----------------------------- |
+| `public/images/courses/hang-b-so-tu-dong.webp` | 947 × 592  | `IMG_1639.jpeg`               |
+| `public/images/courses/hang-b-so-san.webp`     | 947 × 592  | `IMG_1640.jpeg`               |
+| `public/images/courses/hang-c1.webp`           | 947 × 592  | `IMG_1637.jpeg`               |
+| `public/images/courses/bo-tuc-tay-lai.webp`    | 1200 × 750 | `thay-huong-dan-vo-lang.jpeg` |
+| `public/images/courses/luyen-sa-hinh.webp`     | 960 × 600  | `xe-tap-lai-san-tap.jpeg`     |
+
+> ⚠️ **Cả 5 ảnh BẮT BUỘC cùng tỷ lệ 8:5.** `CourseCard` render ảnh bằng
+> `h-auto w-full`, không có khung tỷ lệ cố định — một ảnh lệch tỷ lệ sẽ làm các
+> thẻ trong lưới cao thấp khác nhau và tiêu đề không thẳng hàng. Kích thước
+> pixel có thể khác nhau, miễn tỷ lệ giống nhau.
 
 ### 2.10 Ảnh bìa bài viết blog
 
@@ -255,9 +267,10 @@ trắng chiếm gần hết khung, đuôi lưỡi liềm ở góc dưới bên t
 
 ### 3.1 Video buổi học — ✅ đã có
 
-`src/content/videos.ts` đang có 2 video: buổi dạy thực tế (25 giây, quay dọc
-480×854) và thực hành tại sân tập (46 giây, quay ngang 640×362). Cả hai hiển
-thị ở trang chủ và `/gioi-thieu`.
+`src/content/videos.ts` đang có 4 video: buổi dạy thực tế (25 giây, quay dọc
+480×854), thực hành tại sân tập (46 giây, quay ngang 640×362), học viên tập lái
+xe tải (38 giây, quay dọc 480×848) và thực hành xe tải trong sân (69 giây, quay
+dọc 480×848). Tất cả hiển thị ở trang chủ và `/gioi-thieu`.
 
 Thêm video mới: bỏ file vào `assets/videos/`, khai báo một mục trong mảng `JOBS`
 của [`scripts/process-video.mjs`](../scripts/process-video.mjs), chạy

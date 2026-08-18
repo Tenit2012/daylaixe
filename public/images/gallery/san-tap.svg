@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Minh họa sân tập lái xe">
+  <title>Minh họa sân tập lái xe</title>
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#DEE9F7"/>
+      <stop offset="100%" stop-color="#F7F9FC"/>
+    </linearGradient>
+    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#182F58"/>
+      <stop offset="100%" stop-color="#112242"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="#F7F9FC"/>
+  <rect x="40" y="40" width="720" height="440" rx="12" fill="#182F58" opacity="0.08"/>
+  <g stroke="#FFFFFF" stroke-width="6" stroke-dasharray="26 20" fill="none">
+    <path d="M 90 420 L 90 120 L 400 120 L 400 380 L 710 380"/>
+  </g>
+  <g fill="#EA760E">
+    <circle cx="200" cy="200" r="12"/><circle cx="280" cy="200" r="12"/>
+    <circle cx="360" cy="200" r="12"/><circle cx="520" cy="300" r="12"/>
+    <circle cx="600" cy="300" r="12"/><circle cx="680" cy="300" r="12"/>
+  </g>
+  <g transform="translate(120 380)">
+    <rect x="0" y="35.28" width="200" height="35.28" rx="13.44" fill="#182F58"/>
+    <path d="M 36 36.96 L 60 8.4 L 144 8.4 L 168 36.96 Z" fill="#3C6CB2"/>
+    <rect x="64" y="13.44" width="32" height="20.16" rx="3" fill="#DEE9F7"/>
+    <rect x="104" y="13.44" width="32" height="20.16" rx="3" fill="#DEE9F7"/>
+    <circle cx="52" cy="72.24" r="13.44" fill="#112242"/>
+    <circle cx="52" cy="72.24" r="5.880000000000001" fill="#C6D0DE"/>
+    <circle cx="152" cy="72.24" r="13.44" fill="#112242"/>
+    <circle cx="152" cy="72.24" r="5.880000000000001" fill="#C6D0DE"/>
+    <rect x="172" y="42" width="20" height="8.4" rx="3" fill="#EA760E"/>
+  </g>
+  <text x="400" y="545" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" font-weight="600" fill="#182F58">Sân tập</text>
+</svg>

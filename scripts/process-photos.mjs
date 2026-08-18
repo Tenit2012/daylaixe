@@ -97,15 +97,53 @@ const JOBS = [
     note: 'Gallery - thay cam vo lang huong dan hoc vien',
   },
   {
-    source: 'NguyenThanhTung-laixeanninh.jpg',
-    // Anh nguon vuong 598x598, do phan giai thap - GIU nguyen ty le goc
-    // (598x449, cat 4:3) thay vi phong to len 1200 nhu cac anh khac, tranh
-    // lam anh ro net thap cang lo hon.
-    output: 'teacher/thay-tung-ben-xe.webp',
-    width: 598,
-    height: 449,
+    source: 'IMG_1636.jpeg',
+    // Anh goc khung DOC 592x1280. Cat 4:3 ngang lay phan giua - dau xe nam
+    // giua khung. Khong phong to (nguon chi rong 592px).
+    output: 'center/xe-tap-lai-hang-b.webp',
+    width: 592,
+    height: 444,
     position: 'center',
-    note: 'Chan dung thay Tung dung canh xe - Album',
+    note: 'Xe con tap lai hang B do trong nha xe cua trung tam',
+  },
+  {
+    source: 'IMG_1637.jpeg',
+    // Anh goc 1280x592 (rat rong). Cat 4:3 tu canh TRAI vi chiec xe tai nam
+    // lech trai - cat giua se mat dau xe.
+    output: 'center/xe-tai-tap-lai-c1.webp',
+    width: 789,
+    height: 592,
+    position: 'left',
+    note: 'Xe tai tap lai hang C1 tai san tap',
+  },
+  {
+    source: 'IMG_1639.jpeg',
+    // Cat 4:3 tu canh TRAI de giu nguoi ngoi ghe lai + vo lang; cat giua se
+    // chi con bang taplo.
+    output: 'center/trong-buoi-thuc-hanh.webp',
+    width: 789,
+    height: 592,
+    position: 'left',
+    note: 'Trong buoi thuc hanh - ghe lai, vo lang va thiet bi giam sat',
+  },
+  {
+    source: 'IMG_1638.jpeg',
+    // Anh goc khung DOC 592x1280, chup chinh dien - cat 4:3 lay phan giua.
+    output: 'center/xe-tap-lai-chinh-dien.webp',
+    width: 592,
+    height: 444,
+    position: 'center',
+    note: 'Xe con tap lai nhin chinh dien tai san tap',
+  },
+  {
+    source: 'IMG_1640.jpeg',
+    // Anh goc 1280x592. Cat 4:3 tu canh TRAI de giu tron dau xe va bien
+    // "TAP LAI"; cat giua se mat can truoc.
+    output: 'center/xe-tap-lai-goc-cheo.webp',
+    width: 789,
+    height: 592,
+    position: 'left',
+    note: 'Xe con tap lai nhin goc cheo tai san tap',
   },
   {
     source: 'dan-xe-tap-lai.jpg',
@@ -114,6 +152,64 @@ const JOBS = [
     height: 674,
     position: 'center',
     note: 'Dan xe tap lai hang C1 tai trung tam',
+  },
+
+  /*
+   * ---------------------------------------------------------------------
+   * ANH KHOA HOC - `public/images/courses/`
+   * ---------------------------------------------------------------------
+   * BAT BUOC ca 5 anh cung TY LE 8:5. `CourseCard` render anh bang
+   * `h-auto w-full` (khong co khung ty le co dinh), nen anh lech ty le se
+   * lam cac the trong luoi cao thap khac nhau va tieu de khong thang hang.
+   * Kich thuoc pixel co the khac nhau, mien ty le giong nhau.
+   */
+  {
+    source: 'IMG_1639.jpeg',
+    // Cat tu canh TRAI: can so tu dong (x~400-800) la chi tiet quan trong
+    // nhat cua khoa nay, cat giua se day no ra ria khung.
+    output: 'courses/hang-b-so-tu-dong.webp',
+    width: 947,
+    height: 592,
+    position: 'left',
+    note: 'Hang B so tu dong - noi that xe, thay ro can so tu dong',
+  },
+  {
+    source: 'IMG_1640.jpeg',
+    // Chu website xac nhan xe nay (bien 51F-292.97) la xe SO SAN.
+    // Cat tu canh TRAI de giu tron dau xe va bien "TAP LAI".
+    output: 'courses/hang-b-so-san.webp',
+    width: 947,
+    height: 592,
+    position: 'left',
+    note: 'Hang B so san - xe con tap lai so san tai san',
+  },
+  {
+    source: 'IMG_1637.jpeg',
+    output: 'courses/hang-c1.webp',
+    width: 947,
+    height: 592,
+    position: 'left',
+    note: 'Hang C1 - xe tai tap lai',
+  },
+  {
+    // KHONG dung IMG_1636 (xe Vios vang) cho o nay: anh goc la khung DOC
+    // 592x1280, ep xuong 8:5 thi dai anh chi con 370px va bien "TAP LAI" bi
+    // cat doi o mep duoi. Anh do van dung tot trong Album o ty le 4:3.
+    // Anh nay hop noi dung hon: bo tuc tay lai la kem 1-1, dung canh nguoi hoc.
+    source: 'thay-huong-dan-vo-lang.jpeg',
+    output: 'courses/bo-tuc-tay-lai.webp',
+    width: 1200,
+    height: 750,
+    position: 'center',
+    note: 'Bo tuc tay lai - thay cam vo lang lam mau thao tac cho hoc vien',
+  },
+  {
+    source: 'xe-tap-lai-san-tap.jpeg',
+    output: 'courses/luyen-sa-hinh.webp',
+    width: 960,
+    height: 600,
+    position: 'center',
+    note: 'Luyen sa hinh - xe do trong o ke vach, dung bai ghep xe',
   },
   {
     source: 'xe-tap-lai-san-tap.jpeg',

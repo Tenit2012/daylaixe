@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Minh họa buổi học lái xe đường trường">
+  <title>Minh họa buổi học lái xe đường trường</title>
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#DEE9F7"/>
+      <stop offset="100%" stop-color="#F7F9FC"/>
+    </linearGradient>
+    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#182F58"/>
+      <stop offset="100%" stop-color="#112242"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#skyGrad)"/>
+  <path d="M 0 480 L 800 480 L 800 600 L 0 600 Z" fill="#112242" opacity="0.85"/>
+  <g stroke="#FFFFFF" stroke-width="7" stroke-dasharray="46 34">
+    <line x1="0" y1="540" x2="800" y2="540"/>
+  </g>
+  <g opacity="0.35" fill="#3C6CB2">
+    <rect x="40" y="180" width="90" height="230" rx="8"/>
+    <rect x="160" y="230" width="70" height="180" rx="8"/>
+    <rect x="600" y="200" width="80" height="210" rx="8"/>
+    <rect x="700" y="250" width="70" height="160" rx="8"/>
+  </g>
+  <g transform="translate(280 330)">
+    <rect x="0" y="45.864" width="260" height="45.864" rx="17.472" fill="#182F58"/>
+    <path d="M 46.8 48.048 L 78 10.920000000000002 L 187.2 10.920000000000002 L 218.4 48.048 Z" fill="#3C6CB2"/>
+    <rect x="83.2" y="17.472" width="41.6" height="26.208" rx="3" fill="#DEE9F7"/>
+    <rect x="135.20000000000002" y="17.472" width="41.6" height="26.208" rx="3" fill="#DEE9F7"/>
+    <circle cx="67.60000000000001" cy="93.912" r="17.472" fill="#112242"/>
+    <circle cx="67.60000000000001" cy="93.912" r="7.644000000000001" fill="#C6D0DE"/>
+    <circle cx="197.6" cy="93.912" r="17.472" fill="#112242"/>
+    <circle cx="197.6" cy="93.912" r="7.644000000000001" fill="#C6D0DE"/>
+    <rect x="223.6" y="54.6" width="26" height="10.920000000000002" rx="3" fill="#EA760E"/>
+  </g>
+  <text x="400" y="445" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" font-weight="600" fill="#182F58">Buổi học đường trường</text>
+</svg>
