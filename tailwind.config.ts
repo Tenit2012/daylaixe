@@ -106,9 +106,25 @@ const config: Config = {
           from: { opacity: '0', transform: 'translateY(8px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
+        /* Hero - phan tu thuong: mo dan + nhich len. */
+        'hero-in': {
+          from: { opacity: '0', transform: 'translateY(16px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        /*
+          Hero - RIENG <h1>: chi dich chuyen, khong dung toi opacity.
+          Xem ghi chu day du o .hero-in-lcp trong globals.css - tom tat:
+          <h1> la ung vien LCP tren mobile, mo dan tu 0 se day moc LCP lui.
+        */
+        'hero-in-shift': {
+          from: { transform: 'translateY(14px)' },
+          to: { transform: 'translateY(0)' },
+        },
+        /* Nut phat video: mot nhip phong to roi ve, chay dung mot lan. */
+        'play-pulse': {
+          '0%': { transform: 'scale(1)' },
+          '45%': { transform: 'scale(1.06)' },
+          '100%': { transform: 'scale(1.03)' },
         },
       },
       animation: {

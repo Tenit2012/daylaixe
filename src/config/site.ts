@@ -69,6 +69,23 @@ export const siteConfig = {
       publicEnv.NEXT_PUBLIC_CENTER_SHORT_NAME ||
       publicEnv.NEXT_PUBLIC_CENTER_NAME,
     /**
+     * Ten CUC NGAN - chi dung o header tren man hinh rong 1280px tro len.
+     *
+     * Vi sao can bac thu ba: o dai do, header phai chua 7 muc menu + so dien
+     * thoai + nut CTA. Do thuc te chi con khoang 300px cho khoi thuong hieu,
+     * trong khi `centerShortName` da chiem hon 330px va TRAN DE LEN MENU.
+     * Bac nay giu duoc phan quan trong nhat cua ten ("Sat hach Lai xe" +
+     * "An ninh Nhan dan") trong khoang vua du.
+     *
+     * Khong tu dong cat chuoi dai: cat may moc se ra
+     * "Trung tam Sat hach Lai xe - Truong Dai h..." tuc la mat dung phan
+     * mang y nghia. Bien rieng cho phep viet tay ban ngan dung ngu phap.
+     */
+    centerCompactName:
+      publicEnv.NEXT_PUBLIC_CENTER_COMPACT_NAME ||
+      publicEnv.NEXT_PUBLIC_CENTER_SHORT_NAME ||
+      publicEnv.NEXT_PUBLIC_CENTER_NAME,
+    /**
      * DU LIEU THAT DA XAC NHAN: thay la giao vien CO HUU cua trung tam,
      * khong phai cong tac vien hay moi gioi tuyen sinh. Day la chi tiet
      * quan trong nhat de phan biet voi "co tuyen sinh" nen duoc tach rieng

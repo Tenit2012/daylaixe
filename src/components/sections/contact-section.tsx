@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/contact-buttons';
 import { formatVietnamesePhone } from '@/lib/validation/phone';
 import { isPlaceholderValue } from '@/config/site';
+import { Reveal } from '@/components/ui/reveal';
 
 interface ContactSectionProps {
   title?: string;
@@ -48,7 +49,7 @@ export function ContactSection({
         description={description}
       />
 
-      <div className="mx-auto mt-10 max-w-3xl">
+      <Reveal className="mx-auto mt-10 max-w-3xl">
         <div className="card-base text-center">
           {hasPhone ? (
             <p className="flex flex-col items-center gap-1.5">
@@ -88,7 +89,7 @@ export function ContactSection({
             </li>
           </ul>
         </div>
-      </div>
+      </Reveal>
     </Section>
   );
 }

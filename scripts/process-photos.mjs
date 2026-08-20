@@ -192,16 +192,27 @@ const JOBS = [
     note: 'Hang C1 - xe tai tap lai',
   },
   {
-    // KHONG dung IMG_1636 (xe Vios vang) cho o nay: anh goc la khung DOC
-    // 592x1280, ep xuong 8:5 thi dai anh chi con 370px va bien "TAP LAI" bi
-    // cat doi o mep duoi. Anh do van dung tot trong Album o ty le 4:3.
-    // Anh nay hop noi dung hon: bo tuc tay lai la kem 1-1, dung canh nguoi hoc.
-    source: 'thay-huong-dan-vo-lang.jpeg',
+    // Anh truoc day o o nay la 'thay-huong-dan-vo-lang.jpeg' - chup tren
+    // CABIN MO PHONG trong phong, trong khi noi dung khoa bo tuc noi ve canh
+    // duong, do xe, chay gio cao diem, len xuong ham chung cu. Anh va chu
+    // khong khop nhau, lai trung canh voi anh hero trang chu (cung can phong
+    // do, cung gian mo phong). Doi sang xe tap lai that cho dong bo voi 4 the
+    // khoa hoc con lai - deu la xe that ngoai troi.
+    //
+    // Anh goc la khung DOC 592x1280. Cat 8:5 bang `position: 'center'` se lay
+    // dai y=455..825, dung ngay bien so va bien "TAP LAI" va cat doi ca hai.
+    // Vi vay chi dinh tay cua so y=580..950: giu tron ca-lang, den pha, bien
+    // so 51L-096.03, bien "TAP LAI" va can truoc.
+    source: 'IMG_1636.jpeg',
     output: 'courses/bo-tuc-tay-lai.webp',
-    width: 1200,
-    height: 750,
+    // Nguon chi rong 592px va `withoutEnlargement` chan phong to, nen dau ra
+    // giu dung 592x370 - nho hon 4 anh kia ve pixel nhung DUNG ty le 8:5, la
+    // dieu kien that su can de luoi the khong lech cao thap.
+    width: 592,
+    height: 370,
     position: 'center',
-    note: 'Bo tuc tay lai - thay cam vo lang lam mau thao tac cho hoc vien',
+    extract: { left: 0, top: 580, width: 592, height: 370 },
+    note: 'Bo tuc tay lai - xe con tap lai 51L-096.03 tai nha xe trung tam',
   },
   {
     source: 'xe-tap-lai-san-tap.jpeg',
@@ -257,12 +268,21 @@ async function run() {
 
     const pipeline = sharp(sourcePath)
       // Khong truyen tham so => ap dung dung goc xoay ghi trong EXIF.
-      .rotate()
-      .resize(job.width, job.height, {
-        fit: 'cover',
-        position: job.position,
-        withoutEnlargement: true,
-      });
+      .rotate();
+
+    // `extract` (tuy chon): cat thu cong theo toa do diem anh cua anh GOC,
+    // tinh SAU khi da xoay theo EXIF. Dung khi `position` cua sharp - chi
+    // nhan 'center' | 'top' | 'left' ... - khong du de giu dung chi tiet bat
+    // buoc phai con trong khung (vi du bien so, bien "TAP LAI").
+    if (job.extract) {
+      pipeline.extract(job.extract);
+    }
+
+    pipeline.resize(job.width, job.height, {
+      fit: 'cover',
+      position: job.position,
+      withoutEnlargement: true,
+    });
 
     if (job.watermarkText) {
       pipeline.composite([

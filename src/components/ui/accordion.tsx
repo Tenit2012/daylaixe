@@ -56,20 +56,41 @@ export function Accordion({
                 <ChevronDown
                   aria-hidden="true"
                   className={cn(
-                    'mt-0.5 h-5 w-5 flex-shrink-0 text-brand-500 transition-transform duration-200',
+                    'mt-0.5 h-5 w-5 flex-shrink-0 text-brand-500 transition-transform duration-[400ms] ease-[cubic-bezier(0.22,0.61,0.36,1)]',
                     isOpen && 'rotate-180',
                   )}
                 />
               </button>
             </h3>
+            {/*
+              Truoc day panel dung thuoc tinh `hidden`, khong the tao chuyen
+              dong duoc: `hidden` bat/tat tuc thi, khong co trang thai trung
+              gian de chuyen doi.
+
+              Ban moi dung grid-template-rows 0fr -> 1fr. Vi sao khong dung
+              max-height: max-height buoc phai doan truoc mot con so lon hon
+              moi cau tra loi, khien cau ngan mo xong tu lau ma hieu ung van
+              con chay, con cau dai thi bi cat. 0fr -> 1fr cho dung chieu cao
+              that cua tung cau.
+
+              Giu nguyen kha nang tiep can: `visibility: hidden` van loai noi
+              dung dang dong khoi cay tro nang (trinh doc man hinh khong doc
+              phai), chi khac la no doi den cuoi hieu ung moi ap dung - xem
+              .faq-panel trong globals.css. aria-expanded/aria-controls tren
+              nut khong doi.
+            */}
             <div
               id={panelId}
               role="region"
               aria-labelledby={buttonId}
-              hidden={!isOpen}
-              className="px-5 pb-5 text-[0.9375rem] leading-relaxed text-ink-muted sm:px-6 sm:pb-6"
+              data-open={isOpen}
+              className="faq-panel"
             >
-              {item.answer}
+              <div className="faq-panel-inner">
+                <div className="px-5 pb-5 text-[0.9375rem] leading-relaxed text-ink-muted sm:px-6 sm:pb-6">
+                  {item.answer}
+                </div>
+              </div>
             </div>
           </div>
         );

@@ -324,9 +324,9 @@ export const courses: Course[] = [
     ],
     image: {
       src: '/images/courses/bo-tuc-tay-lai.webp',
-      alt: 'Thầy cầm vô lăng làm mẫu thao tác cho học viên trong buổi kèm trực tiếp',
-      width: 1200,
-      height: 750,
+      alt: 'Xe con tập lái biển 51L-096.03 của trung tâm - loại xe dùng cho buổi bổ túc tay lái',
+      width: 592,
+      height: 370,
     },
     featured: true,
     order: 4,

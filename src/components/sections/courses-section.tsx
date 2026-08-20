@@ -3,6 +3,8 @@ import { featuredCourses } from '@/content/courses';
 import { Section, SectionHeading } from '@/components/ui/section';
 import { CourseCard } from '@/components/courses/course-card';
 import { buttonClasses } from '@/components/ui/button';
+import { Reveal } from '@/components/ui/reveal';
+import { staggerDelay } from '@/lib/utils/stagger';
 
 export function CoursesSection() {
   return (
@@ -16,11 +18,19 @@ export function CoursesSection() {
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {featuredCourses.map((course, index) => (
-          <CourseCard
+          /*
+            `h-full` bat buoc phai co tren lop boc: Reveal chen them mot the
+            div giua o luoi va the khoa hoc. Thieu no thi div chi cao bang noi
+            dung, the ben trong mat cho de `h-full` bam vao, va cac the trong
+            cung mot hang se cao thap khac nhau.
+          */
+          <Reveal
             key={course.slug}
-            course={course}
-            priority={index === 0}
-          />
+            delay={staggerDelay(index)}
+            className="h-full"
+          >
+            <CourseCard course={course} priority={index === 0} />
+          </Reveal>
         ))}
       </div>
 

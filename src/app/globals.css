@@ -100,6 +100,19 @@
     --color-line: 225 231 240;
     --color-line-strong: 198 208 222;
 
+    /* ======================================================================
+       TOKEN CHUYEN DONG
+
+       Mot duong cong duy nhat cho ca site: tang toc nhanh roi ga ve cham,
+       giong xe vao so roi tha chan ga - KHONG nay lai (khong overshoot).
+       Duong cong nay la thu duy nhat lam cho chuyen dong "co cam giac lai xe"
+       thay vi "cam giac SaaS".
+       ====================================================================== */
+    --ease-road: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --dur-quick: 400ms;
+    --dur-base: 550ms;
+    --dur-slow: 700ms;
+
     /* Chieu cao thanh CTA co dinh tren mobile - dung de chua khoang trong */
     --mobile-cta-height: 4.25rem;
   }
@@ -194,6 +207,110 @@
   .skip-link {
     @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand-900 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-ink-inverted;
   }
+
+  /* ======================================================================
+     HE THONG CHUYEN DONG
+
+     NGUYEN TAC AN TOAN QUAN TRONG NHAT:
+     Noi dung KHONG BAO GIO duoc phep ket o trang thai an. Vi vay moi quy
+     tac lam mo di deu nam sau `.motion-js`. Class do CHI duoc gan boi doan
+     script noi tuyen trong <head> (xem src/app/layout.tsx), va chi khi:
+        - JavaScript thuc su chay, VA
+        - nguoi dung KHONG bat "giam chuyen dong" o he dieu hanh.
+     Khong co JS (bot tim kiem, JS loi, trinh duyet cu) -> khong co class ->
+     toan bo noi dung hien ngay tu lan son dau. SEO va kha nang doc khong
+     phu thuoc vao JavaScript.
+
+     Script chay TRUOC lan son dau nen khong co hien tuong nhay/nhap nhay.
+     ====================================================================== */
+
+  /* ---------- Hien dan khi cuon (dung cho phan DUOI man hinh dau) ------- */
+  .motion-js .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .motion-js .reveal-zoom {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  .motion-js .reveal.is-revealed,
+  .motion-js .reveal-zoom.is-revealed {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--dur-base) var(--ease-road),
+      transform var(--dur-base) var(--ease-road);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  /* Anh chan dung thay: cham hon mot chut de cam giac "lo dien" chu khong
+     phai "bat len". Day la neo tin cay cua trang nen khong duoc giat. */
+  .motion-js .reveal-zoom.is-revealed {
+    transition-duration: var(--dur-slow);
+  }
+
+  /* ---------- Duong lo trinh tu ve khi cuon ---------------------------- */
+  /*
+    Chi dung transform: scaleY nen trinh duyet khong phai tinh lai bo cuc.
+    transform-origin: top => duong ke chay TU TREN XUONG, cung huong doc va
+    cung huong tien trien cua lo trinh hoc.
+  */
+  .motion-js .journey-line {
+    transform: scaleY(0);
+    transform-origin: top center;
+  }
+
+  .motion-js .journey-line.is-revealed {
+    transform: scaleY(1);
+    transition: transform 900ms var(--ease-road);
+  }
+
+  /* Vong tron so buoc: sang len khi buoc do da hien ra. Tao cam giac
+     "di qua tung chang" thay vi tat ca sang cung luc. */
+  .journey-dot {
+    transition:
+      border-color var(--dur-base) var(--ease-road),
+      background-color var(--dur-base) var(--ease-road),
+      color var(--dur-base) var(--ease-road);
+  }
+
+  .motion-js .reveal.is-revealed .journey-dot {
+    border-color: rgb(var(--color-accent-500));
+    background-color: rgb(var(--color-accent-50));
+    color: rgb(var(--color-accent-700));
+  }
+
+  /* ---------- Bang FAQ: dong/mo muot bang grid-template-rows ------------ */
+  /*
+    Vi sao grid-template-rows chu khong phai max-height: max-height buoc phai
+    doan truoc mot con so lon hon noi dung that, lam toc do mo khong deu giua
+    cau tra loi ngan va dai. 0fr -> 1fr cho dung chieu cao that.
+
+    `visibility` doi den cuoi luc dong (transition-delay) roi moi an, nho vay
+    trinh doc man hinh khong doc noi dung dang dong, con luc mo thi hien ngay.
+  */
+  .faq-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition:
+      grid-template-rows var(--dur-quick) var(--ease-road),
+      visibility 0s linear var(--dur-quick);
+  }
+
+  .faq-panel[data-open='true'] {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    transition:
+      grid-template-rows var(--dur-quick) var(--ease-road),
+      visibility 0s linear 0s;
+  }
+
+  .faq-panel > .faq-panel-inner {
+    overflow: hidden;
+  }
 }
 
 @layer utilities {
@@ -209,5 +326,113 @@
 
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* ======================================================================
+     HERO - chuoi xuat hien khi vao trang
+
+     KHONG dung JavaScript va KHONG dung .motion-js: day la animation CSS
+     thuan, chay ngay o lan son dau nen khong phu thuoc hydrate. Che do
+     "giam chuyen dong" da duoc xu ly boi bo reset toan cuc o @layer base
+     (animation-duration: 0.01ms) - noi dung hien tuc thi.
+     ====================================================================== */
+
+  /* Dung cho phan tu KHONG phai ung vien LCP: mo dan + nhich len. */
+  .hero-in {
+    animation: hero-in var(--dur-base) var(--ease-road) both;
+  }
+
+  /*
+    DANH RIENG cho <h1> cua hero - CHI dich chuyen, TUYET DOI khong doi
+    opacity.
+
+    Ly do: tren dien thoai hero xep mot cot nen <h1> thuong chinh la phan tu
+    LCP. Chrome khong tinh mot phan tu dang opacity:0 la da "hien", nen mot
+    hieu ung mo dan se day thang moc LCP lui lai dung bang do tre + thoi gian
+    chay. transform khong lam tre thoi diem son, cung khong gay dich chuyen
+    bo cuc (khong anh huong CLS), nen dat duoc cam giac "nhich len" ma khong
+    tra bat ky chi phi Core Web Vitals nao.
+  */
+  .hero-in-lcp {
+    animation: hero-in-shift var(--dur-slow) var(--ease-road) both;
+  }
+
+  .motion-delay-1 {
+    animation-delay: 70ms;
+  }
+  .motion-delay-2 {
+    animation-delay: 140ms;
+  }
+  .motion-delay-3 {
+    animation-delay: 210ms;
+  }
+  .motion-delay-4 {
+    animation-delay: 280ms;
+  }
+
+  /* ======================================================================
+     TUONG TAC CON TRO
+
+     Tat ca deu nam trong @media (hover: hover) and (pointer: fine).
+     Tren dien thoai, mot lan cham se kich hoat :hover va DINH lai o trang
+     thai do cho den khi cham cho khac - the bi nhac len roi khong ha xuong.
+     Chan tu goc bang media query la cach duy nhat chac chan.
+     ====================================================================== */
+  @media (hover: hover) and (pointer: fine) {
+    .hover-lift {
+      transition:
+        transform var(--dur-quick) var(--ease-road),
+        box-shadow var(--dur-quick) var(--ease-road);
+    }
+
+    .hover-lift:hover,
+    .hover-lift:focus-within {
+      transform: translateY(-4px);
+    }
+
+    .hover-zoom-target {
+      transition: transform var(--dur-slow) var(--ease-road);
+    }
+
+    .hover-lift:hover .hover-zoom-target,
+    .hover-lift:focus-within .hover-zoom-target,
+    .hover-zoom-frame:hover .hover-zoom-target {
+      transform: scale(1.03);
+    }
+
+    .hover-nudge-target {
+      transition: transform var(--dur-quick) var(--ease-road);
+    }
+
+    .hover-lift:hover .hover-nudge-target,
+    .hover-lift:focus-within .hover-nudge-target,
+    a:hover > .hover-nudge-target {
+      transform: translateX(4px);
+    }
+
+    /* Nut phat video: mot nhip duy nhat khi ro chuot vao, khong lap lai. */
+    .play-ring {
+      transition: transform var(--dur-quick) var(--ease-road);
+    }
+
+    /*
+      Trang thai dich cua hover la scale(1.03), va keyframe cung ket thuc dung
+      o 1.03. Nho khop nhau nen luc animation chay xong, phan tu roi ve dung
+      gia tri no dang o - khong co cu giat. Khi ro chuot ra, animation bien
+      mat va transition dua muot ve 1.
+    */
+    .play-button:hover .play-ring {
+      transform: scale(1.03);
+      animation: play-pulse 620ms var(--ease-road) 1;
+    }
+  }
+
+  /*
+    Khung anh co bo goc + overflow-hidden. Safari tren iOS khong cat dung
+    goc bo tron khi phan tu con dang duoc transform neu thieu dong nay.
+  */
+  .hover-zoom-frame,
+  .hover-lift .hover-zoom-frame {
+    isolation: isolate;
   }
 }

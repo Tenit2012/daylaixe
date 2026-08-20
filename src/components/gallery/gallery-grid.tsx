@@ -2,6 +2,8 @@ import Image from 'next/image';
 import type { GalleryItem } from '@/types/content';
 import { siteConfig } from '@/config/site';
 import { PlaceholderBadge } from '@/components/ui/card';
+import { Reveal } from '@/components/ui/reveal';
+import { staggerDelay } from '@/lib/utils/stagger';
 
 interface GalleryGridProps {
   items: GalleryItem[];
@@ -17,10 +19,12 @@ export function GalleryGrid({ items, columns = 3 }: GalleryGridProps) {
           : 'grid gap-4 sm:grid-cols-2 lg:grid-cols-3'
       }
     >
-      {items.map((item) => (
-        <li
+      {items.map((item, index) => (
+        <Reveal
+          as="li"
           key={item.id}
-          className="card-base overflow-hidden p-0 transition-shadow duration-150 hover:shadow-card-hover"
+          delay={staggerDelay(index)}
+          className="hover-lift card-base overflow-hidden p-0 shadow-card hover:shadow-card-hover"
         >
           <figure>
             {/*
@@ -28,7 +32,7 @@ export function GalleryGrid({ items, columns = 3 }: GalleryGridProps) {
               lan hinh minh hoa SVG. Neu de anh tu quyet chieu cao thi luoi se
               bi so le. `object-cover` cat phan thua thay vi bop meo anh.
             */}
-            <div className="relative aspect-[4/3] bg-surface-muted">
+            <div className="hover-zoom-frame relative aspect-[4/3] overflow-hidden bg-surface-muted">
               <Image
                 src={item.image.src}
                 alt={item.image.alt}
@@ -36,7 +40,7 @@ export function GalleryGrid({ items, columns = 3 }: GalleryGridProps) {
                 height={item.image.height}
                 loading="lazy"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="h-full w-full object-cover"
+                className="hover-zoom-target h-full w-full object-cover"
               />
               {item.isPlaceholder && siteConfig.showPlaceholderBadge ? (
                 <span className="absolute right-3 top-3">
@@ -51,7 +55,7 @@ export function GalleryGrid({ items, columns = 3 }: GalleryGridProps) {
               </p>
             </figcaption>
           </figure>
-        </li>
+        </Reveal>
       ))}
     </ul>
   );

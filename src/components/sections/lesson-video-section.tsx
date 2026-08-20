@@ -1,6 +1,8 @@
 import { lessonVideos } from '@/content/videos';
 import { Section, SectionHeading } from '@/components/ui/section';
 import { VideoPlayer } from '@/components/ui/video-player';
+import { Reveal } from '@/components/ui/reveal';
+import { staggerDelay } from '@/lib/utils/stagger';
 
 interface LessonVideoSectionProps {
   location?: string;
@@ -33,8 +35,10 @@ export function LessonVideoSection({
       />
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {lessonVideos.map((video) => (
-          <VideoPlayer key={video.id} video={video} location={location} />
+        {lessonVideos.map((video, index) => (
+          <Reveal key={video.id} delay={staggerDelay(index)} className="h-full">
+            <VideoPlayer video={video} location={location} />
+          </Reveal>
         ))}
       </div>
     </Section>

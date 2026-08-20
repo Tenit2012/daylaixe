@@ -8,6 +8,8 @@ import {
 import { Section, SectionHeading } from '@/components/ui/section';
 import { TestimonialCard } from '@/components/testimonials/testimonial-card';
 import { buttonClasses } from '@/components/ui/button';
+import { Reveal } from '@/components/ui/reveal';
+import { staggerDelay } from '@/lib/utils/stagger';
 
 interface TestimonialsSectionProps {
   limit?: number;
@@ -46,11 +48,23 @@ export function TestimonialsSection({
         </p>
       ) : null}
 
+      {/*
+        CHI hien dan khi cuon toi - khong hover nhac the, khong dem sao, khong
+        chuyen canh tu dong. Muc nay la TINH HUONG MINH HOA chu khong phai danh
+        gia cua hoc vien that; moi hieu ung lam no "song" hon muc can thiet deu
+        day nguoi doc ve phia hieu nham do. Nhan canh bao phia tren giu nguyen
+        trang thai tinh, khong bi hieu ung nao che hay lam mo.
+      */}
       <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((testimonial) => (
-          <li key={testimonial.id}>
+        {items.map((testimonial, index) => (
+          <Reveal
+            as="li"
+            key={testimonial.id}
+            delay={staggerDelay(index)}
+            className="h-full"
+          >
             <TestimonialCard testimonial={testimonial} />
-          </li>
+          </Reveal>
         ))}
       </ul>
 

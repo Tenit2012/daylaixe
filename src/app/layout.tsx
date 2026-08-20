@@ -87,6 +87,27 @@ export const viewport: Viewport = {
   colorScheme: 'light',
 };
 
+/**
+ * Doan script noi tuyen gan class `motion-js` len <html>.
+ *
+ * VI SAO PHAI NOI TUYEN VA DAT TRONG <head>:
+ * Toan bo hieu ung "hien dan khi cuon" hoat dong bang cach lam MO phan tu di
+ * truoc roi moi hien lai. Neu quy tac lam mo do luon bat, thi khi JavaScript
+ * khong chay - bot tim kiem cu, JS loi, nguoi dung tat JS - noi dung se ket
+ * lai o trang thai VO HINH VINH VIEN. Do la loi nghiem trong ca ve SEO lan
+ * kha nang tiep can.
+ *
+ * Dao nguoc lai: mac dinh moi thu HIEN. Chi khi script nay chay duoc (tuc la
+ * chac chan co JavaScript de hien no lai) thi quy tac lam mo moi duoc bat.
+ * Script chay dong bo trong <head> nen hoan tat TRUOC lan son dau - nguoi
+ * dung khong thay canh noi dung hien roi bi an di.
+ *
+ * Dong thoi kiem tra luon `prefers-reduced-motion`: neu nguoi dung da chon
+ * giam chuyen dong thi class khong duoc gan, moi thu hien ngay tu dau - manh
+ * hon la de animation chay voi thoi luong 0.01ms.
+ */
+const MOTION_BOOTSTRAP = `(function(){try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('motion-js')}}catch(e){}})()`;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -113,6 +134,9 @@ export default function RootLayout({
         KHONG lan xuong cac phan tu con. Nghia la moi loi hydration that su
         trong cay component van duoc bao day du - khong che giau gi ca.
       */}
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: MOTION_BOOTSTRAP }} />
+      </head>
       <body suppressHydrationWarning>
         <a href="#main-content" className="skip-link">
           Bỏ qua và tới nội dung chính

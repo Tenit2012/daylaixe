@@ -24,6 +24,7 @@ const publicEnvSchema = z.object({
   NEXT_PUBLIC_CENTER_NAME: z.string().min(1).default('[Tên trung tâm]'),
   /** Ten rut gon cua trung tam - dung o cho hep nhu badge, breadcrumb. */
   NEXT_PUBLIC_CENTER_SHORT_NAME: z.string().default(''),
+  NEXT_PUBLIC_CENTER_COMPACT_NAME: z.string().default(''),
   /**
    * Vi tri cu the ben trong trung tam de hoc vien tim duoc cho tu van
    * (vi du "Lầu 2, trong khuôn viên trung tâm").
@@ -84,6 +85,9 @@ const parsed = publicEnvSchema.safeParse({
     process.env.NEXT_PUBLIC_GOOGLE_MAPS_URL,
   ),
   NEXT_PUBLIC_CENTER_NAME: orUndefined(process.env.NEXT_PUBLIC_CENTER_NAME),
+  NEXT_PUBLIC_CENTER_COMPACT_NAME: orUndefined(
+    process.env.NEXT_PUBLIC_CENTER_COMPACT_NAME,
+  ),
   NEXT_PUBLIC_CENTER_SHORT_NAME: orUndefined(
     process.env.NEXT_PUBLIC_CENTER_SHORT_NAME,
   ),

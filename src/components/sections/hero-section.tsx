@@ -23,7 +23,7 @@ export function HeroSection() {
       <div className="container-page py-10 sm:py-14 lg:py-20">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-pill border border-brand-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-brand-700 sm:text-sm">
+            <p className="hero-in inline-flex items-center gap-2 rounded-pill border border-brand-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-brand-700 sm:text-sm">
               <BadgeCheck
                 aria-hidden="true"
                 className="h-4 w-4 text-success-600"
@@ -34,20 +34,20 @@ export function HeroSection() {
                 : ` · Thầy ${teacher.name}`}
             </p>
 
-            <h1 className="mt-5 text-balance text-[1.75rem] leading-tight sm:text-[2.125rem] lg:text-[2.5rem]">
+            <h1 className="hero-in-lcp mt-5 text-balance text-[1.75rem] leading-tight sm:text-[2.125rem] lg:text-[2.5rem]">
               {messaging.heroTitle}
             </h1>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
+            <p className="hero-in motion-delay-2 mt-5 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
               {messaging.heroSubtitle}
             </p>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="hero-in motion-delay-3 mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <CallButton location="hero" size="lg" />
               <ZaloButton location="hero" size="lg" />
             </div>
 
-            <dl className="mt-7 flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap sm:gap-6">
+            <dl className="hero-in motion-delay-4 mt-7 flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap sm:gap-6">
               {phoneConfigured ? (
                 <div className="flex items-center gap-2">
                   <dt className="sr-only">Số điện thoại</dt>
@@ -74,6 +74,18 @@ export function HeroSection() {
             </dl>
           </div>
 
+          {/*
+            KHUNG ANH NAY CO Y KHONG CO HIEU UNG NAO.
+
+            Day la anh LCP cua trang (priority + fetchPriority="high"). Chrome
+            khong ghi nhan mot phan tu dang opacity < 1 la da hien, nen bat ky
+            hieu ung mo dan nao dat len day cung day thang moc LCP lui lai dung
+            bang do tre cong thoi gian chay. Ca hieu ung phong to cung rui ro
+            vi lam thay doi kich thuoc vung son ma LCP dung de do.
+
+            Cam giac "song dong" cua hero da duoc tao boi cot chu ben trai;
+            khong dang danh doi Core Web Vitals de them mot hieu ung nua o day.
+          */}
           <div className="relative">
             <div className="overflow-hidden rounded-card border border-line bg-white shadow-card">
               <Image
@@ -89,7 +101,7 @@ export function HeroSection() {
             </div>
 
             {isPlaceholderValue(teacher.centerName) ? null : (
-              <p className="mt-3 flex items-start gap-2 text-sm leading-relaxed text-ink-subtle">
+              <p className="hero-in motion-delay-4 mt-3 flex items-start gap-2 text-sm leading-relaxed text-ink-subtle">
                 <Building2
                   aria-hidden="true"
                   className="mt-0.5 h-4 w-4 flex-shrink-0"

@@ -3,6 +3,7 @@ import { Building2, MapPin, Navigation } from 'lucide-react';
 import { isPlaceholderValue, siteConfig } from '@/config/site';
 import { Section, SectionHeading } from '@/components/ui/section';
 import { MapsLink } from '@/components/ui/contact-buttons';
+import { Reveal } from '@/components/ui/reveal';
 
 /**
  * "Hoc tai dau" - tra loi cau hoi ma bao cao TRUST_AUDIT cham thap nhat.
@@ -31,7 +32,10 @@ export function WhereToStudySection({
       />
 
       <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-12">
-        <div className="overflow-hidden rounded-card border border-line bg-surface-muted shadow-card">
+        <Reveal
+          variant="zoom"
+          className="hover-zoom-frame overflow-hidden rounded-card border border-line bg-surface-muted shadow-card"
+        >
           <Image
             src="/images/center/cong-truong.webp"
             alt={
@@ -43,11 +47,11 @@ export function WhereToStudySection({
             height={561}
             loading="lazy"
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="h-auto w-full"
+            className="hover-zoom-target h-auto w-full"
           />
-        </div>
+        </Reveal>
 
-        <div>
+        <Reveal delay={90}>
           <dl className="space-y-5">
             {hasCenterName ? (
               <div className="flex items-start gap-3">
@@ -114,7 +118,7 @@ export function WhereToStudySection({
             tâm công bố. Thầy hướng dẫn bạn chuẩn bị giấy tờ và đi cùng khi làm
             thủ tục.
           </p>
-        </div>
+        </Reveal>
       </div>
     </Section>
   );

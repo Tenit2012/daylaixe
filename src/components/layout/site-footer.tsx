@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Car, Clock, Mail, MapPin, Phone, Youtube } from 'lucide-react';
+import { Clock, Mail, MapPin, Phone, Youtube } from 'lucide-react';
 import { ZaloIcon } from '@/components/ui/zalo-icon';
 import { FacebookIcon } from '@/components/ui/facebook-icon';
 import { legalNav, mainNav, siteConfig } from '@/config/site';
@@ -11,6 +11,7 @@ import {
   buildZaloHref,
 } from '@/lib/utils/cta-links';
 import { formatVietnamesePhone } from '@/lib/validation/phone';
+import { BrandMark } from '@/components/ui/brand-mark';
 import { isPlaceholderValue } from '@/config/site';
 
 export function SiteFooter() {
@@ -24,6 +25,7 @@ export function SiteFooter() {
   const facebookHref = buildExternalHref(siteConfig.contact.facebookUrl);
   const youtubeHref = buildExternalHref(siteConfig.contact.youtubeUrl);
 
+  const hasCenterName = !isPlaceholderValue(siteConfig.teacher.centerName);
   const addressText = isPlaceholderValue(siteConfig.contact.address)
     ? 'Địa chỉ sẽ được cập nhật'
     : siteConfig.contact.address;
@@ -38,13 +40,31 @@ export function SiteFooter() {
           {/* Cot 1: thuong hieu */}
           <div>
             <div className="flex items-center gap-2.5 text-white">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10">
-                <Car aria-hidden="true" className="h-5 w-5" />
-              </span>
+              <BrandMark tone="onDark" className="h-9 w-9" />
               <span className="text-base font-bold">
                 {siteConfig.brandName}
               </span>
             </div>
+
+            {/*
+              Noi thay day, dat ngay duoi ten.
+
+              Truoc day cot nay chi co ten + mot doan mo ta chung chung, khong
+              he neu ten trung tam - trong khi day la thong tin quyet dinh long
+              tin cua nguoi doc. Footer co nguyen mot cot nen dung duoc TEN DAY
+              DU, khong phai ban rut gon nhu tren header.
+            */}
+            {hasCenterName ? (
+              <p className="mt-3.5 border-l-2 border-accent-500 pl-3 text-sm leading-relaxed text-white">
+                <span className="font-semibold">
+                  {siteConfig.teacher.employmentStatus}
+                </span>
+                <span className="mt-0.5 block text-brand-200">
+                  {siteConfig.teacher.centerName}
+                </span>
+              </p>
+            ) : null}
+
             <p className="mt-4 text-sm leading-relaxed text-brand-200">
               {siteConfig.messaging.secondary}
             </p>

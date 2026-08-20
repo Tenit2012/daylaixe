@@ -12,9 +12,26 @@ type Variant =
   | 'facebook';
 type Size = 'sm' | 'md' | 'lg';
 
+/*
+  `active:scale-[0.98]` la vi tuong tac DUY NHAT them vao nut.
+
+  Chon lun xuong khi bam thay vi nay len khi ro chuot vi hai ly do: no hoat
+  dong giong nhau tren ca dien thoai lan may tinh (khong phu thuoc :hover), va
+  no phan hoi dung khoanh khac nguoi dung cham vao - dung cho can tran an nhat
+  khi bam nut goi dien.
+
+  KHONG co hieu ung nao tu chay: nut nhap nhay hay dap nhu nhip tim tao cam
+  giac gia tao ve su gap gap, khong phu hop voi mot trang gioi thieu giao vien
+  day lai xe.
+
+  `motion-reduce:` tat han hieu ung thay vi de no chay trong 0.01ms - nguoi
+  bat che do giam chuyen dong khong nen thay bat ky cu giat nao.
+*/
 const baseStyles =
   'inline-flex items-center justify-center gap-2 rounded-pill font-semibold ' +
-  'transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-60 ' +
+  'transition-[color,background-color,border-color,box-shadow,transform] duration-150 ' +
+  'active:scale-[0.98] motion-reduce:active:scale-100 ' +
+  'disabled:cursor-not-allowed disabled:opacity-60 ' +
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
 
 const variantStyles: Record<Variant, string> = {

@@ -67,7 +67,7 @@ export function VideoPlayer({ video, location = 'video' }: VideoPlayerProps) {
             type="button"
             onClick={handlePlay}
             aria-label={`Phát video: ${video.title} (${formatDuration(video.durationSeconds)})`}
-            className="group relative block h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+            className="play-button group relative block h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
           >
             <Image
               src={video.poster.src}
@@ -82,7 +82,13 @@ export function VideoPlayer({ video, location = 'video' }: VideoPlayerProps) {
               aria-hidden="true"
               className="absolute inset-0 flex items-center justify-center bg-brand-900/25 transition-colors group-hover:bg-brand-900/40"
             >
-              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/95 shadow-card transition-transform group-hover:scale-105">
+              {/*
+                Mot nhip phong to roi ve khi ro chuot vao - chay DUNG MOT LAN
+                moi lan ro vao, khong lap. Nut phat dap lien tuc se keo mat
+                nguoi doc ra khoi noi dung xung quanh suot thoi gian ho o lai
+                muc nay.
+              */}
+              <span className="play-ring flex h-16 w-16 items-center justify-center rounded-full bg-white/95 shadow-card">
                 <Play className="ml-1 h-7 w-7 fill-brand-900 text-brand-900" />
               </span>
             </span>

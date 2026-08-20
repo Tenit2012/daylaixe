@@ -31,12 +31,25 @@ export function CourseCard({
   const Heading = `h${headingLevel}` as 'h2' | 'h3';
 
   return (
-    <article className="card-base flex h-full flex-col overflow-hidden p-0 transition-shadow duration-150 hover:shadow-card-hover">
+    /*
+      `hover-lift` gom ca ba chuyen dong cua the (nhac the, phong anh, day mui
+      ten) vao mot goc CSS duy nhat, va toan bo nam trong
+      @media (hover: hover) and (pointer: fine).
+
+      Vi sao phai chan bang media query: tren dien thoai, mot lan cham se kich
+      hoat :hover roi GIU nguyen trang thai do cho den khi nguoi dung cham cho
+      khac - the se dinh o vi tri bi nhac len. Chan tu goc la cach duy nhat
+      chac chan, khong the sua bang JavaScript.
+
+      `focus-within` di kem `:hover` de nguoi dieu huong bang ban phim cung
+      thay dung phan hoi do khi tab vao the.
+    */
+    <article className="hover-lift card-base flex h-full flex-col overflow-hidden p-0 shadow-card hover:shadow-card-hover focus-within:shadow-card-hover">
       <Link
         href={`/khoa-hoc/${course.slug}`}
         tabIndex={-1}
         aria-hidden="true"
-        className="block overflow-hidden bg-surface-muted"
+        className="hover-zoom-frame block overflow-hidden bg-surface-muted"
       >
         <Image
           src={course.image.src}
@@ -46,7 +59,7 @@ export function CourseCard({
           priority={priority}
           loading={priority ? undefined : 'lazy'}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="h-auto w-full"
+          className="hover-zoom-target h-auto w-full"
         />
       </Link>
 
@@ -113,7 +126,10 @@ export function CourseCard({
             className={buttonClasses('outline', 'md')}
           >
             Xem chi tiết
-            <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            <ArrowRight
+              aria-hidden="true"
+              className="hover-nudge-target h-4 w-4"
+            />
           </Link>
           <Link
             href={`/khoa-hoc/${course.slug}#lien-he-nhanh`}

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Clock, Mail, MapPin, Phone } from 'lucide-react';
+import { Clock, ExternalLink, Mail, MapPin, Phone } from 'lucide-react';
 import { ZaloIcon } from '@/components/ui/zalo-icon';
 import { FacebookIcon } from '@/components/ui/facebook-icon';
 import { isPlaceholderValue, siteConfig } from '@/config/site';
@@ -220,20 +220,74 @@ export default function ContactPage() {
 
           <div className="overflow-hidden rounded-card border border-line bg-surface">
             {mapsHref ? (
-              <a
-                href={mapsHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-full min-h-[16rem] flex-col items-center justify-center gap-3 bg-brand-50 p-8 text-center transition-colors hover:bg-brand-100"
-              >
-                <MapPin
-                  aria-hidden="true"
-                  className="h-10 w-10 text-brand-600"
-                />
-                <span className="text-[0.9375rem] font-semibold text-brand-800">
-                  Mở bản đồ chỉ đường
-                </span>
-              </a>
+              /*
+                Anh ban do TINH tu tile OpenStreetMap, sinh boi
+                `node scripts/build-map-image.mjs` va nam san trong public/.
+
+                Vi sao khong nhung iframe Google Maps: trang nay khong co iframe
+                ben thu ba nao. Mot iframe ban do keo theo 300-900 KB tai nguyen
+                cua Google, dat cookie va gui dia chi IP cua khach sang Google
+                ngay khi ho cuon toi - doi lap truong rieng tu cua ca website
+                chi de hien mot lat ban do. Anh tinh nang ~157 KB, khong request
+                ra ngoai, va van dua nguoi dung sang Google Maps khi ho bam.
+
+                GIU DONG GHI CONG ben duoi: du lieu OpenStreetMap dung giay phep
+                ODbL, bat buoc ghi cong o noi hien thi.
+              */
+              <figure className="relative h-full">
+                <a
+                  href={mapsHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover-zoom-frame group block h-full overflow-hidden"
+                >
+                  {/*
+                    Dung <img> thuong thay vi next/image - NGOAI LE co chu dich
+                    so voi phan con lai cua ma nguon.
+
+                    Ly do: next.config.ts dat `images.unoptimized: true` (bat
+                    buoc voi output: 'export'), nen next/image o day khong toi
+                    uu gi ca - no sinh ra dung mot the <img> voi width/height/
+                    loading/decoding, KHONG co srcset. Doi lai no keo theo
+                    ~5 KB JavaScript vao trang. Do la trang duy nhat trong site
+                    truoc day khong tai component anh cua Next, nen chi phi do
+                    la them moi hoan toan chu khong phai dung ghep.
+
+                    Neu sau nay bo `output: 'export'' de Next toi uu anh luc
+                    chay, hay doi lai thanh next/image de anh nay duoc toi uu
+                    nhu moi anh khac.
+                  */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/center/ban-do-trung-tam.webp"
+                    alt={`Bản đồ khu vực quanh ${
+                      isPlaceholderValue(siteConfig.teacher.centerName)
+                        ? 'trung tâm đào tạo lái xe'
+                        : siteConfig.teacher.centerShortName
+                    }, ghim đỏ đánh dấu vị trí trung tâm`}
+                    width={1200}
+                    height={600}
+                    loading="lazy"
+                    decoding="async"
+                    className="hover-zoom-target h-full min-h-[16rem] w-full object-cover"
+                  />
+                  <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-brand-900/85 px-4 py-3 text-[0.9375rem] font-semibold text-white">
+                    <MapPin aria-hidden="true" className="h-[1.125rem] w-[1.125rem]" />
+                    Mở bản đồ chỉ đường
+                    <ExternalLink aria-hidden="true" className="h-4 w-4" />
+                  </span>
+                </a>
+                <figcaption className="absolute right-2 top-2 rounded bg-surface/90 px-2 py-1 text-[0.6875rem] leading-none text-ink-subtle">
+                  <a
+                    href="https://www.openstreetmap.org/copyright"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-dotted underline-offset-2 hover:text-ink-muted"
+                  >
+                    © OpenStreetMap contributors
+                  </a>
+                </figcaption>
+              </figure>
             ) : (
               <div className="flex h-full min-h-[16rem] flex-col items-center justify-center gap-3 bg-surface-sunken p-8 text-center">
                 <MapPin

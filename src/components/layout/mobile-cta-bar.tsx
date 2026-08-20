@@ -23,7 +23,8 @@ import { cn } from '@/lib/utils/cn';
  * NEXT_PUBLIC_FACEBOOK_URL thi thanh nay chi con hai cot.
  */
 const tileClasses =
-  'flex flex-col items-center justify-center gap-1 rounded-xl px-2 py-2 text-xs font-semibold transition-colors';
+  'flex flex-col items-center justify-center gap-1 rounded-xl px-2 py-2 text-xs font-semibold ' +
+  'transition-[color,background-color,transform] duration-150 active:scale-[0.97] motion-reduce:active:scale-100';
 
 export function MobileCtaBar() {
   const phoneHref = buildPhoneHref(siteConfig.contact.phone);

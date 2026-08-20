@@ -3,19 +3,21 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Car, Menu, Phone, X } from 'lucide-react';
-import { mainNav, siteConfig } from '@/config/site';
+import { Menu, Phone, X } from 'lucide-react';
+import { isPlaceholderValue, mainNav, siteConfig } from '@/config/site';
 import { buildPhoneHref } from '@/lib/utils/cta-links';
 import { formatVietnamesePhone } from '@/lib/validation/phone';
 import { trackEvent } from '@/lib/analytics/track';
 import { AnalyticsEvent } from '@/lib/analytics/events';
 import { buttonClasses } from '@/components/ui/button';
+import { BrandMark } from '@/components/ui/brand-mark';
 import { cn } from '@/lib/utils/cn';
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const phoneHref = buildPhoneHref(siteConfig.contact.phone);
+  const hasCenterName = !isPlaceholderValue(siteConfig.teacher.centerName);
 
   // Dong menu khi doi trang.
   useEffect(() => {
@@ -50,23 +52,66 @@ export function SiteHeader() {
       */}
       <div className="mx-auto w-full max-w-[80rem] px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-3 lg:h-[4.5rem]">
-          {/* Logo chu */}
+          {/*
+            Khoi thuong hieu.
+
+            Dong phu TRUOC DAY la "Tu van & huong dan hoc lai xe" - dung nhung
+            vo nghia: bat ky trung tam nao cung viet duoc cau do. Header la
+            phan DINH tren moi trang va moi lan cuon, tuc la cho dat nhat cua
+            website; dung no cho mot cau chung chung la lang phi.
+
+            Nay dong phu neu dung thu nguoi xem can biet: thay day O DAU. Ten
+            trung tam lay tu `centerShortName` (bien moi truong) chu khong go
+            cung, de doi trung tam thi khong bi lech giua cac noi.
+
+            KHONG dat huy hieu/phu hieu cua Truong Dai hoc An ninh Nhan dan o
+            day - xem ghi chu day du trong components/ui/brand-mark.tsx. Quan
+            he la that nen duoc noi bang CHU; phu hieu se thanh mao danh.
+          */}
           <Link
             href="/"
-            className="flex shrink-0 items-center gap-2.5 rounded-md py-1 text-brand-900"
+            className="flex min-w-0 shrink items-center gap-2.5 rounded-md py-1 text-brand-900"
             aria-label={`${siteConfig.brandName} - về trang chủ`}
           >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-800 text-white">
-              <Car aria-hidden="true" className="h-5 w-5" />
-            </span>
-            <span className="flex flex-col leading-tight">
-              <span className="whitespace-nowrap text-[0.95rem] font-bold sm:text-base">
+            <BrandMark className="h-9 w-9" />
+            <span className="flex min-w-0 flex-col leading-tight">
+              <span className="truncate text-[0.95rem] font-bold sm:text-base">
                 {siteConfig.brandName}
               </span>
-              {/* An dong mo ta o khoang 1280-1535px de nhuong cho cho menu */}
-              <span className="hidden whitespace-nowrap text-xs font-medium text-ink-subtle sm:block xl:hidden 2xl:block">
-                Tư vấn &amp; hướng dẫn học lái xe
-              </span>
+              {hasCenterName ? (
+                <>
+                  {/*
+                    Hai bien the do BE NGANG header rat khac nhau theo man hinh:
+                     - 1024-1279px va >=1536px: menu vua van con cho -> ban day du.
+                     - 1280-1535px: 7 muc menu + so dien thoai + nut CTA chiem het
+                       hang, do duoc chi con ~130px cho khoi nay -> an di nhu cu.
+                     - <640px: menu thu thanh nut hamburger nen co cho, nhung khong
+                       du cho ban day du -> ban rut gon.
+                  */}
+                  {/* <640px: dung ban CUC NGAN chu khong phai ban rut gon.
+                      Ban rut gon bi cat thanh "...Truong Dai hoc A..." - tuc la
+                      mat dung "An ninh Nhan dan", phan mang toan bo y nghia.
+                      Ban cuc ngan vua du chieu ngang nen hien tron ven. */}
+                  <span className="truncate text-[0.6875rem] font-medium text-ink-subtle sm:hidden">
+                    {siteConfig.teacher.centerCompactName}
+                  </span>
+
+                  {/* 640-1279px: menu van la hamburger, rong rai nhat - ban day du. */}
+                  <span className="hidden whitespace-nowrap text-[0.6875rem] font-medium text-ink-subtle sm:block xl:hidden">
+                    {siteConfig.teacher.employmentStatus} ·{' '}
+                    {siteConfig.teacher.centerShortName}
+                  </span>
+
+                  {/* >=1280px: 7 muc menu + so dien thoai + nut CTA da chiem gan
+                      het hang. Do duoc chi con khoang 300px, nen dung ban cuc
+                      ngan. Truoc day khoang nay AN han dong phu - tuc la o dung
+                      man hinh may tinh de ban, header khong he noi thay day o
+                      dau. */}
+                  <span className="hidden whitespace-nowrap text-[0.6875rem] font-medium text-ink-subtle xl:block">
+                    {siteConfig.teacher.centerCompactName}
+                  </span>
+                </>
+              ) : null}
             </span>
           </Link>
 
