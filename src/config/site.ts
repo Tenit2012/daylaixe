@@ -175,9 +175,26 @@ export const siteConfig = {
      * chinh la ba cau hoi ma bao cao TRUST_AUDIT cham diem thap nhat.
      */
     heroTitle: `Học lái xe cùng giáo viên cơ hữu tại ${publicEnv.NEXT_PUBLIC_CENTER_NAME}`,
-    heroSubtitle: `${experienceLabel} kinh nghiệm giảng dạy • Hướng dẫn ${studentGroups} • Đăng ký trực tiếp với ${
-      isPlaceholderValue(teacherName) ? 'thầy' : `thầy ${teacherName}`
-    }`,
+    /**
+     * Ba dieu can noi ngay duoi tieu de hero, moi dieu MOT MUC RIENG.
+     *
+     * Truoc day day la MOT chuoi duy nhat, ba y dinh vao nhau bang dau "•".
+     * Cach do hong khi xuong dong: dau cham roi vao dau hoac cuoi dong tuy be
+     * ngang man hinh, va cum "he dan su va he Cong an" bi cat doi giua hai
+     * dong. Doc thanh mot cau lan man thay vi ba dieu ro rang.
+     *
+     * Tach thanh mang de moi muc la mot khoi khong the vo: trinh duyet chi
+     * duoc xuong dong GIUA cac muc, khong bao gio cat ngang mot y. Dau cham
+     * tron giờ la phan tu duoc ve, thuoc ve muc dung sau no, nen khong bao gio
+     * bi mo coi o dau dong.
+     */
+    heroHighlights: [
+      `${experienceLabel} kinh nghiệm giảng dạy`,
+      `Hướng dẫn ${studentGroups}`,
+      `Đăng ký trực tiếp với ${
+        isPlaceholderValue(teacherName) ? 'thầy' : `thầy ${teacherName}`
+      }`,
+    ],
     secondary:
       'Tư vấn khóa học phù hợp, hướng dẫn chuẩn bị hồ sơ và sắp xếp lịch học. Bạn trao đổi trực tiếp với thầy, đăng ký và học tại trung tâm.',
     philosophy:

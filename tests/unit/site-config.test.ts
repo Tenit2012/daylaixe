@@ -60,8 +60,9 @@ describe('siteConfig', () => {
     expect(siteConfig.messaging.heroTitle).toContain(
       siteConfig.teacher.centerName,
     );
-    expect(siteConfig.messaging.heroSubtitle).toContain('kinh nghiệm');
-    expect(siteConfig.messaging.heroSubtitle).toContain('Đăng ký trực tiếp');
+    const highlights = siteConfig.messaging.heroHighlights.join(' ');
+    expect(highlights).toContain('kinh nghiệm');
+    expect(highlights).toContain('Đăng ký trực tiếp');
   });
 
   it('triet ly dao tao dung nguyen van', () => {

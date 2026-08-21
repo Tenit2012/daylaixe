@@ -38,9 +38,29 @@ export function HeroSection() {
               {messaging.heroTitle}
             </h1>
 
-            <p className="hero-in motion-delay-2 mt-5 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
-              {messaging.heroSubtitle}
-            </p>
+            {/*
+              Danh sach thay vi mot doan van - xem ghi chu `heroHighlights`
+              trong config. Moi muc la mot o rieng nen trinh duyet chi xuong
+              dong GIUA cac muc, khong cat ngang mot y. Cham tron di kem muc
+              cua no nen khong bao gio dung mot minh o dau dong.
+            */}
+            <ul className="hero-in motion-delay-2 mt-5 flex max-w-xl flex-col gap-y-2 text-base leading-relaxed text-ink-muted sm:text-lg">
+              {messaging.heroHighlights.map((item) => (
+                <li key={item} className="flex items-start gap-2.5">
+                  <span
+                    aria-hidden="true"
+                    className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500"
+                  />
+                  {/*
+                    `text-balance` chia dong cho deu nhau. Thieu no, muc
+                    "Huong dan hoc vien he dan su va he Cong an" o man hinh
+                    390px bi vat xuong dong hai chi con moi chu "an" dung mot
+                    minh - mat chu lac nhu vay lam ca khoi trong cau tha.
+                  */}
+                  <span className="text-balance">{item}</span>
+                </li>
+              ))}
+            </ul>
 
             <div className="hero-in motion-delay-3 mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <CallButton location="hero" size="lg" />
