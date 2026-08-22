@@ -8,6 +8,7 @@ import { PostCard } from '@/components/blog/post-card';
 import { Badge } from '@/components/ui/card';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { JsonLd } from '@/components/ui/json-ld';
+import { CtaLocation } from '@/lib/analytics/events';
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Kiến thức học lái xe',
@@ -66,7 +67,7 @@ export default function BlogIndexPage() {
       <CtaBanner
         title="Có câu hỏi chưa được bài viết nào trả lời?"
         description="Nhắn cho thầy, câu hỏi của bạn có thể trở thành bài viết tiếp theo trên trang này."
-        location="blog_index"
+        location={CtaLocation.Article}
       />
 
       <JsonLd data={buildBreadcrumbJsonLd(crumbs)} />

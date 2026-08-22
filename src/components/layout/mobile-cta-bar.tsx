@@ -10,7 +10,8 @@ import {
   buildZaloHref,
 } from '@/lib/utils/cta-links';
 import { trackEvent } from '@/lib/analytics/track';
-import { AnalyticsEvent } from '@/lib/analytics/events';
+import { AnalyticsEvent, CtaLocation } from '@/lib/analytics/events';
+import { trackAttributes } from '@/lib/analytics/attributes';
 import { cn } from '@/lib/utils/cn';
 
 /**
@@ -50,8 +51,14 @@ export function MobileCtaBar() {
           <a
             href={phoneHref}
             onClick={() =>
-              trackEvent(AnalyticsEvent.ClickPhone, { location: 'mobile_bar' })
+              trackEvent(AnalyticsEvent.ContactPhone, {
+                location: CtaLocation.MobileSticky,
+              })
             }
+            {...trackAttributes(
+              AnalyticsEvent.ContactPhone,
+              CtaLocation.MobileSticky,
+            )}
             className={cn(
               tileClasses,
               'bg-accent-500 text-white hover:bg-accent-600',
@@ -75,8 +82,14 @@ export function MobileCtaBar() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() =>
-              trackEvent(AnalyticsEvent.ClickZalo, { location: 'mobile_bar' })
+              trackEvent(AnalyticsEvent.ContactZalo, {
+                location: CtaLocation.MobileSticky,
+              })
             }
+            {...trackAttributes(
+              AnalyticsEvent.ContactZalo,
+              CtaLocation.MobileSticky,
+            )}
             className={cn(tileClasses, 'bg-zalo text-white hover:bg-zalo-dark')}
           >
             <ZaloIcon className="h-5 w-5" />
@@ -98,9 +111,13 @@ export function MobileCtaBar() {
             rel="noopener noreferrer"
             onClick={() =>
               trackEvent(AnalyticsEvent.ClickFacebook, {
-                location: 'mobile_bar',
+                location: CtaLocation.MobileSticky,
               })
             }
+            {...trackAttributes(
+              AnalyticsEvent.ClickFacebook,
+              CtaLocation.MobileSticky,
+            )}
             className={cn(
               tileClasses,
               'bg-facebook text-white hover:bg-facebook-dark',

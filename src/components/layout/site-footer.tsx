@@ -12,6 +12,8 @@ import {
 } from '@/lib/utils/cta-links';
 import { formatVietnamesePhone } from '@/lib/validation/phone';
 import { BrandMark } from '@/components/ui/brand-mark';
+import { TrackedLink } from '@/components/ui/tracked-link';
+import { AnalyticsEvent, CtaLocation } from '@/lib/analytics/events';
 import { isPlaceholderValue } from '@/config/site';
 
 export function SiteFooter() {
@@ -71,26 +73,26 @@ export function SiteFooter() {
             {(facebookHref || youtubeHref) && (
               <div className="mt-5 flex items-center gap-3">
                 {facebookHref ? (
-                  <a
+                  <TrackedLink
                     href={facebookHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    event={AnalyticsEvent.ClickFacebook}
+                    location={CtaLocation.Footer}
                     aria-label="Trang Facebook"
                     className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
                   >
                     <FacebookIcon className="h-4 w-4" />
-                  </a>
+                  </TrackedLink>
                 ) : null}
                 {youtubeHref ? (
-                  <a
+                  <TrackedLink
                     href={youtubeHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    event={AnalyticsEvent.ClickYoutube}
+                    location={CtaLocation.Footer}
                     aria-label="Kênh YouTube"
                     className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
                   >
                     <Youtube aria-hidden="true" className="h-4 w-4" />
-                  </a>
+                  </TrackedLink>
                 ) : null}
               </div>
             )}
@@ -108,12 +110,14 @@ export function SiteFooter() {
                   className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-300"
                 />
                 {phoneHref ? (
-                  <a
+                  <TrackedLink
                     href={phoneHref}
+                    event={AnalyticsEvent.ContactPhone}
+                    location={CtaLocation.Footer}
                     className="hover:text-white hover:underline"
                   >
                     {formatVietnamesePhone(siteConfig.contact.phone)}
-                  </a>
+                  </TrackedLink>
                 ) : (
                   <span className="text-brand-300">
                     Số điện thoại đang cập nhật
@@ -123,14 +127,14 @@ export function SiteFooter() {
               <li className="flex items-start gap-2.5">
                 <ZaloIcon className="mt-0.5 h-4 w-4" />
                 {zaloHref ? (
-                  <a
+                  <TrackedLink
                     href={zaloHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    event={AnalyticsEvent.ContactZalo}
+                    location={CtaLocation.Footer}
                     className="hover:text-white hover:underline"
                   >
                     Nhắn Zalo cho thầy
-                  </a>
+                  </TrackedLink>
                 ) : (
                   <span className="text-brand-300">Zalo đang cập nhật</span>
                 )}
@@ -141,12 +145,14 @@ export function SiteFooter() {
                   className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-300"
                 />
                 {emailHref ? (
-                  <a
+                  <TrackedLink
                     href={emailHref}
+                    event={AnalyticsEvent.ClickEmail}
+                    location={CtaLocation.Footer}
                     className="break-all hover:text-white hover:underline"
                   >
                     {siteConfig.contact.email}
-                  </a>
+                  </TrackedLink>
                 ) : (
                   <span className="text-brand-300">Email đang cập nhật</span>
                 )}
@@ -176,14 +182,14 @@ export function SiteFooter() {
               </li>
               {mapsHref ? (
                 <li>
-                  <a
+                  <TrackedLink
                     href={mapsHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    event={AnalyticsEvent.ClickGoogleMap}
+                    location={CtaLocation.Footer}
                     className="inline-flex items-center gap-1.5 text-accent-300 hover:text-accent-200 hover:underline"
                   >
                     Xem trên Google Maps
-                  </a>
+                  </TrackedLink>
                 </li>
               ) : null}
               <li className="text-brand-200">

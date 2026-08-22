@@ -1,9 +1,10 @@
-import Link from 'next/link';
 import { featuredCourses } from '@/content/courses';
 import { Section, SectionHeading } from '@/components/ui/section';
 import { CourseCard } from '@/components/courses/course-card';
 import { buttonClasses } from '@/components/ui/button';
 import { Reveal } from '@/components/ui/reveal';
+import { TrackedLink } from '@/components/ui/tracked-link';
+import { AnalyticsEvent, CtaLocation } from '@/lib/analytics/events';
 import { staggerDelay } from '@/lib/utils/stagger';
 
 export function CoursesSection() {
@@ -35,9 +36,14 @@ export function CoursesSection() {
       </div>
 
       <div className="mt-9 text-center">
-        <Link href="/khoa-hoc" className={buttonClasses('secondary', 'md')}>
+        <TrackedLink
+          href="/khoa-hoc"
+          event={AnalyticsEvent.ViewCourse}
+          location={CtaLocation.Home}
+          className={buttonClasses('secondary', 'md')}
+        >
           Xem tất cả khóa học
-        </Link>
+        </TrackedLink>
       </div>
     </Section>
   );

@@ -18,6 +18,7 @@ import { formatVietnameseDate } from '@/lib/utils/format-date';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { ArticleContent } from '@/components/blog/article-content';
 import { PostCard } from '@/components/blog/post-card';
+import { CtaLocation } from '@/lib/analytics/events';
 import {
   CallButton,
   FacebookButton,
@@ -201,9 +202,21 @@ export default async function BlogPostPage({ params }: PageProps) {
             tình trạng hiện tại, thầy sẽ gợi ý lộ trình phù hợp với bạn.
           </p>
           <div className="mt-6 flex flex-col justify-center gap-2.5 sm:flex-row">
-            <ZaloButton location={`blog_${post.slug}`} size="md" />
-            <CallButton location={`blog_${post.slug}`} size="md" />
-            <FacebookButton location={`blog_${post.slug}`} size="md" />
+            <ZaloButton
+              location={CtaLocation.Article}
+              article={post.slug}
+              size="md"
+            />
+            <CallButton
+              location={CtaLocation.Article}
+              article={post.slug}
+              size="md"
+            />
+            <FacebookButton
+              location={CtaLocation.Article}
+              article={post.slug}
+              size="md"
+            />
           </div>
         </aside>
       </article>

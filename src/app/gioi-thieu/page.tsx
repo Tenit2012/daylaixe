@@ -13,6 +13,7 @@ import { LearningProcessSection } from '@/components/sections/learning-process-s
 import { LessonVideoSection } from '@/components/sections/lesson-video-section';
 import { ContactSection } from '@/components/sections/contact-section';
 import { JsonLd } from '@/components/ui/json-ld';
+import { CtaLocation } from '@/lib/analytics/events';
 
 const teacherLabel = isPlaceholderValue(siteConfig.teacher.name)
   ? 'thầy dạy lái xe'
@@ -204,10 +205,10 @@ export default function AboutPage() {
       </Section>
 
       {/* Nen xen ke: Album(sang) - Video(toi) - Lien he(sang). */}
-      <LessonVideoSection location="about" tone="muted" />
+      <LessonVideoSection location={CtaLocation.AboutPage} tone="muted" />
 
       <ContactSection
-        location="about"
+        location={CtaLocation.AboutPage}
         title="Muốn trao đổi trực tiếp với thầy?"
         description="Gọi hoặc nhắn tin để thầy nghe rõ nhu cầu của bạn trước khi tư vấn khóa học."
       />

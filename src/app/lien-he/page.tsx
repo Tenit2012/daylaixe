@@ -272,7 +272,10 @@ export default function ContactPage() {
                     className="hover-zoom-target h-full min-h-[16rem] w-full object-cover"
                   />
                   <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-brand-900/85 px-4 py-3 text-[0.9375rem] font-semibold text-white">
-                    <MapPin aria-hidden="true" className="h-[1.125rem] w-[1.125rem]" />
+                    <MapPin
+                      aria-hidden="true"
+                      className="h-[1.125rem] w-[1.125rem]"
+                    />
                     Mở bản đồ chỉ đường
                     <ExternalLink aria-hidden="true" className="h-4 w-4" />
                   </span>

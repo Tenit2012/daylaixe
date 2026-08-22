@@ -50,6 +50,7 @@ const publicEnvSchema = z.object({
     .min(1)
     .default('học viên dân sự và Công an'),
   NEXT_PUBLIC_CONTACT_HOURS: z.string().min(1).default('[Thời gian liên hệ]'),
+  NEXT_PUBLIC_GTM_ID: z.string().default(''),
   NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().default(''),
   NEXT_PUBLIC_FACEBOOK_PIXEL_ID: z.string().default(''),
   NEXT_PUBLIC_ENABLE_FACEBOOK_PIXEL: z.string().default('false'),
@@ -104,6 +105,7 @@ const parsed = publicEnvSchema.safeParse({
     process.env.NEXT_PUBLIC_STUDENT_GROUPS_SHORT,
   ),
   NEXT_PUBLIC_CONTACT_HOURS: orUndefined(process.env.NEXT_PUBLIC_CONTACT_HOURS),
+  NEXT_PUBLIC_GTM_ID: orUndefined(process.env.NEXT_PUBLIC_GTM_ID),
   NEXT_PUBLIC_GA_MEASUREMENT_ID: orUndefined(
     process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
   ),

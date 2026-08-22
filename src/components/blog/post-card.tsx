@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { TrackedLink } from '@/components/ui/tracked-link';
+import { AnalyticsEvent, CtaLocation } from '@/lib/analytics/events';
 import { CalendarDays, Clock } from 'lucide-react';
 import type { BlogPost } from '@/types/content';
 import { formatVietnameseDate } from '@/lib/utils/format-date';
@@ -47,12 +49,15 @@ export function PostCard({
           {post.category}
         </p>
         <Heading className="mt-2 text-lg leading-snug">
-          <Link
+          <TrackedLink
             href={`/kien-thuc/${post.slug}`}
+            event={AnalyticsEvent.ViewArticle}
+            location={CtaLocation.Article}
+            article={post.slug}
             className="rounded transition-colors hover:text-brand-600"
           >
             {post.title}
-          </Link>
+          </TrackedLink>
         </Heading>
         <p className="mt-2 flex-1 text-[0.9375rem] leading-relaxed text-ink-muted">
           {post.description}

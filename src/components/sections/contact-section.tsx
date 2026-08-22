@@ -9,12 +9,13 @@ import {
 import { formatVietnamesePhone } from '@/lib/validation/phone';
 import { isPlaceholderValue } from '@/config/site';
 import { Reveal } from '@/components/ui/reveal';
+import { CtaLocation, type CtaLocationName } from '@/lib/analytics/events';
 
 interface ContactSectionProps {
   title?: string;
   description?: string;
-  /** Nhan vi tri gui kem su kien analytics - vi du "home", "course_hang-b". */
-  location?: string;
+  /** Vi tri CTA gui kem su kien analytics. */
+  location?: CtaLocationName;
   tone?: 'default' | 'muted';
 }
 
@@ -31,7 +32,7 @@ interface ContactSectionProps {
 export function ContactSection({
   title = 'Liên hệ nhận tư vấn',
   description = 'Gọi điện hoặc nhắn tin cho thầy để được tư vấn khóa học phù hợp với nhu cầu và thời gian của bạn. Thầy trả lời trực tiếp, không qua tổng đài.',
-  location = 'section',
+  location = CtaLocation.ContactSection,
   tone = 'default',
 }: ContactSectionProps) {
   const hasPhone = !isPlaceholderValue(siteConfig.contact.phone);

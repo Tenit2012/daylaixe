@@ -12,14 +12,34 @@ import {
 } from '@/lib/utils/cta-links';
 import { formatVietnamesePhone } from '@/lib/validation/phone';
 import { trackEvent } from '@/lib/analytics/track';
-import { AnalyticsEvent } from '@/lib/analytics/events';
+import { AnalyticsEvent, type CtaLocationName } from '@/lib/analytics/events';
+import { trackAttributes } from '@/lib/analytics/attributes';
 import { buttonClasses } from './button';
 import { cn } from '@/lib/utils/cn';
 
 type Size = 'sm' | 'md' | 'lg';
 
 interface CtaProps {
-  location: string;
+  /**
+   * Vi tri cua CTA tren giao dien. Kieu co rang buoc chu khong phai chuoi tu
+   * do: mot nut "Nhan Zalo" xuat hien o gan chuc cho, chi can mot lan go sai
+   * ("moblie_bar") la GA4 lang le tach thanh hai phan doan va bao cao "CTA
+   * nao hieu qua nhat" tro nen sai ma khong ai biet.
+   */
+  location: CtaLocationName;
+  /**
+   * Slug khoa hoc gan voi CTA nay, neu co.
+   *
+   * VI SAO TACH RIENG KHOI `location`: truoc day cac trang khoa hoc truyen
+   * `location={`course_${slug}`}`, tuc la gop CHO DAT NUT va NOI DUNG vao
+   * cung mot tham so. Voi 5 khoa hoc x 3 vi tri + 18 bai viet, GA4 nhan 33
+   * gia tri `location` khac nhau - bao cao "CTA nao hieu qua nhat" tro nen
+   * vo dung vi moi dong chi con vai luot. Tach ra thi doc duoc ca hai chieu
+   * doc lap: vi tri nao hieu qua, VA khoa hoc nao duoc quan tam.
+   */
+  course?: string;
+  /** Slug bai viet gan voi CTA nay, neu co. */
+  article?: string;
   size?: Size;
   className?: string;
   label?: string;
@@ -31,6 +51,8 @@ interface CtaProps {
  */
 export function CallButton({
   location,
+  course,
+  article,
   size = 'md',
   className,
   label,
@@ -56,7 +78,14 @@ export function CallButton({
   return (
     <a
       href={href}
-      onClick={() => trackEvent(AnalyticsEvent.ClickPhone, { location })}
+      onClick={() =>
+        trackEvent(AnalyticsEvent.ContactPhone, { location, course, article })
+      }
+      {...trackAttributes(
+        AnalyticsEvent.ContactPhone,
+        location,
+        course ?? article,
+      )}
       className={buttonClasses('primary', size, className)}
     >
       <Phone aria-hidden="true" className="h-[1.125rem] w-[1.125rem]" />
@@ -68,6 +97,8 @@ export function CallButton({
 /** Nut nhan Zalo. */
 export function ZaloButton({
   location,
+  course,
+  article,
   size = 'md',
   className,
   label = 'Nhắn Zalo cho thầy',
@@ -96,7 +127,14 @@ export function ZaloButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackEvent(AnalyticsEvent.ClickZalo, { location })}
+      onClick={() =>
+        trackEvent(AnalyticsEvent.ContactZalo, { location, course, article })
+      }
+      {...trackAttributes(
+        AnalyticsEvent.ContactZalo,
+        location,
+        course ?? article,
+      )}
       className={buttonClasses('zalo', size, className)}
     >
       <ZaloIcon />
@@ -114,6 +152,8 @@ export function ZaloButton({
  */
 export function FacebookButton({
   location,
+  course,
+  article,
   size = 'md',
   className,
   label = 'Nhắn Facebook',
@@ -126,7 +166,14 @@ export function FacebookButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackEvent(AnalyticsEvent.ClickFacebook, { location })}
+      onClick={() =>
+        trackEvent(AnalyticsEvent.ClickFacebook, { location, course, article })
+      }
+      {...trackAttributes(
+        AnalyticsEvent.ClickFacebook,
+        location,
+        course ?? article,
+      )}
       className={buttonClasses('facebook', size, className)}
     >
       <FacebookIcon />
@@ -146,6 +193,8 @@ export function FacebookButton({
  */
 export function VisitCenterButton({
   location,
+  course,
+  article,
   size = 'md',
   className,
   label = 'Đến tư vấn tại trung tâm',
@@ -158,7 +207,10 @@ export function VisitCenterButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackEvent(AnalyticsEvent.ClickMaps, { location })}
+      onClick={() =>
+        trackEvent(AnalyticsEvent.ClickGoogleMap, { location, course, article })
+      }
+      {...trackAttributes(AnalyticsEvent.ClickGoogleMap, location)}
       className={buttonClasses('outline', size, className)}
     >
       <MapPin aria-hidden="true" className="h-[1.125rem] w-[1.125rem]" />
@@ -173,7 +225,7 @@ export function MapsLink({
   className,
   label = 'Xem trên Google Maps',
 }: {
-  location: string;
+  location: CtaLocationName;
   className?: string;
   label?: string;
 }) {
@@ -185,7 +237,8 @@ export function MapsLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackEvent(AnalyticsEvent.ClickMaps, { location })}
+      onClick={() => trackEvent(AnalyticsEvent.ClickGoogleMap, { location })}
+      {...trackAttributes(AnalyticsEvent.ClickGoogleMap, location)}
       className={cn(
         'inline-flex items-center gap-1.5 rounded text-sm font-semibold text-brand-700 underline underline-offset-4 hover:text-brand-900',
         className,

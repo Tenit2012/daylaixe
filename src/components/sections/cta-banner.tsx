@@ -1,4 +1,5 @@
 import { Section } from '@/components/ui/section';
+import { CtaLocation, type CtaLocationName } from '@/lib/analytics/events';
 import {
   CallButton,
   FacebookButton,
@@ -8,13 +9,13 @@ import {
 interface CtaBannerProps {
   title?: string;
   description?: string;
-  location?: string;
+  location?: CtaLocationName;
 }
 
 export function CtaBanner({
   title = 'Còn băn khoăn chưa biết bắt đầu từ đâu?',
   description = 'Nhắn cho thầy vài dòng về nhu cầu và thời gian rảnh của bạn. Thầy sẽ tư vấn khóa học phù hợp, không thúc ép đăng ký.',
-  location = 'cta_banner',
+  location = CtaLocation.CtaBanner,
 }: CtaBannerProps) {
   return (
     <Section tone="brand" ariaLabelledBy="cta-banner-heading">

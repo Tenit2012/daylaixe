@@ -6,6 +6,7 @@ import { Section, SectionHeading } from '@/components/ui/section';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { CourseCard } from '@/components/courses/course-card';
 import { ContactSection } from '@/components/sections/contact-section';
+import { CtaLocation } from '@/lib/analytics/events';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { JsonLd } from '@/components/ui/json-ld';
 import { siteConfig } from '@/config/site';
@@ -63,10 +64,10 @@ export default function CoursesPage() {
       <CtaBanner
         title="Chưa biết nên chọn khóa nào?"
         description="Chỉ cần cho thầy biết bạn sẽ lái loại xe gì và rảnh vào khung giờ nào, thầy sẽ gợi ý khóa phù hợp nhất."
-        location="courses_page"
+        location={CtaLocation.CoursePage}
       />
 
-      <ContactSection location="courses_page" tone="muted" />
+      <ContactSection location={CtaLocation.CourseList} tone="muted" />
 
       <JsonLd data={buildBreadcrumbJsonLd(crumbs)} />
     </>

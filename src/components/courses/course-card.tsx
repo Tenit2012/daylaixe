@@ -6,7 +6,8 @@ import { ArrowRight, CarFront, Clock, Users } from 'lucide-react';
 import type { Course } from '@/types/content';
 import { buttonClasses } from '@/components/ui/button';
 import { trackEvent } from '@/lib/analytics/track';
-import { AnalyticsEvent } from '@/lib/analytics/events';
+import { AnalyticsEvent, CtaLocation } from '@/lib/analytics/events';
+import { trackAttributes } from '@/lib/analytics/attributes';
 
 interface CourseCardProps {
   course: Course;
@@ -44,7 +45,7 @@ export function CourseCard({
       `focus-within` di kem `:hover` de nguoi dieu huong bang ban phim cung
       thay dung phan hoi do khi tab vao the.
     */
-    <article className="hover-lift card-base flex h-full flex-col overflow-hidden p-0 shadow-card hover:shadow-card-hover focus-within:shadow-card-hover">
+    <article className="hover-lift card-base flex h-full flex-col overflow-hidden p-0 shadow-card focus-within:shadow-card-hover hover:shadow-card-hover">
       <Link
         href={`/khoa-hoc/${course.slug}`}
         tabIndex={-1}
@@ -68,8 +69,16 @@ export function CourseCard({
           <Link
             href={`/khoa-hoc/${course.slug}`}
             onClick={() =>
-              trackEvent(AnalyticsEvent.ClickCourse, { course: course.slug })
+              trackEvent(AnalyticsEvent.ViewCourse, {
+                course: course.slug,
+                location: CtaLocation.CourseCard,
+              })
             }
+            {...trackAttributes(
+              AnalyticsEvent.ViewCourse,
+              CtaLocation.CourseCard,
+              course.slug,
+            )}
             className="rounded transition-colors hover:text-brand-600"
           >
             {course.name}
@@ -121,7 +130,10 @@ export function CourseCard({
           <Link
             href={`/khoa-hoc/${course.slug}`}
             onClick={() =>
-              trackEvent(AnalyticsEvent.ClickCourse, { course: course.slug })
+              trackEvent(AnalyticsEvent.ViewCourse, {
+                course: course.slug,
+                location: CtaLocation.CourseCard,
+              })
             }
             className={buttonClasses('outline', 'md')}
           >
@@ -131,8 +143,22 @@ export function CourseCard({
               className="hover-nudge-target h-4 w-4"
             />
           </Link>
+          {/* Day la y dinh DANG KY gan voi mot khoa hoc cu the - su kien
+              co gia tri kinh doanh cao nhat tren luoi khoa hoc, truoc day
+              hoan toan khong duoc ghi nhan. */}
           <Link
             href={`/khoa-hoc/${course.slug}#lien-he-nhanh`}
+            onClick={() =>
+              trackEvent(AnalyticsEvent.RegistrationClick, {
+                course: course.slug,
+                location: CtaLocation.CourseCard,
+              })
+            }
+            {...trackAttributes(
+              AnalyticsEvent.RegistrationClick,
+              CtaLocation.CourseCard,
+              course.slug,
+            )}
             className={buttonClasses('primary', 'md')}
           >
             Liên hệ tư vấn

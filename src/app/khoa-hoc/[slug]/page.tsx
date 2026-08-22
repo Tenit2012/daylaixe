@@ -14,6 +14,7 @@ import { Section } from '@/components/ui/section';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Accordion } from '@/components/ui/accordion';
 import { CallButton, ZaloButton } from '@/components/ui/contact-buttons';
+import { CtaLocation } from '@/lib/analytics/events';
 import { ContactSection } from '@/components/sections/contact-section';
 import { JsonLd } from '@/components/ui/json-ld';
 
@@ -98,8 +99,20 @@ export default async function CourseDetailPage({ params }: PageProps) {
               </ul>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <CallButton location={`course_${course.slug}`} size="lg" />
-                <ZaloButton location={`course_${course.slug}`} size="lg" />
+                {/* `location` = CHO dat nut, `course` = KHOA HOC nao.
+                    Truoc day hai chieu nay bi gop thanh mot chuoi
+                    `course_${slug}` khien GA4 nhan 33 gia tri location khac
+                    nhau - khong con doc duoc vi tri nao hieu qua. */}
+                <CallButton
+                  location={CtaLocation.CoursePage}
+                  course={course.slug}
+                  size="lg"
+                />
+                <ZaloButton
+                  location={CtaLocation.CoursePage}
+                  course={course.slug}
+                  size="lg"
+                />
               </div>
             </div>
 
@@ -231,11 +244,13 @@ export default async function CourseDetailPage({ params }: PageProps) {
                   </p>
                   <div className="mt-4 flex flex-col gap-2.5 sm:flex-row">
                     <CallButton
-                      location={`course_fee_${course.slug}`}
+                      location={CtaLocation.CoursePageFee}
+                      course={course.slug}
                       size="sm"
                     />
                     <ZaloButton
-                      location={`course_fee_${course.slug}`}
+                      location={CtaLocation.CoursePageFee}
+                      course={course.slug}
                       size="sm"
                       label="Hỏi học phí qua Zalo"
                     />
@@ -308,11 +323,13 @@ export default async function CourseDetailPage({ params }: PageProps) {
 
               <div className="mt-5 flex flex-col gap-2.5 border-t border-line pt-5">
                 <CallButton
-                  location={`course_sidebar_${course.slug}`}
+                  location={CtaLocation.CoursePageSidebar}
+                  course={course.slug}
                   size="md"
                 />
                 <ZaloButton
-                  location={`course_sidebar_${course.slug}`}
+                  location={CtaLocation.CoursePageSidebar}
+                  course={course.slug}
                   size="md"
                 />
               </div>
@@ -322,7 +339,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
       </Section>
 
       <ContactSection
-        location={`course_${course.slug}`}
+        location={CtaLocation.CoursePage}
         tone="muted"
         title={`Tư vấn khóa ${course.name}`}
         description="Liên hệ với thầy để trao đổi về lịch học, hồ sơ và học phí được cập nhật mới nhất."

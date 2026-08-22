@@ -6,7 +6,11 @@ import { SiteHeader } from '@/components/layout/site-header';
 import { SiteFooter } from '@/components/layout/site-footer';
 import { MobileCtaBar } from '@/components/layout/mobile-cta-bar';
 import { FloatingCta } from '@/components/layout/floating-cta';
-import { AnalyticsScripts } from '@/components/layout/analytics-scripts';
+import {
+  AnalyticsScripts,
+  GtmNoScript,
+} from '@/components/layout/analytics-scripts';
+import { AnalyticsRouteTracker } from '@/components/layout/analytics-route-tracker';
 import { JsonLd } from '@/components/ui/json-ld';
 import {
   buildCenterJsonLd,
@@ -138,6 +142,10 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: MOTION_BOOTSTRAP }} />
       </head>
       <body suppressHydrationWarning>
+        {/* Ban du phong GTM cho trinh duyet tat JavaScript - Google yeu cau
+            dat ngay dau <body>. */}
+        <GtmNoScript />
+
         <a href="#main-content" className="skip-link">
           Bỏ qua và tới nội dung chính
         </a>
@@ -158,6 +166,7 @@ export default function RootLayout({
         {localService ? <JsonLd data={localService} /> : null}
 
         <AnalyticsScripts />
+        <AnalyticsRouteTracker />
       </body>
     </html>
   );

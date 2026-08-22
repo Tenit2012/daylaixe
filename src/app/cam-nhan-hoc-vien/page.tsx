@@ -15,6 +15,7 @@ import { TestimonialFilter } from '@/components/testimonials/testimonial-filter'
 import { GalleryGrid } from '@/components/gallery/gallery-grid';
 import { ContactSection } from '@/components/sections/contact-section';
 import { JsonLd } from '@/components/ui/json-ld';
+import { CtaLocation } from '@/lib/analytics/events';
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Trải nghiệm học lái xe',
@@ -120,7 +121,7 @@ export default function TestimonialsPage() {
       </Section>
 
       <ContactSection
-        location="testimonials_page"
+        location={CtaLocation.TestimonialsPage}
         tone="muted"
         title="Muốn bắt đầu như các học viên khác?"
         description="Gọi hoặc nhắn Zalo cho thầy để được tư vấn khóa học phù hợp với bạn."

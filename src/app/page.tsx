@@ -17,6 +17,7 @@ import { generalFaqs } from '@/content/faqs';
 import { registrationProcess } from '@/content/registration-process';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { siteConfig } from '@/config/site';
+import { CtaLocation } from '@/lib/analytics/events';
 
 export const metadata: Metadata = buildPageMetadata({
   title: siteConfig.seo.defaultTitle,
@@ -51,7 +52,7 @@ export default function HomePage() {
       <HeroSection />
       <TrustBadgesSection />
       <AboutTeacherSection />
-      <LessonVideoSection location="home" tone="muted" />
+      <LessonVideoSection location={CtaLocation.Home} tone="muted" />
       <WhereToStudySection tone="default" />
       <LearningProcessSection
         tone="muted"
@@ -66,7 +67,7 @@ export default function HomePage() {
       <GallerySection />
       <TestimonialsSection tone="muted" />
       <FaqSection tone="default" />
-      <ContactSection location="home" tone="muted" />
+      <ContactSection location={CtaLocation.Home} tone="muted" />
 
       <JsonLd data={buildFaqJsonLd(generalFaqs)} />
     </>

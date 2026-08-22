@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { AlertTriangle, Check } from 'lucide-react';
 import { sortedCourses } from '@/content/courses';
 import { siteConfig } from '@/config/site';
@@ -12,6 +11,8 @@ import { LearningProcessSection } from '@/components/sections/learning-process-s
 import { ContactSection } from '@/components/sections/contact-section';
 import { JsonLd } from '@/components/ui/json-ld';
 import { buttonClasses } from '@/components/ui/button';
+import { AnalyticsEvent, CtaLocation } from '@/lib/analytics/events';
+import { TrackedLink } from '@/components/ui/tracked-link';
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Học phí và lộ trình học lái xe',
@@ -92,12 +93,15 @@ export default function TuitionPage() {
                     scope="row"
                     className="px-4 py-4 font-semibold text-brand-900"
                   >
-                    <Link
+                    <TrackedLink
                       href={`/khoa-hoc/${course.slug}`}
+                      event={AnalyticsEvent.ViewCourse}
+                      location={CtaLocation.Pricing}
+                      course={course.slug}
                       className="rounded hover:text-brand-600 hover:underline"
                     >
                       {course.name}
-                    </Link>
+                    </TrackedLink>
                   </th>
                   <td className="px-4 py-4 text-ink-muted">
                     {course.suitableFor[0]}
@@ -121,13 +125,16 @@ export default function TuitionPage() {
                        * Gach chan luon hien vi trong mot bang du lieu, chu
                        * chi doi mau khong du de nhan ra la bam duoc.
                        */
-                      <Link
+                      <TrackedLink
                         href="/lien-he"
+                        event={AnalyticsEvent.RegistrationClick}
+                        location={CtaLocation.Pricing}
+                        course={course.slug}
                         aria-label={`Liên hệ để nhận báo giá khóa ${course.name}`}
                         className="rounded font-semibold text-accent-700 underline underline-offset-4 hover:text-accent-800"
                       >
                         Liên hệ để nhận báo giá
-                      </Link>
+                      </TrackedLink>
                     )}
                   </td>
                 </tr>
@@ -217,18 +224,20 @@ export default function TuitionPage() {
           </ul>
 
           <div className="mt-8 text-center">
-            <Link
+            <TrackedLink
               href="#lien-he-nhanh"
+              event={AnalyticsEvent.ViewPricing}
+              location={CtaLocation.Pricing}
               className={buttonClasses('primary', 'lg')}
             >
               Nhận thông tin học phí mới nhất
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </Section>
 
       <ContactSection
-        location="tuition_page"
+        location={CtaLocation.Pricing}
         title="Nhận bảng chi phí và lịch khai giảng"
         description="Gọi hoặc nhắn tin cho thầy để nhận bảng chi phí chi tiết cùng lịch khai giảng gần nhất."
       />

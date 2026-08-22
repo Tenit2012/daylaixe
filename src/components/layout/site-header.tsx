@@ -8,7 +8,8 @@ import { isPlaceholderValue, mainNav, siteConfig } from '@/config/site';
 import { buildPhoneHref } from '@/lib/utils/cta-links';
 import { formatVietnamesePhone } from '@/lib/validation/phone';
 import { trackEvent } from '@/lib/analytics/track';
-import { AnalyticsEvent } from '@/lib/analytics/events';
+import { AnalyticsEvent, CtaLocation } from '@/lib/analytics/events';
+import { trackAttributes } from '@/lib/analytics/attributes';
 import { buttonClasses } from '@/components/ui/button';
 import { BrandMark } from '@/components/ui/brand-mark';
 import { cn } from '@/lib/utils/cn';
@@ -150,8 +151,14 @@ export function SiteHeader() {
               <a
                 href={phoneHref}
                 onClick={() =>
-                  trackEvent(AnalyticsEvent.ClickPhone, { location: 'header' })
+                  trackEvent(AnalyticsEvent.ContactPhone, {
+                    location: CtaLocation.Header,
+                  })
                 }
+                {...trackAttributes(
+                  AnalyticsEvent.ContactPhone,
+                  CtaLocation.Header,
+                )}
                 className="hidden items-center gap-2 whitespace-nowrap rounded-md px-2 py-1.5 text-sm font-semibold text-brand-800 hover:text-accent-600 md:inline-flex"
               >
                 <Phone aria-hidden="true" className="h-4 w-4 shrink-0" />
@@ -159,8 +166,19 @@ export function SiteHeader() {
               </a>
             ) : null}
 
+            {/* Nut CTA chinh cua header - hien tren MOI trang, truoc day
+                hoan toan khong duoc ghi nhan. */}
             <Link
               href="/lien-he#lien-he-nhanh"
+              onClick={() =>
+                trackEvent(AnalyticsEvent.RegistrationClick, {
+                  location: CtaLocation.Header,
+                })
+              }
+              {...trackAttributes(
+                AnalyticsEvent.RegistrationClick,
+                CtaLocation.Header,
+              )}
               className={cn(
                 buttonClasses('primary', 'sm'),
                 'hidden whitespace-nowrap sm:inline-flex',

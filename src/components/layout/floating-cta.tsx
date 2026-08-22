@@ -5,7 +5,8 @@ import { ZaloIcon } from '@/components/ui/zalo-icon';
 import { siteConfig } from '@/config/site';
 import { buildPhoneHref, buildZaloHref } from '@/lib/utils/cta-links';
 import { trackEvent } from '@/lib/analytics/track';
-import { AnalyticsEvent } from '@/lib/analytics/events';
+import { AnalyticsEvent, CtaLocation } from '@/lib/analytics/events';
+import { trackAttributes } from '@/lib/analytics/attributes';
 
 /**
  * Nut lien he noi o goc phai man hinh - CHI hien tu breakpoint lg tro len.
@@ -36,8 +37,14 @@ export function FloatingCta() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() =>
-            trackEvent(AnalyticsEvent.ClickZalo, { location: 'floating_cta' })
+            trackEvent(AnalyticsEvent.ContactZalo, {
+              location: CtaLocation.FloatingCta,
+            })
           }
+          {...trackAttributes(
+            AnalyticsEvent.ContactZalo,
+            CtaLocation.FloatingCta,
+          )}
           className="group flex h-14 items-center gap-3 rounded-pill bg-zalo px-4 text-sm font-semibold text-white shadow-sticky transition-colors hover:bg-zalo-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zalo focus-visible:ring-offset-2"
         >
           <ZaloIcon className="h-6 w-6" />
@@ -49,8 +56,14 @@ export function FloatingCta() {
         <a
           href={phoneHref}
           onClick={() =>
-            trackEvent(AnalyticsEvent.ClickPhone, { location: 'floating_cta' })
+            trackEvent(AnalyticsEvent.ContactPhone, {
+              location: CtaLocation.FloatingCta,
+            })
           }
+          {...trackAttributes(
+            AnalyticsEvent.ContactPhone,
+            CtaLocation.FloatingCta,
+          )}
           className="group flex h-14 items-center gap-3 rounded-pill bg-accent-500 px-4 text-sm font-semibold text-white shadow-sticky transition-colors hover:bg-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
         >
           <Phone aria-hidden="true" className="h-6 w-6" />

@@ -218,6 +218,24 @@ export const siteConfig = {
     : `Đây là trang cá nhân của thầy ${teacherName} — giáo viên cơ hữu tại ${publicEnv.NEXT_PUBLIC_CENTER_NAME} — dùng để tư vấn và hướng dẫn học viên. Đây không phải cổng thông tin chính thức của Trung tâm hay Nhà trường. Lịch khai giảng, học phí và quy định đào tạo do Trung tâm công bố và cần được xác nhận lại tại thời điểm đăng ký.`,
 
   analytics: {
+    /**
+     * Ma Google Tag Manager (dang GTM-XXXXXXX).
+     *
+     * DAY LA LOP CHINH. Khi da co ma nay, website chi day su kien vao
+     * `dataLayer`; viec chuyen tiep sang GA4, Google Ads hay cong cu khac do
+     * GTM quyet dinh - khong can sua ma nguon va build lai.
+     *
+     * De trong thi khong nhung GTM. Xem docs/analytics-tracking.md.
+     */
+    gtmId: publicEnv.NEXT_PUBLIC_GTM_ID,
+    /**
+     * Ma do GA4 (dang G-XXXXXXXXXX).
+     *
+     * CHI dung khi CHUA cau hinh GTM. Neu ca hai cung co, website co tinh
+     * KHONG nhung gtag.js - vi GA4 gan nhu chac chan da nam trong GTM, gan
+     * them lan nua se lam moi luot xem va moi su kien bi dem hai lan.
+     * Xem `shouldLoadDirectGa()` trong src/lib/analytics/track.ts.
+     */
     gaMeasurementId: publicEnv.NEXT_PUBLIC_GA_MEASUREMENT_ID,
     facebookPixelId: publicEnv.NEXT_PUBLIC_FACEBOOK_PIXEL_ID,
     /** Facebook Pixel mac dinh TAT, chi bat khi khai bao ro rang. */
