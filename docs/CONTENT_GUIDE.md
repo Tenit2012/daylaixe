@@ -49,9 +49,21 @@ hiện hành xác định và có thể thay đổi. Nội dung nên viết theo
 
 ### 0.5 Không hard-code học phí trong FAQ
 
-Học phí chỉ được khai báo ở trường `tuition` của từng khóa học. FAQ và các đoạn
-văn khác chỉ nói về **cách tính** và **các khoản gồm những gì**, không nêu con số.
-Có test tự động kiểm tra điều này.
+Học phí chỉ được khai báo ở trường `tuition` của từng khóa học. Mọi nơi khác cần
+nêu con số thì phải **đọc lại từ `courses.ts`**, không gõ tay.
+
+FAQ "Học phí gồm những khoản nào?" được ghép tự động bằng `buildTuitionAnswer()`
+trong `src/content/faqs.ts`. Lý do phải ghép thay vì viết sẵn: câu trả lời này
+được đẩy vào JSON-LD `FAQPage` của trang chủ, nên nếu nó lệch với bảng giá thì
+Google sẽ hiển thị một mức giá khác với mức website đang hiện — sai lệch im lặng,
+không có cảnh báo nào.
+
+Các đoạn văn còn lại (blog, cảm nhận học viên, các FAQ khác) **không được nêu con
+số tiền**, chỉ nói về cách tính và các khoản gồm những gì.
+
+Có test tự động kiểm tra cả hai chiều: `tests/unit/content.test.ts` kiểm tra FAQ
+học phí nêu đúng mức đang có trong `courses.ts`, và các FAQ khác không chứa con số
+tiền.
 
 ### 0.6 Giữ nguyên disclaimer
 
@@ -147,6 +159,7 @@ tuition: null,
 // Đã chốt học phí
 tuition: {
   displayValue: '12.000.000 đ',
+  amountVnd: 12_000_000,          // xem lưu ý bên dưới
   included: ['Học phí đào tạo lý thuyết', 'Giờ thực hành theo chương trình'],
   mayIncurAdditional: ['Lệ phí sát hạch', 'Khám sức khỏe', 'Giờ thực hành thêm'],
   note: 'Mức thu cần được xác nhận lại tại thời điểm đăng ký.',
@@ -154,6 +167,16 @@ tuition: {
 ```
 
 **Không bao giờ điền số ước chừng.** Nếu chưa có con số chính thức, để `null`.
+
+**Về `amountVnd`:** cùng số tiền đó nhưng dạng số nguyên đồng, chỉ dùng để sinh
+JSON-LD `offers` cho Google. Chỉ điền khi `displayValue` là **một mức trọn gói xác
+định**. Bỏ trống khi con số là một khoảng hoặc một mức khởi điểm (`'Từ 300.000
+đ/buổi'`) — lúc đó JSON-LD sẽ không sinh `offers`, đúng hơn là báo cho Google một
+giá cố định mà thực tế không phải vậy.
+
+Mức học phí đang hiển thị (cập nhật 08/2026) lấy từ bản audit đối thủ, dẫn nguồn
+là trang công bố giá của Trung tâm. **Trước mỗi lần đổi số, hỏi lại thầy mức chính
+thức Trung tâm đang áp dụng** — học phí thay đổi theo từng đợt khai giảng.
 
 ---
 

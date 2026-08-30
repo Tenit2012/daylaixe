@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { absoluteUrl, pageUrl } from '@/lib/seo/metadata';
+import { buildCourseJsonLd } from '@/lib/seo/structured-data';
+import { sortedCourses } from '@/content/courses';
 import { siteConfig } from '@/config/site';
 
 /**
@@ -37,5 +39,44 @@ describe('absoluteUrl - dung cho FILE', () => {
 
   it('goc website khong co dau gach cheo thua', () => {
     expect(absoluteUrl('/')).toBe(siteConfig.url);
+  });
+});
+
+/**
+ * `offers` la khoi so lieu DUY NHAT duoc phep co trong JSON-LD cua site nay
+ * (aggregateRating, so hoc vien, ty le dau deu bi cam - xem dau file
+ * src/lib/seo/structured-data.ts). No chi hop le chung nao con so bao cho
+ * Google TRUNG voi con so website dang hien.
+ *
+ * Hai test duoi khoa dung hai huong sai:
+ *  - bao mot con so KHAC voi `tuition` -> Google hien gia sai;
+ *  - bao gia cho khoa chua chot hoc phi -> bia so.
+ */
+describe('buildCourseJsonLd - offers', () => {
+  it('bao dung muc gia cua khoa da chot hoc phi', () => {
+    const priced = sortedCourses.filter((course) => course.tuition?.amountVnd);
+    expect(priced.length).toBeGreaterThan(0);
+
+    for (const course of priced) {
+      const offers = buildCourseJsonLd(course).offers as Record<
+        string,
+        unknown
+      >;
+      expect(offers, `khoa ${course.slug} thieu offers`).toBeDefined();
+      expect(offers.price).toBe(String(course.tuition?.amountVnd));
+      expect(offers.priceCurrency).toBe('VND');
+    }
+  });
+
+  it('khong sinh offers cho khoa chua chot hoc phi', () => {
+    const unpriced = sortedCourses.filter((course) => !course.tuition);
+    expect(unpriced.length).toBeGreaterThan(0);
+
+    for (const course of unpriced) {
+      expect(
+        buildCourseJsonLd(course).offers,
+        `khoa ${course.slug} khong duoc co offers`,
+      ).toBeUndefined();
+    }
   });
 });

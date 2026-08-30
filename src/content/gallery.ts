@@ -28,6 +28,11 @@ export const galleryItems: GalleryItem[] = [
       width: 1200,
       height: 900,
     },
+    fullImage: {
+      src: '/images/gallery-full/thay-tung-huong-dan-hoc-vien.webp',
+      width: 1200,
+      height: 1600,
+    },
     isPlaceholder: false,
   },
   {
@@ -39,6 +44,11 @@ export const galleryItems: GalleryItem[] = [
     image: {
       src: '/images/center/dan-xe-tap-lai.webp',
       alt: 'Dàn xe tải tập lái màu xanh xếp thành hàng, giáo viên đứng cạnh từng xe',
+      width: 1200,
+      height: 674,
+    },
+    fullImage: {
+      src: '/images/gallery-full/dan-xe-tap-lai.webp',
       width: 1200,
       height: 674,
     },
@@ -56,6 +66,11 @@ export const galleryItems: GalleryItem[] = [
       width: 960,
       height: 720,
     },
+    fullImage: {
+      src: '/images/gallery-full/san-tap-xe-tap-lai.webp',
+      width: 960,
+      height: 1280,
+    },
     isPlaceholder: false,
   },
   {
@@ -70,6 +85,11 @@ export const galleryItems: GalleryItem[] = [
       width: 1200,
       height: 561,
     },
+    fullImage: {
+      src: '/images/gallery-full/cong-truong.webp',
+      width: 1241,
+      height: 580,
+    },
     isPlaceholder: false,
   },
   {
@@ -83,6 +103,11 @@ export const galleryItems: GalleryItem[] = [
       alt: 'Xe con tập lái màu vàng cát gắn biển TẬP LÁI, đỗ trong nhà xe có bảng đánh số xe',
       width: 592,
       height: 444,
+    },
+    fullImage: {
+      src: '/images/gallery-full/xe-tap-lai-hang-b.webp',
+      width: 592,
+      height: 1280,
     },
     isPlaceholder: false,
   },
@@ -102,6 +127,11 @@ export const galleryItems: GalleryItem[] = [
       width: 592,
       height: 444,
     },
+    fullImage: {
+      src: '/images/gallery-full/xe-tap-lai-chinh-dien.webp',
+      width: 592,
+      height: 1280,
+    },
     isPlaceholder: false,
   },
   {
@@ -114,6 +144,11 @@ export const galleryItems: GalleryItem[] = [
       src: '/images/center/trong-buoi-thuc-hanh.webp',
       alt: 'Học viên ngồi ghế lái, tay đặt cạnh vô lăng xe số tự động trong buổi thực hành',
       width: 789,
+      height: 592,
+    },
+    fullImage: {
+      src: '/images/gallery-full/trong-buoi-thuc-hanh.webp',
+      width: 1280,
       height: 592,
     },
     isPlaceholder: false,
@@ -130,6 +165,11 @@ export const galleryItems: GalleryItem[] = [
       width: 789,
       height: 592,
     },
+    fullImage: {
+      src: '/images/gallery-full/xe-tap-lai-goc-cheo.webp',
+      width: 1280,
+      height: 592,
+    },
     isPlaceholder: false,
   },
   {
@@ -143,6 +183,37 @@ export const galleryItems: GalleryItem[] = [
       alt: 'Xe tải thùng màu trắng gắn biển TẬP LÁI đỗ tại sân tập của trung tâm',
       width: 789,
       height: 592,
+    },
+    fullImage: {
+      src: '/images/gallery-full/xe-tai-tap-lai-c1.webp',
+      width: 1280,
+      height: 592,
+    },
+    isPlaceholder: false,
+  },
+  /*
+   * Mo ta chi ghi NHUNG GI NHIN THAY trong anh: bien so, bien "TAP LAI", xe
+   * thu hai, cac bien bao phia sau. KHONG goi day la "san sa hinh" - anh co
+   * bien "HANG B" va "C1" nhung chu website chua xac nhan day la khu sa hinh,
+   * ma doan mo ta sai vi tri thi dung vao dung thu website dang lay lam the
+   * manh (dia diem that, kiem chung duoc).
+   */
+  {
+    id: 'g-12',
+    title: 'Xe tập lái tại sân trung tâm',
+    description:
+      'Xe con tập lái mang biển "TẬP LÁI" và biển số 51G-248.37, đỗ tại sân của trung tâm. Phía sau là một xe tập lái khác và các biển báo phân khu hạng B, C1.',
+    category: 'xe-tap-lai',
+    image: {
+      src: '/images/center/xe-tap-lai-toyota-tai-san.webp',
+      alt: 'Đầu xe con tập lái Toyota màu bạc nhìn chính diện, biển số 51G-248.37, gắn biển TẬP LÁI màu xanh, đỗ trên sân bê tông của trung tâm',
+      width: 1200,
+      height: 900,
+    },
+    fullImage: {
+      src: '/images/gallery-full/xe-tap-lai-toyota-tai-san.webp',
+      width: 1200,
+      height: 1600,
     },
     isPlaceholder: false,
   },

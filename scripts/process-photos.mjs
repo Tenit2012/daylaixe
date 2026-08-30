@@ -153,6 +153,22 @@ const JOBS = [
     position: 'center',
     note: 'Dan xe tap lai hang C1 tai trung tam',
   },
+  {
+    source: 'IMG_1658.jpeg',
+    // Anh goc 5712x4284 nhung EXIF orientation = 6, tuc du lieu diem anh nam
+    // NGANG con canh that phai xoay 90 do -> sau `.rotate()` thanh khung DOC
+    // 4284x5712. Day dung la truong hop ma README canh bao: copy tay vao
+    // public/ se ra anh nam nghieng.
+    //
+    // Cat 4:3 canh giua: chiec xe nam giua khung theo chieu doc nen cua so
+    // giua giu tron dau xe, ca-lang, bien so va bien "TAP LAI", dong thoi con
+    // lay duoc hang cay va cac bien bao phia sau. Khong can `extract` thu cong.
+    output: 'center/xe-tap-lai-toyota-tai-san.webp',
+    width: 1200,
+    height: 900,
+    position: 'center',
+    note: 'Xe con tap lai Toyota bien 51G-248.37 nhin chinh dien tai san trung tam',
+  },
 
   /*
    * ---------------------------------------------------------------------
@@ -255,6 +271,119 @@ const JOBS = [
   },
 ];
 
+/**
+ * ---------------------------------------------------------------------------
+ * BAN DAY DU CHO LIGHTBOX - `public/images/gallery-full/`
+ * ---------------------------------------------------------------------------
+ * Cac JOBS o tren deu CAT anh vao khung 4:3 cho vua luoi album. Voi anh chup
+ * doc, phan bi cat di rat lon (IMG_1636 va IMG_1638 mat ~65% khung). Nen khi
+ * nguoi dung bam phong to, dua lai chinh ban da cat do thi khong cho ho xem
+ * them duoc gi - chi to hon phan ho da thay.
+ *
+ * Mang nay sinh ban GIU NGUYEN KHUNG GOC, chi thu nho cho vua hop
+ * `MAX_FULL_EDGE`. Khong `extract`, khong `fit: cover`.
+ *
+ * VI SAO GIOI HAN 1600px chu khong lon hon: 8/10 anh nguon chi ~1200-1280px
+ * canh dai (dau hieu da qua nen cua ung dung nhan tin). `withoutEnlargement`
+ * chan phong to nen chung giu nguyen kich thuoc that - lightbox hien chung
+ * trong khung `max-height: 88vh` la vua dep, khong bao gio bi keo gian mo.
+ * Hai anh 5712px thu ve 1600px la du net o man hinh thuong ma van nhe.
+ */
+const MAX_FULL_EDGE = 1600;
+
+const FULL_JOBS = [
+  {
+    source: 'thay-huong-dan-vo-lang.jpeg',
+    name: 'thay-tung-huong-dan-hoc-vien',
+  },
+  { source: 'dan-xe-tap-lai.jpg', name: 'dan-xe-tap-lai' },
+  { source: 'xe-tap-lai-san-tap.jpeg', name: 'san-tap-xe-tap-lai' },
+  {
+    source: 'congtruong.jpg',
+    name: 'cong-truong',
+    // Giu watermark giong ban trong album: day la anh dia diem de bi lay lai
+    // nhat, va ban phong to chinh la ban dang gia nhat de lay.
+    watermarkText: 'thaytungdaylaixe.com',
+  },
+  { source: 'IMG_1636.jpeg', name: 'xe-tap-lai-hang-b' },
+  { source: 'IMG_1637.jpeg', name: 'xe-tai-tap-lai-c1' },
+  { source: 'IMG_1638.jpeg', name: 'xe-tap-lai-chinh-dien' },
+  { source: 'IMG_1639.jpeg', name: 'trong-buoi-thuc-hanh' },
+  { source: 'IMG_1640.jpeg', name: 'xe-tap-lai-goc-cheo' },
+  { source: 'IMG_1658.jpeg', name: 'xe-tap-lai-toyota-tai-san' },
+];
+
+/**
+ * Sinh ban day du va IN RA dong khai bao `fullImage` de dan vao gallery.ts.
+ *
+ * Tra ve kich thuoc that de khong phai doan: `fit: 'inside'` cho ra kich
+ * thuoc phu thuoc ti le tung anh, ma `gallery.ts` lai can con so chinh xac
+ * (the <img> phai co width/height de trinh duyet giu cho, khong giat layout
+ * khi anh tai xong).
+ */
+async function runFullJobs() {
+  console.log('\n--- Ban day du cho lightbox ---');
+  const declarations = [];
+
+  for (const job of FULL_JOBS) {
+    const sourcePath = join(SOURCE_DIR, job.source);
+    const outputPath = join(OUTPUT_ROOT, `gallery-full/${job.name}.webp`);
+    await mkdir(dirname(outputPath), { recursive: true });
+
+    /*
+     * CAI BAY: `.metadata()` doc the EXIF cua anh NGUON, KHONG phai ket qua
+     * sau `.rotate()`. Anh chup dien thoai co `orientation = 6` co du lieu
+     * diem anh nam ngang nhung canh that la doc - luc do `meta.width` va
+     * `meta.height` bi hoan doi so voi anh nguoi ta nhin thay.
+     *
+     * Tinh hop co gian tren cap so chua hoan doi thi `fit: 'inside'` se do
+     * anh (da xoay) vao mot hop sai chieu: anh doc 4284x5712 do vao hop
+     * 1600x1200 ra 900x1200 - vua khai sai kich thuoc, vua vut di gan mot
+     * nua do phan giai cua dung hai tam anh net nhat trong album.
+     */
+    const meta = await sharp(sourcePath).rotate().metadata();
+    const swapped = (meta.orientation ?? 1) >= 5;
+    const sourceWidth = swapped ? meta.height : meta.width;
+    const sourceHeight = swapped ? meta.width : meta.height;
+
+    const scale = Math.min(
+      1,
+      MAX_FULL_EDGE / Math.max(sourceWidth, sourceHeight),
+    );
+    const width = Math.round(sourceWidth * scale);
+    const height = Math.round(sourceHeight * scale);
+
+    const pipeline = sharp(sourcePath).rotate().resize(width, height, {
+      fit: 'inside',
+      withoutEnlargement: true,
+    });
+
+    if (job.watermarkText) {
+      pipeline.composite([
+        {
+          input: await watermarkOverlay(job.watermarkText, width, height),
+          top: 0,
+          left: 0,
+        },
+      ]);
+    }
+
+    await pipeline.webp({ quality: 82, effort: 5 }).toFile(outputPath);
+
+    const after = (await stat(outputPath)).size;
+    console.log(
+      `${job.source.padEnd(36)} -> gallery-full/${`${job.name}.webp`.padEnd(34)} ` +
+        `${`${width}x${height}`.padEnd(10)} ${`${Math.round(after / 1024)} KB`.padStart(8)}`,
+    );
+    declarations.push(
+      `      // ${job.name}\n      src: '/images/gallery-full/${job.name}.webp', width: ${width}, height: ${height},`,
+    );
+  }
+
+  console.log('\nDan vao `fullImage` trong src/content/gallery.ts:');
+  console.log(declarations.join('\n'));
+}
+
 async function run() {
   let totalBefore = 0;
   let totalAfter = 0;
@@ -319,6 +448,8 @@ async function run() {
 
   const mb = (n) => `${(n / 1024 / 1024).toFixed(1)} MB`;
   console.log(`\nTong: ${mb(totalBefore)} -> ${mb(totalAfter)}`);
+
+  await runFullJobs();
 }
 
 run().catch((error) => {

@@ -7,7 +7,68 @@ import type { Course } from '@/types/content';
  *  - `slug` phai la duy nhat, chi gom chu thuong khong dau va dau gach ngang.
  *  - `tuition: null` khi chua chot hoc phi -> giao dien tu dong hien thi
  *    cau "Vui lòng liên hệ...". TUYET DOI khong dien so uoc chung.
+ *
+ * NGUON CUA CAC CON SO HOC PHI DANG HIEN (cap nhat 08/2026)
+ * ---------------------------------------------------------------------------
+ * Ba hang B tu dong / B so san / C1 dang niem yet muc TRON GOI ma Trung tam
+ * cong bo, lay tu ban audit doi thu 08/2026 (nguon audit dan: trang cong bo
+ * gia cua Trung tam). Day KHONG phai so uoc chung do website tu dat ra.
+ *
+ * DA DAO SO GIUA HAI KHOA HANG B SO VOI BAN AUDIT - doc truoc khi "sua lai".
+ * Ban audit ghi tu dong 18,9tr / so san 18,5tr. Nhung chinh no, o dong khao
+ * sat mat bang, lai ghi nguoc: so san 20-27tr cao hon tu dong 18-25tr. Hai
+ * dong trong cung mot tai lieu da nhau, va thu tu dung theo mat bang thi
+ * truong la SO SAN CAO HON. Chu website xac nhan lay thu tu do, nen o day
+ * so san 18,9tr va tu dong 18,5tr.
+ *
+ * => Neu doi chieu voi file audit thay "lech", day KHONG phai loi chep sai.
+ *    Van can thay xac nhan muc chinh thuc de chot han.
+ *
+ * `bo-tuc-tay-lai` va `luyen-sa-hinh` VAN de `null`: ban audit ghi ro hai muc
+ * nay "can xac nhan muc that voi thay", tuc chua co con so nao de dan. Giu
+ * `null` dung hon la dien mot con so chua ai xac nhan.
+ *
+ * TRUOC KHI DOI SO: hoi lai thay muc chinh thuc Trung tam dang ap dung. Hoc
+ * phi thay doi theo tung dot khai giang.
  */
+
+/**
+ * Cac khoan DA NAM TRONG goi tron - giong nhau o ca ba hang B tu dong,
+ * B so san va C1. Tach rieng de ba khoa khong the lech nhau khi Trung tam
+ * doi chinh sach.
+ */
+const packageIncluded = [
+  'Học phí đào tạo lý thuyết và thực hành 1 kèm 1',
+  'Xăng xe, bãi tập và sân sa hình',
+  'Giờ học cabin và phần mềm mô phỏng tình huống giao thông',
+  'Lệ phí thi tốt nghiệp, lệ phí sát hạch và lệ phí cấp giấy phép lái xe',
+];
+
+/**
+ * Cac khoan KHONG nam trong goi tron.
+ *
+ * CHI liet ke khoan TIEN co the phat sinh. Cac loi cam ket ("khong phu thu
+ * cuoi tuan") thuoc ve `note`, khong duoc dat vao day - giao dien in danh
+ * sach nay duoi tieu de "Co the phat sinh", nen mot loi cam ket dat o day se
+ * bi doc nguoc thanh mot khoan phai tra them.
+ */
+const packageMayIncurAdditional = [
+  'Khám sức khỏe: khoảng 350.000 - 500.000 đ, nếu bạn chưa có giấy khám còn hiệu lực',
+  'Thi lại khi trượt: khoảng 1.500.000 - 3.000.000 đ mỗi lần, tùy nội dung phải thi lại',
+  'Thuê xe chip tập thêm trước ngày thi: tùy chọn, chỉ khi bạn chủ động yêu cầu',
+];
+
+/**
+ * Cach dien dat viec dong tien.
+ *
+ * PHAI giu ve "dong truc tiep cho Trung tam": trang /hoc-phi-lo-trinh khang
+ * dinh thay khong thu khoan rieng va khong nhan coc giu cho. Neu cau nay chi
+ * ghi "dat coc 5.000.000 d" ma khong noi coc cho AI, hai cho se doc nhu mau
+ * thuan nhau.
+ */
+const paymentNote =
+  'Trung tâm nhận đặt cọc 5.000.000 đ, phần còn lại đóng thành 2 - 3 đợt. Bạn đóng trực tiếp cho Trung tâm, không đóng cho thầy.';
+
 export const courses: Course[] = [
   {
     slug: 'hang-b-so-tu-dong',
@@ -64,7 +125,13 @@ export const courses: Course[] = [
       'Giấy khám sức khỏe do cơ sở y tế đủ điều kiện cấp',
       'Ảnh thẻ theo kích thước cơ sở đào tạo hướng dẫn',
     ],
-    tuition: null,
+    tuition: {
+      displayValue: '18.500.000 đ',
+      amountVnd: 18_500_000,
+      included: packageIncluded,
+      mayIncurAdditional: packageMayIncurAdditional,
+      note: `Mức trọn gói Trung tâm đang công bố cho hạng B số tự động (giá gốc 21.000.000 đ). Không phụ thu cuối tuần. ${paymentNote}`,
+    },
     faqs: [
       {
         question: 'Học xe số tự động có lái được xe số sàn không?',
@@ -146,7 +213,13 @@ export const courses: Course[] = [
       'Giấy khám sức khỏe do cơ sở y tế đủ điều kiện cấp',
       'Ảnh thẻ theo kích thước cơ sở đào tạo hướng dẫn',
     ],
-    tuition: null,
+    tuition: {
+      displayValue: '18.900.000 đ',
+      amountVnd: 18_900_000,
+      included: packageIncluded,
+      mayIncurAdditional: packageMayIncurAdditional,
+      note: `Mức trọn gói Trung tâm đang công bố cho hạng B số sàn (giá gốc 21.000.000 đ). Không phụ thu cuối tuần. ${paymentNote}`,
+    },
     faqs: [
       {
         question: 'Học số sàn có khó hơn nhiều không?',
@@ -229,7 +302,17 @@ export const courses: Course[] = [
       'Ảnh thẻ theo kích thước cơ sở đào tạo hướng dẫn',
       'Giấy tờ liên quan đến điều kiện dự học của hạng C1 (nếu được yêu cầu)',
     ],
-    tuition: null,
+    /*
+     * C1 KHONG dung `paymentNote`: nguon chi neu ro muc coc/so dot cho goi
+     * hang B. Khong suy dien sang C1 - de nguoi doc hoi lai thay.
+     */
+    tuition: {
+      displayValue: '20.500.000 đ',
+      amountVnd: 20_500_000,
+      included: packageIncluded,
+      mayIncurAdditional: packageMayIncurAdditional,
+      note: 'Mức trọn gói Trung tâm đang công bố cho hạng C1 (giá gốc 23.000.000 đ). Bạn đóng trực tiếp cho Trung tâm, không đóng cho thầy. Số đợt đóng của hạng C1 bạn hỏi thầy để được xác nhận theo đợt khai giảng.',
+    },
     faqs: [
       {
         question: 'Điều kiện học hạng C1 là gì?',

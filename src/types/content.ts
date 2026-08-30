@@ -42,6 +42,17 @@ export interface Course {
 export interface CourseTuition {
   /** Chuoi hien thi, vi du "12.000.000 đ". De trong neu chua chot. */
   displayValue: string;
+  /**
+   * Cung so tien do nhung dang SO NGUYEN dong (vi du 18900000) - chi dung cho
+   * JSON-LD `offers`.
+   *
+   * Vi sao khong tach so tu `displayValue`: chuoi hien thi co the la mot
+   * KHOANG hoac mot muc khoi diem ("Tu 300.000 d/buoi"). Tach may moc se bien
+   * gia khoi diem thanh gia co dinh va bao cho Google mot con so sai. Khai bao
+   * tuong minh, va BO TRONG khi con so khong phai mot muc tron goi xac dinh -
+   * luc do JSON-LD khong sinh `offers`.
+   */
+  amountVnd?: number;
   /** Cac khoan da bao gom trong hoc phi. */
   included: string[];
   /** Cac khoan co the phat sinh them. */
@@ -110,6 +121,22 @@ export interface GalleryItem {
   description: string;
   category: GalleryCategory;
   image: ImageAsset;
+  /**
+   * Ban KHONG CAT cua cung tam anh, dung khi nguoi dung bam phong to.
+   *
+   * Vi sao can rieng mot ban: luoi album ep moi anh vao khung 4:3 bang
+   * `object-cover`, nen anh chup doc bi cat mat hon nua khung (IMG_1636 va
+   * IMG_1638 mat ~65%). Ban `image` o tren la BAN DA CAT - phong to no len chi
+   * to ra phan da bi cat di, khong lay lai duoc gi.
+   *
+   * Bo trong khi anh nguon qua nho hoac la hinh minh hoa SVG: luc do lightbox
+   * dung thang `image`.
+   *
+   * KHONG co `alt` rieng: hai ban la cung mot canh, cung mot noi dung, nen
+   * lightbox dung lai `image.alt`. Cho phep khai bao alt thu hai chi tao co
+   * hoi cho hai chuoi le nhau ma khong ai phat hien.
+   */
+  fullImage?: Omit<ImageAsset, 'alt'>;
   isPlaceholder: boolean;
 }
 

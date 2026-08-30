@@ -1,14 +1,62 @@
-import type { Faq } from '@/types/content';
+import type { Course, Faq } from '@/types/content';
+import { sortedCourses } from '@/content/courses';
 
 /**
  * Cau hoi thuong gap chung cho toan site.
  *
  * NGUYEN TAC NOI DUNG:
- *  - Khong hard-code con so hoc phi.
+ *  - Khong hard-code con so hoc phi. Cau tra loi ve hoc phi duoc GHEP TU
+ *    `courses.ts` - xem `buildTuitionAnswer()` ngay ben duoi.
  *  - Khong khang dinh quy dinh phap luat chua kiem chung; luon huong nguoi
  *    dung xac nhan lai tai thoi diem dang ky.
  *  - Khong dung tu ngu cam ket ket qua thi.
  */
+
+type PricedCourse = Course & { tuition: NonNullable<Course['tuition']> };
+
+function hasTuition(course: Course): course is PricedCourse {
+  return course.tuition !== null;
+}
+
+/**
+ * Cau tra loi cho cau hoi hoc phi - GHEP TU DU LIEU KHOA HOC, khong viet tay.
+ *
+ * VI SAO PHAI GHEP: cau tra loi nay duoc day vao JSON-LD FAQPage cua trang
+ * chu. Neu viet tay con so vao day, den luc Trung tam doi hoc phi ma chi sua
+ * `courses.ts`, Google se doc duoc mot muc gia KHAC voi muc website dang
+ * hien - sai lech im lang, khong co canh bao nao. Ghep tu `sortedCourses`
+ * thi doi gia mot cho la moi noi doi theo.
+ *
+ * Phan liet ke "da gom / chua gom" co y viet gon thay vi ghep tu mang: cau
+ * tra loi FAQ can doc duoc trong mot hoi, con danh sach day du da nam o
+ * trang /hoc-phi-lo-trinh va trang chi tiet tung khoa.
+ */
+function buildTuitionAnswer(): string {
+  const priced = sortedCourses.filter(hasTuition);
+  const unpriced = sortedCourses.filter((course) => course.tuition === null);
+
+  const priceList = priced
+    .map((course) => `${course.shortName} ${course.tuition.displayValue}`)
+    .join(', ');
+
+  const perSession =
+    unpriced.length > 0
+      ? ` Khóa ${unpriced
+          .map((course) => course.shortName.toLowerCase())
+          .join(
+            ' và ',
+          )} tính theo buổi, bạn liên hệ để thầy báo mức đang áp dụng.`
+      : '';
+
+  return (
+    `Mức trọn gói trung tâm đang công bố: ${priceList}. ` +
+    'Mức này đã gồm học phí lý thuyết và thực hành, xăng xe, bãi tập, giờ cabin và phần mềm mô phỏng, lệ phí thi sát hạch cùng lệ phí cấp bằng. ' +
+    'Chưa gồm khám sức khỏe nếu bạn chưa có giấy còn hiệu lực, và phí thi lại nếu trượt. ' +
+    'Trang Học phí & lộ trình liệt kê đầy đủ từng khoản.' +
+    perSession
+  );
+}
+
 export const generalFaqs: Faq[] = [
   {
     question: 'Người chưa từng lái xe có học được không?',
@@ -54,8 +102,7 @@ export const generalFaqs: Faq[] = [
   },
   {
     question: 'Học phí gồm những khoản nào?',
-    answer:
-      'Học phí thường gồm phần đào tạo lý thuyết và thực hành theo chương trình. Ngoài ra có thể phát sinh các khoản liên quan đến hồ sơ, khám sức khỏe, lệ phí sát hạch hoặc giờ thực hành thêm nếu bạn muốn luyện kỹ hơn. Tôi luôn nói rõ từng khoản trước khi bạn quyết định, và mức thu cụ thể cần được xác nhận tại thời điểm đăng ký.',
+    answer: buildTuitionAnswer(),
     category: 'Học phí',
   },
   {

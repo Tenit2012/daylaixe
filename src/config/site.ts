@@ -277,11 +277,6 @@ export const mainNav = [
     shortLabel: 'Học phí',
     href: '/hoc-phi-lo-trinh',
   },
-  {
-    label: 'Cảm nhận học viên',
-    shortLabel: 'Cảm nhận',
-    href: '/cam-nhan-hoc-vien',
-  },
   { label: 'Kiến thức', shortLabel: 'Kiến thức', href: '/kien-thuc' },
   { label: 'Liên hệ', shortLabel: 'Liên hệ', href: '/lien-he' },
 ] as const;

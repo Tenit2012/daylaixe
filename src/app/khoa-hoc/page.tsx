@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { sortedCourses } from '@/content/courses';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { buildBreadcrumbJsonLd } from '@/lib/seo/structured-data';
@@ -55,6 +56,17 @@ export default function CoursesPage() {
 
         <div className="mx-auto mt-10 max-w-3xl rounded-card border border-accent-200 bg-accent-50 p-5">
           <h2 className="text-lg">Về học phí</h2>
+          <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">
+            Mức trọn gói của từng khóa được ghi ngay trên thẻ khóa học phía
+            trên. Trang{' '}
+            <Link
+              href="/hoc-phi-lo-trinh"
+              className="font-semibold text-accent-700 underline underline-offset-4 hover:text-accent-800"
+            >
+              Học phí &amp; lộ trình
+            </Link>{' '}
+            liệt kê rõ khoản nào đã bao gồm và khoản nào có thể phát sinh.
+          </p>
           <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">
             {siteConfig.messaging.feeNotConfigured}
           </p>

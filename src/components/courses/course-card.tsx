@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CarFront, Clock, Users } from 'lucide-react';
+import { ArrowRight, CarFront, Clock, Users, Wallet } from 'lucide-react';
 import type { Course } from '@/types/content';
 import { buttonClasses } from '@/components/ui/button';
 import { trackEvent } from '@/lib/analytics/track';
@@ -90,6 +90,32 @@ export function CourseCard({
         </p>
 
         <dl className="mt-4 space-y-2 text-sm text-ink-muted">
+          {/*
+            Hoc phi dat DAU danh sach vi day la cau hoi dau tien cua nguoi dang
+            can nhac. Truoc day the khoa hoc khong he neu gia, nguoi xem phai
+            bam vao tung khoa moi thay - dung luc ho con dang so sanh.
+
+            Khoa chua chot hoc phi van giu mot dong o day thay vi an di: mot o
+            trong giua danh sach khien nguoi doc tuong web loi, con cau "Lien
+            he de nhan bao gia" thi noi dung ban chat va khop voi bang so sanh
+            o trang /hoc-phi-lo-trinh.
+          */}
+          <div className="flex items-start gap-2">
+            <dt className="sr-only">Học phí</dt>
+            <Wallet
+              aria-hidden="true"
+              className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-500"
+            />
+            <dd
+              className={
+                course.tuition ? 'font-semibold text-brand-900' : undefined
+              }
+            >
+              {course.tuition
+                ? `${course.tuition.displayValue} trọn gói`
+                : 'Liên hệ để nhận báo giá'}
+            </dd>
+          </div>
           <div className="flex items-start gap-2">
             <dt className="sr-only">Phù hợp với</dt>
             <Users

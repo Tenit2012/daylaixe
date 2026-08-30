@@ -163,15 +163,17 @@ export default function TuitionPage() {
                 và không nhận tiền đặt cọc giữ chỗ.
               </p>
               <p>
-                Tôi không đưa ra một con số chung cho mọi người, vì chi phí thực
-                tế phụ thuộc vào khóa bạn chọn, số giờ thực hành bạn cần và các
-                khoản liên quan đến hồ sơ tại thời điểm đăng ký.
+                Bảng trên là mức trọn gói trung tâm đang công bố, tôi ghi thẳng
+                ra đây để bạn tính được ngân sách trước khi gọi. Con số cuối
+                cùng của bạn có thể lệch đôi chút, vì còn phụ thuộc số giờ thực
+                hành bạn cần thêm và các khoản liên quan đến hồ sơ tại thời điểm
+                đăng ký.
               </p>
               <p>
-                Khi bạn liên hệ, tôi sẽ hỏi rõ nhu cầu rồi nói lại mức trung tâm
-                đang áp dụng, gồm: phần học phí đào tạo, các khoản bắt buộc theo
-                quy định, và những khoản chỉ phát sinh nếu bạn chủ động yêu cầu
-                thêm.
+                Khi bạn liên hệ, tôi sẽ hỏi rõ nhu cầu rồi xác nhận lại mức
+                trung tâm đang áp dụng đúng đợt khai giảng của bạn, gồm: phần
+                học phí đào tạo, các khoản bắt buộc theo quy định, và những
+                khoản chỉ phát sinh nếu bạn chủ động yêu cầu thêm.
               </p>
               <p>
                 Bạn nên hỏi kỹ trước khi nộp hồ sơ. Việc biết trước toàn bộ chi

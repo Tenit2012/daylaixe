@@ -3,10 +3,17 @@
 Thư mục này chứa **file gốc chưa xử lý**. Nó **không** được phục vụ ra web —
 chỉ `public/` mới được phục vụ.
 
-| Thư mục                            | Vai trò                                             |
-| ---------------------------------- | --------------------------------------------------- |
-| `assets/photos/`, `assets/videos/` | File gốc, độ phân giải đầy đủ. Nguồn duy nhất.      |
-| `public/images/`, `public/videos/` | File đã xử lý, **đây mới là thứ website hiển thị**. |
+| Thư mục                            | Vai trò                                                     |
+| ---------------------------------- | ----------------------------------------------------------- |
+| `assets/photos/`, `assets/videos/` | File gốc, độ phân giải đầy đủ. Nguồn duy nhất.              |
+| `public/images/`, `public/videos/` | File đã xử lý, **đây mới là thứ website hiển thị**.         |
+| `public/images/gallery-full/`      | Bản **không cắt** của ảnh album, dùng khi bấm phóng to ảnh. |
+
+> `gallery-full/` sinh từ mảng `FULL_JOBS` (không phải `JOBS`) trong
+> `scripts/process-photos.mjs`. Album ép ảnh vào khung 4:3 nên ảnh chụp dọc bị
+> cắt mất hơn nửa khung — bản này giữ nguyên khung gốc để người xem bấm vào là
+> thấy đủ. Kích thước khai trong `src/content/gallery.ts` phải khớp file thật;
+> có test tự động kiểm tra (`tests/unit/content.test.ts`).
 
 Đừng sửa file trong `public/` bằng tay — chúng được sinh ra từ đây bằng:
 
@@ -47,18 +54,19 @@ script tương ứng, rồi chạy lại lệnh trên.
 | `photos/IMG_1638.jpeg`                       | Album (mục "Đầu xe gắn biển TẬP LÁI")       |
 | `photos/IMG_1639.jpeg`                       | Album (mục "Trong buổi thực hành")          |
 | `photos/IMG_1640.jpeg`                       | Album (mục "Xe tập lái tại sân")            |
+| `photos/IMG_1658.jpeg`                       | Album (mục "Xe tập lái tại sân trung tâm")  |
 
 ### Video
 
 Cả 4 video đều nằm trong mục "Xem một buổi học thực tế" — trang chủ và
 `/gioi-thieu`.
 
-| File                                     | Nội dung                            | Dài | Nặng    |
-| ---------------------------------------- | ----------------------------------- | ---- | ------- |
-| `videos/buoi-hoc-thuc-te.mp4`            | Thầy hướng dẫn học viên trên xe con | 25 s | 2,9 MB  |
-| `videos/videoplayback.mp4`               | Thực hành tại sân tập               | 46 s | 3,6 MB  |
-| `videos/hoc-vien-lai-xe-tai.mov`         | Học viên tập lái xe tải, trời mưa   | 38 s | 4,2 MB  |
-| `videos/thuc-hanh-xe-tai-trong-san.mov`  | Xe tải chạy trong sân, góc ghế lái  | 69 s | 10,3 MB |
+| File                                    | Nội dung                            | Dài  | Nặng    |
+| --------------------------------------- | ----------------------------------- | ---- | ------- |
+| `videos/buoi-hoc-thuc-te.mp4`           | Thầy hướng dẫn học viên trên xe con | 25 s | 2,9 MB  |
+| `videos/videoplayback.mp4`              | Thực hành tại sân tập               | 46 s | 3,6 MB  |
+| `videos/hoc-vien-lai-xe-tai.mov`        | Học viên tập lái xe tải, trời mưa   | 38 s | 4,2 MB  |
+| `videos/thuc-hanh-xe-tai-trong-san.mov` | Xe tải chạy trong sân, góc ghế lái  | 69 s | 10,3 MB |
 
 `videoplayback.mp4` từng đăng YouTube trước đó, tải lại về để tự lưu trên site
 (không nhúng iframe YouTube), nên độ phân giải thấp hơn do đã qua nén lại của
@@ -70,12 +78,15 @@ dùng bấm nút play — xem `src/components/ui/video-player.tsx`. Nhờ vậy 
 
 ### Nhóm 1 — ảnh mang phù hiệu / biểu tượng của ngành
 
-| File                                 | Nội dung                                                                    |
-| ------------------------------------ | --------------------------------------------------------------------------- |
-| `photos/tap-the-hoi-truong.jpeg`     | Ảnh tập thể trong hội trường, có phù hiệu Bộ Công an và băng-rôn khẩu hiệu  |
-| `photos/tap-the-cau-thang.jpeg`      | Ảnh tập thể cán bộ mặc quân phục                                            |
-| `photos/tap-the-nha-tuong-niem.jpeg` | Ảnh chào trong nhà tưởng niệm                                               |
-| `photos/IMG_1641.jpeg`               | Lễ trao quyết định trong phòng họp, có sĩ quan mang quân hàm và cấp hiệu CA |
+| File                             | Nội dung                                                                   |
+| -------------------------------- | -------------------------------------------------------------------------- |
+| `photos/tap-the-hoi-truong.jpeg` | Ảnh tập thể trong hội trường, có phù hiệu Bộ Công an và băng-rôn khẩu hiệu |
+
+> **Đã xóa khỏi `assets/photos/` ngày 27/08/2026** (cùng lý do nhóm này):
+> `tap-the-cau-thang.jpeg` (ảnh tập thể cán bộ mặc quân phục),
+> `tap-the-nha-tuong-niem.jpeg` (ảnh chào trong nhà tưởng niệm),
+> `IMG_1641.jpeg` (lễ trao quyết định, có sĩ quan mang quân hàm và cấp hiệu CA).
+> Cả ba chưa từng được dùng nên việc xóa không ảnh hưởng `public/`.
 
 Lý do chưa dùng: website mang disclaimer bắt buộc ở footer mọi trang —
 _"không phải cổng thông tin chính thức của Trường Đại học An ninh Nhân dân hoặc
@@ -85,9 +96,11 @@ Ngoài ra ảnh có nhiều cán bộ không liên quan đến việc dạy lái
 
 ### Nhóm 2 — chưa chọn dùng vì lý do nội dung / trùng lặp
 
-| File                                     | Lý do                                                                       |
-| ---------------------------------------- | --------------------------------------------------------------------------- |
-| `photos/NguyenThanhTung-laixeanninh.jpg` | Đã gỡ khỏi Album ngày 18/08/2026 theo yêu cầu chủ website (bố cục chưa đẹp) |
+Hiện không còn file nào trong nhóm này.
+
+> `photos/NguyenThanhTung-laixeanninh.jpg` đã gỡ khỏi Album ngày 18/08/2026 theo
+> yêu cầu chủ website (bố cục chưa đẹp), và **đã xóa khỏi `assets/photos/` ngày
+> 27/08/2026**.
 
 ---
 
@@ -107,6 +120,11 @@ Ngoài ra ảnh có nhiều cán bộ không liên quan đến việc dạy lái
 - **Xe trong video có dán phù hiệu trường.** Đây là xe tập lái thật dùng trong
   buổi học nên việc nó xuất hiện là tất yếu, khác với ảnh tập thể mang tính nghi
   lễ ở trên. Nhưng vẫn nên biết là nó có ở đó.
+- **`photos/IMG_1658.jpeg`**: không có mặt người nào trong khung nên không cần
+  xin phép. Xe thứ hai phía sau có dán phù hiệu trường — cùng trường hợp với
+  gạch đầu dòng trên, là xe tập lái thật tại sân chứ không phải ảnh nghi lễ.
+  Biển số 51G-248.37 hiện rõ; đây là xe của cơ sở đào tạo, không phải xe cá nhân
+  của học viên.
 - **`photos/dan-xe-tap-lai.jpg`**: cần xác nhận đây là ảnh tự chụp. Nếu lấy từ
   website của trung tâm thì phải được trung tâm đồng ý trước khi dùng trên
   trang cá nhân. (`photos/cabin-mo-phong-hoc-vien.jpg` cùng nhóm nghi vấn này

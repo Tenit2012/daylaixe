@@ -295,8 +295,40 @@ describe('faqs va gallery', () => {
     }
   });
 
-  it('FAQ khong hard-code con so hoc phi', () => {
-    const haystack = generalFaqs.map((faq) => faq.answer).join(' ');
+  /**
+   * LUAT NAY DA DOI - doc truoc khi sua.
+   *
+   * Truoc 08/2026 website chua cong bo hoc phi, nen FAQ khong duoc chua BAT
+   * KY con so tien nao. Tu khi bang gia len song, luat tach lam hai:
+   *
+   *  1. FAQ hoc phi PHAI neu dung cac muc dang co trong `courses.ts`. Day la
+   *     cach kiem chung cau tra loi duoc GHEP TU du lieu chu khong go tay -
+   *     go tay thi den luc doi gia se lech im lang, va cau tra loi nay lai
+   *     duoc day vao JSON-LD FAQPage nen Google se doc duoc gia sai.
+   *  2. Cac FAQ con lai van khong duoc chua con so tien.
+   */
+  it('FAQ hoc phi neu dung muc gia dang co trong courses.ts', () => {
+    const tuitionAnswers = generalFaqs
+      .filter((faq) => faq.category === 'Học phí')
+      .map((faq) => faq.answer)
+      .join(' ');
+
+    expect(tuitionAnswers.length).toBeGreaterThan(0);
+
+    for (const course of sortedCourses) {
+      if (!course.tuition) continue;
+      expect(
+        tuitionAnswers,
+        `FAQ hoc phi thieu muc gia cua ${course.slug}`,
+      ).toContain(course.tuition.displayValue);
+    }
+  });
+
+  it('cac FAQ ngoai muc hoc phi khong hard-code con so tien', () => {
+    const haystack = generalFaqs
+      .filter((faq) => faq.category !== 'Học phí')
+      .map((faq) => faq.answer)
+      .join(' ');
     expect(haystack).not.toMatch(MONEY_PATTERN);
   });
 
@@ -304,6 +336,46 @@ describe('faqs va gallery', () => {
     for (const item of galleryItems) {
       expect(item.image.alt.length).toBeGreaterThan(0);
       expect(item.image.src.startsWith('/images/')).toBe(true);
+    }
+  });
+
+  /**
+   * Kich thuoc khai trong `gallery.ts` phai KHOP file that trong `public/`.
+   *
+   * VI SAO CAN TEST NAY: `sharp().rotate().metadata()` tra ve the EXIF cua anh
+   * NGUON chu khong phai ket qua sau khi xoay. Anh chup dien thoai co
+   * `orientation = 6` bi hoan doi width/height, nen rat de khai nham 1200x1600
+   * thanh 1600x1200. Sai kieu nay HOAN TOAN IM LANG: `object-contain` van ve
+   * dung anh, chi co trinh duyet giu sai cho truoc khi anh tai xong nen trang
+   * bi giat. Da mac dung loi nay ngay lan sinh anh dau tien (29/08/2026).
+   *
+   * Doc kich thuoc that bang `sharp` thay vi tin vao con so script in ra -
+   * script chinh la thu vua in sai.
+   */
+  it('kich thuoc anh gallery khop voi file that trong public/', async () => {
+    const { default: sharp } = await import('sharp');
+
+    const targets = galleryItems.flatMap((item) => [
+      { id: item.id, label: 'image', asset: item.image },
+      ...(item.fullImage
+        ? [{ id: item.id, label: 'fullImage', asset: item.fullImage }]
+        : []),
+    ]);
+
+    for (const { id, label, asset } of targets) {
+      const filePath = join(process.cwd(), 'public', asset.src);
+      expect(existsSync(filePath), `${id}.${label}: thieu ${asset.src}`).toBe(
+        true,
+      );
+
+      // Hinh minh hoa SVG khong co kich thuoc diem anh de doi chieu.
+      if (asset.src.endsWith('.svg')) continue;
+
+      const meta = await sharp(filePath).metadata();
+      expect(
+        { width: meta.width, height: meta.height },
+        `${id}.${label} (${asset.src}) khai sai kich thuoc`,
+      ).toEqual({ width: asset.width, height: asset.height });
     }
   });
 });

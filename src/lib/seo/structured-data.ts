@@ -115,6 +115,28 @@ export function buildCourseJsonLd(course: Course): JsonLd {
     description: course.summary,
     url: pageUrl(`/khoa-hoc/${course.slug}`),
     inLanguage: 'vi-VN',
+    /**
+     * `offers` chi sinh khi khoa hoc CO muc tron goi xac dinh.
+     *
+     * Day KHONG mau thuan voi lenh cam o dau file: cai bi cam la con so
+     * KHONG kiem chung duoc (aggregateRating, so hoc vien, ty le dau). Hoc
+     * phi thi nguoc lai - no la muc Trung tam cong bo, dang hien nguyen van
+     * tren chinh trang nay, nen khai bao cho Google la mo ta dung thuc te.
+     *
+     * Khoa chua chot hoc phi (`amountVnd` bo trong) thi khong co `offers` -
+     * tha thieu con hon bao mot con so ma trang khong hien.
+     */
+    ...(course.tuition?.amountVnd
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: String(course.tuition.amountVnd),
+            priceCurrency: 'VND',
+            category: 'Trọn gói',
+            url: pageUrl(`/khoa-hoc/${course.slug}`),
+          },
+        }
+      : {}),
     provider: {
       '@type': 'Person',
       '@id': `${siteConfig.url}/#person`,
