@@ -225,7 +225,7 @@ export default function AboutPage() {
           id="album-heading"
           eyebrow="Hình ảnh"
           title="Album hoạt động"
-          description="Hình ảnh các buổi học. Ảnh có mặt học viên chỉ được đăng khi có sự đồng ý."
+          description="Ảnh chụp thật tại trung tâm: xe tập lái, sân tập, cổng trung tâm và các buổi thực hành."
         />
         <div className="mt-10">
           <GalleryGrid items={galleryItems} />

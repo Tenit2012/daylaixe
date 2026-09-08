@@ -248,7 +248,20 @@ export const siteConfig = {
      * HOC O DAU (ten trung tam), DANG KY VOI AI (truc tiep voi thay) -
      * chinh la ba cau hoi ma bao cao TRUST_AUDIT cham diem thap nhat.
      */
-    heroTitle: `Học lái xe cùng giáo viên cơ hữu tại ${publicEnv.NEXT_PUBLIC_CENTER_NAME}`,
+    /**
+     * Dung ban RUT GON (`CENTER_SHORT_NAME`), khong dung ten day du.
+     *
+     * Ten phap dinh day du dai 80 ky tu; ghep vao cau nay thi <h1> thanh 117
+     * ky tu - dai gap ruoi mot dong tieu de doc duoc, va tren dien thoai no
+     * chiem tron man hinh dau truoc khi nguoi doc kip thay nut goi. Ten day
+     * du van duoc dung nguyen ven o footer, tieu su, khoi "Noi hoc va thi
+     * sat hach" va trong JSON-LD gui Google - tuc la o moi cho can chinh xac
+     * ve mat phap ly.
+     */
+    heroTitle: `Học lái xe cùng giáo viên cơ hữu tại ${
+      publicEnv.NEXT_PUBLIC_CENTER_SHORT_NAME ||
+      publicEnv.NEXT_PUBLIC_CENTER_NAME
+    }`,
     /**
      * Ba dieu can noi ngay duoi tieu de hero, moi dieu MOT MUC RIENG.
      *

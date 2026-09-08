@@ -55,7 +55,7 @@ export default function TuitionPage() {
           as="h1"
           eyebrow="Học phí & lộ trình"
           title="Học phí và lộ trình học"
-          description="Trang này giúp bạn so sánh các khóa học và hiểu rõ cách chi phí được tính, trước khi liên hệ để nhận mức học phí cập nhật."
+          description="Mức trọn gói của từng khóa được ghi ngay trong bảng dưới đây, kèm giải thích khoản nào đã bao gồm và khoản nào có thể phát sinh."
         />
 
         {/* Bang so sanh khoa hoc */}

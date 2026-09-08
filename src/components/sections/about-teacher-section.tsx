@@ -9,9 +9,15 @@ import { CountUp } from '@/components/ui/count-up';
 
 export function AboutTeacherSection() {
   const { teacher } = siteConfig;
+  /*
+    Dong phu de nam ngay duoi <h2> ten thay nen phai vua MOT dong. Dung ban
+    rut gon vi ten phap dinh day du (80 ky tu) se xuong ba dong o dien thoai
+    va day anh chan dung ra khoi khung nhin. Ten day du duoc neu o footer va
+    trang /gioi-thieu.
+  */
   const centerText = isPlaceholderValue(teacher.centerName)
     ? 'Tên trung tâm sẽ được cập nhật'
-    : teacher.centerName;
+    : teacher.centerShortName;
 
   return (
     <Section id="gioi-thieu" ariaLabelledBy="gioi-thieu-heading">
@@ -69,7 +75,7 @@ export function AboutTeacherSection() {
             </div>
             <div className="rounded-lg border border-line bg-surface-muted p-4">
               <dt className="text-xs font-semibold uppercase tracking-wide text-ink-subtle">
-                Học viên đã hướng dẫn
+                Đã hướng dẫn
               </dt>
               <dd className="mt-1 text-[0.9375rem] font-medium text-brand-900">
                 {teacher.studentGroups.charAt(0).toUpperCase() +

@@ -30,7 +30,7 @@ export const post: BlogPost = {
   content: [
     {
       type: 'paragraph',
-      text: 'Học viên hay hỏi tôi nên ôn thế nào cho hiệu quả trong tháng cuối. Câu trả lời không phải là học nhiều hơn, mà là học đúng thứ vào đúng giai đoạn. Bốn tuần cuối có cấu trúc riêng: tuần đầu để bù chỗ hổng, tuần cuối để giữ phong độ, và bạn không nên đảo ngược thứ tự đó.',
+      text: 'Học viên hay hỏi tôi nên ôn thế nào cho hiệu quả trong tháng cuối. Câu trả lời không phải là học nhiều hơn, mà là học đúng thứ vào đúng giai đoạn. Ba mươi ngày cuối, chia thành bốn tuần, có cấu trúc riêng: tuần đầu để bù chỗ hổng, tuần cuối để giữ phong độ, và bạn không nên đảo ngược thứ tự đó.',
     },
     {
       type: 'callout',

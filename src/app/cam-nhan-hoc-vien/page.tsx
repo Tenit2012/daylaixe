@@ -74,8 +74,8 @@ export default function TestimonialsPage() {
         <SectionHeading
           id="album-heading"
           eyebrow="Album"
-          title="Album học viên"
-          description="Hình ảnh minh họa các buổi học. Ảnh có mặt học viên chỉ được đăng khi có sự đồng ý."
+          title="Album tại trung tâm"
+          description="Ảnh chụp thật tại nơi học viên thực hành: xe tập lái, sân tập và các buổi thực hành tại trung tâm."
         />
         <div className="mt-10">
           <GalleryGrid items={galleryItems} />

@@ -8,8 +8,8 @@ export function GallerySection() {
       <SectionHeading
         id="hinh-anh-heading"
         eyebrow="Hình ảnh"
-        title="Hình ảnh lớp học và sân tập"
-        description="Ảnh chụp thật tại nơi thầy giảng dạy. Một số hình còn là bản minh họa và sẽ được thay bằng ảnh thật khi có."
+        title="Hình ảnh xe tập lái và sân tập"
+        description="Ảnh chụp thật tại nơi thầy giảng dạy: xe tập lái, sân tập, cổng trung tâm và các buổi thực hành."
       />
       <div className="mt-10">
         <GalleryGrid items={galleryItems} />
