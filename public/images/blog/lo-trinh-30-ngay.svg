@@ -1,30 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Lộ trình ôn luyện 30 ngày">
-  <title>Lộ trình ôn luyện 30 ngày</title>
-  <defs>
-    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#DEE9F7"/>
-      <stop offset="100%" stop-color="#F7F9FC"/>
-    </linearGradient>
-    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#182F58"/>
-      <stop offset="100%" stop-color="#112242"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#skyGrad)"/>
-  <rect x="0" y="0" width="1200" height="14" fill="#EA760E"/>
-  <circle cx="1020" cy="150" r="120" fill="#EA760E" opacity="0.14"/>
-  <circle cx="150" cy="520" r="90" fill="#EA760E" opacity="0.14"/>
-  <g transform="translate(430 300)">
-    <rect x="0" y="59.97599999999999" width="340" height="59.97599999999999" rx="22.848" fill="#182F58"/>
-    <path d="M 61.199999999999996 62.831999999999994 L 102 14.28 L 244.79999999999998 14.28 L 285.59999999999997 62.831999999999994 Z" fill="#EA760E"/>
-    <rect x="108.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <rect x="176.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <circle cx="88.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="88.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <circle cx="258.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="258.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <rect x="292.4" y="71.39999999999999" width="34" height="14.28" rx="3" fill="#EA760E"/>
-  </g>
-  <text x="600" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#182F58">Lộ trình ôn luyện 30 ngày</text>
-  <text x="600" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#3C6CB2">Kiến thức học lái xe</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Tờ lịch bốn tuần, mỗi tuần một hàng bảy ô; bốn ngày cột mốc được tô màu và ngày cuối cùng cắm cờ">
+  <title>Lịch bốn tuần ôn luyện trước ngày thi</title>
+  <rect width="1200" height="630" fill="#F7F9FC"/>
+
+  <!-- Hai vong treo, ve truoc de nam duoi than lich -->
+  <rect x="352" y="44" width="18" height="54" rx="9" fill="#112242"/>
+  <rect x="830" y="44" width="18" height="54" rx="9" fill="#112242"/>
+
+  <!-- Than lich -->
+  <rect x="140" y="80" width="920" height="490" rx="28" fill="#FFFFFF"/>
+  <path d="M140 108a28 28 0 0 1 28-28h864a28 28 0 0 1 28 28v56H140z" fill="#182F58"/>
+  <rect x="176" y="112" width="132" height="14" rx="7" fill="#EA760E"/>
+  <rect x="328" y="112" width="84" height="14" rx="7" fill="#3C6CB2"/>
+
+  <!-- Nhan bon tuan, dam dan theo tien do -->
+  <rect x="176" y="190" width="56" height="72" rx="14" fill="#C6D0DE"/>
+  <rect x="176" y="278" width="56" height="72" rx="14" fill="#9FB6D4"/>
+  <rect x="176" y="366" width="56" height="72" rx="14" fill="#3C6CB2"/>
+  <rect x="176" y="454" width="56" height="72" rx="14" fill="#182F58"/>
+
+  <!-- Tuan 1: cot moc cuoi tuan -->
+  <rect x="270" y="190" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="382" y="190" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="494" y="190" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="606" y="190" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="718" y="190" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="830" y="190" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="942" y="190" width="96" height="72" rx="14" fill="#3C6CB2"/>
+  <path d="M974 226 L986 238 L1006 212" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Tuan 2 -->
+  <rect x="270" y="278" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="382" y="278" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="494" y="278" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="606" y="278" width="96" height="72" rx="14" fill="#EA760E"/>
+  <path d="M638 314 L650 326 L670 300" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="718" y="278" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="830" y="278" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="942" y="278" width="96" height="72" rx="14" fill="#EEF3F9"/>
+
+  <!-- Tuan 3 -->
+  <rect x="270" y="366" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="382" y="366" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="494" y="366" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="606" y="366" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="718" y="366" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="830" y="366" width="96" height="72" rx="14" fill="#169855"/>
+  <path d="M862 402 L874 414 L894 388" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="942" y="366" width="96" height="72" rx="14" fill="#EEF3F9"/>
+
+  <!-- Tuan 4: ngay thi, cam co -->
+  <rect x="270" y="454" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="382" y="454" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="494" y="454" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="606" y="454" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="718" y="454" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="830" y="454" width="96" height="72" rx="14" fill="#EEF3F9"/>
+  <rect x="942" y="454" width="96" height="72" rx="14" fill="#182F58"/>
+  <rect x="978" y="462" width="8" height="58" rx="4" fill="#FFFFFF"/>
+  <path d="M988 468 L1026 481 L988 494 Z" fill="#EA760E"/>
 </svg>

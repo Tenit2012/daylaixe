@@ -1,30 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Thi mô phỏng tình huống">
-  <title>Thi mô phỏng tình huống</title>
-  <defs>
-    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#DEE9F7"/>
-      <stop offset="100%" stop-color="#F7F9FC"/>
-    </linearGradient>
-    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#182F58"/>
-      <stop offset="100%" stop-color="#112242"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#skyGrad)"/>
-  <rect x="0" y="0" width="1200" height="14" fill="#3C6CB2"/>
-  <circle cx="1020" cy="150" r="120" fill="#3C6CB2" opacity="0.14"/>
-  <circle cx="150" cy="520" r="90" fill="#3C6CB2" opacity="0.14"/>
-  <g transform="translate(430 300)">
-    <rect x="0" y="59.97599999999999" width="340" height="59.97599999999999" rx="22.848" fill="#182F58"/>
-    <path d="M 61.199999999999996 62.831999999999994 L 102 14.28 L 244.79999999999998 14.28 L 285.59999999999997 62.831999999999994 Z" fill="#3C6CB2"/>
-    <rect x="108.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <rect x="176.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <circle cx="88.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="88.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <circle cx="258.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="258.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <rect x="292.4" y="71.39999999999999" width="34" height="14.28" rx="3" fill="#EA760E"/>
-  </g>
-  <text x="600" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#182F58">Thi mô phỏng tình huống</text>
-  <text x="600" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#3C6CB2">Kiến thức học lái xe</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Màn hình máy tính chiếu tình huống giao thông có biển cảnh báo và thanh điểm năm nấc, bên phải là phím bấm cam để chấm điểm">
+  <title>Phần thi mô phỏng tình huống giao thông</title>
+  <rect width="1200" height="630" fill="#182F58"/>
+
+  <!-- Man hinh -->
+  <rect x="200" y="90" width="800" height="430" rx="22" fill="#112242"/>
+  <rect x="228" y="118" width="744" height="374" rx="12" fill="#F7F9FC"/>
+  <rect x="228" y="118" width="744" height="150" fill="#DEE9F7"/>
+
+  <!-- Canh trong man hinh -->
+  <path d="M300 492 L520 268 L700 268 L920 492 Z" fill="#223A5E"/>
+  <path d="M602 300 L618 300 L622 340 L598 340 Z" fill="#F7F9FC"/>
+  <path d="M596 380 L624 380 L630 440 L590 440 Z" fill="#F7F9FC"/>
+  <rect x="512" y="352" width="132" height="76" rx="16" fill="#3C6CB2"/>
+  <rect x="540" y="366" width="76" height="30" rx="8" fill="#182F58"/>
+  <circle cx="784" cy="368" r="20" fill="#EA760E"/>
+  <path d="M766 396 C 766 434 802 434 802 396 Z" fill="#EA760E"/>
+  <rect x="776" y="428" width="16" height="46" rx="8" fill="#EA760E"/>
+
+  <!-- Bien canh bao trong tinh huong -->
+  <path d="M320 216 L366 140 L412 216 Z" fill="#EA760E"/>
+  <rect x="362" y="164" width="9" height="30" rx="4" fill="#FFFFFF"/>
+  <circle cx="366.5" cy="204" r="5.5" fill="#FFFFFF"/>
+
+  <!-- Thanh diem 5 nac -->
+  <rect x="660" y="140" width="52" height="18" rx="9" fill="#169855"/>
+  <rect x="720" y="140" width="52" height="18" rx="9" fill="#169855"/>
+  <rect x="780" y="140" width="52" height="18" rx="9" fill="#EA760E"/>
+  <rect x="840" y="140" width="52" height="18" rx="9" fill="#EA760E"/>
+  <rect x="900" y="140" width="52" height="18" rx="9" fill="#D93A2B"/>
+
+  <!-- Chan de -->
+  <rect x="560" y="520" width="80" height="54" fill="#112242"/>
+  <rect x="470" y="574" width="260" height="22" rx="11" fill="#112242"/>
+
+  <!-- Phim bam cham diem -->
+  <rect x="1000" y="460" width="150" height="120" rx="24" fill="#EA760E"/>
+  <path d="M1075 496 L1075 546 M1052 524 L1075 548 L1098 524" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

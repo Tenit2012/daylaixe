@@ -1,30 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Khởi hành ngang dốc">
-  <title>Khởi hành ngang dốc</title>
-  <defs>
-    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#DEE9F7"/>
-      <stop offset="100%" stop-color="#F7F9FC"/>
-    </linearGradient>
-    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#182F58"/>
-      <stop offset="100%" stop-color="#112242"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#skyGrad)"/>
-  <rect x="0" y="0" width="1200" height="14" fill="#EA760E"/>
-  <circle cx="1020" cy="150" r="120" fill="#EA760E" opacity="0.14"/>
-  <circle cx="150" cy="520" r="90" fill="#EA760E" opacity="0.14"/>
-  <g transform="translate(430 300)">
-    <rect x="0" y="59.97599999999999" width="340" height="59.97599999999999" rx="22.848" fill="#182F58"/>
-    <path d="M 61.199999999999996 62.831999999999994 L 102 14.28 L 244.79999999999998 14.28 L 285.59999999999997 62.831999999999994 Z" fill="#EA760E"/>
-    <rect x="108.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <rect x="176.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <circle cx="88.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="88.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <circle cx="258.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="258.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <rect x="292.4" y="71.39999999999999" width="34" height="14.28" rx="3" fill="#EA760E"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Xe tập lái đỗ nghiêng trên đoạn dốc, mũi tên xanh chỉ hướng lên dốc, góc trái là hình cần phanh tay">
+  <title>Dừng và khởi hành xe ngang dốc</title>
+  <rect width="1200" height="630" fill="#F7F9FC"/>
+
+  <!-- Suon doc va mat duong tren doc -->
+  <path d="M60 570 L1040 218 L1140 218 L1140 630 L60 630 Z" fill="#DEE9F7"/>
+  <path d="M60 570 L1040 218 L1040 272 L60 624 Z" fill="#223A5E"/>
+  <g stroke="#F7F9FC" stroke-width="8" stroke-linecap="round">
+    <path d="M160 561.1 L250 528.8"/>
+    <path d="M340 496.4 L430 464.1"/>
+    <path d="M520 431.8 L610 399.4"/>
+    <path d="M700 367.1 L790 334.7"/>
+    <path d="M880 302.4 L970 270.1"/>
   </g>
-  <text x="600" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#182F58">Khởi hành ngang dốc</text>
-  <text x="600" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#3C6CB2">Kiến thức học lái xe</text>
+
+  <!-- Xe nghieng dung bang do doc cua mat duong -->
+  <g transform="translate(560 390) rotate(-19.75)">
+    <rect x="-148" y="-92" width="296" height="56" rx="16" fill="#EA760E"/>
+    <path d="M-88 -92 L-60 -146 L46 -146 L90 -92 Z" fill="#EA760E"/>
+    <path d="M-72 -98 L-52 -138 L-6 -138 L-6 -98 Z" fill="#DEE9F7"/>
+    <path d="M6 -138 L40 -138 L74 -98 L6 -98 Z" fill="#DEE9F7"/>
+    <rect x="132" y="-78" width="20" height="16" rx="6" fill="#F7F9FC"/>
+    <rect x="-152" y="-78" width="18" height="16" rx="6" fill="#D93A2B"/>
+    <circle cx="-92" cy="-30" r="30" fill="#112242"/>
+    <circle cx="-92" cy="-30" r="13" fill="#C6D0DE"/>
+    <circle cx="92" cy="-30" r="30" fill="#112242"/>
+    <circle cx="92" cy="-30" r="13" fill="#C6D0DE"/>
+    <path d="M196 -62 L300 -62" stroke="#169855" stroke-width="16" stroke-linecap="round"/>
+    <path d="M344 -62 L296 -86 L296 -38 Z" fill="#169855"/>
+  </g>
+
+  <!-- Can phanh tay: thao tac giu xe khong troi -->
+  <rect x="90" y="70" width="300" height="192" rx="24" fill="#FFFFFF" stroke="#DEE9F7" stroke-width="4"/>
+  <rect x="124" y="206" width="60" height="26" rx="8" fill="#C6D0DE"/>
+  <path d="M154 214 L214 214 L302 134" fill="none" stroke="#182F58" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="308" cy="128" r="18" fill="#112242"/>
+  <circle cx="286" cy="148" r="9" fill="#EA760E"/>
+  <g stroke="#C6D0DE" stroke-width="6" stroke-linecap="round">
+    <path d="M196 196 L204 184"/>
+    <path d="M218 196 L226 184"/>
+    <path d="M240 196 L248 184"/>
+  </g>
 </svg>

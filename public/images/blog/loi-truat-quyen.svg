@@ -1,30 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Lỗi bị truất quyền sát hạch">
-  <title>Lỗi bị truất quyền sát hạch</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Thanh barie sọc đỏ trắng hạ xuống chặn đường, bên phải là biển bát giác đỏ có dấu X trắng, phía dưới là ba thẻ lỗi đánh dấu X đỏ">
+  <title>Những lỗi bị truất quyền sát hạch</title>
   <defs>
-    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#DEE9F7"/>
-      <stop offset="100%" stop-color="#F7F9FC"/>
-    </linearGradient>
-    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#182F58"/>
-      <stop offset="100%" stop-color="#112242"/>
-    </linearGradient>
+    <pattern id="socBarie" width="56" height="56" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="28" height="56" fill="#D93A2B"/>
+    </pattern>
   </defs>
-  <rect width="1200" height="630" fill="url(#skyGrad)"/>
-  <rect x="0" y="0" width="1200" height="14" fill="#169855"/>
-  <circle cx="1020" cy="150" r="120" fill="#169855" opacity="0.14"/>
-  <circle cx="150" cy="520" r="90" fill="#169855" opacity="0.14"/>
-  <g transform="translate(430 300)">
-    <rect x="0" y="59.97599999999999" width="340" height="59.97599999999999" rx="22.848" fill="#182F58"/>
-    <path d="M 61.199999999999996 62.831999999999994 L 102 14.28 L 244.79999999999998 14.28 L 285.59999999999997 62.831999999999994 Z" fill="#169855"/>
-    <rect x="108.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <rect x="176.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <circle cx="88.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="88.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <circle cx="258.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="258.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <rect x="292.4" y="71.39999999999999" width="34" height="14.28" rx="3" fill="#EA760E"/>
+  <rect width="1200" height="630" fill="#F7F9FC"/>
+  <rect x="80" y="520" width="1040" height="10" rx="5" fill="#C6D0DE"/>
+
+  <!-- Barie ha xuong -->
+  <rect x="126" y="506" width="92" height="22" rx="8" fill="#112242"/>
+  <rect x="150" y="300" width="44" height="212" rx="10" fill="#182F58"/>
+  <rect x="782" y="384" width="26" height="136" rx="8" fill="#C6D0DE"/>
+  <rect x="180" y="336" width="620" height="46" rx="14" fill="#F7F9FC" stroke="#182F58" stroke-width="4"/>
+  <rect x="184" y="340" width="612" height="38" rx="12" fill="url(#socBarie)"/>
+
+  <!-- Bien bat giac: dung han -->
+  <polygon points="1110.1,289.8 1039.8,360.1 940.2,360.1 869.9,289.8 869.9,190.2 940.2,119.9 1039.8,119.9 1110.1,190.2" fill="#D93A2B"/>
+  <polygon points="1093.5,282.9 1032.9,343.5 947.1,343.5 886.5,282.9 886.5,197.1 947.1,136.5 1032.9,136.5 1093.5,197.1" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+  <path d="M948 198 L1032 282 M1032 198 L948 282" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round"/>
+
+  <!-- Ba the loi -->
+  <g>
+    <rect x="210" y="420" width="160" height="70" rx="18" fill="#FFFFFF" stroke="#DEE9F7" stroke-width="3"/>
+    <circle cx="252" cy="455" r="21" fill="#D93A2B"/>
+    <path d="M244 447 L260 463 M260 447 L244 463" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+    <rect x="286" y="444" width="62" height="10" rx="5" fill="#182F58"/>
+    <rect x="286" y="462" width="42" height="10" rx="5" fill="#C6D0DE"/>
   </g>
-  <text x="600" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#182F58">Lỗi bị truất quyền sát hạch</text>
-  <text x="600" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#3C6CB2">Kiến thức học lái xe</text>
+  <g>
+    <rect x="390" y="420" width="160" height="70" rx="18" fill="#FFFFFF" stroke="#DEE9F7" stroke-width="3"/>
+    <circle cx="432" cy="455" r="21" fill="#D93A2B"/>
+    <path d="M424 447 L440 463 M440 447 L424 463" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+    <rect x="466" y="444" width="52" height="10" rx="5" fill="#182F58"/>
+    <rect x="466" y="462" width="66" height="10" rx="5" fill="#C6D0DE"/>
+  </g>
+  <g>
+    <rect x="570" y="420" width="160" height="70" rx="18" fill="#FFFFFF" stroke="#DEE9F7" stroke-width="3"/>
+    <circle cx="612" cy="455" r="21" fill="#D93A2B"/>
+    <path d="M604 447 L620 463 M620 447 L604 463" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+    <rect x="646" y="444" width="66" height="10" rx="5" fill="#182F58"/>
+    <rect x="646" y="462" width="46" height="10" rx="5" fill="#C6D0DE"/>
+  </g>
 </svg>

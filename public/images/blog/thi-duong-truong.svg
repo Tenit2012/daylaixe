@@ -1,30 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Thi đường trường">
-  <title>Thi đường trường</title>
-  <defs>
-    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#DEE9F7"/>
-      <stop offset="100%" stop-color="#F7F9FC"/>
-    </linearGradient>
-    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#182F58"/>
-      <stop offset="100%" stop-color="#112242"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#skyGrad)"/>
-  <rect x="0" y="0" width="1200" height="14" fill="#169855"/>
-  <circle cx="1020" cy="150" r="120" fill="#169855" opacity="0.14"/>
-  <circle cx="150" cy="520" r="90" fill="#169855" opacity="0.14"/>
-  <g transform="translate(430 300)">
-    <rect x="0" y="59.97599999999999" width="340" height="59.97599999999999" rx="22.848" fill="#182F58"/>
-    <path d="M 61.199999999999996 62.831999999999994 L 102 14.28 L 244.79999999999998 14.28 L 285.59999999999997 62.831999999999994 Z" fill="#169855"/>
-    <rect x="108.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <rect x="176.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <circle cx="88.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="88.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <circle cx="258.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="258.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <rect x="292.4" y="71.39999999999999" width="34" height="14.28" rx="3" fill="#EA760E"/>
-  </g>
-  <text x="600" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#182F58">Thi đường trường</text>
-  <text x="600" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#3C6CB2">Kiến thức học lái xe</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Đường quốc lộ chạy về phía chân trời với vạch kẻ đứt giữa đường, một xe con nhìn từ phía sau và biển báo tốc độ 60 bên phải">
+  <title>Thi thực hành trên đường trường</title>
+  <rect width="1200" height="630" fill="#DEE9F7"/>
+  <rect y="250" width="1200" height="380" fill="#EAF1F8"/>
+
+  <!-- Mat duong thu hep dan ve chan troi -->
+  <path d="M150 630 L500 250 L700 250 L1050 630 Z" fill="#223A5E"/>
+  <path d="M196 630 L228 630 L524 262 L516 262 Z" fill="#F7F9FC" opacity="0.85"/>
+  <path d="M1004 630 L972 630 L676 262 L684 262 Z" fill="#F7F9FC" opacity="0.85"/>
+
+  <!-- Vach dut giua duong, to dan ve phia gan -->
+  <path d="M595.4 290 L604.6 290 L606.2 330 L593.8 330 Z" fill="#F7F9FC"/>
+  <path d="M592.7 360 L607.3 360 L609.3 410 L590.7 410 Z" fill="#F7F9FC"/>
+  <path d="M589.1 450 L610.9 450 L613.5 515 L586.5 515 Z" fill="#F7F9FC"/>
+  <path d="M585.4 545 L614.6 545 L618 630 L582 630 Z" fill="#F7F9FC"/>
+
+  <!-- Cot ben duong, nho dan theo khoang cach -->
+  <rect x="250" y="260" width="12" height="140" fill="#A9B7C9"/>
+  <rect x="392" y="220" width="9" height="100" fill="#A9B7C9"/>
+  <rect x="452" y="206" width="7" height="70" fill="#A9B7C9"/>
+
+  <!-- Xe con nhin tu phia sau -->
+  <path d="M726 430 L748 372 L882 372 L904 430 Z" fill="#3C6CB2"/>
+  <rect x="758" y="384" width="114" height="40" rx="8" fill="#182F58"/>
+  <rect x="700" y="430" width="230" height="120" rx="18" fill="#3C6CB2"/>
+  <rect x="712" y="458" width="46" height="26" rx="8" fill="#EA760E"/>
+  <rect x="872" y="458" width="46" height="26" rx="8" fill="#EA760E"/>
+  <rect x="790" y="496" width="50" height="18" rx="4" fill="#F7F9FC"/>
+  <rect x="700" y="512" width="230" height="26" rx="10" fill="#182F58"/>
+  <rect x="706" y="536" width="46" height="22" rx="8" fill="#112242"/>
+  <rect x="878" y="536" width="46" height="22" rx="8" fill="#112242"/>
+
+  <!-- Bien bao gioi han toc do -->
+  <rect x="1082" y="300" width="12" height="210" fill="#8A98AC"/>
+  <circle cx="1088" cy="270" r="64" fill="#F7F9FC" stroke="#D93A2B" stroke-width="16"/>
+  <text x="1088" y="292" text-anchor="middle" font-family="system-ui, sans-serif" font-size="54" font-weight="700" fill="#182F58">60</text>
 </svg>

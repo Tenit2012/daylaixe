@@ -8,8 +8,20 @@ export interface Course {
   shortName: string;
   /** Ma hang GPLX (B, C1...) hoac 'BO_TUC' / 'SA_HINH' cho khoa ky nang. */
   licenseClass: string;
-  /** Mo ta ngan 1-2 cau, dung cho card va meta description. */
+  /** Mo ta ngan 1-2 cau, HIEN THI tren card khoa hoc. */
   summary: string;
+  /**
+   * Mo ta danh RIENG cho the <meta name="description"> cua trang chi tiet.
+   *
+   * Vi sao tach khoi `summary`: hai cho nay phuc vu hai muc dich khac nhau va
+   * bi rang buoc khac nhau. `summary` phai NGAN de the khoa hoc tren luoi ba
+   * cot khong bi vo; meta description lai can 120-160 ky tu, va can chua dia
+   * danh ("Thủ Đức, TP.HCM") - thu ma nhac lai tren tung the trong danh sach
+   * se thanh lap tu thua thai.
+   *
+   * Bo trong thi tu dong dung `summary` - khong trang nao mat mo ta.
+   */
+  metaDescription?: string;
   /** Mo ta dai hon cho trang chi tiet. */
   description: string;
   /** Khoa hoc phu hop voi ai. */
@@ -141,6 +153,8 @@ export interface GalleryItem {
 }
 
 export type GalleryCategory =
+  /** Ky kiem tra, xet hoan thanh chuong trinh dao tao - xem completion-exam.ts. */
+  | 'ky-kiem-tra'
   | 'xe-tap-lai'
   | 'cabin-mo-phong'
   | 'san-tap'

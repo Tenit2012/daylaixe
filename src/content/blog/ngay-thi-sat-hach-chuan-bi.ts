@@ -12,7 +12,7 @@ export const post: BlogPost = {
   readingTimeMinutes: 8,
   coverImage: {
     src: '/images/blog/ngay-thi-sat-hach.svg',
-    alt: 'Hình minh họa học viên chuẩn bị cho ngày thi sát hạch',
+    alt: 'Hình minh họa thẻ dự thi đặt cạnh bảng chấm điểm sát hạch',
     width: 1200,
     height: 630,
   },

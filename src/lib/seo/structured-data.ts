@@ -1,4 +1,5 @@
 import { isPlaceholderValue, siteConfig } from '@/config/site';
+import { sortedCourses } from '@/content/courses';
 import type { BlogPost, Course, Faq } from '@/types/content';
 import { absoluteUrl, pageUrl } from './metadata';
 
@@ -28,6 +29,116 @@ function cleanValue(value: string | undefined): string | undefined {
   return isPlaceholderValue(value) ? undefined : value;
 }
 
+/**
+ * So dien thoai dang E.164 (`+84...`) cho JSON-LD.
+ *
+ * Website hien thi so noi dia ("0971397882") vi do la dang nguoi Viet doc va
+ * bam goi duoc. Google thi doi ma quoc gia de biet chac day la so o Viet Nam.
+ * Chuyen doi tai day thay vi luu hai bien: mot nguon su that, hai cach trinh
+ * bay.
+ */
+function toE164(phone: string | undefined): string | undefined {
+  const value = cleanValue(phone);
+  if (!value) return undefined;
+
+  const digits = value.replace(/[^\d+]/g, '');
+  if (digits.startsWith('+')) return digits;
+  if (digits.startsWith('84')) return `+${digits}`;
+  if (digits.startsWith('0')) return `+84${digits.slice(1)}`;
+  return `+84${digits}`;
+}
+
+/**
+ * Cac ho so mang xa hoi / danh muc chinh chu cua thay.
+ *
+ * `sameAs` la cach noi voi Google "may trang nay cung mot chu the". Chi liet
+ * ke ho so DA CAU HINH THAT - placeholder bi loc bang `cleanValue`, nen khi
+ * chua co Facebook/YouTube thi mang tu ngan lai chu khong sinh link hong.
+ */
+function buildSameAs(): string[] {
+  return [
+    cleanValue(siteConfig.contact.googleMapsUrl),
+    cleanValue(siteConfig.contact.facebookUrl),
+    cleanValue(siteConfig.contact.zaloUrl),
+    cleanValue(siteConfig.contact.youtubeUrl),
+  ].filter((value): value is string => typeof value === 'string');
+}
+
+/**
+ * Gio mo cua dang `OpeningHoursSpecification`.
+ *
+ * Dung ban day du thay vi chuoi rut gon `"Mo-Su 07:00-20:00"`: ca hai deu hop
+ * le voi schema.org, nhung ban nay khong the doc nham va de doi lich rieng
+ * cho tung ngay ve sau ma khong phai viet lai cu phap.
+ */
+function buildOpeningHours(): JsonLd {
+  return {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: [...siteConfig.business.openDays],
+    opens: siteConfig.business.opens,
+    closes: siteConfig.business.closes,
+  };
+}
+
+/**
+ * `geo` chi sinh khi da cau hinh toa do that (xem `siteConfig.business.geo`).
+ * Chua co thi tra ve object rong de toan tu spread bo qua - KHONG ghi
+ * `latitude: null`, vi mot toa do rong van la mot loi cu phap trong mat cong
+ * cu kiem tra du lieu co cau truc.
+ */
+function geoFragment(): JsonLd {
+  const geo = siteConfig.business.geo;
+  if (!geo) return {};
+
+  return {
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: geo.latitude,
+      longitude: geo.longitude,
+    },
+  };
+}
+
+/**
+ * Khoang hoc phi, TINH TU chinh du lieu khoa hoc chu khong go tay.
+ *
+ * Go tay mot khoang ("18.500.000d - 20.500.000d") se am tham sai vao ngay ai
+ * do doi hoc phi mot khoa - va sai o cho khong ai nghi den viec kiem tra.
+ * Chi tinh tren cac khoa co muc TRON GOI xac dinh (`amountVnd`); khoa tinh
+ * theo buoi khong co diem dau/cuoi nen khong thuoc khoang nay.
+ */
+function buildPriceRange(): string | undefined {
+  const amounts = sortedCourses
+    .map((course) => course.tuition?.amountVnd)
+    .filter((amount): amount is number => typeof amount === 'number');
+
+  if (amounts.length === 0) return undefined;
+
+  const format = (amount: number) =>
+    `${new Intl.NumberFormat('vi-VN').format(amount)}₫`;
+
+  const min = Math.min(...amounts);
+  const max = Math.max(...amounts);
+
+  return min === max ? format(min) : `${format(min)} - ${format(max)}`;
+}
+
+/** Dia chi vat ly cua trung tam, dung chung cho moi node co dia diem. */
+function postalAddressFragment(): JsonLd {
+  const address = cleanValue(siteConfig.contact.address);
+  if (!address) return {};
+
+  return {
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: address,
+      addressLocality: 'Thủ Đức',
+      addressRegion: 'TP.HCM',
+      addressCountry: 'VN',
+    },
+  };
+}
+
 export function buildWebsiteJsonLd(): JsonLd {
   return {
     '@context': 'https://schema.org',
@@ -41,46 +152,57 @@ export function buildWebsiteJsonLd(): JsonLd {
 }
 
 /**
- * Trung tam noi thay giang day.
+ * Trung tam noi thay giang day - node DIA DIEM cua website.
  *
  * Tra ve `null` khi chua cau hinh ten trung tam - khong bao gio sinh mot to
  * chuc rong. Dia chi duoc khai bao dang `PostalAddress` de Google hieu day la
  * dia diem vat ly co that.
+ *
+ * VI SAO `@type` LA MOT MANG HAI PHAN TU:
+ * `DrivingSchool` la loai Google dung cho ket qua tim kiem dia phuong cua
+ * truong day lai xe - dat no len truoc de Google chon dung khuon hien thi.
+ * `EducationalOrganization` duoc GIU LAI vi day moi la mo ta dung ban chat
+ * co so (mot trung tam dao tao thuoc truong dai hoc), va vi `Person.worksFor`
+ * o node thay dang tro toi chinh `@id` nay. Schema.org cho phep mot thuc the
+ * mang nhieu loai; bo mot trong hai deu lam mat mot nua su that.
+ *
+ * LUU Y VE `telephone` - CAN CHU WEBSITE XAC NHAN:
+ * So dat o day la so cua THAY, khong phai tong dai chinh thuc cua trung tam.
+ * Doi lai loi ich local SEO (Google gan so goi vao ket qua dia diem), no co
+ * rui ro: nguoi tim ten trung tam co the thay so ca nhan cua thay hien ra nhu
+ * so cua co so. Neu khong muon vay, xoa `telephone` va `priceRange` khoi node
+ * nay - hai truong do van con day du o node `#service` ben duoi, la node mo ta
+ * dich vu tu van cua rieng thay.
  */
 export function buildCenterJsonLd(): JsonLd | null {
   const centerName = cleanValue(siteConfig.teacher.centerName);
   if (!centerName) return null;
 
-  const address = cleanValue(siteConfig.contact.address);
+  const sameAs = buildSameAs();
+  const priceRange = buildPriceRange();
+  const telephone = toE164(siteConfig.contact.phone);
 
   return {
     '@context': 'https://schema.org',
-    '@type': 'EducationalOrganization',
+    '@type': ['DrivingSchool', 'EducationalOrganization'],
     '@id': `${siteConfig.url}/#center`,
     name: centerName,
-    ...(address
-      ? {
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: address,
-            addressLocality: 'Thủ Đức',
-            addressRegion: 'TP.HCM',
-            addressCountry: 'VN',
-          },
-        }
-      : {}),
+    url: siteConfig.url,
+    ...postalAddressFragment(),
+    ...geoFragment(),
+    openingHoursSpecification: [buildOpeningHours()],
+    ...(telephone ? { telephone } : {}),
+    ...(priceRange ? { priceRange } : {}),
+    areaServed: cleanValue(siteConfig.contact.trainingArea) ?? 'TP.HCM',
     ...(cleanValue(siteConfig.contact.googleMapsUrl)
       ? { hasMap: siteConfig.contact.googleMapsUrl }
       : {}),
+    ...(sameAs.length > 0 ? { sameAs } : {}),
   };
 }
 
 export function buildPersonJsonLd(): JsonLd {
-  const sameAs = [
-    cleanValue(siteConfig.contact.facebookUrl),
-    cleanValue(siteConfig.contact.youtubeUrl),
-  ].filter((value): value is string => typeof value === 'string');
-
+  const sameAs = buildSameAs();
   const name = cleanValue(siteConfig.teacher.name);
   const center = buildCenterJsonLd();
 
@@ -242,6 +364,9 @@ export function buildLocalServiceJsonLd(): JsonLd | null {
 
   if (!phone || !area || !teacherName) return null;
 
+  const sameAs = buildSameAs();
+  const priceRange = buildPriceRange();
+
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
@@ -250,20 +375,44 @@ export function buildLocalServiceJsonLd(): JsonLd | null {
     description:
       'Trang cá nhân tư vấn và hướng dẫn học viên học lái xe. Không phải cổng thông tin chính thức của cơ sở đào tạo.',
     url: siteConfig.url,
-    telephone: phone,
+    telephone: toE164(phone) ?? phone,
     areaServed: area,
     availableLanguage: 'vi',
     provider: { '@id': `${siteConfig.url}/#person` },
-    ...(cleanValue(siteConfig.contact.address)
-      ? {
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: siteConfig.contact.address,
-            addressLocality: 'Thủ Đức',
-            addressRegion: 'TP.HCM',
-            addressCountry: 'VN',
-          },
-        }
-      : {}),
+    /** Cung dia diem, cung khung gio nhu trung tam - thay tu van tai cho. */
+    ...postalAddressFragment(),
+    ...geoFragment(),
+    openingHoursSpecification: [buildOpeningHours()],
+    ...(priceRange ? { priceRange } : {}),
+    ...(sameAs.length > 0 ? { sameAs } : {}),
+  };
+}
+
+/**
+ * `ItemList` cho trang danh sach /khoa-hoc.
+ *
+ * Muc dich: noi voi Google rang trang nay la mot DANH SACH co thu tu, va tung
+ * muc dan toi trang chi tiet nao. Nho vay ket qua tim kiem co the hien dang
+ * danh sach thay vi mot dong link don.
+ *
+ * Moi phan tu chi mang `url` + `name`, KHONG nhung ca `Course` day du vao
+ * day: mo ta khoa hoc, hoc phi va `hasCourseInstance` da co san o chinh trang
+ * chi tiet ma `url` tro toi. Lap lai o hai noi la them mot cho co the le nhau
+ * ma khong them thong tin gi cho Google.
+ */
+export function buildCourseListJsonLd(courses: Course[]): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${pageUrl('/khoa-hoc')}#courselist`,
+    name: 'Các khóa học lái xe',
+    numberOfItems: courses.length,
+    itemListOrder: 'https://schema.org/ItemListOrderAscending',
+    itemListElement: courses.map((course, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: course.name,
+      url: pageUrl(`/khoa-hoc/${course.slug}`),
+    })),
   };
 }

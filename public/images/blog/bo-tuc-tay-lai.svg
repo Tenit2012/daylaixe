@@ -1,30 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Khi nào nên bổ túc tay lái?">
-  <title>Khi nào nên bổ túc tay lái?</title>
-  <defs>
-    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#DEE9F7"/>
-      <stop offset="100%" stop-color="#F7F9FC"/>
-    </linearGradient>
-    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#182F58"/>
-      <stop offset="100%" stop-color="#112242"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#skyGrad)"/>
-  <rect x="0" y="0" width="1200" height="14" fill="#EA760E"/>
-  <circle cx="1020" cy="150" r="120" fill="#EA760E" opacity="0.14"/>
-  <circle cx="150" cy="520" r="90" fill="#EA760E" opacity="0.14"/>
-  <g transform="translate(430 300)">
-    <rect x="0" y="59.97599999999999" width="340" height="59.97599999999999" rx="22.848" fill="#182F58"/>
-    <path d="M 61.199999999999996 62.831999999999994 L 102 14.28 L 244.79999999999998 14.28 L 285.59999999999997 62.831999999999994 Z" fill="#EA760E"/>
-    <rect x="108.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <rect x="176.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <circle cx="88.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="88.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <circle cx="258.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="258.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <rect x="292.4" y="71.39999999999999" width="34" height="14.28" rx="3" fill="#EA760E"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Vô lăng nhìn chính diện với hai bàn tay đặt đúng vị trí chín giờ và ba giờ, phía trên là mũi tên chỉ hướng đánh lái">
+  <title>Hai tay đặt đúng vị trí trên vô lăng</title>
+  <rect width="1200" height="630" fill="#182F58"/>
+
+  <g transform="translate(600 330)">
+    <!-- Mui ten huong danh lai -->
+    <path d="M-170 -170 A 240 240 0 0 1 170 -170" fill="none" stroke="#169855" stroke-width="10" stroke-dasharray="24 20" stroke-linecap="round"/>
+    <path d="M178.5 -161.5 L143.5 -171.7 L168.3 -196.5 Z" fill="#169855"/>
+
+    <!-- Vanh vo lang -->
+    <circle cx="0" cy="0" r="200" fill="none" stroke="#F7F9FC" stroke-width="34"/>
+
+    <!-- Nan hoa -->
+    <rect x="-190" y="-22" width="130" height="44" rx="22" fill="#F7F9FC"/>
+    <rect x="60" y="-22" width="130" height="44" rx="22" fill="#F7F9FC"/>
+    <rect x="-24" y="60" width="48" height="130" rx="24" fill="#F7F9FC"/>
+
+    <!-- Bau vo lang -->
+    <circle cx="0" cy="0" r="64" fill="#112242"/>
+    <circle cx="0" cy="0" r="34" fill="#3C6CB2"/>
+
+    <!-- Tay trai o vi tri 9 gio -->
+    <rect x="-252" y="-54" width="74" height="108" rx="30" fill="#EA760E"/>
+    <rect x="-186" y="-46" width="54" height="20" rx="10" fill="#F0902F"/>
+    <rect x="-186" y="-20" width="54" height="20" rx="10" fill="#F0902F"/>
+    <rect x="-186" y="6" width="54" height="20" rx="10" fill="#F0902F"/>
+    <rect x="-186" y="32" width="54" height="20" rx="10" fill="#F0902F"/>
+    <rect x="-206" y="-74" width="22" height="44" rx="11" fill="#F0902F"/>
+
+    <!-- Tay phai o vi tri 3 gio -->
+    <rect x="178" y="-54" width="74" height="108" rx="30" fill="#EA760E"/>
+    <rect x="132" y="-46" width="54" height="20" rx="10" fill="#F0902F"/>
+    <rect x="132" y="-20" width="54" height="20" rx="10" fill="#F0902F"/>
+    <rect x="132" y="6" width="54" height="20" rx="10" fill="#F0902F"/>
+    <rect x="132" y="32" width="54" height="20" rx="10" fill="#F0902F"/>
+    <rect x="184" y="-74" width="22" height="44" rx="11" fill="#F0902F"/>
   </g>
-  <text x="600" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#182F58">Khi nào nên bổ túc tay lái?</text>
-  <text x="600" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#3C6CB2">Kiến thức học lái xe</text>
 </svg>

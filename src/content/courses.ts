@@ -77,6 +77,8 @@ export const courses: Course[] = [
     licenseClass: 'B',
     summary:
       'Khóa học dành cho người muốn lái xe con số tự động, thao tác đơn giản và dễ làm quen trong những buổi đầu.',
+    metaDescription:
+      'Khóa học lái xe hạng B số tự động tại trung tâm ở Thủ Đức, TP.HCM. Xe con 5 chỗ, thao tác đơn giản, phù hợp người mới và người đi làm cần lịch học linh hoạt.',
     description:
       'Xe số tự động chỉ có chân ga và chân phanh nên học viên có thể tập trung vào quan sát, giữ làn và xử lý tình huống ngay từ buổi đầu. Đây là lựa chọn phổ biến với người đi làm cần bằng lái nhanh để chạy xe gia đình trong thành phố. Trong khóa học, tôi hướng dẫn từ cách chỉnh ghế, gương, cầm vô lăng đến khi học viên tự tin chạy đường đông và hoàn thành bài sa hình.',
     suitableFor: [
@@ -165,6 +167,8 @@ export const courses: Course[] = [
     licenseClass: 'B',
     summary:
       'Khóa học cho người muốn thành thạo cả xe số sàn, chủ động hơn khi cầm lái nhiều loại xe khác nhau.',
+    metaDescription:
+      'Khóa học lái xe hạng B số sàn tại trung tâm ở Thủ Đức, TP.HCM. Học kỹ côn - ga - số, giữ xe trên dốc và sang số đúng lúc để tự tin cầm lái nhiều loại xe.',
     description:
       'Xe số sàn đòi hỏi phối hợp côn, ga và số nên những buổi đầu sẽ vất vả hơn một chút. Đổi lại, học viên hiểu rõ cách xe vận hành và tự tin hơn khi phải cầm lái nhiều loại xe. Tôi hướng dẫn kỹ phần cảm nhận côn, giữ xe trên dốc và sang số đúng thời điểm để học viên không bị chết máy khi thi cũng như khi chạy thực tế.',
     suitableFor: [
@@ -253,6 +257,8 @@ export const courses: Course[] = [
     licenseClass: 'C1',
     summary:
       'Khóa học dành cho người có nhu cầu điều khiển xe tải nhẹ phục vụ công việc kinh doanh, vận chuyển.',
+    metaDescription:
+      'Khóa học lái xe hạng C1 tại trung tâm ở Thủ Đức, TP.HCM, dành cho người cần lái xe tải nhẹ phục vụ công việc. Học canh lề, lùi chuồng, cảm nhận kích thước xe.',
     description:
       'Hạng C1 phù hợp với người cần lái xe tải nhẹ cho công việc. So với xe con, xe tải có tầm nhìn, bán kính quay vòng và cách canh đường khác hẳn, nên phần thực hành sẽ tập trung vào cảm nhận kích thước xe, canh lề và lùi chuồng. Điều kiện dự học của hạng C1 do quy định hiện hành xác định, bạn nên liên hệ để được kiểm tra trước khi chuẩn bị hồ sơ.',
     suitableFor: [
@@ -346,6 +352,8 @@ export const courses: Course[] = [
     licenseClass: 'BO_TUC',
     summary:
       'Dành cho người đã có bằng nhưng lâu không chạy, còn ngại đường đông hoặc chưa tự tin cầm lái một mình.',
+    metaDescription:
+      'Bổ túc tay lái tại Thủ Đức và các quận lân cận, TP.HCM cho người đã có bằng nhưng lâu không chạy. Luyện đúng phần còn yếu: canh đường, đỗ xe, đi giờ cao điểm.',
     description:
       'Rất nhiều người có bằng lái nhưng cất tủ vài năm rồi không dám chạy. Khóa bổ túc không đi theo giáo trình cứng mà bám vào đúng thứ bạn còn yếu: canh đường, đỗ xe, đi vào hẻm nhỏ, chạy giờ cao điểm hay lên xuống hầm chung cư. Buổi đầu tôi sẽ chạy cùng để đánh giá, sau đó chúng ta thống nhất nội dung cho các buổi tiếp theo.',
     suitableFor: [
@@ -421,6 +429,8 @@ export const courses: Course[] = [
     licenseClass: 'SA_HINH',
     summary:
       'Luyện tập trung các bài thi trong sa hình cho học viên sắp đến kỳ sát hạch hoặc từng trượt bài.',
+    metaDescription:
+      'Luyện sa hình tại sân tập của trung tâm ở Thủ Đức, TP.HCM cho học viên sắp thi sát hạch hoặc từng trượt bài. Đi từng bài, rõ điểm mốc và lỗi thường mắc.',
     description:
       'Khóa này dành cho bạn đã học rồi nhưng còn vướng ở một vài bài sa hình, hoặc muốn chạy thêm cho chắc trước ngày thi. Chúng ta sẽ đi từng bài, xác định rõ điểm mốc, tốc độ vào bài và lỗi bạn hay mắc, rồi lặp lại đến khi thao tác thành phản xạ chứ không phải học thuộc.',
     suitableFor: [

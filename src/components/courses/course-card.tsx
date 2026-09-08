@@ -54,7 +54,17 @@ export function CourseCard({
       >
         <Image
           src={course.image.src}
-          alt=""
+          /*
+            Alt lay tu du lieu khoa hoc (`courses.ts`), khong hardcode - doi mo
+            ta anh chi sua mot cho va trang chi tiet dung chung dung chuoi do.
+
+            Vi sao van dat alt du the <a> bao ngoai co aria-hidden: hai lop nay
+            phuc vu hai doi tuong khac nhau. `aria-hidden` tranh cho trinh doc
+            man hinh doc link anh trung voi link tieu de ngay ben duoi; con alt
+            la thu Google Images doc de hieu buc anh. Bo alt thi mat phan sau
+            ma khong duoc them gi cho phan truoc.
+          */
+          alt={course.image.alt}
           width={course.image.width}
           height={course.image.height}
           priority={priority}

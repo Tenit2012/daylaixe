@@ -1,30 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Giữ bình tĩnh khi lái xe">
-  <title>Giữ bình tĩnh khi lái xe</title>
-  <defs>
-    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#DEE9F7"/>
-      <stop offset="100%" stop-color="#F7F9FC"/>
-    </linearGradient>
-    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#182F58"/>
-      <stop offset="100%" stop-color="#112242"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#skyGrad)"/>
-  <rect x="0" y="0" width="1200" height="14" fill="#3C6CB2"/>
-  <circle cx="1020" cy="150" r="120" fill="#3C6CB2" opacity="0.14"/>
-  <circle cx="150" cy="520" r="90" fill="#3C6CB2" opacity="0.14"/>
-  <g transform="translate(430 300)">
-    <rect x="0" y="59.97599999999999" width="340" height="59.97599999999999" rx="22.848" fill="#182F58"/>
-    <path d="M 61.199999999999996 62.831999999999994 L 102 14.28 L 244.79999999999998 14.28 L 285.59999999999997 62.831999999999994 Z" fill="#3C6CB2"/>
-    <rect x="108.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <rect x="176.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <circle cx="88.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="88.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <circle cx="258.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="258.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <rect x="292.4" y="71.39999999999999" width="34" height="14.28" rx="3" fill="#EA760E"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Người ngồi hít thở sâu bên trái, bên phải là đường nhịp tim chuyển từ đoạn răng cưa đỏ sang đoạn lượn đều màu xanh">
+  <title>Từ hồi hộp sang bình tĩnh khi cầm lái</title>
+  <rect width="1200" height="630" fill="#F7F9FC"/>
+
+  <!-- Nguoi dang hit tho -->
+  <circle cx="240" cy="238" r="54" fill="#182F58"/>
+  <path d="M160 448 C 160 245 320 245 320 448 Z" fill="#182F58"/>
+  <rect x="150" y="440" width="180" height="28" rx="14" fill="#112242"/>
+  <g fill="none" stroke="#EA760E" stroke-linecap="round">
+    <path d="M312 200 A 62 62 0 0 1 312 276" stroke-width="9"/>
+    <path d="M348 176 A 98 98 0 0 1 348 300" stroke-width="9" opacity="0.6"/>
+    <path d="M384 152 A 134 134 0 0 1 384 324" stroke-width="9" opacity="0.3"/>
   </g>
-  <text x="600" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#182F58">Giữ bình tĩnh khi lái xe</text>
-  <text x="600" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#3C6CB2">Kiến thức học lái xe</text>
+
+  <!-- Bang nhip tim -->
+  <rect x="450" y="250" width="650" height="200" rx="28" fill="#FFFFFF" stroke="#DEE9F7" stroke-width="3"/>
+  <path d="M478 350 L506 350 L518 292 L530 416 L546 306 L560 400 L576 340 L594 350 L618 350 L630 288 L642 420 L658 300 L672 396 L688 344 L710 350 L724 350" fill="none" stroke="#D93A2B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M724 350 L764 350 C 782 350 788 320 804 320 C 820 320 826 350 844 350 L884 350 C 902 350 908 320 924 320 C 940 320 946 350 964 350 L1004 350 C 1022 350 1028 320 1044 320 C 1060 320 1066 350 1072 350" fill="none" stroke="#169855" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

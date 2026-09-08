@@ -172,6 +172,51 @@ const JOBS = [
 
   /*
    * ---------------------------------------------------------------------
+   * KY KIEM TRA, XET HOAN THANH CHUONG TRINH DAO TAO - 05/09/2026
+   * ---------------------------------------------------------------------
+   * Ba anh chup cung mot buoi, khoa K77A - 78T. Ca ba deu co EXIF
+   * `orientation = 6`: du lieu diem anh nam ngang 5712x4284, canh that la
+   * DOC 4284x5712. `.rotate()` o `run()` xu ly viec do - copy tay vao
+   * `public/` se ra anh nam nghieng.
+   *
+   * Cat 4:3 `position: 'center'` cho ca ba: nguon doc nen cua so giua bo di
+   * phan tran nha o tren va day ban o duoi - dung hai vung khong mang thong
+   * tin gi. Da doi chieu ban cat truoc khi chot.
+   *
+   * Watermark: ba tam nay la BANG CHUNG manh nhat cua website (co phong
+   * chinh thuc, ghi ro ten khoa va ngay), tuc cung la thu de bi lay lai nhat.
+   * Dong watermark dat giua-duoi theo dung quy uoc cua `watermarkOverlay`.
+   */
+  {
+    source: 'IMG_1794.jpeg',
+    output: 'center/phong-ky-kiem-tra-hoan-thanh.webp',
+    width: 1200,
+    height: 900,
+    position: 'center',
+    watermarkText: 'thaytungdaylaixe.com',
+    note: 'Phong ky kiem tra, xet hoan thanh chuong trinh dao tao lai xe K77A-78T',
+  },
+  {
+    source: 'IMG_1796.jpeg',
+    output: 'center/hoi-truong-ky-kiem-tra.webp',
+    width: 1200,
+    height: 900,
+    position: 'center',
+    watermarkText: 'thaytungdaylaixe.com',
+    note: 'Toan canh hoi truong buoi kiem tra hoan thanh chuong trinh',
+  },
+  {
+    source: 'IMG_1797.jpeg',
+    output: 'center/hoc-vien-tai-ky-kiem-tra.webp',
+    width: 1200,
+    height: 900,
+    position: 'center',
+    watermarkText: 'thaytungdaylaixe.com',
+    note: 'Hoc vien ngoi tai ban trong buoi kiem tra hoan thanh chuong trinh',
+  },
+
+  /*
+   * ---------------------------------------------------------------------
    * ANH KHOA HOC - `public/images/courses/`
    * ---------------------------------------------------------------------
    * BAT BUOC ca 5 anh cung TY LE 8:5. `CourseCard` render anh bang
@@ -311,6 +356,21 @@ const FULL_JOBS = [
   { source: 'IMG_1639.jpeg', name: 'trong-buoi-thuc-hanh' },
   { source: 'IMG_1640.jpeg', name: 'xe-tap-lai-goc-cheo' },
   { source: 'IMG_1658.jpeg', name: 'xe-tap-lai-toyota-tai-san' },
+  {
+    source: 'IMG_1794.jpeg',
+    name: 'phong-ky-kiem-tra-hoan-thanh',
+    watermarkText: 'thaytungdaylaixe.com',
+  },
+  {
+    source: 'IMG_1796.jpeg',
+    name: 'hoi-truong-ky-kiem-tra',
+    watermarkText: 'thaytungdaylaixe.com',
+  },
+  {
+    source: 'IMG_1797.jpeg',
+    name: 'hoc-vien-tai-ky-kiem-tra',
+    watermarkText: 'thaytungdaylaixe.com',
+  },
 ];
 
 /**

@@ -1,30 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Lỗi thường gặp khi học sa hình">
-  <title>Lỗi thường gặp khi học sa hình</title>
-  <defs>
-    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#DEE9F7"/>
-      <stop offset="100%" stop-color="#F7F9FC"/>
-    </linearGradient>
-    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#182F58"/>
-      <stop offset="100%" stop-color="#112242"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#skyGrad)"/>
-  <rect x="0" y="0" width="1200" height="14" fill="#EA760E"/>
-  <circle cx="1020" cy="150" r="120" fill="#EA760E" opacity="0.14"/>
-  <circle cx="150" cy="520" r="90" fill="#EA760E" opacity="0.14"/>
-  <g transform="translate(430 300)">
-    <rect x="0" y="59.97599999999999" width="340" height="59.97599999999999" rx="22.848" fill="#182F58"/>
-    <path d="M 61.199999999999996 62.831999999999994 L 102 14.28 L 244.79999999999998 14.28 L 285.59999999999997 62.831999999999994 Z" fill="#EA760E"/>
-    <rect x="108.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <rect x="176.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <circle cx="88.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="88.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <circle cx="258.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="258.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <rect x="292.4" y="71.39999999999999" width="34" height="14.28" rx="3" fill="#EA760E"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Sơ đồ sa hình nhìn từ trên cao với đường chạy khép kín, ba vị trí hay mắc lỗi được khoanh tròn đỏ kèm dấu chấm than">
+  <title>Những điểm hay mắc lỗi trên sa hình</title>
+  <rect width="1200" height="630" fill="#F7F9FC"/>
+
+  <!-- Duong chay sa hinh -->
+  <rect x="140" y="110" width="920" height="410" rx="90" fill="none" stroke="#182F58" stroke-width="54"/>
+  <rect x="140" y="110" width="920" height="410" rx="90" fill="none" stroke="#F7F9FC" stroke-width="4" stroke-dasharray="26 22" opacity="0.75"/>
+
+  <!-- Coc tieu doc duong -->
+  <g fill="#EA760E">
+    <circle cx="140" cy="240" r="9"/>
+    <circle cx="140" cy="390" r="9"/>
+    <circle cx="380" cy="110" r="9"/>
+    <circle cx="820" cy="110" r="9"/>
+    <circle cx="1060" cy="240" r="9"/>
+    <circle cx="1060" cy="390" r="9"/>
+    <circle cx="380" cy="520" r="9"/>
+    <circle cx="820" cy="520" r="9"/>
   </g>
-  <text x="600" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#182F58">Lỗi thường gặp khi học sa hình</text>
-  <text x="600" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#3C6CB2">Kiến thức học lái xe</text>
+
+  <!-- Chuong ghep xe re vao tu duong chay -->
+  <path d="M470 470 L470 300 L730 300 L730 470" fill="none" stroke="#EA760E" stroke-width="7" stroke-dasharray="26 20" stroke-linecap="round"/>
+  <circle cx="470" cy="470" r="9" fill="#EA760E"/>
+  <circle cx="730" cy="470" r="9" fill="#EA760E"/>
+  <path d="M600 470 L600 486" stroke="#C6D0DE" stroke-width="6" stroke-dasharray="10 10" stroke-linecap="round"/>
+
+  <!-- Xe dang chay tren sa hinh -->
+  <rect x="530" y="497" width="150" height="46" rx="16" fill="#F7F9FC"/>
+  <rect x="566" y="506" width="66" height="28" rx="9" fill="#3C6CB2"/>
+  <rect x="539" y="510" width="22" height="20" rx="7" fill="#9FB6D4"/>
+
+  <!-- Ba diem hay mac loi -->
+  <circle cx="200" cy="180" r="62" fill="none" stroke="#D93A2B" stroke-width="8"/>
+  <circle cx="244" cy="136" r="22" fill="#D93A2B"/>
+  <rect x="240.5" y="124" width="7" height="16" rx="3" fill="#FFFFFF"/>
+  <circle cx="244" cy="147" r="4" fill="#FFFFFF"/>
+
+  <circle cx="600" cy="110" r="58" fill="none" stroke="#D93A2B" stroke-width="8"/>
+  <circle cx="641" cy="70" r="22" fill="#D93A2B"/>
+  <rect x="637.5" y="58" width="7" height="16" rx="3" fill="#FFFFFF"/>
+  <circle cx="641" cy="81" r="4" fill="#FFFFFF"/>
+
+  <circle cx="1000" cy="450" r="62" fill="none" stroke="#D93A2B" stroke-width="8"/>
+  <circle cx="1044" cy="406" r="22" fill="#D93A2B"/>
+  <rect x="1040.5" y="394" width="7" height="16" rx="3" fill="#FFFFFF"/>
+  <circle cx="1044" cy="417" r="4" fill="#FFFFFF"/>
 </svg>

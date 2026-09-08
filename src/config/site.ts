@@ -38,6 +38,27 @@ const seoKeywords: string[] = [
   'học lái xe cuối tuần',
 ];
 
+/**
+ * Doc cap toa do tu bien moi truong.
+ *
+ * Tra ve `null` khi thieu mot trong hai so, khi khong phai so, hoac khi nam
+ * ngoai bien do/kinh do hop le. Toan bo chuoi loi deu quy ve MOT ket qua
+ * `null` de noi goi dung: "chua co toa do dang tin" - va JSON-LD chi can biet
+ * co hay khong, khong can biet vi sao.
+ */
+function parseCoordinates(
+  latRaw: string,
+  lngRaw: string,
+): { latitude: number; longitude: number } | null {
+  const latitude = Number.parseFloat(latRaw);
+  const longitude = Number.parseFloat(lngRaw);
+
+  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return null;
+  if (Math.abs(latitude) > 90 || Math.abs(longitude) > 180) return null;
+
+  return { latitude, longitude };
+}
+
 export const siteConfig = {
   /** Ten thuong hieu ca nhan hien thi tren header/footer. */
   brandName: isPlaceholderValue(teacherName)
@@ -131,6 +152,59 @@ export const siteConfig = {
     googleMapsUrl: publicEnv.NEXT_PUBLIC_GOOGLE_MAPS_URL,
     /** Vi du: "7:00 - 20:00 hằng ngày". */
     hours: publicEnv.NEXT_PUBLIC_CONTACT_HOURS,
+  },
+
+  /**
+   * ==========================================================================
+   * DU LIEU DOANH NGHIEP CHO LOCAL SEO (JSON-LD `DrivingSchool`).
+   * ==========================================================================
+   *
+   * Gom o day de moi thu Google can biet ve "diem den vat ly" nam MOT CHO.
+   * `structured-data.ts` chi doc, khong tu che them gia tri nao.
+   *
+   * NGUYEN TAC KE THUA tu phan con lai cua file nay: truong nao chua co du
+   * lieu that thi BO HAN khoi JSON-LD, khong ghi null va khong doan. Mot toa
+   * do doan mo cham trung tam vao sai cho tren ban do con hai hon la khong
+   * khai bao toa do.
+   */
+  business: {
+    /**
+     * Gio lam viec dang MAY DOC DUOC, sinh doi voi chuoi hien thi
+     * `contact.hours` ("7:00 - 20:00 hằng ngày").
+     *
+     * Hai gia tri nay PHAI khop nhau. Neu doi gio mo cua, sua CA HAI:
+     * `NEXT_PUBLIC_CONTACT_HOURS` (chu, cho nguoi doc) va hai moc duoi day
+     * (so, cho Google). Le nhau thi Google thay du lieu co cau truc mau
+     * thuan voi noi dung trang.
+     */
+    opens: '07:00',
+    closes: '20:00',
+    /** Mo tat ca cac ngay trong tuan. */
+    openDays: [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ] as const,
+
+    /**
+     * Toa do trung tam.
+     *
+     * TODO: dien toa do that vao `.env`
+     *   NEXT_PUBLIC_CENTER_LAT="10.xxxxxx"
+     *   NEXT_PUBLIC_CENTER_LNG="106.xxxxxx"
+     * (Google Maps -> chuot phai vao vi tri trung tam -> bam vao cap so de
+     * sao chep. So dau la latitude, so sau la longitude.)
+     *
+     * Chua dien -> ca hai la `null` -> JSON-LD khong sinh truong `geo`.
+     */
+    geo: parseCoordinates(
+      publicEnv.NEXT_PUBLIC_CENTER_LAT,
+      publicEnv.NEXT_PUBLIC_CENTER_LNG,
+    ),
   },
 
   url: publicEnv.NEXT_PUBLIC_SITE_URL.replace(/\/$/, ''),

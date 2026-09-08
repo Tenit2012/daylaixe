@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { sortedCourses } from '@/content/courses';
 import { buildPageMetadata } from '@/lib/seo/metadata';
-import { buildBreadcrumbJsonLd } from '@/lib/seo/structured-data';
+import {
+  buildBreadcrumbJsonLd,
+  buildCourseListJsonLd,
+} from '@/lib/seo/structured-data';
 import { Section, SectionHeading } from '@/components/ui/section';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { CourseCard } from '@/components/courses/course-card';
@@ -82,6 +85,7 @@ export default function CoursesPage() {
       <ContactSection location={CtaLocation.CourseList} tone="muted" />
 
       <JsonLd data={buildBreadcrumbJsonLd(crumbs)} />
+      <JsonLd data={buildCourseListJsonLd(sortedCourses)} />
     </>
   );
 }

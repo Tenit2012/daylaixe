@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Quote } from 'lucide-react';
 import { isPlaceholderValue, siteConfig } from '@/config/site';
 import { galleryItems } from '@/content/gallery';
+import { completionExamItems } from '@/content/completion-exam';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { buildBreadcrumbJsonLd } from '@/lib/seo/structured-data';
 import { Section, SectionHeading } from '@/components/ui/section';
@@ -192,7 +193,34 @@ export default function AboutPage() {
 
       <LearningProcessSection tone="muted" />
 
-      <Section ariaLabelledBy="album-heading">
+      {/*
+        Dat NGAY SAU khoi lo trinh hoc: lo trinh ket thuc o "ngay thi", va day
+        chinh la buoi ket thuc do. Doc lien mach thanh mot mach chuyen thay vi
+        mot album roi.
+
+        Tach thanh muc rieng chu khong gop vao "Album hoat dong" ben duoi vi
+        ba tam nay khac han ve chuc nang: chung co MOC THOI GIAN va TEN KHOA
+        doc duoc ngay tren anh, nen gia tri cua chung la lam bang chung kiem
+        chung duoc - dieu se mat neu tron lan giua cac anh xe va san tap.
+      */}
+      <Section ariaLabelledBy="ky-kiem-tra-heading">
+        <SectionHeading
+          id="ky-kiem-tra-heading"
+          eyebrow="Ngày 05/9/2026"
+          title="Kỳ kiểm tra hoàn thành chương trình đào tạo"
+          description="Hình ảnh buổi kiểm tra, xét hoàn thành chương trình đào tạo lái xe khóa K77A · 78T tại trung tâm — bước cuối trước khi học viên bước vào kỳ sát hạch."
+        />
+        <div className="mt-10">
+          <GalleryGrid items={completionExamItems} />
+        </div>
+      </Section>
+
+      {/*
+        Nen xen ke: Lo trinh(toi) - Ky kiem tra(sang) - Album(toi) -
+        Video(sang) - Lien he(toi). Them mot muc vao giua nen ba muc cuoi
+        deu doi tone de nhip sang/toi khong bi vo.
+      */}
+      <Section tone="muted" ariaLabelledBy="album-heading">
         <SectionHeading
           id="album-heading"
           eyebrow="Hình ảnh"
@@ -204,10 +232,10 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Nen xen ke: Album(sang) - Video(toi) - Lien he(sang). */}
-      <LessonVideoSection location={CtaLocation.AboutPage} tone="muted" />
+      <LessonVideoSection location={CtaLocation.AboutPage} tone="default" />
 
       <ContactSection
+        tone="muted"
         location={CtaLocation.AboutPage}
         title="Muốn trao đổi trực tiếp với thầy?"
         description="Gọi hoặc nhắn tin để thầy nghe rõ nhu cầu của bạn trước khi tư vấn khóa học."

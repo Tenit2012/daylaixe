@@ -1,30 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Quy trình đăng ký học lái xe">
-  <title>Quy trình đăng ký học lái xe</title>
-  <defs>
-    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#DEE9F7"/>
-      <stop offset="100%" stop-color="#F7F9FC"/>
-    </linearGradient>
-    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#182F58"/>
-      <stop offset="100%" stop-color="#112242"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#skyGrad)"/>
-  <rect x="0" y="0" width="1200" height="14" fill="#EA760E"/>
-  <circle cx="1020" cy="150" r="120" fill="#EA760E" opacity="0.14"/>
-  <circle cx="150" cy="520" r="90" fill="#EA760E" opacity="0.14"/>
-  <g transform="translate(430 300)">
-    <rect x="0" y="59.97599999999999" width="340" height="59.97599999999999" rx="22.848" fill="#182F58"/>
-    <path d="M 61.199999999999996 62.831999999999994 L 102 14.28 L 244.79999999999998 14.28 L 285.59999999999997 62.831999999999994 Z" fill="#EA760E"/>
-    <rect x="108.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <rect x="176.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <circle cx="88.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="88.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <circle cx="258.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="258.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <rect x="292.4" y="71.39999999999999" width="34" height="14.28" rx="3" fill="#EA760E"/>
-  </g>
-  <text x="600" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#182F58">Quy trình đăng ký học lái xe</text>
-  <text x="600" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#3C6CB2">Kiến thức học lái xe</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Bộ hồ sơ đăng ký có ảnh thẻ và dấu xác nhận, bên phải là ba bước đánh số một hai ba nối nhau theo thứ tự">
+  <title>Bộ hồ sơ và ba bước đăng ký học lái xe</title>
+  <rect width="1200" height="630" fill="#F7F9FC"/>
+
+  <!-- Xap ho so -->
+  <rect x="120" y="170" width="300" height="390" rx="16" fill="#FFFFFF" stroke="#DEE9F7" stroke-width="3" transform="rotate(-6 270 365)"/>
+  <rect x="140" y="162" width="300" height="390" rx="16" fill="#FFFFFF" stroke="#DEE9F7" stroke-width="3" transform="rotate(3 290 357)"/>
+  <rect x="150" y="150" width="300" height="390" rx="16" fill="#FFFFFF" stroke="#DEE9F7" stroke-width="3"/>
+  <rect x="182" y="186" width="170" height="16" rx="8" fill="#182F58"/>
+  <rect x="182" y="226" width="90" height="110" rx="10" fill="#DEE9F7"/>
+  <circle cx="227" cy="266" r="20" fill="#9FB6D4"/>
+  <path d="M200 336 C 200 306 254 306 254 336 Z" fill="#9FB6D4"/>
+  <rect x="292" y="234" width="126" height="12" rx="6" fill="#C6D0DE"/>
+  <rect x="292" y="262" width="100" height="12" rx="6" fill="#C6D0DE"/>
+  <rect x="292" y="290" width="118" height="12" rx="6" fill="#C6D0DE"/>
+  <rect x="182" y="364" width="236" height="12" rx="6" fill="#C6D0DE"/>
+  <rect x="182" y="392" width="200" height="12" rx="6" fill="#C6D0DE"/>
+  <circle cx="368" cy="470" r="46" fill="none" stroke="#169855" stroke-width="7"/>
+  <path d="M346 470 L362 486 L392 454" fill="none" stroke="#169855" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Ba buoc -->
+  <path d="M700 200 L700 500" stroke="#C6D0DE" stroke-width="6" stroke-linecap="round"/>
+
+  <circle cx="700" cy="200" r="46" fill="#3C6CB2"/>
+  <text x="700" y="216" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="800" fill="#FFFFFF">1</text>
+  <rect x="790" y="144" width="300" height="112" rx="20" fill="#FFFFFF" stroke="#DEE9F7" stroke-width="3"/>
+  <rect x="822" y="168" width="64" height="64" rx="14" fill="#E4EDF8"/>
+  <rect x="838" y="182" width="32" height="36" rx="5" fill="#3C6CB2"/>
+  <rect x="906" y="178" width="150" height="14" rx="7" fill="#182F58"/>
+  <rect x="906" y="204" width="110" height="12" rx="6" fill="#C6D0DE"/>
+
+  <circle cx="700" cy="350" r="46" fill="#EA760E"/>
+  <text x="700" y="366" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="800" fill="#FFFFFF">2</text>
+  <rect x="790" y="294" width="300" height="112" rx="20" fill="#FFFFFF" stroke="#DEE9F7" stroke-width="3"/>
+  <rect x="822" y="318" width="64" height="64" rx="14" fill="#FBEBDA"/>
+  <path d="M846 330 H862 V346 H878 V362 H862 V378 H846 V362 H830 V346 H846 Z" fill="#EA760E"/>
+  <rect x="906" y="328" width="150" height="14" rx="7" fill="#182F58"/>
+  <rect x="906" y="354" width="126" height="12" rx="6" fill="#C6D0DE"/>
+
+  <circle cx="700" cy="500" r="46" fill="#169855"/>
+  <text x="700" y="516" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="800" fill="#FFFFFF">3</text>
+  <rect x="790" y="444" width="300" height="112" rx="20" fill="#FFFFFF" stroke="#DEE9F7" stroke-width="3"/>
+  <rect x="822" y="468" width="64" height="64" rx="14" fill="#DEF0E5"/>
+  <path d="M838 500 L850 512 L872 486" fill="none" stroke="#169855" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="906" y="478" width="150" height="14" rx="7" fill="#182F58"/>
+  <rect x="906" y="504" width="96" height="12" rx="6" fill="#C6D0DE"/>
 </svg>

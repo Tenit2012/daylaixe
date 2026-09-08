@@ -17,7 +17,7 @@ import { TrackedLink } from '@/components/ui/tracked-link';
 export const metadata: Metadata = buildPageMetadata({
   title: 'Học phí và lộ trình học lái xe',
   description:
-    'So sánh các khóa học lái xe, quy trình học từ đăng ký đến ngày thi và cách thầy tư vấn học phí minh bạch.',
+    'So sánh học phí 5 khóa học lái xe tại trung tâm ở Thủ Đức, TP.HCM: khoản nào đã bao gồm, khoản nào có thể phát sinh, và lộ trình từ nộp hồ sơ đến ngày sát hạch.',
   path: '/hoc-phi-lo-trinh',
 });
 

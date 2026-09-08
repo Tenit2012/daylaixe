@@ -12,7 +12,7 @@ export const post: BlogPost = {
   readingTimeMinutes: 6,
   coverImage: {
     src: '/images/blog/bo-tuc-tay-lai.svg',
-    alt: 'Hình minh họa buổi bổ túc tay lái trên đường thực tế',
+    alt: 'Hình minh họa hai tay đặt đúng vị trí chín giờ và ba giờ trên vô lăng',
     width: 1200,
     height: 630,
   },

@@ -225,6 +225,7 @@ export const galleryCategories: Array<{
 }> = [
   { value: 'all', label: 'Tất cả' },
   { value: 'huong-dan', label: 'Hướng dẫn' },
+  { value: 'ky-kiem-tra', label: 'Kỳ kiểm tra' },
   { value: 'co-so', label: 'Cơ sở' },
   { value: 'cabin-mo-phong', label: 'Cabin mô phỏng' },
   { value: 'xe-tap-lai', label: 'Xe tập lái' },

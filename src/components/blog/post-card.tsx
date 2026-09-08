@@ -34,7 +34,9 @@ export function PostCard({
       >
         <Image
           src={post.coverImage.src}
-          alt=""
+          /* Alt lay tu frontmatter bai viet. Xem giai thich day du o
+             CourseCard ve ly do van dat alt khi link bao ngoai aria-hidden. */
+          alt={post.coverImage.alt}
           width={post.coverImage.width}
           height={post.coverImage.height}
           priority={priority}

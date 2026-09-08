@@ -25,10 +25,24 @@ import {
 import { ContactSection } from '@/components/sections/contact-section';
 import { JsonLd } from '@/components/ui/json-ld';
 
+/**
+ * Facebook la kenh TUY CHON, chi ton tai khi `NEXT_PUBLIC_FACEBOOK_URL` da
+ * duoc dien URL that. Tinh o cap module vi `metadata` la hang so Next.js doc
+ * luc build, khong chay ben trong than component.
+ *
+ * MOI cho nhac den Facebook tren trang nay phai treo vao bien nay: meta
+ * description, cau mo dau, the lien he, nut CTA va muc goi y. Truoc day ba
+ * cho dau la chu cung, nen khi bien moi truong con trong (dung tinh huong
+ * dang xay ra tren ban deploy) trang van bao nguoi doc "nhan Facebook" trong
+ * khi khong co link nao de bam.
+ */
+const facebookHref = buildExternalHref(siteConfig.contact.facebookUrl);
+
 export const metadata: Metadata = buildPageMetadata({
   title: 'Liên hệ tư vấn học lái xe',
-  description:
-    'Thông tin liên hệ: số điện thoại, Zalo, Facebook, email và khu vực đào tạo. Gọi hoặc nhắn tin để được thầy tư vấn khóa học phù hợp.',
+  description: facebookHref
+    ? 'Thông tin liên hệ: số điện thoại, Zalo, Facebook, email và khu vực đào tạo. Gọi hoặc nhắn tin để được thầy tư vấn khóa học phù hợp.'
+    : 'Thông tin liên hệ: số điện thoại, Zalo, email và khu vực đào tạo. Gọi hoặc nhắn tin để được thầy tư vấn khóa học phù hợp.',
   path: '/lien-he',
 });
 
@@ -43,11 +57,15 @@ const contactTips = [
     description:
       'Thuận tiện để gửi ảnh giấy tờ cần kiểm tra hình thức, hoặc trao đổi lịch học theo tuần.',
   },
-  {
-    title: 'Nhắn Facebook nếu quen dùng Messenger',
-    description:
-      'Bạn có thể nhắn qua trang Facebook của thầy và để lại khung giờ muốn được gọi lại, thầy sẽ chủ động liên hệ vào đúng khung giờ đó.',
-  },
+  ...(facebookHref
+    ? [
+        {
+          title: 'Nhắn Facebook nếu quen dùng Messenger',
+          description:
+            'Bạn có thể nhắn qua trang Facebook của thầy và để lại khung giờ muốn được gọi lại, thầy sẽ chủ động liên hệ vào đúng khung giờ đó.',
+        },
+      ]
+    : []),
 ];
 
 export default function ContactPage() {
@@ -63,7 +81,6 @@ export default function ContactPage() {
   );
   const emailHref = buildEmailHref(siteConfig.contact.email);
   const mapsHref = buildMapsHref(siteConfig.contact.googleMapsUrl);
-  const facebookHref = buildExternalHref(siteConfig.contact.facebookUrl);
 
   return (
     <>
@@ -79,7 +96,11 @@ export default function ContactPage() {
           as="h1"
           eyebrow="Liên hệ"
           title="Liên hệ với thầy"
-          description="Bạn có thể gọi điện, nhắn Zalo hoặc nhắn Facebook. Cách nào cũng đến trực tiếp thầy, không qua tổng đài."
+          description={
+            facebookHref
+              ? 'Bạn có thể gọi điện, nhắn Zalo hoặc nhắn Facebook. Cách nào cũng đến trực tiếp thầy, không qua tổng đài.'
+              : 'Bạn có thể gọi điện hoặc nhắn Zalo. Cách nào cũng đến trực tiếp thầy, không qua tổng đài.'
+          }
         />
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

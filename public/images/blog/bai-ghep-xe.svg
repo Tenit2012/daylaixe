@@ -1,30 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Bài ghép xe dọc và ngang">
-  <title>Bài ghép xe dọc và ngang</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Sơ đồ nhìn từ trên xuống: bên trái xe lùi vào chuồng dọc, bên phải xe ghép ngang vào chỗ trống sát lề, đường lùi vẽ bằng nét đứt">
+  <title>Sơ đồ bài ghép xe dọc và ghép ngang</title>
   <defs>
-    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#DEE9F7"/>
-      <stop offset="100%" stop-color="#F7F9FC"/>
-    </linearGradient>
-    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#182F58"/>
-      <stop offset="100%" stop-color="#112242"/>
-    </linearGradient>
+    <pattern id="luoiGhep" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0V60" fill="none" stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="2"/>
+    </pattern>
   </defs>
-  <rect width="1200" height="630" fill="url(#skyGrad)"/>
-  <rect x="0" y="0" width="1200" height="14" fill="#3C6CB2"/>
-  <circle cx="1020" cy="150" r="120" fill="#3C6CB2" opacity="0.14"/>
-  <circle cx="150" cy="520" r="90" fill="#3C6CB2" opacity="0.14"/>
-  <g transform="translate(430 300)">
-    <rect x="0" y="59.97599999999999" width="340" height="59.97599999999999" rx="22.848" fill="#182F58"/>
-    <path d="M 61.199999999999996 62.831999999999994 L 102 14.28 L 244.79999999999998 14.28 L 285.59999999999997 62.831999999999994 Z" fill="#3C6CB2"/>
-    <rect x="108.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <rect x="176.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <circle cx="88.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="88.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <circle cx="258.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="258.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <rect x="292.4" y="71.39999999999999" width="34" height="14.28" rx="3" fill="#EA760E"/>
-  </g>
-  <text x="600" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#182F58">Bài ghép xe dọc và ngang</text>
-  <text x="600" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#3C6CB2">Kiến thức học lái xe</text>
+  <rect width="1200" height="630" fill="#112242"/>
+  <rect width="1200" height="630" fill="url(#luoiGhep)"/>
+
+  <!-- GHEP DOC: chuong doc, mo o phia duoi -->
+  <path d="M140 110 L140 430 M300 110 L300 430 M140 110 L300 110" fill="none" stroke="#EA760E" stroke-width="8" stroke-dasharray="30 22" stroke-linecap="round"/>
+  <circle cx="140" cy="430" r="11" fill="#EA760E"/>
+  <circle cx="300" cy="430" r="11" fill="#EA760E"/>
+  <rect x="165" y="150" width="110" height="240" rx="26" fill="#F7F9FC"/>
+  <rect x="190" y="172" width="60" height="42" rx="10" fill="#9FB6D4"/>
+  <rect x="182" y="224" width="76" height="112" rx="14" fill="#3C6CB2"/>
+  <rect x="153" y="196" width="12" height="24" rx="6" fill="#F7F9FC"/>
+  <rect x="275" y="196" width="12" height="24" rx="6" fill="#F7F9FC"/>
+  <path d="M220 574 C 220 510 236 476 240 452" fill="none" stroke="#169855" stroke-width="7" stroke-dasharray="20 16" stroke-linecap="round"/>
+  <path d="M238.7 434.2 L255.8 462.6 L222.4 460.6 Z" fill="#169855"/>
+
+  <!-- GHEP NGANG: cho trong sat le giua hai xe da do -->
+  <rect x="600" y="596" width="560" height="12" rx="6" fill="#EA760E"/>
+  <path d="M660 470 L660 596 M1080 470 L1080 596" fill="none" stroke="#EA760E" stroke-width="8" stroke-dasharray="30 22" stroke-linecap="round"/>
+  <rect x="470" y="470" width="170" height="112" rx="24" fill="#3C6CB2" opacity="0.55"/>
+  <rect x="1100" y="470" width="120" height="112" rx="24" fill="#3C6CB2" opacity="0.55"/>
+  <rect x="745" y="470" width="250" height="112" rx="26" fill="#F7F9FC"/>
+  <rect x="930" y="496" width="44" height="60" rx="10" fill="#9FB6D4"/>
+  <rect x="800" y="490" width="112" height="72" rx="14" fill="#3C6CB2"/>
+  <rect x="900" y="458" width="24" height="12" rx="6" fill="#F7F9FC"/>
+  <rect x="900" y="582" width="24" height="12" rx="6" fill="#F7F9FC"/>
+  <path d="M1160 336 C 1090 336 1046 386 1010 430" fill="none" stroke="#169855" stroke-width="7" stroke-dasharray="20 16" stroke-linecap="round"/>
+  <path d="M997.4 444.6 L1002.3 411.6 L1026.1 434.9 Z" fill="#169855"/>
 </svg>

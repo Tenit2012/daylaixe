@@ -13,7 +13,7 @@ import { CtaLocation } from '@/lib/analytics/events';
 export const metadata: Metadata = buildPageMetadata({
   title: 'Kiến thức học lái xe',
   description:
-    'Bài viết chia sẻ kinh nghiệm học lái xe: chọn khóa học, chuẩn bị hồ sơ, luyện sa hình và giữ bình tĩnh khi cầm lái.',
+    'Bài viết chia sẻ kinh nghiệm học lái xe tại TP.HCM: chọn khóa học, chuẩn bị hồ sơ, ôn lý thuyết, luyện sa hình và giữ bình tĩnh trong những lần đầu cầm lái.',
   path: '/kien-thuc',
 });
 

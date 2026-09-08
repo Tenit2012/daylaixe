@@ -50,6 +50,18 @@ const publicEnvSchema = z.object({
     .min(1)
     .default('học viên dân sự và Công an'),
   NEXT_PUBLIC_CONTACT_HOURS: z.string().min(1).default('[Thời gian liên hệ]'),
+  /**
+   * Toa do trung tam, dung cho `geo` trong JSON-LD (local SEO).
+   *
+   * DE TRONG khi chua co so do thuc. Bo trong thi JSON-LD BO HAN truong
+   * `geo` thay vi ghi null - mot cap toa do doan mo se chi diem trung tam
+   * vao sai cho tren ban do cua Google, te hon la khong khai bao gi.
+   *
+   * Cach lay: mo Google Maps -> chuot phai dung vi tri trung tam -> so dau
+   * tien la latitude, so thu hai la longitude.
+   */
+  NEXT_PUBLIC_CENTER_LAT: z.string().default(''),
+  NEXT_PUBLIC_CENTER_LNG: z.string().default(''),
   NEXT_PUBLIC_GTM_ID: z.string().default(''),
   NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().default(''),
   NEXT_PUBLIC_FACEBOOK_PIXEL_ID: z.string().default(''),
@@ -105,6 +117,8 @@ const parsed = publicEnvSchema.safeParse({
     process.env.NEXT_PUBLIC_STUDENT_GROUPS_SHORT,
   ),
   NEXT_PUBLIC_CONTACT_HOURS: orUndefined(process.env.NEXT_PUBLIC_CONTACT_HOURS),
+  NEXT_PUBLIC_CENTER_LAT: orUndefined(process.env.NEXT_PUBLIC_CENTER_LAT),
+  NEXT_PUBLIC_CENTER_LNG: orUndefined(process.env.NEXT_PUBLIC_CENTER_LNG),
   NEXT_PUBLIC_GTM_ID: orUndefined(process.env.NEXT_PUBLIC_GTM_ID),
   NEXT_PUBLIC_GA_MEASUREMENT_ID: orUndefined(
     process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,

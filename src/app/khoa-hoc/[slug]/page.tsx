@@ -44,7 +44,9 @@ export async function generateMetadata({
 
   return buildPageMetadata({
     title: `Khóa học ${course.name}`,
-    description: course.summary,
+    // `metaDescription` la ban viet rieng cho ket qua tim kiem (120-160 ky tu,
+    // co dia danh). Khoa nao chua viet thi lui ve `summary` nhu truoc.
+    description: course.metaDescription ?? course.summary,
     path: `/khoa-hoc/${course.slug}`,
     image: course.image.src,
   });

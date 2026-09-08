@@ -12,7 +12,7 @@ export const post: BlogPost = {
   readingTimeMinutes: 7,
   coverImage: {
     src: '/images/blog/co-bang-khong-dam-lai.svg',
-    alt: 'Hình minh họa người ngồi trong xe còn do dự trước khi lái',
+    alt: 'Hình minh họa người cầm chìa khóa đứng ngần ngại bên cạnh chiếc xe đang đỗ',
     width: 1200,
     height: 630,
   },

@@ -1,30 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Lái xe đường đông tại TP.HCM">
-  <title>Lái xe đường đông tại TP.HCM</title>
-  <defs>
-    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#DEE9F7"/>
-      <stop offset="100%" stop-color="#F7F9FC"/>
-    </linearGradient>
-    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#182F58"/>
-      <stop offset="100%" stop-color="#112242"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#skyGrad)"/>
-  <rect x="0" y="0" width="1200" height="14" fill="#169855"/>
-  <circle cx="1020" cy="150" r="120" fill="#169855" opacity="0.14"/>
-  <circle cx="150" cy="520" r="90" fill="#169855" opacity="0.14"/>
-  <g transform="translate(430 300)">
-    <rect x="0" y="59.97599999999999" width="340" height="59.97599999999999" rx="22.848" fill="#182F58"/>
-    <path d="M 61.199999999999996 62.831999999999994 L 102 14.28 L 244.79999999999998 14.28 L 285.59999999999997 62.831999999999994 Z" fill="#169855"/>
-    <rect x="108.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <rect x="176.8" y="22.848" width="54.4" height="34.27199999999999" rx="3" fill="#DEE9F7"/>
-    <circle cx="88.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="88.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <circle cx="258.4" cy="122.80799999999998" r="22.848" fill="#112242"/>
-    <circle cx="258.4" cy="122.80799999999998" r="9.996" fill="#C6D0DE"/>
-    <rect x="292.4" y="71.39999999999999" width="34" height="14.28" rx="3" fill="#EA760E"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Đường ba làn nhìn từ trên xuống kẹt kín ô tô nối đuôi nhau, xe máy len giữa các làn, hai bên là vỉa hè có cây">
+  <title>Giao thông đông đúc nhiều làn trong thành phố</title>
+  <rect width="1200" height="630" fill="#F7F9FC"/>
+
+  <!-- Via he -->
+  <rect width="1200" height="90" fill="#DEE9F7"/>
+  <rect y="540" width="1200" height="90" fill="#DEE9F7"/>
+  <circle cx="150" cy="46" r="30" fill="#169855"/>
+  <circle cx="520" cy="46" r="30" fill="#169855"/>
+  <circle cx="900" cy="46" r="30" fill="#169855"/>
+  <circle cx="320" cy="584" r="30" fill="#169855"/>
+  <circle cx="700" cy="584" r="30" fill="#169855"/>
+  <circle cx="1060" cy="584" r="30" fill="#169855"/>
+
+  <!-- Mat duong va vach lan -->
+  <rect y="90" width="1200" height="450" fill="#223A5E"/>
+  <path d="M0 100 H1200" stroke="#F7F9FC" stroke-width="5" opacity="0.5"/>
+  <path d="M0 530 H1200" stroke="#F7F9FC" stroke-width="5" opacity="0.5"/>
+  <path d="M0 240 H1200" stroke="#F7F9FC" stroke-width="6" stroke-dasharray="46 34" opacity="0.8"/>
+  <path d="M0 390 H1200" stroke="#F7F9FC" stroke-width="6" stroke-dasharray="46 34" opacity="0.8"/>
+
+  <!-- Lan 1 -->
+  <g>
+    <rect x="30" y="124" width="150" height="82" rx="20" fill="#3C6CB2"/><rect x="74" y="138" width="62" height="54" rx="12" fill="#182F58"/><rect x="142" y="142" width="24" height="46" rx="8" fill="#9FB6D4"/>
+    <rect x="210" y="124" width="150" height="82" rx="20" fill="#F7F9FC"/><rect x="254" y="138" width="62" height="54" rx="12" fill="#C6D0DE"/><rect x="322" y="142" width="24" height="46" rx="8" fill="#9FB6D4"/>
+    <rect x="400" y="124" width="150" height="82" rx="20" fill="#EA760E"/><rect x="444" y="138" width="62" height="54" rx="12" fill="#B85B08"/><rect x="512" y="142" width="24" height="46" rx="8" fill="#F7D3AC"/>
+    <rect x="596" y="124" width="150" height="82" rx="20" fill="#C6D0DE"/><rect x="640" y="138" width="62" height="54" rx="12" fill="#9FB6D4"/><rect x="708" y="142" width="24" height="46" rx="8" fill="#F7F9FC"/>
+    <rect x="800" y="124" width="150" height="82" rx="20" fill="#169855"/><rect x="844" y="138" width="62" height="54" rx="12" fill="#0F6E3E"/><rect x="912" y="142" width="24" height="46" rx="8" fill="#BCE6CE"/>
+    <rect x="1000" y="124" width="150" height="82" rx="20" fill="#9FB6D4"/><rect x="1044" y="138" width="62" height="54" rx="12" fill="#6E88A8"/><rect x="1112" y="142" width="24" height="46" rx="8" fill="#F7F9FC"/>
   </g>
-  <text x="600" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="#182F58">Lái xe đường đông tại TP.HCM</text>
-  <text x="600" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#3C6CB2">Kiến thức học lái xe</text>
+
+  <!-- Lan 2 -->
+  <g>
+    <rect x="90" y="274" width="150" height="82" rx="20" fill="#F7F9FC"/><rect x="134" y="288" width="62" height="54" rx="12" fill="#C6D0DE"/><rect x="202" y="292" width="24" height="46" rx="8" fill="#9FB6D4"/>
+    <rect x="268" y="274" width="150" height="82" rx="20" fill="#EA760E"/><rect x="312" y="288" width="62" height="54" rx="12" fill="#B85B08"/><rect x="380" y="292" width="24" height="46" rx="8" fill="#F7D3AC"/>
+    <rect x="440" y="274" width="150" height="82" rx="20" fill="#3C6CB2"/><rect x="484" y="288" width="62" height="54" rx="12" fill="#182F58"/><rect x="552" y="292" width="24" height="46" rx="8" fill="#9FB6D4"/>
+    <rect x="640" y="274" width="150" height="82" rx="20" fill="#9FB6D4"/><rect x="684" y="288" width="62" height="54" rx="12" fill="#6E88A8"/><rect x="752" y="292" width="24" height="46" rx="8" fill="#F7F9FC"/>
+    <rect x="850" y="274" width="150" height="82" rx="20" fill="#C6D0DE"/><rect x="894" y="288" width="62" height="54" rx="12" fill="#9FB6D4"/><rect x="962" y="292" width="24" height="46" rx="8" fill="#F7F9FC"/>
+    <rect x="1050" y="274" width="150" height="82" rx="20" fill="#F7F9FC"/><rect x="1094" y="288" width="62" height="54" rx="12" fill="#C6D0DE"/><rect x="1162" y="292" width="24" height="46" rx="8" fill="#9FB6D4"/>
+  </g>
+
+  <!-- Lan 3 -->
+  <g>
+    <rect x="20" y="424" width="150" height="82" rx="20" fill="#EA760E"/><rect x="64" y="438" width="62" height="54" rx="12" fill="#B85B08"/><rect x="132" y="442" width="24" height="46" rx="8" fill="#F7D3AC"/>
+    <rect x="200" y="424" width="150" height="82" rx="20" fill="#3C6CB2"/><rect x="244" y="438" width="62" height="54" rx="12" fill="#182F58"/><rect x="312" y="442" width="24" height="46" rx="8" fill="#9FB6D4"/>
+    <rect x="386" y="424" width="150" height="82" rx="20" fill="#C6D0DE"/><rect x="430" y="438" width="62" height="54" rx="12" fill="#9FB6D4"/><rect x="498" y="442" width="24" height="46" rx="8" fill="#F7F9FC"/>
+    <rect x="570" y="424" width="150" height="82" rx="20" fill="#F7F9FC"/><rect x="614" y="438" width="62" height="54" rx="12" fill="#C6D0DE"/><rect x="682" y="442" width="24" height="46" rx="8" fill="#9FB6D4"/>
+    <rect x="780" y="424" width="150" height="82" rx="20" fill="#9FB6D4"/><rect x="824" y="438" width="62" height="54" rx="12" fill="#6E88A8"/><rect x="892" y="442" width="24" height="46" rx="8" fill="#F7F9FC"/>
+    <rect x="990" y="424" width="150" height="82" rx="20" fill="#169855"/><rect x="1034" y="438" width="62" height="54" rx="12" fill="#0F6E3E"/><rect x="1102" y="442" width="24" height="46" rx="8" fill="#BCE6CE"/>
+  </g>
+
+  <!-- Xe may len giua cac lan -->
+  <g>
+    <rect x="150" y="228" width="54" height="24" rx="12" fill="#112242"/><circle cx="177" cy="240" r="9" fill="#EA760E"/>
+    <rect x="400" y="228" width="54" height="24" rx="12" fill="#112242"/><circle cx="427" cy="240" r="9" fill="#EA760E"/>
+    <rect x="700" y="228" width="54" height="24" rx="12" fill="#112242"/><circle cx="727" cy="240" r="9" fill="#EA760E"/>
+    <rect x="960" y="228" width="54" height="24" rx="12" fill="#112242"/><circle cx="987" cy="240" r="9" fill="#EA760E"/>
+    <rect x="260" y="378" width="54" height="24" rx="12" fill="#112242"/><circle cx="287" cy="390" r="9" fill="#EA760E"/>
+    <rect x="560" y="378" width="54" height="24" rx="12" fill="#112242"/><circle cx="587" cy="390" r="9" fill="#EA760E"/>
+    <rect x="850" y="378" width="54" height="24" rx="12" fill="#112242"/><circle cx="877" cy="390" r="9" fill="#EA760E"/>
+  </g>
 </svg>
