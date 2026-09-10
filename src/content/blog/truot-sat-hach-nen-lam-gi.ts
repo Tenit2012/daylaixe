@@ -132,7 +132,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn vừa trượt và chưa biết bắt đầu lại từ đâu, cứ nhắn cho tôi biết bạn mất điểm ở phần nào. Chúng ta lên kế hoạch cho đúng phần đó, không bắt bạn học lại những thứ bạn đã làm được.',
+      text: 'Nếu bạn vừa trượt và chưa biết bắt đầu lại từ đâu, cứ nhắn cho tôi biết bạn mất điểm ở phần nào. Chúng ta lên kế hoạch cho đúng phần đó, không bắt bạn học lại những thứ bạn đã làm được. Nếu phần mất điểm nằm ở sa hình, [khóa luyện sa hình tại Thủ Đức](/khoa-hoc/luyen-sa-hinh/) tính theo số buổi bạn cần.',
     },
   ],
 };

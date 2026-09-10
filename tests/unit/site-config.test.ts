@@ -56,9 +56,25 @@ describe('siteConfig', () => {
   });
 
   it('hero neu ro day la ai, hoc o dau, dang ky voi ai', () => {
+    // "Day la ai" - chuc danh van nam trong chinh <h1>.
     expect(siteConfig.messaging.heroTitle).toContain('giáo viên cơ hữu');
-    expect(siteConfig.messaging.heroTitle).toContain(
-      siteConfig.teacher.centerName,
+    /*
+      "Hoc o dau" duoc tra loi o HAI cap, va ca hai deu bat buoc:
+
+        - Cap dia danh nam trong <h1> ("Thu Duc"). Truoc day <h1> khong he
+          nhac dia danh, nen trang chu vo hinh voi truy van "hoc lai xe Thu
+          Duc" - dung tu khoa quan trong nhat cua ca website.
+        - Cap ten rieng nam o `heroPlace`, dong ngay duoi <h1>. Ten trung tam
+          da chuyen xuong day de nhuong cho cho dia danh, nhung KHONG duoc
+          bien mat: bao cao TRUST_AUDIT ket luan nguoi xem roi trang khi
+          khong biet minh se hoc o dau.
+
+      Kiem ca hai de mot lan sua sau nay khong the am tham danh doi ben nay
+      lay ben kia.
+    */
+    expect(siteConfig.messaging.heroTitle).toContain('Thủ Đức');
+    expect(siteConfig.messaging.heroPlace).toContain(
+      siteConfig.teacher.centerShortName,
     );
     const highlights = siteConfig.messaging.heroHighlights.join(' ');
     expect(highlights).toContain('kinh nghiệm');

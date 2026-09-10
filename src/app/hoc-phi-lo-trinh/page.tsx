@@ -15,7 +15,7 @@ import { AnalyticsEvent, CtaLocation } from '@/lib/analytics/events';
 import { TrackedLink } from '@/components/ui/tracked-link';
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Học phí và lộ trình học lái xe',
+  title: 'Học phí học lái xe ô tô tại Thủ Đức',
   description:
     'So sánh học phí 5 khóa học lái xe tại trung tâm ở Thủ Đức, TP.HCM: khoản nào đã bao gồm, khoản nào có thể phát sinh, và lộ trình từ nộp hồ sơ đến ngày sát hạch.',
   path: '/hoc-phi-lo-trinh',
@@ -54,7 +54,7 @@ export default function TuitionPage() {
           id="tuition-heading"
           as="h1"
           eyebrow="Học phí & lộ trình"
-          title="Học phí và lộ trình học"
+          title="Học phí học lái xe tại Thủ Đức"
           description="Mức trọn gói của từng khóa được ghi ngay trong bảng dưới đây, kèm giải thích khoản nào đã bao gồm và khoản nào có thể phát sinh."
         />
 

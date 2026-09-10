@@ -128,7 +128,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn muốn được hướng dẫn từng bước và nhận danh sách giấy tờ được cập nhật đúng thời điểm, cứ nhắn cho tôi. Tôi sẽ đi cùng bạn từ khâu hồ sơ chứ không chỉ phần dạy lái.',
+      text: 'Nếu bạn muốn được hướng dẫn từng bước và nhận danh sách giấy tờ được cập nhật đúng thời điểm, cứ nhắn cho tôi. Tôi sẽ đi cùng bạn từ khâu hồ sơ chứ không chỉ phần dạy lái. Mức trọn gói từng khóa và các khoản có thể phát sinh được liệt kê ở trang [học phí học lái xe tại Thủ Đức](/hoc-phi-lo-trinh/).',
     },
   ],
 };

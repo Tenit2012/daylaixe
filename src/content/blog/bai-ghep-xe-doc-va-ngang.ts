@@ -179,7 +179,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn tập mãi mà vẫn hay lệch, thường vấn đề nằm ở vị trí chuẩn bị hoặc ở chỗ ngồi chưa cố định giữa các lần. Nhắn cho tôi biết bạn đang vướng ở bước nào, chúng ta xử lý đúng bước đó.',
+      text: 'Nếu bạn tập mãi mà vẫn hay lệch, thường vấn đề nằm ở vị trí chuẩn bị hoặc ở chỗ ngồi chưa cố định giữa các lần. Nhắn cho tôi biết bạn đang vướng ở bước nào, chúng ta xử lý đúng bước đó. Hai bài ghép xe nằm trong [khóa luyện sa hình tại Thủ Đức](/khoa-hoc/luyen-sa-hinh/).',
     },
   ],
 };

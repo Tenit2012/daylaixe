@@ -139,7 +139,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn sắp thi và chưa từng chạy thử phần đường trường trong điều kiện gần giống thi thật, hãy nhắn cho tôi để sắp một buổi. Phần này không khó, nhưng nó phạt rất nặng sự chủ quan.',
+      text: 'Nếu bạn sắp thi và chưa từng chạy thử phần đường trường trong điều kiện gần giống thi thật, hãy nhắn cho tôi để sắp một buổi. Phần này không khó, nhưng nó phạt rất nặng sự chủ quan. Phần đường trường nằm trong chương trình của [các khóa học lái xe tại Thủ Đức](/khoa-hoc/).',
     },
   ],
 };

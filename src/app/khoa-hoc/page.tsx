@@ -16,7 +16,7 @@ import { JsonLd } from '@/components/ui/json-ld';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Các khóa học lái xe',
+  title: 'Các khóa học lái xe ô tô tại Thủ Đức',
   description:
     'Danh sách khóa học lái xe hạng B số tự động, số sàn, hạng C1, bổ túc tay lái và luyện sa hình. Chọn khóa phù hợp với nhu cầu của bạn.',
   path: '/khoa-hoc',
@@ -41,7 +41,7 @@ export default function CoursesPage() {
           id="courses-heading"
           as="h1"
           eyebrow="Khóa học"
-          title="Các khóa học lái xe"
+          title="Các khóa học lái xe tại Thủ Đức"
           description="Mỗi khóa dưới đây phục vụ một nhu cầu khác nhau. Nếu chưa rõ mình hợp khóa nào, bạn cứ nhắn cho thầy để được tư vấn trước khi đăng ký."
         />
 

@@ -132,7 +132,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn đang lặp mãi một lỗi mà không rõ vì sao, nhắn cho tôi mô tả lại tình huống. Phần lớn trường hợp chỉ cần chỉnh một chi tiết nhỏ trong tư thế ngồi hoặc điểm nhìn là hết.',
+      text: 'Nếu bạn đang lặp mãi một lỗi mà không rõ vì sao, nhắn cho tôi mô tả lại tình huống. Phần lớn trường hợp chỉ cần chỉnh một chi tiết nhỏ trong tư thế ngồi hoặc điểm nhìn là hết. Những lỗi này được sửa trực tiếp trên sân trong [khóa luyện sa hình tại Thủ Đức](/khoa-hoc/luyen-sa-hinh/).',
     },
   ],
 };

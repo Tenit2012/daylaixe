@@ -109,7 +109,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nhiều học viên chạy rất tốt lúc tập nhưng mất bình tĩnh khi thi. Cách chuẩn bị hiệu quả là mô phỏng điều kiện thi trong lúc luyện: chạy trọn bài không dừng, không được nhắc, và chấp nhận bị đánh giá. Khi cảm giác đó trở nên quen thuộc, ngày thi sẽ bớt lạ lẫm.',
+      text: 'Nhiều học viên chạy rất tốt lúc tập nhưng mất bình tĩnh khi thi. Cách chuẩn bị hiệu quả là mô phỏng điều kiện thi trong lúc luyện: chạy trọn bài không dừng, không được nhắc, và chấp nhận bị đánh giá. Khi cảm giác đó trở nên quen thuộc, ngày thi sẽ bớt lạ lẫm. Nếu bạn muốn lấy lại cảm giác lái ở khung giờ vắng trước đã, [khóa bổ túc tay lái tại Thủ Đức](/khoa-hoc/bo-tuc-tay-lai/) đi theo đúng nhịp đó.',
     },
     {
       type: 'quote',

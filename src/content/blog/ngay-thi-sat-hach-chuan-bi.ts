@@ -158,7 +158,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn sắp tới ngày thi và muốn chạy thử trọn vẹn một lượt trong điều kiện giống thi thật, cứ nhắn cho tôi. Một buổi chạy đúng nhịp thi thường có ích hơn nhiều buổi tập rời rạc.',
+      text: 'Nếu bạn sắp tới ngày thi và muốn chạy thử trọn vẹn một lượt trong điều kiện giống thi thật, cứ nhắn cho tôi. Một buổi chạy đúng nhịp thi thường có ích hơn nhiều buổi tập rời rạc. Buổi chạy thử trọn vẹn như vậy thuộc [khóa luyện sa hình tại Thủ Đức](/khoa-hoc/luyen-sa-hinh/).',
     },
   ],
 };

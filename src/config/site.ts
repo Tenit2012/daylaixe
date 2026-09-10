@@ -249,16 +249,26 @@ export const siteConfig = {
      * chinh la ba cau hoi ma bao cao TRUST_AUDIT cham diem thap nhat.
      */
     /**
-     * Dung ban RUT GON (`CENTER_SHORT_NAME`), khong dung ten day du.
+     * <h1> cua trang chu.
      *
-     * Ten phap dinh day du dai 80 ky tu; ghep vao cau nay thi <h1> thanh 117
-     * ky tu - dai gap ruoi mot dong tieu de doc duoc, va tren dien thoai no
-     * chiem tron man hinh dau truoc khi nguoi doc kip thay nut goi. Ten day
-     * du van duoc dung nguyen ven o footer, tieu su, khoi "Noi hoc va thi
-     * sat hach" va trong JSON-LD gui Google - tuc la o moi cho can chinh xac
-     * ve mat phap ly.
+     * DAT DIA DANH LEN TRUOC, ten trung tam xuong `heroPlace` ngay duoi.
+     *
+     * Ban cu la "Hoc lai xe cung giao vien co huu tai <ten trung tam>" - dung
+     * ve noi dung nhung khong chua "Thu Duc", tuc la <h1> khong he nhac toi
+     * dia danh ma gan nhu moi nguoi deu go kem khi tim ("hoc lai xe Thu Duc").
+     * The <title> da co "Thu Duc" tu truoc; <h1> thi chua.
+     *
+     * KHONG vut bo ten trung tam: bao cao TRUST_AUDIT ket luan nguoi xem roi
+     * trang vi khong tra loi duoc "hoc o dau". Ten trung tam chuyen xuong
+     * `heroPlace` - van nam ngay duoi <h1>, van la thu doc duoc dau tien,
+     * chi khong con chiem cho cua tu khoa trong the tieu de.
+     *
+     * "1 kem 1" la du lieu THAT: xem `packageIncluded` trong content/courses.ts
+     * ("Hoc phi dao tao ly thuyet va thuc hanh 1 kem 1").
      */
-    heroTitle: `Học lái xe cùng giáo viên cơ hữu tại ${
+    heroTitle: 'Học lái xe ô tô ở Thủ Đức — giáo viên cơ hữu, học 1 kèm 1',
+    /** Dong ngay duoi <h1>: tra loi "hoc o dau" bang ten trung tam that. */
+    heroPlace: `Học và thi tại ${
       publicEnv.NEXT_PUBLIC_CENTER_SHORT_NAME ||
       publicEnv.NEXT_PUBLIC_CENTER_NAME
     }`,

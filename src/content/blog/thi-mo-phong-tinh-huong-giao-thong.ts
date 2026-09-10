@@ -126,7 +126,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn luyện mãi mà vẫn hay bấm lệch, nhắn cho tôi vài tình huống bạn hay sai. Thường chỉ cần chỉ ra bạn đang nhìn nhầm chỗ nào là gỡ được.',
+      text: 'Nếu bạn luyện mãi mà vẫn hay bấm lệch, nhắn cho tôi vài tình huống bạn hay sai. Thường chỉ cần chỉ ra bạn đang nhìn nhầm chỗ nào là gỡ được. Giờ luyện mô phỏng đã nằm trong học phí trọn gói của [các khóa học lái xe tại Thủ Đức](/khoa-hoc/).',
     },
   ],
 };

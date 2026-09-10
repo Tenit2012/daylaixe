@@ -160,7 +160,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn đang vướng ở bài này và không rõ mình sai ở khâu nào, nhắn cho tôi. Thường chỉ cần ngồi cạnh quan sát một lượt là chỉ ra được ngay bạn đang nhả côn sớm hay nhả phanh sớm.',
+      text: 'Nếu bạn đang vướng ở bài này và không rõ mình sai ở khâu nào, nhắn cho tôi. Thường chỉ cần ngồi cạnh quan sát một lượt là chỉ ra được ngay bạn đang nhả côn sớm hay nhả phanh sớm. Bài dừng và khởi hành ngang dốc nằm trong [khóa luyện sa hình tại Thủ Đức](/khoa-hoc/luyen-sa-hinh/).',
     },
   ],
 };

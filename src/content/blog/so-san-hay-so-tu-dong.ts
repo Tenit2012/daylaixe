@@ -126,7 +126,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Cách thực tế nhất là ngồi thử cả hai loại xe trong sân tập trước khi chốt. Chỉ cần khoảng mười lăm phút cảm nhận chân côn là phần lớn học viên tự biết mình hợp với loại nào. Bạn cứ nhắn cho tôi để sắp xếp một buổi làm quen trước khi đăng ký chính thức.',
+      text: 'Cách thực tế nhất là ngồi thử cả hai loại xe trong sân tập trước khi chốt. Chỉ cần khoảng mười lăm phút cảm nhận chân côn là phần lớn học viên tự biết mình hợp với loại nào. Bạn cứ nhắn cho tôi để sắp xếp một buổi làm quen trước khi đăng ký chính thức. Xem chi tiết [khóa hạng B số sàn tại Thủ Đức](/khoa-hoc/hang-b-so-san/) và [khóa hạng B số tự động tại Thủ Đức](/khoa-hoc/hang-b-so-tu-dong/) để so sánh cụ thể hơn.',
     },
     {
       type: 'quote',

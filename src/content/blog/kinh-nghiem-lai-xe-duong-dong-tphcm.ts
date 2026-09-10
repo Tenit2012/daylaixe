@@ -124,7 +124,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn muốn luyện riêng tuyến đường mình hay đi trong thành phố, hãy nhắn cho tôi tuyến cụ thể. Chúng ta sắp xếp buổi học chạy đúng tuyến đó vào khung giờ bạn thường phải đi.',
+      text: 'Nếu bạn muốn luyện riêng tuyến đường mình hay đi trong thành phố, hãy nhắn cho tôi tuyến cụ thể. Chúng ta sắp xếp buổi học chạy đúng tuyến đó vào khung giờ bạn thường phải đi. Chạy đúng tuyến đường bạn hay đi chính là phần chính của [khóa bổ túc tay lái tại Thủ Đức](/khoa-hoc/bo-tuc-tay-lai/).',
     },
   ],
 };

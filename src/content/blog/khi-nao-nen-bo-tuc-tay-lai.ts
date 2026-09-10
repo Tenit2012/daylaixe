@@ -119,7 +119,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn đang cân nhắc bổ túc, hãy nhắn cho tôi mô tả ngắn về tình trạng hiện tại và điều bạn muốn làm được sau khóa. Tôi sẽ đề xuất nội dung và số buổi phù hợp trước khi bạn quyết định.',
+      text: 'Nếu bạn đang cân nhắc bổ túc, hãy nhắn cho tôi mô tả ngắn về tình trạng hiện tại và điều bạn muốn làm được sau khóa. Tôi sẽ đề xuất nội dung và số buổi phù hợp trước khi bạn quyết định. Xem trước nội dung và loại xe của [khóa bổ túc tay lái tại Thủ Đức](/khoa-hoc/bo-tuc-tay-lai/).',
     },
   ],
 };

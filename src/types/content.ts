@@ -8,6 +8,19 @@ export interface Course {
   shortName: string;
   /** Ma hang GPLX (B, C1...) hoac 'BO_TUC' / 'SA_HINH' cho khoa ky nang. */
   licenseClass: string;
+  /**
+   * Tieu de trang chi tiet (`<title>`) va tieu de chinh (`<h1>`).
+   *
+   * VI SAO TACH KHOI `name`: `name` la nhan NGAN de hien tren the khoa hoc,
+   * breadcrumb va dropdown ("Hang B - So san"). Nhung khong ai go chuoi do
+   * vao o tim kiem - nguoi ta go "hoc lai xe hang B so san Thu Duc". Dung
+   * chung mot chuoi cho ca hai muc dich thi phai hy sinh mot ben: hoac the
+   * khoa hoc dai loe loet, hoac trang khong bat duoc tu khoa nao.
+   *
+   * Bo trong thi tu dong lui ve cach cu (`Khoa hoc <name>` va `<name>`).
+   */
+  seoTitle?: string;
+  pageHeading?: string;
   /** Mo ta ngan 1-2 cau, HIEN THI tren card khoa hoc. */
   summary: string;
   /**

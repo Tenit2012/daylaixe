@@ -205,7 +205,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn đang ở tuần nào đó trong lộ trình này mà thấy chưa yên tâm, cứ nhắn cho tôi biết bạn đang vướng phần nào. Chúng ta sắp lịch cho đúng phần đó thay vì chạy lại toàn bộ từ đầu.',
+      text: 'Nếu bạn đang ở tuần nào đó trong lộ trình này mà thấy chưa yên tâm, cứ nhắn cho tôi biết bạn đang vướng phần nào. Chúng ta sắp lịch cho đúng phần đó thay vì chạy lại toàn bộ từ đầu. Cần chạy thêm giờ sân thì xem [khóa luyện sa hình tại Thủ Đức](/khoa-hoc/luyen-sa-hinh/); còn mức trọn gói từng khóa nằm ở trang [học phí học lái xe tại Thủ Đức](/hoc-phi-lo-trinh/).',
     },
   ],
 };

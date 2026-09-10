@@ -130,7 +130,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn đang ở tình trạng này, hãy nhắn cho tôi và mô tả cụ thể điều bạn ngại nhất. Chúng ta sẽ bắt đầu từ đúng chỗ đó.',
+      text: 'Nếu bạn đang ở tình trạng này, hãy nhắn cho tôi và mô tả cụ thể điều bạn ngại nhất. Chúng ta sẽ bắt đầu từ đúng chỗ đó. Cách buổi đầu diễn ra được mô tả trong [khóa bổ túc tay lái tại Thủ Đức](/khoa-hoc/bo-tuc-tay-lai/).',
     },
   ],
 };

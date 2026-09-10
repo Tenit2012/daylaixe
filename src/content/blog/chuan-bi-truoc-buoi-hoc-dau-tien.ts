@@ -127,7 +127,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn sắp có buổi học đầu tiên và còn băn khoăn điều gì, cứ nhắn trước cho tôi. Trao đổi trước vài phút thường giúp buổi học đầu nhẹ nhàng hơn nhiều.',
+      text: 'Nếu bạn sắp có buổi học đầu tiên và còn băn khoăn điều gì, cứ nhắn trước cho tôi. Trao đổi trước vài phút thường giúp buổi học đầu nhẹ nhàng hơn nhiều. Bạn có thể xem trước [các khóa học lái xe tại Thủ Đức](/khoa-hoc/) để hình dung khóa mình sắp bắt đầu.',
     },
   ],
 };

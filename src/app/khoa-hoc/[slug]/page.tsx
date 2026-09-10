@@ -43,7 +43,8 @@ export async function generateMetadata({
   }
 
   return buildPageMetadata({
-    title: `Khóa học ${course.name}`,
+    // `seoTitle` chua ca cum tu khoa lan dia danh; lui ve cach cu khi chua viet.
+    title: course.seoTitle ?? `Khóa học ${course.name}`,
     // `metaDescription` la ban viet rieng cho ket qua tim kiem (120-160 ky tu,
     // co dia danh). Khoa nao chua viet thi lui ve `summary` nhu truoc.
     description: course.metaDescription ?? course.summary,
@@ -80,7 +81,14 @@ export default async function CourseDetailPage({ params }: PageProps) {
               <p className="text-sm font-semibold uppercase tracking-wider text-accent-600">
                 Khóa học
               </p>
-              <h1 className="mt-3 text-3xl sm:text-4xl">{course.name}</h1>
+              {/*
+                <h1> dung `pageHeading` (dai, co dia danh) con breadcrumb va
+                the khoa hoc van dung `course.name` (ngan). Hai cho phuc vu
+                hai muc dich khac nhau - xem giai thich o `types/content.ts`.
+              */}
+              <h1 className="mt-3 text-3xl sm:text-4xl">
+                {course.pageHeading ?? course.name}
+              </h1>
               <p className="mt-4 text-base leading-relaxed text-ink-muted sm:text-lg">
                 {course.summary}
               </p>

@@ -143,7 +143,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn đang vướng ở một bài cụ thể và muốn luyện thêm, hãy nhắn cho tôi biết đó là bài nào. Chúng ta xử lý đúng bài đó thay vì chạy lại từ đầu cho tốn thời gian.',
+      text: 'Nếu bạn đang vướng ở một bài cụ thể và muốn luyện thêm, hãy nhắn cho tôi biết đó là bài nào. Chúng ta xử lý đúng bài đó thay vì chạy lại từ đầu cho tốn thời gian. Toàn bộ các bài kể trên đều được luyện trong [khóa luyện sa hình tại Thủ Đức](/khoa-hoc/luyen-sa-hinh/).',
     },
   ],
 };

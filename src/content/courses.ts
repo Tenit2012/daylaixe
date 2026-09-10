@@ -75,6 +75,8 @@ export const courses: Course[] = [
     name: 'Hạng B - Số tự động',
     shortName: 'Hạng B số tự động',
     licenseClass: 'B',
+    seoTitle: 'Học lái xe ô tô hạng B số tự động tại Thủ Đức',
+    pageHeading: 'Học lái xe hạng B số tự động tại Thủ Đức',
     summary:
       'Khóa học dành cho người muốn lái xe con số tự động, thao tác đơn giản và dễ làm quen trong những buổi đầu.',
     metaDescription:
@@ -165,6 +167,8 @@ export const courses: Course[] = [
     name: 'Hạng B - Số sàn',
     shortName: 'Hạng B số sàn',
     licenseClass: 'B',
+    seoTitle: 'Học lái xe ô tô hạng B số sàn tại Thủ Đức',
+    pageHeading: 'Học lái xe hạng B số sàn tại Thủ Đức',
     summary:
       'Khóa học cho người muốn thành thạo cả xe số sàn, chủ động hơn khi cầm lái nhiều loại xe khác nhau.',
     metaDescription:
@@ -255,6 +259,8 @@ export const courses: Course[] = [
     name: 'Hạng C1',
     shortName: 'Hạng C1',
     licenseClass: 'C1',
+    seoTitle: 'Học lái xe hạng C1 (xe tải) tại Thủ Đức',
+    pageHeading: 'Học lái xe hạng C1 tại Thủ Đức',
     summary:
       'Khóa học dành cho người có nhu cầu điều khiển xe tải nhẹ phục vụ công việc kinh doanh, vận chuyển.',
     metaDescription:
@@ -350,6 +356,8 @@ export const courses: Course[] = [
     name: 'Bổ túc tay lái',
     shortName: 'Bổ túc tay lái',
     licenseClass: 'BO_TUC',
+    seoTitle: 'Bổ túc tay lái ô tô tại Thủ Đức (đã có bằng)',
+    pageHeading: 'Bổ túc tay lái ô tô tại Thủ Đức',
     summary:
       'Dành cho người đã có bằng nhưng lâu không chạy, còn ngại đường đông hoặc chưa tự tin cầm lái một mình.',
     metaDescription:
@@ -427,6 +435,8 @@ export const courses: Course[] = [
     name: 'Luyện sa hình',
     shortName: 'Luyện sa hình',
     licenseClass: 'SA_HINH',
+    seoTitle: 'Luyện sa hình thi sát hạch tại Thủ Đức',
+    pageHeading: 'Luyện sa hình thi sát hạch tại Thủ Đức',
     summary:
       'Luyện tập trung các bài thi trong sa hình cho học viên sắp đến kỳ sát hạch hoặc từng trượt bài.',
     metaDescription:

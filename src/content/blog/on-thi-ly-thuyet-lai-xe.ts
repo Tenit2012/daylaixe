@@ -184,7 +184,7 @@ export const post: BlogPost = {
     },
     {
       type: 'paragraph',
-      text: 'Nếu bạn đang ôn mà thấy vướng ở một nhóm câu cụ thể, cứ nhắn cho tôi biết nhóm nào. Tôi sẽ chỉ cách gỡ đúng nhóm đó thay vì bảo bạn làm lại cả bộ đề từ đầu.',
+      text: 'Nếu bạn đang ôn mà thấy vướng ở một nhóm câu cụ thể, cứ nhắn cho tôi biết nhóm nào. Tôi sẽ chỉ cách gỡ đúng nhóm đó thay vì bảo bạn làm lại cả bộ đề từ đầu. Phần lý thuyết nằm trong chương trình của [các khóa học lái xe tại Thủ Đức](/khoa-hoc/).',
     },
   ],
 };

@@ -39,6 +39,16 @@ export function HeroSection() {
             </h1>
 
             {/*
+              Ten trung tam truoc day nam trong chinh <h1>. Chuyen xuong day
+              de <h1> danh cho dia danh, nhung van la dong dau tien nguoi doc
+              gap sau tieu de - cau tra loi cho "hoc o dau" khong bi day sau
+              xuong duoi man hinh.
+            */}
+            <p className="hero-in motion-delay-1 mt-3 text-base font-medium text-brand-700 sm:text-lg">
+              {messaging.heroPlace}
+            </p>
+
+            {/*
               Danh sach thay vi mot doan van - xem ghi chu `heroHighlights`
               trong config. Moi muc la mot o rieng nen trinh duyet chi xuong
               dong GIUA cac muc, khong cat ngang mot y. Cham tron di kem muc
