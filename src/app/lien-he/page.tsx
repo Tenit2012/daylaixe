@@ -68,6 +68,40 @@ const contactTips = [
     : []),
 ];
 
+/**
+ * Boc tam ban do bang the <a> KHI VA CHI KHI co lien ket Google Maps.
+ *
+ * Vi sao can mot component nho thay vi viet thang: khong co link ma van de
+ * the <a> se sinh ra mot lien ket rong - trinh doc man hinh van thong bao
+ * "lien ket", nguoi dung bam vao thi khong di dau ca. Con neu tach thanh hai
+ * nhanh JSX day du thi phai chep lai toan bo phan ben trong, va hai ban se
+ * lech nhau ngay lan sua dau tien.
+ */
+function MapFrame({
+  href,
+  children,
+}: {
+  href: string | null;
+  children: React.ReactNode;
+}) {
+  if (!href) {
+    return (
+      <div className="block h-full overflow-hidden">{children}</div>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover-zoom-frame group block h-full overflow-hidden"
+    >
+      {children}
+    </a>
+  );
+}
+
 export default function ContactPage() {
   const crumbs = [
     { name: 'Trang chủ', path: '/' },
@@ -240,8 +274,20 @@ export default function ContactPage() {
           </div>
 
           <div className="overflow-hidden rounded-card border border-line bg-surface">
-            {mapsHref ? (
+            {
               /*
+                ANH BAN DO LUON HIEN, KE CA KHI KHONG CO LIEN KET GOOGLE MAPS.
+
+                Anh nay dung du lieu OpenStreetMap - khong dinh dang gi toi
+                Google - nen viec go lien ket sang ho so Google cua Trung tam
+                khong co ly do gi keo theo viec go luon tam ban do. Nguoi doc
+                van can nhin thay trung tam nam o dau.
+
+                Truoc day ca khoi nay nam trong `mapsHref ? ... : ...`, va
+                nhanh con lai in ra dong "Cau hinh bien
+                NEXT_PUBLIC_GOOGLE_MAPS_URL trong file .env" - mot loi nhac
+                danh cho lap trinh vien, hien thang ra cho khach.
+
                 Anh ban do TINH tu tile OpenStreetMap, sinh boi
                 `node scripts/build-map-image.mjs` va nam san trong public/.
 
@@ -256,12 +302,7 @@ export default function ContactPage() {
                 ODbL, bat buoc ghi cong o noi hien thi.
               */
               <figure className="relative h-full">
-                <a
-                  href={mapsHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover-zoom-frame group block h-full overflow-hidden"
-                >
+                <MapFrame href={mapsHref}>
                   {/*
                     Dung <img> thuong thay vi next/image - NGOAI LE co chu dich
                     so voi phan con lai cua ma nguon.
@@ -292,15 +333,18 @@ export default function ContactPage() {
                     decoding="async"
                     className="hover-zoom-target h-full min-h-[16rem] w-full object-cover"
                   />
-                  <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-brand-900/85 px-4 py-3 text-[0.9375rem] font-semibold text-white">
-                    <MapPin
-                      aria-hidden="true"
-                      className="h-[1.125rem] w-[1.125rem]"
-                    />
-                    Mở bản đồ chỉ đường
-                    <ExternalLink aria-hidden="true" className="h-4 w-4" />
-                  </span>
-                </a>
+                  {/* Dai chu chi co nghia khi bam duoc - khong co link thi khong ve. */}
+                  {mapsHref ? (
+                    <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-brand-900/85 px-4 py-3 text-[0.9375rem] font-semibold text-white">
+                      <MapPin
+                        aria-hidden="true"
+                        className="h-[1.125rem] w-[1.125rem]"
+                      />
+                      Mở bản đồ chỉ đường
+                      <ExternalLink aria-hidden="true" className="h-4 w-4" />
+                    </span>
+                  ) : null}
+                </MapFrame>
                 <figcaption className="absolute right-2 top-2 rounded bg-surface/90 px-2 py-1 text-[0.6875rem] leading-none text-ink-subtle">
                   <a
                     href="https://www.openstreetmap.org/copyright"
@@ -312,20 +356,7 @@ export default function ContactPage() {
                   </a>
                 </figcaption>
               </figure>
-            ) : (
-              <div className="flex h-full min-h-[16rem] flex-col items-center justify-center gap-3 bg-surface-sunken p-8 text-center">
-                <MapPin
-                  aria-hidden="true"
-                  className="h-10 w-10 text-ink-subtle"
-                />
-                <p className="text-[0.9375rem] font-medium text-ink-muted">
-                  Bản đồ sẽ hiển thị sau khi cấu hình đường dẫn Google Maps
-                </p>
-                <p className="text-sm text-ink-subtle">
-                  Cấu hình biến NEXT_PUBLIC_GOOGLE_MAPS_URL trong file .env
-                </p>
-              </div>
-            )}
+            }
           </div>
         </div>
       </Section>

@@ -6,30 +6,58 @@ import { z } from 'zod';
  * Bat buoc doc `process.env.NEXT_PUBLIC_X` mot cach TINH (khong dung
  * `process.env[key]`) de Next.js thay the duoc gia tri luc build.
  *
- * Toan bo gia tri deu co fallback dang placeholder `[...]` nen website
- * van chay duoc khi chua cau hinh xong - dung cho giai doan phat trien.
+ * ===========================================================================
+ * GIA TRI THAT NAM NGAY TRONG `.default(...)` BEN DUOI - KHONG CAN FILE .env
+ * ===========================================================================
+ *
+ * Truoc day moi gia tri deu mac dinh la placeholder `[...]`, va gia tri that
+ * chi nam trong `.env` - mot file bi `.gitignore` chan. Cach do de lai hai cai
+ * bay, ca hai deu da no mot lan:
+ *
+ *  1. `.env` LECH khoi `.env.example` ma khong ai thay. Ten trung tam trong
+ *     `.env` thieu hai chu "Trung tam", tao ra cau vo nghia ngay trong <h1>
+ *     trang chu suot mot thoi gian dai.
+ *  2. Deploy MA QUEN khai bien. Website nay xuat tinh len Cloudflare Pages;
+ *     neu ban dung khong co bien moi truong thi `NEXT_PUBLIC_SITE_URL` rot ve
+ *     `http://localhost:3000`, keo theo canonical va toan bo sitemap tro toi
+ *     localhost. Hong am tham, khong co gi bao loi.
+ *
+ * Nay gia tri that la MAC DINH, nen `npm run build` tren may bat ky - hoac
+ * tren Cloudflare Pages khong khai gi ca - deu ra dung mot ket qua.
+ *
+ * Bien moi truong VAN duoc ton trong neu co: dat `NEXT_PUBLIC_X` se ghi de
+ * mac dinh. Dung cho ban xem thu (`NEXT_PUBLIC_NOINDEX="true"`) hoac khi doi
+ * thong tin gap ma chua kip sua ma nguon.
+ *
+ * Nhung truong CHUA CO du lieu that (YouTube, GTM, GA, Pixel) van giu mac
+ * dinh rong hoac `[...]` - giao dien tu an chung di thay vi sinh link hong.
  */
 const publicEnvSchema = z.object({
-  NEXT_PUBLIC_SITE_URL: z.string().url().default('http://localhost:3000'),
-  NEXT_PUBLIC_TEACHER_NAME: z.string().min(1).default('[Tên thầy]'),
-  NEXT_PUBLIC_TEACHER_TITLE: z.string().min(1).default('[Chức danh]'),
-  NEXT_PUBLIC_PHONE_NUMBER: z.string().min(1).default('[Số điện thoại]'),
-  NEXT_PUBLIC_ZALO_URL: z.string().min(1).default('[Zalo URL]'),
-  NEXT_PUBLIC_CONTACT_EMAIL: z.string().min(1).default('[Email]'),
-  NEXT_PUBLIC_FACEBOOK_URL: z.string().default('[Facebook URL]'),
+  NEXT_PUBLIC_SITE_URL: z.string().url().default('https://thaytungdaylaixe.com'),
+  NEXT_PUBLIC_TEACHER_NAME: z.string().min(1).default('Tùng'),
+  NEXT_PUBLIC_TEACHER_TITLE: z.string().min(1).default('Giáo viên cơ hữu'),
+  NEXT_PUBLIC_PHONE_NUMBER: z.string().min(1).default('0971397882'),
+  NEXT_PUBLIC_ZALO_URL: z.string().min(1).default('https://zalo.me/0971397882'),
+  NEXT_PUBLIC_CONTACT_EMAIL: z.string().min(1).default('thaytungdaihocanninh@gmail.com'),
+  NEXT_PUBLIC_FACEBOOK_URL: z.string().default('https://www.facebook.com/TUNG8888882'),
   NEXT_PUBLIC_YOUTUBE_URL: z.string().default('[YouTube URL]'),
-  NEXT_PUBLIC_ADDRESS: z.string().min(1).default('[Địa chỉ]'),
-  NEXT_PUBLIC_TRAINING_AREA: z.string().min(1).default('[Khu vực đào tạo]'),
+  NEXT_PUBLIC_ADDRESS: z.string().min(1).default('Km 18 Võ Nguyên Giáp, Linh Trung, Thủ Đức, TP.HCM'),
+  NEXT_PUBLIC_TRAINING_AREA: z.string().min(1).default('TP. Thủ Đức và các quận lân cận, TP.HCM'),
   NEXT_PUBLIC_GOOGLE_MAPS_URL: z.string().default('[Google Maps URL]'),
-  NEXT_PUBLIC_CENTER_NAME: z.string().min(1).default('[Tên trung tâm]'),
+  NEXT_PUBLIC_CENTER_NAME: z
+    .string()
+    .min(1)
+    .default(
+      'Trung tâm Dạy nghề, Đào tạo và Sát hạch Lái xe — Trường Đại học An ninh Nhân dân',
+    ),
   /** Ten rut gon cua trung tam - dung o cho hep nhu badge, breadcrumb. */
-  NEXT_PUBLIC_CENTER_SHORT_NAME: z.string().default(''),
-  NEXT_PUBLIC_CENTER_COMPACT_NAME: z.string().default(''),
+  NEXT_PUBLIC_CENTER_SHORT_NAME: z.string().default('Trung tâm Sát hạch Lái xe – ĐH An ninh Nhân dân'),
+  NEXT_PUBLIC_CENTER_COMPACT_NAME: z.string().default('Trung tâm Sát hạch Lái xe'),
   /**
    * Vi tri cu the ben trong trung tam de hoc vien tim duoc cho tu van
    * (vi du "Lầu 2, trong khuôn viên trung tâm").
    */
-  NEXT_PUBLIC_CONSULT_LOCATION: z.string().default(''),
+  NEXT_PUBLIC_CONSULT_LOCATION: z.string().default('Lầu 2, trong khuôn viên trung tâm'),
   /**
    * Nhan kinh nghiem dang CHU, khong phai so.
    * Du lieu that duoc thay xac nhan la "gan 20 nam" - de nguyen dang uoc
@@ -49,7 +77,7 @@ const publicEnvSchema = z.object({
     .string()
     .min(1)
     .default('học viên dân sự và Công an'),
-  NEXT_PUBLIC_CONTACT_HOURS: z.string().min(1).default('[Thời gian liên hệ]'),
+  NEXT_PUBLIC_CONTACT_HOURS: z.string().min(1).default('7:00 - 20:00 hằng ngày'),
   /**
    * Toa do trung tam, dung cho `geo` trong JSON-LD (local SEO).
    *
@@ -60,8 +88,8 @@ const publicEnvSchema = z.object({
    * Cach lay: mo Google Maps -> chuot phai dung vi tri trung tam -> so dau
    * tien la latitude, so thu hai la longitude.
    */
-  NEXT_PUBLIC_CENTER_LAT: z.string().default(''),
-  NEXT_PUBLIC_CENTER_LNG: z.string().default(''),
+  NEXT_PUBLIC_CENTER_LAT: z.string().default('10.8707802'),
+  NEXT_PUBLIC_CENTER_LNG: z.string().default('106.8054619'),
   NEXT_PUBLIC_GTM_ID: z.string().default(''),
   NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().default(''),
   NEXT_PUBLIC_FACEBOOK_PIXEL_ID: z.string().default(''),
