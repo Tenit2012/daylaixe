@@ -16,6 +16,7 @@ import { Accordion } from '@/components/ui/accordion';
 import { CallButton, ZaloButton } from '@/components/ui/contact-buttons';
 import { CtaLocation } from '@/lib/analytics/events';
 import { ContactSection } from '@/components/sections/contact-section';
+import { TuitionPanel } from '@/components/courses/tuition-panel';
 import { JsonLd } from '@/components/ui/json-ld';
 
 interface PageProps {
@@ -217,35 +218,14 @@ export default async function CourseDetailPage({ params }: PageProps) {
             <div>
               <h3 className="text-xl sm:text-2xl">Học phí</h3>
               {course.tuition ? (
-                <div className="mt-4 space-y-4">
-                  <p className="text-2xl font-bold text-brand-900">
-                    {course.tuition.displayValue}
-                  </p>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="card-base">
-                      <h4 className="text-base text-success-700">Đã bao gồm</h4>
-                      <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
-                        {course.tuition.included.map((item) => (
-                          <li key={item}>• {item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="card-base">
-                      <h4 className="text-base text-accent-700">
-                        Có thể phát sinh
-                      </h4>
-                      <ul className="mt-2 space-y-1.5 text-sm text-ink-muted">
-                        {course.tuition.mayIncurAdditional.map((item) => (
-                          <li key={item}>• {item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  {course.tuition.note ? (
-                    <p className="text-sm text-ink-subtle">
-                      {course.tuition.note}
-                    </p>
-                  ) : null}
+                <div className="card-base mt-4 p-5 sm:p-6">
+                  {/* KHONG truyen `footer` (CTA) o day: trang chi tiet khoa da
+                      co ba cap nut goi/Zalo - dau trang, thanh ben va
+                      ContactSection cuoi trang. Cap thu tu nam ngay canh thanh
+                      ben se thanh hai nut giong het nhau dat sat nhau. CTA cua
+                      khoi hoc phi song o /hoc-phi-lo-trinh, noi the dung mot
+                      minh. */}
+                  <TuitionPanel tuition={course.tuition} />
                 </div>
               ) : (
                 <div className="mt-4 rounded-card border border-accent-200 bg-accent-50 p-5">

@@ -79,7 +79,14 @@ export const CtaLocation = {
   AboutPage: 'about_page',
   /** Trang danh sach khoa hoc. */
   CourseList: 'course_list',
-  /** Trang cam nhan hoc vien. */
+  /**
+   * Trang cam nhan hoc vien.
+   *
+   * Duong dan da doi tu `/cam-nhan-hoc-vien` sang `/hoc-vien` (20/09/2026)
+   * nhung GIU NGUYEN gia tri `testimonials_page`: doi nhan se cat doi chuoi
+   * du lieu GA4, bao cao "CTA nao hieu qua nhat" se thanh hai phan doan roi
+   * rac ma khong ai biet.
+   */
   TestimonialsPage: 'testimonials_page',
   /** Trong the khoa hoc o luoi. */
   CourseCard: 'course_card',

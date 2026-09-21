@@ -314,6 +314,71 @@ const JOBS = [
     position: 'center',
     note: 'Anh Open Graph khi chia se link len Zalo/Facebook - GIU JPEG',
   },
+
+  /*
+   * ---------------------------------------------------------------------
+   * ANH HOC VIEN DUNG TRONG KHOI TRAI NGHIEM - 19/09/2026
+   * ---------------------------------------------------------------------
+   * Nam anh hoc vien ngoi ghe lai trong buoi thuc hanh. Chu website xac
+   * nhan DA XIN PHEP dung ANH (19/09/2026). Loi nhan xet di kem thi CHUA
+   * duoc tung nguoi duyet - xem `studentPhotos` trong
+   * `src/content/testimonials.ts`.
+   *
+   * Ca nam anh nguon deu la khung DOC (960x1280, rieng temp_image_ la
+   * 1080x1440) va `orientation = 1`, tuc KHONG can xoay - khac voi nhom
+   * IMG_16xx/17xx o tren.
+   *
+   * Cat VUONG 1:1 `position: 'top'`: o hien thi tren the la hinh tron nho.
+   * Nguon la anh nua nguoi chup ngang tam vai, mat nam o phan TREN khung -
+   * cat giua se lay trung nguc ao va cat mat dinh dau. Da doi chieu tung
+   * ban cat truoc khi chot.
+   *
+   * KHONG watermark: day la chan dung ca nhan, dung theo dung ghi chu o
+   * `watermarkOverlay` phia tren.
+   *
+   * Dat ten file theo SO THU TU, khong theo ten nguoi: tranh gan danh tinh
+   * suy doan vao file, va doi ten that sau nay khong phai sua anh.
+   */
+  {
+    source: 'IMG_1887.jpeg',
+    output: 'students/hoc-vien-01.webp',
+    width: 640,
+    height: 640,
+    position: 'top',
+    note: 'Hoc vien ngoi ghe lai trong buoi thuc hanh - avatar khoi trai nghiem',
+  },
+  {
+    source: 'IMG_1888.jpeg',
+    output: 'students/hoc-vien-02.webp',
+    width: 640,
+    height: 640,
+    position: 'top',
+    note: 'Hoc vien ngoi ghe lai trong buoi thuc hanh - avatar khoi trai nghiem',
+  },
+  {
+    source: 'IMG_1889.jpeg',
+    output: 'students/hoc-vien-03.webp',
+    width: 640,
+    height: 640,
+    position: 'top',
+    note: 'Hoc vien ngoi ghe lai trong buoi thuc hanh - avatar khoi trai nghiem',
+  },
+  {
+    source: 'IMG_1890.jpeg',
+    output: 'students/hoc-vien-04.webp',
+    width: 640,
+    height: 640,
+    position: 'top',
+    note: 'Hoc vien ngoi ghe lai trong buoi thuc hanh - avatar khoi trai nghiem',
+  },
+  {
+    source: 'temp_image_E9B3621D-49CA-44AD-85F5-EEDF43EB4789.jpeg',
+    output: 'students/hoc-vien-05.webp',
+    width: 640,
+    height: 640,
+    position: 'top',
+    note: 'Hoc vien ngoi ghe lai trong buoi thuc hanh - avatar khoi trai nghiem',
+  },
 ];
 
 /**

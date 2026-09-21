@@ -50,7 +50,8 @@ function buildTuitionAnswer(): string {
 
   return (
     `Mức trọn gói trung tâm đang công bố: ${priceList}. ` +
-    'Mức này đã gồm học phí lý thuyết và thực hành, xăng xe, bãi tập, giờ cabin và phần mềm mô phỏng, lệ phí thi sát hạch cùng lệ phí cấp bằng. ' +
+    'Mức này đã gồm học phí lý thuyết và thực hành 1 kèm 1, xăng xe, bãi tập, giờ cabin và phần mềm mô phỏng, lệ phí thi sát hạch cùng lệ phí cấp bằng. ' +
+    'Riêng hai khóa hạng B còn được hỗ trợ thực hành không giới hạn giờ theo chính sách đào tạo, và không phụ thu cuối tuần. ' +
     'Chưa gồm khám sức khỏe nếu bạn chưa có giấy còn hiệu lực, và phí thi lại nếu trượt. ' +
     'Trang Học phí & lộ trình liệt kê đầy đủ từng khoản.' +
     perSession
@@ -69,6 +70,19 @@ export const generalFaqs: Faq[] = [
     answer:
       'Điều này phụ thuộc vào chiếc xe bạn sẽ dùng sau này. Nếu chủ yếu chạy xe gia đình trong thành phố thì số tự động dễ làm quen hơn. Nếu bạn muốn cầm lái được nhiều loại xe hoặc công việc có liên quan đến xe số sàn thì nên học số sàn. Bạn nhắn cho tôi nhu cầu thực tế, tôi sẽ tư vấn cụ thể hơn.',
     category: 'Chọn khóa học',
+  },
+  {
+    /*
+     * PHAM VI CUA CAU TRA LOI NAY - doc truoc khi sua:
+     * chu website xac nhan hoc vien duoc HO TRO THUC HANH KHONG GIOI HAN GIO.
+     * Khong duoc suy rong thanh "hoc den khi dau", "bao dau", hay "muon hoc
+     * luc nao cung duoc" - cau tra loi co y neu ngay dieu kien ve lich san
+     * tap de nguoi doc khong ky vong sai roi that vong khi goi den.
+     */
+    question: 'Khóa học giới hạn bao nhiêu giờ thực hành?',
+    answer:
+      'Học viên hạng B học cùng tôi được hỗ trợ thực hành không giới hạn giờ theo chính sách đào tạo của tôi và Trung tâm, tức là bạn học theo năng lực thực tế chứ không bị bó vào một gói số giờ cố định. Ai quen tay nhanh thì đi tiếp phần sau, ai cần thêm thời gian cho một bài nào đó thì chúng ta luyện thêm bài đó. Phần này đã nằm trong mức trọn gói, bạn không phải trả thêm theo giờ. Lịch cụ thể còn phụ thuộc lịch sân tập và lịch dạy nên bạn hãy báo trước để tôi sắp xếp.',
+    category: 'Lịch học',
   },
   {
     question: 'Có thể học vào cuối tuần không?',

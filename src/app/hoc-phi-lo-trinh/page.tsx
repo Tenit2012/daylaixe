@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { AlertTriangle, Check } from 'lucide-react';
-import { sortedCourses } from '@/content/courses';
+import { getCourseBySlug, sortedCourses } from '@/content/courses';
 import { siteConfig } from '@/config/site';
 import { buildPageMetadata } from '@/lib/seo/metadata';
 import { buildBreadcrumbJsonLd } from '@/lib/seo/structured-data';
@@ -13,6 +13,9 @@ import { JsonLd } from '@/components/ui/json-ld';
 import { buttonClasses } from '@/components/ui/button';
 import { AnalyticsEvent, CtaLocation } from '@/lib/analytics/events';
 import { TrackedLink } from '@/components/ui/tracked-link';
+import { TuitionPanel } from '@/components/courses/tuition-panel';
+import { CallButton, ZaloButton } from '@/components/ui/contact-buttons';
+import type { Course, CourseTuition } from '@/types/content';
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Học phí học lái xe ô tô tại Thủ Đức',
@@ -32,10 +35,40 @@ const notes = [
   'Học phí và lệ phí do cơ sở đào tạo và quy định hiện hành xác định, có thể thay đổi theo thời điểm.',
   'Lịch khai giảng phụ thuộc vào cơ sở đào tạo, không phải lúc nào cũng có khóa mở ngay.',
   'Chi phí khám sức khỏe và các khoản liên quan đến hồ sơ thường được tính riêng.',
-  'Nếu bạn muốn luyện thêm giờ ngoài chương trình, phần này được thỏa thuận riêng trước khi học.',
+  /*
+   * Cau nay TRUOC DAY viet "luyen them gio ngoai chuong trinh duoc thoa thuan
+   * rieng", tuc la doc ra thanh mot khoan phai tra them. Tu 16/09/2026 hai
+   * khoa hang B ghi ro trong danh sach "da bao gom" rang phan thuc hanh duoc
+   * ho tro khong gioi han gio - de nguyen cau cu thi hai cho trong cung mot
+   * trang noi nguoc nhau. Cau moi giu lai dieu KIEN co that (lich san tap,
+   * lich cua thay) ma khong bien no thanh khoan tien.
+   */
+  'Phần thực hành được hỗ trợ theo chính sách đào tạo của thầy và Trung tâm. Lịch luyện thêm còn phụ thuộc lịch sân tập và lịch dạy, nên bạn hãy báo trước để thầy sắp xếp.',
 ];
 
+/**
+ * Hai khoa duoc dua len thanh the rieng phia tren bang so sanh.
+ *
+ * Chi hai hang B: day la hai khoa co muc tron goi chot va co danh sach quyen
+ * loi day du, nen the moi noi duoc dieu ma bang khong noi duoc - 18,9tr /
+ * 18,5tr MUA DUOC GI. Ba khoa con lai (C1 tinh theo dot, bo tuc va sa hinh
+ * chua chot gia) khong co du du lieu de lap day mot the; de chung o bang so
+ * sanh ben duoi dung hon la ve the rong.
+ *
+ * Loc theo `tuition != null` co chu dich: neu mot slug bi doi ten hoac hoc
+ * phi bi dua ve `null`, trang van dung - chi mat the do, thay vi sap ca trang
+ * bang mot loi doc thuoc tinh cua `undefined`.
+ */
+const featuredTuitionSlugs = ['hang-b-so-tu-dong', 'hang-b-so-san'];
+
 export default function TuitionPage() {
+  const featuredTuitionCourses = featuredTuitionSlugs
+    .map((slug) => getCourseBySlug(slug))
+    .filter(
+      (course): course is Course & { tuition: CourseTuition } =>
+        course?.tuition != null,
+    );
+
   const crumbs = [
     { name: 'Trang chủ', path: '/' },
     { name: 'Học phí & lộ trình', path: '/hoc-phi-lo-trinh' },
@@ -57,6 +90,55 @@ export default function TuitionPage() {
           title="Học phí học lái xe tại Thủ Đức"
           description="Mức trọn gói của từng khóa được ghi ngay trong bảng dưới đây, kèm giải thích khoản nào đã bao gồm và khoản nào có thể phát sinh."
         />
+
+        {/*
+          Hai the hang B nam canh nhau tu `md` tro len, xep doc tren dien
+          thoai. Moc `md` chu khong phai `lg`: moi the la mot danh sach chu
+          ngan, den 768px la du rong de hai cot con doc thoai mai - cho doi
+          den 1024px se de trong nua man hinh tablet.
+        */}
+        {featuredTuitionCourses.length > 0 ? (
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {featuredTuitionCourses.map((course) => (
+              <div
+                key={course.slug}
+                className="card-base flex flex-col p-5 sm:p-6"
+              >
+                <TuitionPanel
+                  tuition={course.tuition}
+                  courseName={course.shortName}
+                  headingLevel={4}
+                  className="flex-1"
+                  footer={
+                    <div className="flex flex-col gap-2.5">
+                      <ZaloButton
+                        location={CtaLocation.Pricing}
+                        course={course.slug}
+                        size="md"
+                        label="Nhắn Zalo hỏi lịch học"
+                      />
+                      <CallButton
+                        location={CtaLocation.Pricing}
+                        course={course.slug}
+                        size="md"
+                        label="Gọi thầy Tùng"
+                      />
+                    </div>
+                  }
+                />
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        <div className="mt-6 rounded-card border border-brand-200 bg-brand-50 p-5">
+          <h2 className="text-lg">Học phí rõ ngay từ đầu</h2>
+          <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">
+            Những khoản đã bao gồm và những khoản có thể phát sinh đều được
+            thông tin trước để bạn chủ động chi phí, thay vì biết thêm khoản
+            mới khi đã học được nửa khóa.
+          </p>
+        </div>
 
         {/* Bang so sanh khoa hoc */}
         <div className="mt-10 overflow-x-auto rounded-card border border-line">
@@ -164,10 +246,10 @@ export default function TuitionPage() {
               </p>
               <p>
                 Bảng trên là mức trọn gói trung tâm đang công bố, tôi ghi thẳng
-                ra đây để bạn tính được ngân sách trước khi gọi. Con số cuối
-                cùng của bạn có thể lệch đôi chút, vì còn phụ thuộc số giờ thực
-                hành bạn cần thêm và các khoản liên quan đến hồ sơ tại thời điểm
-                đăng ký.
+                ra đây để bạn tính được ngân sách trước khi gọi. Phần thực hành
+                đã nằm trong mức trọn gói nên bạn không phải trả thêm theo số
+                giờ. Con số cuối cùng của bạn có thể lệch đôi chút vì các khoản
+                liên quan đến hồ sơ tại thời điểm đăng ký.
               </p>
               <p>
                 Khi bạn liên hệ, tôi sẽ hỏi rõ nhu cầu rồi xác nhận lại mức

@@ -78,6 +78,14 @@ export interface CourseTuition {
    * luc do JSON-LD khong sinh `offers`.
    */
   amountVnd?: number;
+  /**
+   * Nhan ngan dat ngay duoi con so, vi du "Học phí gần trọn gói".
+   *
+   * Co y de "GAN tron goi" chu khong phai "tron goi": `mayIncurAdditional`
+   * van con khoan (kham suc khoe, thi lai). Neu mot ngay nao do danh sach do
+   * rong thi moi duoc doi chu.
+   */
+  headline?: string;
   /** Cac khoan da bao gom trong hoc phi. */
   included: string[];
   /** Cac khoan co the phat sinh them. */
@@ -138,6 +146,23 @@ export interface Testimonial {
   name?: string;
   /** Anh dai dien chu cai - chi dung kem `name`, cho cam nhan that. */
   avatarInitial?: string;
+  /**
+   * Anh hoc vien that (da xin phep dung ANH).
+   *
+   * TACH RIENG khoi `isPlaceholder` MOT CACH CO Y: anh co the da duoc phep
+   * dung trong khi loi nhan xet di kem VAN CHUA duoc nguoi do duyet. Hai
+   * viec nay phai xin phep rieng, nen phai theo doi rieng.
+   */
+  photo?: ImageAsset;
+  /**
+   * `true` = loi nhan xet nay do doi ngu soan thay nguoi trong anh, DANG CHO
+   * chinh nguoi do duyet. Giao dien deo nhan canh bao rieng va hien CA O
+   * PRODUCTION - xem `TestimonialCard`.
+   *
+   * Chi dat `false` (hoac bo truong nay) SAU KHI nguoi do da doc va dong y
+   * voi dung cau chu dang hien tren web.
+   */
+  quotePendingApproval?: boolean;
 }
 
 export interface GalleryItem {

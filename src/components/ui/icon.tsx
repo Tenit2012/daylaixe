@@ -10,6 +10,12 @@ import {
   FileText,
   GraduationCap,
   Handshake,
+  /*
+    Doi ten khi import: `Infinity` la mot binding toan cuc cua JavaScript.
+    Import thang se che mat no trong pham vi file - khong gay loi o day nhung
+    la mot cai bay im lang cho bat ky ai them code vao file sau nay.
+  */
+  Infinity as InfinityIcon,
   Lightbulb,
   ListChecks,
   MapPin,
@@ -41,6 +47,7 @@ const iconMap: Record<string, LucideIcon> = {
   Footprints,
   GraduationCap,
   Handshake,
+  Infinity: InfinityIcon,
   Lightbulb,
   ListChecks,
   MapPin,

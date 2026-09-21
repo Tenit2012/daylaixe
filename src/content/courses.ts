@@ -8,21 +8,21 @@ import type { Course } from '@/types/content';
  *  - `tuition: null` khi chua chot hoc phi -> giao dien tu dong hien thi
  *    cau "Vui lòng liên hệ...". TUYET DOI khong dien so uoc chung.
  *
- * NGUON CUA CAC CON SO HOC PHI DANG HIEN (cap nhat 08/2026)
+ * NGUON CUA CAC CON SO HOC PHI DANG HIEN (cap nhat 16/09/2026)
  * ---------------------------------------------------------------------------
  * Ba hang B tu dong / B so san / C1 dang niem yet muc TRON GOI ma Trung tam
- * cong bo, lay tu ban audit doi thu 08/2026 (nguon audit dan: trang cong bo
- * gia cua Trung tam). Day KHONG phai so uoc chung do website tu dat ra.
+ * cong bo. Day KHONG phai so uoc chung do website tu dat ra.
  *
- * DA DAO SO GIUA HAI KHOA HANG B SO VOI BAN AUDIT - doc truoc khi "sua lai".
- * Ban audit ghi tu dong 18,9tr / so san 18,5tr. Nhung chinh no, o dong khao
- * sat mat bang, lai ghi nguoc: so san 20-27tr cao hon tu dong 18-25tr. Hai
- * dong trong cung mot tai lieu da nhau, va thu tu dung theo mat bang thi
- * truong la SO SAN CAO HON. Chu website xac nhan lay thu tu do, nen o day
- * so san 18,9tr va tu dong 18,5tr.
+ * THU TU HAI KHOA HANG B - DA DUOC CHU WEBSITE CHOT NGAY 16/09/2026:
+ *   B so tu dong = 18.900.000 d
+ *   B so san     = 18.500.000 d
  *
- * => Neu doi chieu voi file audit thay "lech", day KHONG phai loi chep sai.
- *    Van can thay xac nhan muc chinh thuc de chot han.
+ * Truoc ngay do hai con so nay dang bi dat nguoc (tu dong 18,5tr / so san
+ * 18,9tr) vi mot suy luan tu "mat bang thi truong" trong ban audit 08/2026:
+ * ban audit tu no da mau thuan (mot dong ghi tu dong 18,9tr, mot dong khac
+ * ghi so san cao hon), va luc do khong co ai xac nhan nen da chon theo mat
+ * bang. Nay chu website xac nhan truc tiep, nen muc tren la SOURCE OF TRUTH -
+ * khong suy luan lai tu ban audit nua.
  *
  * `bo-tuc-tay-lai` va `luyen-sa-hinh` VAN de `null`: ban audit ghi ro hai muc
  * nay "can xac nhan muc that voi thay", tuc chua co con so nao de dan. Giu
@@ -33,9 +33,11 @@ import type { Course } from '@/types/content';
  */
 
 /**
- * Cac khoan DA NAM TRONG goi tron - giong nhau o ca ba hang B tu dong,
- * B so san va C1. Tach rieng de ba khoa khong the lech nhau khi Trung tam
- * doi chinh sach.
+ * Cac khoan DA NAM TRONG goi tron - ban CO SO.
+ *
+ * Hien chi con hang C1 dung mang nay. Hai khoa hang B da tach sang
+ * `packageIncludedHangB` ngay ben duoi vi co them phan ho tro khong gioi han
+ * gio thuc hanh; xem ghi chu o do truoc khi gop hai mang lai lam mot.
  */
 const packageIncluded = [
   'Học phí đào tạo lý thuyết và thực hành 1 kèm 1',
@@ -45,12 +47,43 @@ const packageIncluded = [
 ];
 
 /**
+ * Goi tron CUA RIENG HAI KHOA HANG B.
+ *
+ * Khac `packageIncluded` dung chung o dung MOT dong: ho tro thuc hanh khong
+ * gioi han gio. Chu website xac nhan chinh sach nay cho hoc vien hang B hoc
+ * tai Truong An Ninh (xac nhan 16/09/2026).
+ *
+ * VI SAO KHONG NHET THANG VAO `packageIncluded`: mang do con duoc hang C1
+ * dung lai. Chua co xac nhan nao noi C1 cung duoc ho tro khong gioi han gio,
+ * nen them vao mang chung se tu dong sinh ra mot loi hua chua ai xac nhan o
+ * trang C1.
+ *
+ * VE CACH DIEN DAT: phai giu nguyen menh de "theo chinh sach dao tao cua
+ * thay va Trung tam". Bo cum do di thi cau con lai doc thanh "muon hoc bao
+ * nhieu gio cung duoc, bat cu luc nao" - mot claim rong hon han thu duoc xac
+ * nhan, va khong the giu duoc khi lich san tap kin.
+ */
+const packageIncludedHangB = [
+  'Học phí đào tạo lý thuyết và thực hành 1 kèm 1',
+  'Hỗ trợ thực hành không giới hạn giờ theo chính sách đào tạo của thầy và Trung tâm',
+  'Xăng xe, bãi tập và sân sa hình',
+  'Giờ học cabin và phần mềm mô phỏng tình huống giao thông',
+  'Lệ phí thi tốt nghiệp, lệ phí sát hạch và lệ phí cấp giấy phép lái xe',
+  'Không phụ thu cuối tuần',
+];
+
+/**
  * Cac khoan KHONG nam trong goi tron.
  *
  * CHI liet ke khoan TIEN co the phat sinh. Cac loi cam ket ("khong phu thu
- * cuoi tuan") thuoc ve `note`, khong duoc dat vao day - giao dien in danh
- * sach nay duoi tieu de "Co the phat sinh", nen mot loi cam ket dat o day se
- * bi doc nguoc thanh mot khoan phai tra them.
+ * cuoi tuan") thuoc ve `included` hoac `note`, khong duoc dat vao day - giao
+ * dien in danh sach nay duoi tieu de "Co the phat sinh", nen mot loi cam ket
+ * dat o day se bi doc nguoc thanh mot khoan phai tra them.
+ *
+ * MANG NAY PHAI KHONG RONG chung nao nhan con ghi "GAN tron goi". Neu mot
+ * ngay nao do khong con khoan nao phat sinh that, sua `headline` truoc roi
+ * moi lam rong mang - dung de giao dien noi "gan tron goi" ben canh mot cot
+ * "Co the phat sinh" trong khong.
  */
 const packageMayIncurAdditional = [
   'Khám sức khỏe: khoảng 350.000 - 500.000 đ, nếu bạn chưa có giấy khám còn hiệu lực',
@@ -130,11 +163,12 @@ export const courses: Course[] = [
       'Ảnh thẻ theo kích thước cơ sở đào tạo hướng dẫn',
     ],
     tuition: {
-      displayValue: '18.500.000 đ',
-      amountVnd: 18_500_000,
-      included: packageIncluded,
+      displayValue: '18.900.000 đ',
+      amountVnd: 18_900_000,
+      headline: 'Học phí gần trọn gói',
+      included: packageIncludedHangB,
       mayIncurAdditional: packageMayIncurAdditional,
-      note: `Mức trọn gói Trung tâm đang công bố cho hạng B số tự động (giá gốc 21.000.000 đ). Không phụ thu cuối tuần. ${paymentNote}`,
+      note: `Mức trọn gói Trung tâm đang công bố cho hạng B số tự động (giá gốc 21.000.000 đ). ${paymentNote}`,
     },
     faqs: [
       {
@@ -149,9 +183,9 @@ export const courses: Course[] = [
       },
     ],
     highlights: [
+      'Học 1 kèm 1, không giới hạn giờ thực hành',
       'Thao tác đơn giản, dễ làm quen',
       'Phù hợp người mới hoàn toàn',
-      'Tập trung vào quan sát và xử lý tình huống',
     ],
     image: {
       src: '/images/courses/hang-b-so-tu-dong.webp',
@@ -222,11 +256,12 @@ export const courses: Course[] = [
       'Ảnh thẻ theo kích thước cơ sở đào tạo hướng dẫn',
     ],
     tuition: {
-      displayValue: '18.900.000 đ',
-      amountVnd: 18_900_000,
-      included: packageIncluded,
+      displayValue: '18.500.000 đ',
+      amountVnd: 18_500_000,
+      headline: 'Học phí gần trọn gói',
+      included: packageIncludedHangB,
       mayIncurAdditional: packageMayIncurAdditional,
-      note: `Mức trọn gói Trung tâm đang công bố cho hạng B số sàn (giá gốc 21.000.000 đ). Không phụ thu cuối tuần. ${paymentNote}`,
+      note: `Mức trọn gói Trung tâm đang công bố cho hạng B số sàn (giá gốc 21.000.000 đ). ${paymentNote}`,
     },
     faqs: [
       {
@@ -241,8 +276,8 @@ export const courses: Course[] = [
       },
     ],
     highlights: [
+      'Học 1 kèm 1, không giới hạn giờ thực hành',
       'Hiểu rõ cách xe vận hành',
-      'Tự tin cầm lái nhiều loại xe',
       'Luyện kỹ bài dừng và khởi hành ngang dốc',
     ],
     image: {

@@ -86,6 +86,23 @@ export const whyChooseReasons: Array<{
   icon: string;
 }> = [
   {
+    /*
+     * Dat DAU danh sach vi day la loi the khac biet nhat, va la thu duy nhat
+     * o day tra loi truc tiep cau hoi "18,9 trieu thi duoc bao nhieu gio".
+     *
+     * GIOI HAN CUA CLAIM NAY - doc truoc khi viet lai cho "manh hon":
+     * dieu da duoc xac nhan chi la KHONG GIOI HAN GIO THUC HANH. Khong duoc
+     * suy rong thanh "hoc den khi dau", "bao dau", "khong gioi han xe/xang",
+     * hay "muon hoc luc nao cung duoc" - lich van phu thuoc san tap va lich
+     * day. Cung khong duoc them ve doi thu ("cac trung tam khac gioi han 30
+     * gio"): khong co so lieu nao kiem chung duoc dieu do.
+     */
+    title: 'Không giới hạn giờ thực hành',
+    description:
+      'Bạn học theo năng lực thực tế, có thể luyện thêm để vững tay lái thay vì bị bó vào một gói số giờ cố định. Lịch cụ thể mình sắp xếp theo sân tập và giờ dạy.',
+    icon: 'Infinity',
+  },
+  {
     title: 'Thầy trực tiếp tư vấn',
     description:
       'Bạn nhắn tin là tôi trả lời, không qua nhân viên trung gian. Nhờ vậy thông tin không bị tam sao thất bản.',

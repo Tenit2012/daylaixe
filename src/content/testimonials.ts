@@ -23,7 +23,7 @@ import type { Testimonial } from '@/types/content';
  *      cung mot danh sach.
  *
  * Muon TAT hoan toan khoi cam nhan: de mang nay rong `[]`. Khoi tren trang
- * chu va luoi tren /cam-nhan-hoc-vien se tu an, khong hien khung trong.
+ * chu se tu an, khong hien khung trong.
  *
  * Xem them docs/CONTENT_GUIDE.md
  * ============================================================================
@@ -31,6 +31,29 @@ import type { Testimonial } from '@/types/content';
 
 /** Nhan hien tren the va dung de doi chieu trong test. */
 export const ILLUSTRATIVE_LABEL = 'Tình huống minh họa';
+
+/**
+ * Nhan cho muc CO ANH THAT nhung LOI NHAN XET CHUA duoc nguoi do duyet.
+ *
+ * Khac `ILLUSTRATIVE_LABEL`: o day nguoi trong anh la that va da dong y cho
+ * dung anh, chi rieng cau chu la do doi ngu soan ho. Vi vay khong the deo
+ * nhan "tinh huong minh hoa" (sai - nguoi that), cung khong the de tran
+ * (sai - ho chua noi cau do).
+ */
+export const PENDING_APPROVAL_LABEL = 'Nội dung chờ học viên duyệt';
+
+/**
+ * Gia tri `period` cho muc da duoc chinh hoc vien duyet loi.
+ *
+ * KHONG phai thoi gian hoc that: khoa hoc cu the cua tung nguoi chua duoc
+ * xac nhan, ma `period` chi hien thi khi the co `name` VA khong co anh (xem
+ * `TestimonialCard`). Dat mot chuoi mo ta trung tinh o day de khong ai doc
+ * luot roi tuong day la thang/nam co that.
+ *
+ * Khi biet khoa hoc that cua tung nguoi: thay bang chuoi rieng cho tung muc,
+ * vi du 'Tháng 6/2026'.
+ */
+export const APPROVED_PERIOD_LABEL = 'Đã học tại Thầy Tùng';
 
 export const testimonials: Testimonial[] = [
   {
@@ -114,6 +137,132 @@ export const testimonials: Testimonial[] = [
     isPlaceholder: true,
   },
 ];
+
+/**
+ * ============================================================================
+ * NAM MUC CO ANH HOC VIEN THAT - DOC KY TRUOC KHI SUA
+ * ============================================================================
+ * Khac hoan toan `testimonials` o tren: nguoi trong anh la NGUOI THAT.
+ *
+ * TRANG THAI HIEN TAI (20/09/2026):
+ *   - ANH      : chu website xac nhan DA XIN PHEP dung tren website. OK.
+ *   - LOI VIET : chu website xac nhan da gui dung cau chu duoi day cho tung
+ *                nguoi doc va TAT CA dong y nguyen van (20/09/2026). OK -
+ *                vi the khong con `quotePendingApproval`.
+ *   - TEN      : dang VIET TAT theo dung mong muon cua cac ban (20/09/2026).
+ *                Chu website cung cap ten day du, `name` o day la ban rut
+ *                gon - KHONG doc tu bang ten tren ao trong anh.
+ *
+ * KHONG doi `name` thanh ho ten day du neu khong co xac nhan moi: cac ban
+ * dong y hien ten RUT GON, khong phai ten day du. Test trong
+ * `tests/unit/testimonials-display.test.tsx` chan viec do.
+ *
+ * CO Y: `sp-03` va `sp-05` HIEN CUNG mot ten 'Anh T.'. Day la lua chon cua
+ * chu website (20/09/2026) sau khi da duoc neu ro rang hai the se trong nhu
+ * cung mot nguoi viet hai cam nhan. Dung "sua" lai thanh hai ten khac nhau
+ * neu khong co yeu cau moi.
+ *
+ * Nguoi nao khong muon dung nua thi XOA CA MUC va xoa file anh tuong ung
+ * trong `public/images/students/`.
+ *
+ * Anh do `scripts/process-photos.mjs` sinh ra tu `assets/photos/`. Ten file
+ * danh so, KHONG theo ten nguoi - doi ten that sau nay khong phai sua anh.
+ * ============================================================================
+ */
+export const studentPhotoTestimonials: Testimonial[] = [
+  {
+    id: 'sp-05',
+    situation: 'Học để tự tin ra đường',
+    period: APPROVED_PERIOD_LABEL,
+    quote:
+      'Thầy gần gũi, chạy sai là chỉ luôn lỗi với cách sửa. Không chỉ tập cho qua bài thi mà còn nhắc nhiều tình huống gặp ngoài đường thật. Với người mới như mình thì học kiểu này dễ theo.',
+    isPlaceholder: false,
+    name: 'Anh T.',
+    photo: {
+      src: '/images/students/hoc-vien-05.webp',
+      alt: 'Học viên ngồi ghế lái trong buổi thực hành tại trung tâm',
+      width: 640,
+      height: 640,
+    },
+  },
+  {
+    id: 'sp-01',
+    situation: 'Chưa từng cầm vô-lăng',
+    period: APPROVED_PERIOD_LABEL,
+    quote:
+      'Thú thật là buổi đầu mình hơi run vì chưa từng cầm vô-lăng. Thầy cho đi chậm trong sân trước, sai chỗ nào nói luôn chỗ đó chứ không để dồn tới cuối buổi. Học một thời gian thì đỡ căng hơn nhiều.',
+    isPlaceholder: false,
+    name: 'Anh K.',
+    photo: {
+      src: '/images/students/hoc-vien-01.webp',
+      alt: 'Học viên ngồi ghế lái trong buổi thực hành tại trung tâm',
+      width: 640,
+      height: 640,
+    },
+  },
+  {
+    id: 'sp-02',
+    situation: 'Cần luyện lại phần còn yếu',
+    period: APPROVED_PERIOD_LABEL,
+    quote:
+      'Điều mình thấy dễ chịu là phần nào chưa chắc thì được tập lại, không bị hối. Thầy cũng không kiểu chạy cho đủ buổi rồi thôi mà chỉ tới lúc mình làm được mới qua bài khác.',
+    isPlaceholder: false,
+    name: 'Anh D.',
+    photo: {
+      src: '/images/students/hoc-vien-02.webp',
+      alt: 'Học viên ngồi ghế lái trong buổi thực hành tại trung tâm',
+      width: 640,
+      height: 640,
+    },
+  },
+  {
+    id: 'sp-03',
+    situation: 'Hay mất điểm khi căn xe',
+    period: APPROVED_PERIOD_LABEL,
+    quote:
+      'Trước mình ngán nhất mấy bài phải căn xe, cứ vào là lệch. Thầy chỉ điểm căn cần nhìn, rồi giải thích vì sao xe bị lệch chứ không bắt học thuộc. Hiểu được lý do thì tự nhiên nhớ lâu hơn.',
+    isPlaceholder: false,
+    name: 'Anh T.',
+    photo: {
+      src: '/images/students/hoc-vien-03.webp',
+      alt: 'Học viên ngồi ghế lái trong buổi thực hành tại trung tâm',
+      width: 640,
+      height: 640,
+    },
+  },
+  {
+    id: 'sp-04',
+    situation: 'Sắp xếp lịch quanh giờ làm',
+    period: APPROVED_PERIOD_LABEL,
+    quote:
+      'Mình đi làm nên giờ giấc không cố định được. Trao đổi trước với thầy thì sắp xếp được buổi phù hợp. Trong lúc học có gì chưa hiểu cứ hỏi, thầy giải thích lại chứ không ngại nói đi nói lại.',
+    isPlaceholder: false,
+    name: 'Anh Q.',
+    photo: {
+      src: '/images/students/hoc-vien-04.webp',
+      alt: 'Học viên ngồi ghế lái trong buổi thực hành tại trung tâm',
+      width: 640,
+      height: 640,
+    },
+  }
+];
+
+/** Con muc nao dang cho nguoi trong anh duyet loi khong. */
+export function hasPendingApprovalQuotes(): boolean {
+  return studentPhotoTestimonials.some((item) => item.quotePendingApproval);
+}
+
+/**
+ * Canh bao dat ngay dau khoi anh hoc vien.
+ *
+ * CHI hien khi con muc `quotePendingApproval` - xem `StudentPhotosSection`.
+ * Khi tat ca da duyet thi khoi khong hien doan nao ca (20/09/2026).
+ *
+ * Noi ro TUNG phan nao da duoc phep, phan nao chua - khong gop chung thanh
+ * mot cau mo ho. Nguoi doc phai biet chinh xac ho dang nhin cai gi.
+ */
+export const studentPhotoDisclosure =
+  'Lưu ý: Ảnh dưới đây là học viên thật, đã được đồng ý cho sử dụng trên website. Phần lời viết kèm theo do chúng tôi soạn và đang chờ chính học viên trong ảnh xác nhận, nên chưa phải nguyên văn lời của họ.';
 
 /**
  * Doan giai thich dat ngay dau khoi cam nhan.

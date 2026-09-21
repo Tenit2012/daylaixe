@@ -220,6 +220,7 @@ describe('dieu huong', () => {
       '/gioi-thieu',
       '/khoa-hoc',
       '/hoc-phi-lo-trinh',
+      '/hoc-vien',
       '/kien-thuc',
       '/lien-he',
     ]) {

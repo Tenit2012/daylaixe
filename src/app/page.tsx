@@ -8,6 +8,7 @@ import { LearningProcessSection } from '@/components/sections/learning-process-s
 import { CoursesSection } from '@/components/sections/courses-section';
 import { WhyChooseSection } from '@/components/sections/why-choose-section';
 import { GallerySection } from '@/components/sections/gallery-section';
+import { StudentPhotosSection } from '@/components/sections/student-photos-section';
 import { TestimonialsSection } from '@/components/sections/testimonials-section';
 import { FaqSection } from '@/components/sections/faq-section';
 import { ContactSection } from '@/components/sections/contact-section';
@@ -38,10 +39,16 @@ export const metadata: Metadata = buildPageMetadata({
  *   6. Dang ky ra sao?                -> LearningProcess (ban 6 buoc)
  *   7. Co nhung khoa nao?             -> Courses
  *   8. Thay day the nao?              -> WhyChoose
- *   9. Cho xem them hinh anh.         -> Gallery
- *  10. Nguoi hoc roi noi gi?          -> Testimonials
- *  11. Toi con thac mac.              -> FAQ
- *  12. Lien he thoi.                  -> ContactSection
+ *   9. Ai da hoc roi?                 -> StudentPhotos (anh hoc vien that)
+ *  10. Cho xem them hinh anh.         -> Gallery
+ *  11. Nguoi hoc roi noi gi?          -> Testimonials (tinh huong minh hoa)
+ *  12. Toi con thac mac.              -> FAQ
+ *  13. Lien he thoi.                  -> ContactSection
+ *
+ * Buoc 9 dat NGAY SAU WhyChoose: vua doc xong ly do nen chon thay thi gap
+ * ngay nguoi that da hoc - do la cho bang chung co suc nang nhat. Khoi nay
+ * TACH RIENG khoi buoc 11 vi hai khoi co muc do xac thuc khac nhau; xem ghi
+ * chu trong `student-photos-section.tsx`.
  *
  * Nen sang/toi xen ke duoc chi dinh thu cong o day thay vi de tung component
  * tu quyet - vi thu tu cac muc con thay doi.
@@ -64,8 +71,23 @@ export default function HomePage() {
       />
       <CoursesSection />
       <WhyChooseSection />
+      {/*
+        Chi 3/5 the o trang chu + nut dan sang /hoc-vien: trang chu da rat
+        dai, va hien du 5 the o day thi trang /hoc-vien thanh ban sao y het,
+        khong con ly do de bam vao.
+      */}
+      <StudentPhotosSection
+        location={CtaLocation.Home}
+        tone="muted"
+        limit={3}
+        showAllLink
+      />
       <GallerySection />
-      <TestimonialsSection tone="muted" />
+      {/*
+        limit=6 thay vi mac dinh 3: trang /cam-nhan-hoc-vien da bi xoa
+        (20/09/2026) nen khong con cho nao xem day du 10 tinh huong nua.
+      */}
+      <TestimonialsSection tone="default" limit={6} />
       <FaqSection tone="default" />
       <ContactSection location={CtaLocation.Home} tone="muted" />
 

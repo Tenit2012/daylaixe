@@ -7,7 +7,7 @@ import type { GalleryItem } from '@/types/content';
  * khoa K77A - 78T, ngay 05/09/2026, do chu website cung cap.
  *
  * VI SAO TACH RA KHOI `gallery.ts`:
- * `galleryItems` duoc dung o BA noi (trang chu, /gioi-thieu, /cam-nhan-hoc-vien).
+ * `galleryItems` duoc dung o HAI noi (trang chu, /gioi-thieu).
  * Nhom anh nay chi thuoc ve MOT trang - /gioi-thieu - nen de chung vao mang
  * cu se tu dong day chung ra ca ba trang. Mot mang rieng giu quyen quyet dinh
  * "hien o dau" nam o trang, khong nam o file du lieu.

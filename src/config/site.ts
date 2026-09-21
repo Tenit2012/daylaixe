@@ -273,9 +273,9 @@ export const siteConfig = {
       publicEnv.NEXT_PUBLIC_CENTER_NAME
     }`,
     /**
-     * Ba dieu can noi ngay duoi tieu de hero, moi dieu MOT MUC RIENG.
+     * Nhung dieu can noi ngay duoi tieu de hero, moi dieu MOT MUC RIENG.
      *
-     * Truoc day day la MOT chuoi duy nhat, ba y dinh vao nhau bang dau "•".
+     * Truoc day day la MOT chuoi duy nhat, cac y dinh vao nhau bang dau "•".
      * Cach do hong khi xuong dong: dau cham roi vao dau hoac cuoi dong tuy be
      * ngang man hinh, va cum "he dan su va he Cong an" bi cat doi giua hai
      * dong. Doc thanh mot cau lan man thay vi ba dieu ro rang.
@@ -286,6 +286,13 @@ export const siteConfig = {
      * bi mo coi o dau dong.
      */
     heroHighlights: [
+      /*
+       * Cum nay phai giu nguyen chu "gio thuc hanh". Dieu chu website xac
+       * nhan (16/09/2026) la khong gioi han GIO THUC HANH - rut gon thanh
+       * "khong gioi han" khong thoi se doc ra thanh khong gioi han moi thu
+       * (xe, xang, lich hoc), rong hon han thu duoc xac nhan.
+       */
+      'Không giới hạn giờ thực hành',
       `${experienceLabel} kinh nghiệm giảng dạy`,
       `Hướng dẫn ${studentGroups}`,
       `Đăng ký trực tiếp với ${
@@ -374,6 +381,7 @@ export const mainNav = [
     shortLabel: 'Học phí',
     href: '/hoc-phi-lo-trinh',
   },
+  { label: 'Học viên', shortLabel: 'Học viên', href: '/hoc-vien' },
   { label: 'Kiến thức', shortLabel: 'Kiến thức', href: '/kien-thuc' },
   { label: 'Liên hệ', shortLabel: 'Liên hệ', href: '/lien-he' },
 ] as const;

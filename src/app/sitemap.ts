@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/gioi-thieu', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/lien-he', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/kien-thuc', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/cam-nhan-hoc-vien', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/hoc-vien', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/chinh-sach-bao-mat', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/dieu-khoan-su-dung', priority: 0.3, changeFrequency: 'yearly' },
   ];

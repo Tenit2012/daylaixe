@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Info } from 'lucide-react';
 import {
   hasPlaceholderTestimonials,
@@ -7,7 +6,6 @@ import {
 } from '@/content/testimonials';
 import { Section, SectionHeading } from '@/components/ui/section';
 import { TestimonialCard } from '@/components/testimonials/testimonial-card';
-import { buttonClasses } from '@/components/ui/button';
 import { Reveal } from '@/components/ui/reveal';
 import { staggerDelay } from '@/lib/utils/stagger';
 
@@ -68,14 +66,6 @@ export function TestimonialsSection({
         ))}
       </ul>
 
-      <div className="mt-9 text-center">
-        <Link
-          href="/cam-nhan-hoc-vien"
-          className={buttonClasses('outline', 'md')}
-        >
-          Xem tất cả trải nghiệm
-        </Link>
-      </div>
     </Section>
   );
 }
