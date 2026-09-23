@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils/cn';
 /**
  * Cac cum duoc lam noi bat trong danh sach "Da bao gom".
  *
- * Ba diem nay la thu khien nguoi doc hieu 18,9tr / 18,5tr thuc su mua duoc
+ * Ba diem nay la thu khien nguoi doc hieu 18,9tr / 19,9tr thuc su mua duoc
  * gi, nen chung phai doc ra duoc TRONG MOT LUOT LIEC chu khong chim giua
  * danh sach. Cach lam: to dam dung doan chu do trong cau, giu nguyen phan
  * con lai.
@@ -23,7 +23,7 @@ import { cn } from '@/lib/utils/cn';
 const emphasisPhrases = [
   '1 kèm 1',
   'không giới hạn giờ',
-  'Lệ phí thi tốt nghiệp, lệ phí sát hạch và lệ phí cấp giấy phép lái xe',
+  'Không phụ thu cuối tuần',
 ];
 
 /** Tach mot dong thanh cac manh, danh dau manh nao can to dam. */
@@ -49,6 +49,20 @@ interface TuitionPanelProps {
   headingLevel?: 3 | 4;
   /** CTA dat cuoi the. Trang chi tiet khoa da co CTA rieng nen de trong. */
   footer?: React.ReactNode;
+  /**
+   * In cot "Co the phat sinh" hay khong. MAC DINH `true`.
+   *
+   * Chi trang /hoc-phi-lo-trinh dat `false` (yeu cau 21/09/2026: the hoc phi
+   * o do can gon). Khi tat, trang DO phai tu noi ve cac khoan phat sinh o cho
+   * khac - o day la muc "Cac luu y quan trong" cuoi trang. Nhan tren the ghi
+   * "Hoc phi tron goi", nen mot trang vua tat cot nay vua khong nhac gi den
+   * kham suc khoe / thi lai se thanh mot loi hua sai.
+   *
+   * Mac dinh de `true` co chu dich: trang chi tiet tung khoa khong phai khai
+   * bao gi ma van giu day du thong tin - quen sua mot cho thi mat gon, chu
+   * khong mat canh bao.
+   */
+  showMayIncurAdditional?: boolean;
   className?: string;
 }
 
@@ -66,6 +80,7 @@ export function TuitionPanel({
   courseName,
   headingLevel = 4,
   footer,
+  showMayIncurAdditional = true,
   className,
 }: TuitionPanelProps) {
   const Heading = `h${headingLevel}` as 'h3' | 'h4';
@@ -107,22 +122,24 @@ export function TuitionPanel({
           </ul>
         </div>
 
-        <div>
-          <Heading className="text-base text-accent-700">
-            Có thể phát sinh
-          </Heading>
-          <ul className="mt-2.5 space-y-2 text-sm leading-relaxed text-ink-muted">
-            {tuition.mayIncurAdditional.map((item) => (
-              <li key={item} className="flex items-start gap-2">
-                <AlertTriangle
-                  aria-hidden="true"
-                  className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-600"
-                />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {showMayIncurAdditional ? (
+          <div>
+            <Heading className="text-base text-accent-700">
+              Có thể phát sinh
+            </Heading>
+            <ul className="mt-2.5 space-y-2 text-sm leading-relaxed text-ink-muted">
+              {tuition.mayIncurAdditional.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <AlertTriangle
+                    aria-hidden="true"
+                    className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent-600"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </div>
 
       {tuition.note ? (

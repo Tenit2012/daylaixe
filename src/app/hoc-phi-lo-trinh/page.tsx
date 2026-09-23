@@ -31,10 +31,27 @@ const transparencyPoints = [
   'Giữ lại thông tin đã trao đổi để bạn đối chiếu khi cần.',
 ];
 
+/*
+ * CAC KHOAN CO THE PHAT SINH - CHUYEN VE DAY NGAY 21/09/2026.
+ *
+ * Truoc do ba khoan nay in thanh mot cot "Co the phat sinh" ngay tren the
+ * hoc phi (xem `TuitionPanel`). Chu website yeu cau bo cot do khoi the cho
+ * gon, NHUNG khong duoc bo noi dung: nhan tren the ghi "Hoc phi tron goi",
+ * ma "tron goi" dung mot minh se bi doc thanh "khong bao gio phai tra them
+ * dong nao". Ba khoan nay chinh la thu giu cau do khong thanh loi hua sai.
+ *
+ * VI THE: neu mot ngay nao do ai muon go tiep cac dong nay khoi `notes`,
+ * phai sua `headline` trong `courses.ts` truoc - dung de trang con chu
+ * "tron goi" ma khong con cho nao noi ve kham suc khoe / thi lai.
+ *
+ * Con so giu nguyen y het ban cu tren the, khong lam tron lai.
+ */
 const notes = [
-  'Học phí và lệ phí do cơ sở đào tạo và quy định hiện hành xác định, có thể thay đổi theo thời điểm.',
+  'Học phí do cơ sở đào tạo công bố và có thể thay đổi theo từng đợt khai giảng.',
   'Lịch khai giảng phụ thuộc vào cơ sở đào tạo, không phải lúc nào cũng có khóa mở ngay.',
-  'Chi phí khám sức khỏe và các khoản liên quan đến hồ sơ thường được tính riêng.',
+  'Khám sức khỏe khoảng 350.000 - 500.000 đ, chỉ khi bạn chưa có giấy khám còn hiệu lực. Khoản này không nằm trong học phí trọn gói.',
+  'Thi lại khi trượt khoảng 1.500.000 - 3.000.000 đ mỗi lần, tùy nội dung phải thi lại.',
+  'Thuê xe chip tập thêm trước ngày thi là tùy chọn, chỉ phát sinh khi bạn chủ động yêu cầu.',
   /*
    * Cau nay TRUOC DAY viet "luyen them gio ngoai chuong trinh duoc thoa thuan
    * rieng", tuc la doc ra thanh mot khoan phai tra them. Tu 16/09/2026 hai
@@ -51,7 +68,7 @@ const notes = [
  *
  * Chi hai hang B: day la hai khoa co muc tron goi chot va co danh sach quyen
  * loi day du, nen the moi noi duoc dieu ma bang khong noi duoc - 18,9tr /
- * 18,5tr MUA DUOC GI. Ba khoa con lai (C1 tinh theo dot, bo tuc va sa hinh
+ * 19,9tr MUA DUOC GI. Ba khoa con lai (C1 tinh theo dot, bo tuc va sa hinh
  * chua chot gia) khong co du du lieu de lap day mot the; de chung o bang so
  * sanh ben duoi dung hon la ve the rong.
  *
@@ -108,6 +125,12 @@ export default function TuitionPage() {
                   tuition={course.tuition}
                   courseName={course.shortName}
                   headingLevel={4}
+                  /*
+                   * Cot "Co the phat sinh" da chuyen xuong muc "Cac luu y
+                   * quan trong" cuoi trang (21/09/2026) de the nay gon hon.
+                   * Dung bo not phan o duoi: xem ghi chu tai `notes`.
+                   */
+                  showMayIncurAdditional={false}
                   className="flex-1"
                   footer={
                     <div className="flex flex-col gap-2.5">
@@ -239,10 +262,18 @@ export default function TuitionPage() {
               Cách thầy tư vấn học phí
             </h2>
             <div className="prose-article mt-4">
+              {/*
+                Doan nay TRUOC DAY mo dau bang "ban dong truc tiep cho trung
+                tam chu khong dong cho toi. Toi khong thu bat ky khoan nao
+                rieng." Chu website yeu cau bo ngay 21/09/2026, cung dot voi
+                hai cau y het o ghi chu the hoc phi va ghi chu hang C1.
+                Sau dot nay trang KHONG con cho nao noi ve viec dong tien cho
+                ai - do la lua chon cua chu website, khong phai sot.
+              */}
               <p>
-                Học phí do trung tâm công bố, và bạn đóng trực tiếp cho trung
-                tâm chứ không đóng cho tôi. Tôi không thu bất kỳ khoản nào riêng
-                và không nhận tiền đặt cọc giữ chỗ.
+                Học phí do trung tâm công bố. Học phí trọn gói chia làm 2 đợt:
+                đợt 1 đóng 10.000.000 đ, đợt 2 đóng hết phần còn lại khi khai
+                giảng.
               </p>
               <p>
                 Bảng trên là mức trọn gói trung tâm đang công bố, tôi ghi thẳng

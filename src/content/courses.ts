@@ -8,21 +8,22 @@ import type { Course } from '@/types/content';
  *  - `tuition: null` khi chua chot hoc phi -> giao dien tu dong hien thi
  *    cau "Vui lòng liên hệ...". TUYET DOI khong dien so uoc chung.
  *
- * NGUON CUA CAC CON SO HOC PHI DANG HIEN (cap nhat 16/09/2026)
+ * NGUON CUA CAC CON SO HOC PHI DANG HIEN (cap nhat 21/09/2026)
  * ---------------------------------------------------------------------------
  * Ba hang B tu dong / B so san / C1 dang niem yet muc TRON GOI ma Trung tam
  * cong bo. Day KHONG phai so uoc chung do website tu dat ra.
  *
- * THU TU HAI KHOA HANG B - DA DUOC CHU WEBSITE CHOT NGAY 16/09/2026:
- *   B so tu dong = 18.900.000 d
- *   B so san     = 18.500.000 d
+ * HAI KHOA HANG B - CHU WEBSITE CHOT LAI NGAY 21/09/2026:
+ *   B so san     = 18.900.000 d
+ *   B so tu dong = 19.900.000 d
  *
- * Truoc ngay do hai con so nay dang bi dat nguoc (tu dong 18,5tr / so san
- * 18,9tr) vi mot suy luan tu "mat bang thi truong" trong ban audit 08/2026:
- * ban audit tu no da mau thuan (mot dong ghi tu dong 18,9tr, mot dong khac
- * ghi so san cao hon), va luc do khong co ai xac nhan nen da chon theo mat
- * bang. Nay chu website xac nhan truc tiep, nen muc tren la SOURCE OF TRUTH -
- * khong suy luan lai tu ban audit nua.
+ * Day la lan chot THU HAI. Ban 16/09/2026 ghi tu dong 18,9tr / so san 18,5tr;
+ * ban 21/09/2026 nang ca hai va giu dung thu tu "so san re hon tu dong". Muc
+ * moi la SOURCE OF TRUTH - khong suy luan lai tu cac ban audit cu.
+ *
+ * CACH DONG TIEN (chot 21/09/2026): tron goi chia 2 dot, dot 1 = 10.000.000 d,
+ * dot 2 dong het phan con lai khi khai giang. Truoc do trang ghi "dat coc
+ * 5.000.000 d, con lai 2 - 3 dot" - da bo.
  *
  * `bo-tuc-tay-lai` va `luyen-sa-hinh` VAN de `null`: ban audit ghi ro hai muc
  * nay "can xac nhan muc that voi thay", tuc chua co con so nao de dan. Giu
@@ -43,7 +44,6 @@ const packageIncluded = [
   'Học phí đào tạo lý thuyết và thực hành 1 kèm 1',
   'Xăng xe, bãi tập và sân sa hình',
   'Giờ học cabin và phần mềm mô phỏng tình huống giao thông',
-  'Lệ phí thi tốt nghiệp, lệ phí sát hạch và lệ phí cấp giấy phép lái xe',
 ];
 
 /**
@@ -68,7 +68,6 @@ const packageIncludedHangB = [
   'Hỗ trợ thực hành không giới hạn giờ theo chính sách đào tạo của thầy và Trung tâm',
   'Xăng xe, bãi tập và sân sa hình',
   'Giờ học cabin và phần mềm mô phỏng tình huống giao thông',
-  'Lệ phí thi tốt nghiệp, lệ phí sát hạch và lệ phí cấp giấy phép lái xe',
   'Không phụ thu cuối tuần',
 ];
 
@@ -80,10 +79,10 @@ const packageIncludedHangB = [
  * dien in danh sach nay duoi tieu de "Co the phat sinh", nen mot loi cam ket
  * dat o day se bi doc nguoc thanh mot khoan phai tra them.
  *
- * MANG NAY PHAI KHONG RONG chung nao nhan con ghi "GAN tron goi". Neu mot
- * ngay nao do khong con khoan nao phat sinh that, sua `headline` truoc roi
- * moi lam rong mang - dung de giao dien noi "gan tron goi" ben canh mot cot
- * "Co the phat sinh" trong khong.
+ * MANG NAY PHAI KHONG RONG: nhan hien ghi "Hoc phi tron goi", va mot cot
+ * "Co the phat sinh" trong khong ben canh cau do se lam nguoi doc hieu la
+ * khong bao gio phai tra them dong nao. Neu that su khong con khoan phat
+ * sinh nao, sua `headline` truoc roi moi lam rong mang.
  */
 const packageMayIncurAdditional = [
   'Khám sức khỏe: khoảng 350.000 - 500.000 đ, nếu bạn chưa có giấy khám còn hiệu lực',
@@ -94,13 +93,17 @@ const packageMayIncurAdditional = [
 /**
  * Cach dien dat viec dong tien.
  *
- * PHAI giu ve "dong truc tiep cho Trung tam": trang /hoc-phi-lo-trinh khang
- * dinh thay khong thu khoan rieng va khong nhan coc giu cho. Neu cau nay chi
- * ghi "dat coc 5.000.000 d" ma khong noi coc cho AI, hai cho se doc nhu mau
- * thuan nhau.
+ * CHOT 21/09/2026: 2 dot - dot 1 = 10.000.000 d, dot 2 = phan con lai, dong
+ * khi khai giang. Ban cu ("dat coc 5.000.000 d, con lai 2 - 3 dot") da bo.
+ *
+ * VE CAU "dong truc tiep cho Trung tam, khong dong cho thay": chu website
+ * yeu cau bo khoi the hoc phi ngay 21/09/2026, nen da go khoi CA chuoi nay
+ * VA khoi ghi chu cua hang C1 (hai cho truoc day lap lai y het nhau).
+ * Y do van con o doan van "Cach thay tu van hoc phi" tren trang
+ * /hoc-phi-lo-trinh - do la cho duy nhat con noi ve viec dong tien cho ai.
  */
 const paymentNote =
-  'Trung tâm nhận đặt cọc 5.000.000 đ, phần còn lại đóng thành 2 - 3 đợt. Bạn đóng trực tiếp cho Trung tâm, không đóng cho thầy.';
+  'Học phí trọn gói chia làm 2 đợt: đợt 1 đóng 10.000.000 đ, đợt 2 đóng hết phần còn lại khi khai giảng.';
 
 export const courses: Course[] = [
   {
@@ -163,12 +166,12 @@ export const courses: Course[] = [
       'Ảnh thẻ theo kích thước cơ sở đào tạo hướng dẫn',
     ],
     tuition: {
-      displayValue: '18.900.000 đ',
-      amountVnd: 18_900_000,
-      headline: 'Học phí gần trọn gói',
+      displayValue: '19.900.000 đ',
+      amountVnd: 19_900_000,
+      headline: 'Học phí trọn gói',
       included: packageIncludedHangB,
       mayIncurAdditional: packageMayIncurAdditional,
-      note: `Mức trọn gói Trung tâm đang công bố cho hạng B số tự động (giá gốc 21.000.000 đ). ${paymentNote}`,
+      note: `Mức trọn gói Trung tâm đang công bố cho hạng B số tự động. ${paymentNote}`,
     },
     faqs: [
       {
@@ -256,12 +259,12 @@ export const courses: Course[] = [
       'Ảnh thẻ theo kích thước cơ sở đào tạo hướng dẫn',
     ],
     tuition: {
-      displayValue: '18.500.000 đ',
-      amountVnd: 18_500_000,
-      headline: 'Học phí gần trọn gói',
+      displayValue: '18.900.000 đ',
+      amountVnd: 18_900_000,
+      headline: 'Học phí trọn gói',
       included: packageIncludedHangB,
       mayIncurAdditional: packageMayIncurAdditional,
-      note: `Mức trọn gói Trung tâm đang công bố cho hạng B số sàn (giá gốc 21.000.000 đ). ${paymentNote}`,
+      note: `Mức trọn gói Trung tâm đang công bố cho hạng B số sàn. ${paymentNote}`,
     },
     faqs: [
       {
@@ -350,15 +353,16 @@ export const courses: Course[] = [
       'Giấy tờ liên quan đến điều kiện dự học của hạng C1 (nếu được yêu cầu)',
     ],
     /*
-     * C1 KHONG dung `paymentNote`: nguon chi neu ro muc coc/so dot cho goi
-     * hang B. Khong suy dien sang C1 - de nguoi doc hoi lai thay.
+     * C1 KHONG dung `paymentNote`: nguon (chot 21/09/2026) chi neu ro cach
+     * chia 2 dot cho goi hang B. Khong suy dien sang C1 - de nguoi doc hoi
+     * lai thay.
      */
     tuition: {
       displayValue: '20.500.000 đ',
       amountVnd: 20_500_000,
       included: packageIncluded,
       mayIncurAdditional: packageMayIncurAdditional,
-      note: 'Mức trọn gói Trung tâm đang công bố cho hạng C1 (giá gốc 23.000.000 đ). Bạn đóng trực tiếp cho Trung tâm, không đóng cho thầy. Số đợt đóng của hạng C1 bạn hỏi thầy để được xác nhận theo đợt khai giảng.',
+      note: 'Mức trọn gói Trung tâm đang công bố cho hạng C1. Số đợt đóng của hạng C1 bạn hỏi thầy để được xác nhận theo đợt khai giảng.',
     },
     faqs: [
       {

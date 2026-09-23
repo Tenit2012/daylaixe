@@ -50,9 +50,10 @@ function buildTuitionAnswer(): string {
 
   return (
     `Mức trọn gói trung tâm đang công bố: ${priceList}. ` +
-    'Mức này đã gồm học phí lý thuyết và thực hành 1 kèm 1, xăng xe, bãi tập, giờ cabin và phần mềm mô phỏng, lệ phí thi sát hạch cùng lệ phí cấp bằng. ' +
+    'Mức này đã gồm học phí lý thuyết và thực hành 1 kèm 1, xăng xe, bãi tập, giờ cabin và phần mềm mô phỏng. ' +
     'Riêng hai khóa hạng B còn được hỗ trợ thực hành không giới hạn giờ theo chính sách đào tạo, và không phụ thu cuối tuần. ' +
     'Chưa gồm khám sức khỏe nếu bạn chưa có giấy còn hiệu lực, và phí thi lại nếu trượt. ' +
+    'Học phí trọn gói chia làm 2 đợt: đợt 1 đóng 10.000.000 đ, đợt 2 đóng hết phần còn lại khi khai giảng. ' +
     'Trang Học phí & lộ trình liệt kê đầy đủ từng khoản.' +
     perSession
   );

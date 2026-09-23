@@ -79,11 +79,12 @@ export interface CourseTuition {
    */
   amountVnd?: number;
   /**
-   * Nhan ngan dat ngay duoi con so, vi du "Học phí gần trọn gói".
+   * Nhan ngan dat ngay duoi con so, vi du "Học phí trọn gói".
    *
-   * Co y de "GAN tron goi" chu khong phai "tron goi": `mayIncurAdditional`
-   * van con khoan (kham suc khoe, thi lai). Neu mot ngay nao do danh sach do
-   * rong thi moi duoc doi chu.
+   * Tu 21/09/2026 hai khoa hang B ghi thang "tron goi" theo cach Trung tam
+   * cong bo. `mayIncurAdditional` van con khoan (kham suc khoe, thi lai) nen
+   * cot "Co the phat sinh" PHAI giu nguyen ben canh - do la thu giu cho chu
+   * "tron goi" khong bi doc thanh "khong bao gio tra them dong nao".
    */
   headline?: string;
   /** Cac khoan da bao gom trong hoc phi. */
